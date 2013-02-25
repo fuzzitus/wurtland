@@ -1,3 +1,7 @@
+#!/usr/bin/python
+import os
+import sys
+sys.path.append(os.getcwd() + '/redemptionweb')
 #This is a module I made that outputs python as html
 from redemptionweb import *
 
@@ -13,11 +17,11 @@ MAIN_DIV = div.Div(dict(id='main',
 #Depending on the page, this will be whatever Objects show up
 OBJS = []
 
-#The Starting page: http://www.fuzzit.us/adminconsole.py
+#The Starting page: http://www.fuzzit.us/cgi-bin/adminconsole.py
 if len(Pars) == 0:
     TITLE = t.Text('iOS Beacon Demo', dict(size='36'))
-    LOG_IN_BUTTON = l.Link(HOST + 'adminconsole.py?action=logintogame', [b.Button('logintogame', 'Log In To Existing Game')])
-    NEW_GAME_BUTTON = l.Link(HOST + 'adminconsole.py?action=createnewgame', [b.Button('createnewgame', 'Create New Game')])
+    LOG_IN_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=logintogame', [b.Button('logintogame', 'Log In To Existing Game')])
+    NEW_GAME_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=createnewgame', [b.Button('createnewgame', 'Create New Game')])
     
     OBJS = [TITLE,
             t.br,
@@ -26,12 +30,12 @@ if len(Pars) == 0:
             NEW_GAME_BUTTON]
 
 else:
-    #http://www.fuzzit.us/adminconsole.py?action=ACTION
+    #http://www.fuzzit.us/cgi-bin/adminconsole.py?action=ACTION
     ACTION = Pars['action'].value
 
 
 
-    #Log In To Game Page: http://www.fuzzit.us/adminconsole.py?action=logintogame
+    #Log In To Game Page: http://www.fuzzit.us/cgi-bin/adminconsole.py?action=logintogame
     if ACTION == 'logintogame':
 
         #The form for logging into a game
@@ -53,7 +57,7 @@ else:
 
 
 
-    #Create A New Game Page: http://www.fuzzit.us/adminconsole.py?action=createnewgame
+    #Create A New Game Page: http://www.fuzzit.us/cgi-bin/adminconsole.py?action=createnewgame
     elif ACTION == 'createnewgame':
 
         #The form for creating a game
@@ -81,12 +85,12 @@ else:
 
         TITLE = t.Text('Menu', dict(size='36'))
         
-        AR_BEACONS = l.Link(HOST + 'adminconsole.py?action=arbeacons&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('arbeacon', 'Add/Remove Beacon')])
-        CONF_BEACONS = l.Link(HOST + 'adminconsole.py?action=confbeacons&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('confbeacon', 'Configure Beacons')])
-        ASSIGN_TRAITS = l.Link(HOST + 'adminconsole.py?action=manuallyassigntraits&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('assigntraits', 'Manually Assign Traits')])
-        CUSTOM_TRAITS = l.Link(HOST + 'adminconsole.py?action=customtraits&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('customtraits', 'Create Custom Traits')])
+        AR_BEACONS = l.Link(HOST + 'cgi-bin/adminconsole.py?action=arbeacons&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('arbeacon', 'Add/Remove Beacon')])
+        CONF_BEACONS = l.Link(HOST + 'cgi-bin/adminconsole.py?action=confbeacons&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('confbeacon', 'Configure Beacons')])
+        ASSIGN_TRAITS = l.Link(HOST + 'cgi-bin/adminconsole.py?action=manuallyassigntraits&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('assigntraits', 'Manually Assign Traits')])
+        CUSTOM_TRAITS = l.Link(HOST + 'cgi-bin/adminconsole.py?action=customtraits&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('customtraits', 'Create Custom Traits')])
 
-        EXIT_BUTTON = l.Link(HOST + 'adminconsole.py', [b.Button('exitbutton', 'Exit')])
+        EXIT_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py', [b.Button('exitbutton', 'Exit')])
 
         OBJS = [TITLE, t.br,
                 t.T('New Beacon: '), AR_BEACONS, t.br,

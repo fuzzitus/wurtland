@@ -42,9 +42,9 @@ else:
 
         TITLE = t.Text('Login To A Game', dict(size='36'))
 
-        SERVER = f.TextField('servertype', 'Static')
-        GAME_NAME = f.TextField('gamename', '')
-        PW = f.TextField('pw', '')
+        SERVER = f.TextField('servertype', 'Server:')
+        GAME_NAME = f.TextField('gamename', 'Game Name:')
+        PW = f.TextField('pw', 'Password:')
         
         CREATE = f.SubmitButton('Login')
         
@@ -64,9 +64,9 @@ else:
 
         TITLE = t.Text('Create New game', dict(size='36'))
 
-        SERVER = f.TextField('servertype', 'Static')
-        GAME_NAME = f.TextField('gamename', 'New Game')
-        PW = f.TextField('pw', '')
+        SERVER = f.TextField('servertype', 'Server: ')
+        GAME_NAME = f.TextField('gamename', 'Game Name:')
+        PW = f.TextField('pw', 'Password: ')
         
         CREATE = f.SubmitButton('Create Game')
         

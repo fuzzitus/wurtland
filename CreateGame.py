@@ -1,7 +1,8 @@
 import os
 import sys
-sys.append(os.getcwd() + '/servermodules')
+sys.path.append(os.getcwd() + '/servermodules')
 sys.path.append(os.getcwd() + '/redemptionweb')
+from redemptionweb import *
 import fz_player as p
 import fz_beacon as b
 import fz_game as g

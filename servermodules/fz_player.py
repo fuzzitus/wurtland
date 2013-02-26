@@ -4,8 +4,9 @@ import sys
 import ciPack as pk
 
 class Player:
-    def __init__(p, Id, Traits):
+    def __init__(p, Id, pw, Traits):
         p.Id = Id
+        p.Password = pw
         p.Traits = Traits
     def Save(p):
         ff = open(os.getcwd() + '/playerprofiles/' + p.Id + '.fuz', 'wb')
@@ -14,6 +15,7 @@ class Player:
     def Send(p, stream):
         pk.SendByte(stream, 0)#FORMAT - This will help for furtue expansions
         pk.SendString(stream, p.Id)
+        pk.SendString(stream, p.Password)
         pk.SendShort(stream, len(p.Traits))
         for ET in p.Traits:
             pk.SendString(stream, ET[0])
@@ -21,6 +23,7 @@ class Player:
     def Write(p, stream):
         pk.WriteByte(stream, 0)#FORMAT - This will help for furtue expansions
         pk.WriteString(stream, p.Id)
+        pk.WriteString(stream, p.Password)
         pk.WriteShort(stream, len(p.Traits))
         for ET in p.Traits:
             pk.WriteString(stream, ET[0])
@@ -29,22 +32,24 @@ class Player:
 def ReadPlayer(stream):
     form = pk.ReadByte(stream)
     Id = pk.ReadString(stream)
+    Pw = pk.ReadString(stream)
     am = pk.ReadInt(Stream)
     traits = []
     for ET in range(0, am):
         traits.append([pk.ReadString(stream), ''])
         traits[ET][1] = pk.ReadString(stream)
-    return Player(Id, traits)
+    return Player(Id, Pw, traits)
 
 def RecvPlayer(stream):
     form = pk.RecvByte(stream)
     Id = pk.RecvString(stream)
+    pw = pk.RecvString(stream)
     am = pk.RecvInt(Stream)
     traits = []
     for ET in range(0, am):
         traits.append([pk.RecvString(stream), ''])
         traits[ET][1] = pk.RecvString(stream)
-    return Player(Id, traits)
+    return Player(Id, pw, traits)
 
 def LoadPlayer(Id):
     ff = open(os.getcwd() + '/playerprofiles/' + Id + '.fuz', 'rb')

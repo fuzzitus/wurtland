@@ -62,7 +62,7 @@ else:
 
         #The form for creating a game
 
-        TITLE = t.Text('Create New game', dict(size='36'))
+        TITLE = t.Text('Create New game', dict(size='36', value='creategame'))
 
         SERVER = f.TextField('servertype', 'Server: ')
         GAME_NAME = f.TextField('gamename', 'Game Name:')
@@ -70,11 +70,11 @@ else:
         
         CREATE = f.SubmitButton('Create Game')
         
-        NEW_GAME_FORM = f.Form(dict(action='creategame'), [TITLE, t.br,
-                                                           SERVER, t.br,
-                                                           GAME_NAME, t.br,
-                                                           PW, t.br,
-                                                           CREATE])
+        NEW_GAME_FORM = f.Form(dict(action='CreateGame.py?'), [TITLE, t.br,
+                                                                       SERVER, t.br,
+                                                                       GAME_NAME, t.br,
+                                                                       PW, t.br,
+                                                                       CREATE])
         OBJS = [NEW_GAME_FORM]
 
     #Menu

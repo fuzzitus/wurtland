@@ -4,11 +4,12 @@ import sys
 import ciPack as p
 
 class Beacon:
-    def __init__(b, Id, name, instructions, activated):
+    def __init__(b, Id, name, instructions, activated, phoneid = ''):
         b.Id = Id
         b.Name = name
         b.Instructions = instructions
         b.Activated = activated
+        b.PhoneId = phoneid
     def Save(b):
         ff = open(os.getcwd() + '/beacons/' + b.Id + '.fuz', 'wb')
         b.Write(ff)
@@ -21,6 +22,7 @@ class Beacon:
         for EI in b.Instructions:
             p.SendString(stream, EI)
         p.SendBool(stream, b.Activated)
+        p.SendString(stream, b.PhoneId)
     def Write(b, stream):
         p.WriteByte(stream, 0)#FORMAT
         p.WriteString(stream, b.Id)
@@ -29,6 +31,7 @@ class Beacon:
         for EI in b.Instructions:
             p.WriteString(stream, EI)
         p.WriteBool(stream, b.Activated)
+        p.WriteString(stream, b.PhoneId)
 
 def RecvBeacon(stream):
     form = p.RecvByte(stream)
@@ -39,7 +42,8 @@ def RecvBeacon(stream):
     for EI in range(0, am):
         I.append(p.RecvString(stream))
     a = p.RecvBool(stream)
-    return Beacon(Id, Name, I, a)
+    pid = p.RecvString(stream)
+    return Beacon(Id, Name, I, a, pid)
 
 def ReadBeacon(stream):
     form = p.ReadByte(stream)
@@ -50,7 +54,8 @@ def ReadBeacon(stream):
     for EI in range(0, am):
         I.append(p.ReadString(stream))
     a = p.ReadBool(stream)
-    return Beacon(Id, Name, I, a)
+    pid = p.ReadString(stream)
+    return Beacon(Id, Name, I, a, pid)
 
 def LoadBeacon(Id):
     ff = open(os.getcwd() + '/beacons/' + Id + '.fuz', 'rb')

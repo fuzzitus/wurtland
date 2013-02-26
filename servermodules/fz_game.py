@@ -3,6 +3,12 @@ import sys
 
 import ciPack as p
 
+def Format(txt):
+    return txt.replace('/', '_00_fuz').replace('?', '_01_fuz').replace('<', '_02_fuz').replace('>', '_03_fuz').replace(chr(92), '_04_fuz').replace(':', '_05_fuz').replace('*', '_06_fuz').replace('"', '_07_fuz').replace("'", '_08_fuz').replace(' ', '_09_fuz')
+
+def FormatBack(txt):
+    return txt.replace('_00_fuz', '/').replace('_01_fuz', '?').replace('_02_fuz', '<').replace('_03_fuz', '>').replace('_04_fuz', chr(92)).replace('_05_fuz', ':').replace('_06_fuz', '*').replace('_07_fuz', '"').replace('_08_fuz', "'").replace('_09_fuz', ' ')
+
 class Game:
     def __init__(g, Id, password, gamestarted, beacons, players, traits):
         g.Id = Id
@@ -12,7 +18,7 @@ class Game:
         g.Players = players#Player Ids
         g.Traits = traits
     def Save(g):
-        ff = open(os.getcwd() + '/games/' + g.Id + '.fuz', 'wb')
+        ff = open(os.getcwd() + '/games/' + Format(g.Id) + '.fuz', 'wb')
         g.Write(ff)
         ff.close()
     def Send(g, stream):
@@ -83,7 +89,7 @@ def ReadGame(stream):
     return Game(Id, pw, gs, B, P, T)
 
 def LoadGame(Id):
-    ff = open(os.getcwd() + '/games/' + Id + '.fuz', 'rb')
+    ff = open(os.getcwd() + '/games/' + FormatBack(Id) + '.fuz', 'rb')
     g = ReadGame(ff)
     ff.close()
     return g

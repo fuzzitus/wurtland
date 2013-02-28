@@ -1,4 +1,4 @@
-﻿import struct as s
+import struct as s
 
 #Copyright (c) 2013 CageInfamous(tm)
 
@@ -95,16 +95,16 @@ def String(txt):
     return Int(len(txt)) + s.pack('{}s'.format(len(txt)), txt)
 
 def WriteByte(stream, num):
-    stream.write(Byte(num))
+    print >> stream, Byte(num)
 
 def WriteFloat(stream, num):
-    stream.write(Float(num))
+    print >> stream, Float(num)
 
 def WriteInt(stream, num):
-    stream.write(Int(num))
+    print >> stream, Int(num)
 
 def WriteShort(stream, num):
-    stream.write(Short(num))
+    print >> stream, Short(num)
 
 def WriteString(stream, num):
-    stream.write(String(num))
+    print >> stream, String(num)

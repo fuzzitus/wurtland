@@ -20,14 +20,17 @@ OBJS = []
 #The Starting page: http://www.fuzzit.us/cgi-bin/adminconsole.py
 if len(Pars) == 0:
     TITLE = t.Text('iOS Beacon Demo', dict(size='36'))
+    LOGO = i.Image('logoS', 'http://www.fuzzit.us/cgi-bin/graphics/beacon_logo_lite.png')
     LOG_IN_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=logintogame', [b.Button('logintogame', 'Log In To Existing Game')])
     NEW_GAME_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=createnewgame', [b.Button('createnewgame', 'Create New Game')])
     
     OBJS = [TITLE,
             t.br,
+            LOGO,
+            t.br, t.T('<font size=5>'),
             LOG_IN_BUTTON,
             t.br,
-            NEW_GAME_BUTTON]
+            NEW_GAME_BUTTON, t.T('</font>')]
 
 else:
     #http://www.fuzzit.us/cgi-bin/adminconsole.py?action=ACTION

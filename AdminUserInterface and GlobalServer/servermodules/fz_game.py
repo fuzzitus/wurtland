@@ -1,8 +1,7 @@
 import os
 import sys
 
-import ciPack as p2
-import ciPack2 as p
+import fz_pack as p
 
 import fz_beacon as b
 import fz_instruction as i
@@ -34,47 +33,47 @@ class Game:
         g.Write(ff)
         ff.close()
     def Write(g, stream):
-        p.WriteByte(stream, 0)#FORMAT
+        p.Write(stream, 0)#FORMAT
         p.Write(stream, g.Id)
         p.Write(stream, g.Password)
-        p.WriteBool(stream, g.GameStarted)
-        p.WriteInt(stream, len(g.Beacons))
+        p.Write(stream, g.GameStarted)
+        p.Write(stream, len(g.Beacons))
         for EB in g.Beacons:
             EB.Write(stream)
-        p.WriteInt(stream, len(g.Players))
+        p.Write(stream, len(g.Players))
         for EP in g.Players:
             p.Write(EP)
-        p.WriteInt(stream, len(g.Traits))
+        p.Write(stream, len(g.Traits))
         for ET in g.Traits:
             p.Write(ET)
-        p.WriteInt(stream, len(g.Instructions))
+        p.Write(stream, len(g.Instructions))
         for EI in g.Instructions:
             p.Write(EI)
 
 def ReadGame(stream):
-    form = p.ReadByte(stream)
-    Id = p.Read(stream)
-    pw = p.Read(stream)
-    gs = p.ReadBool(stream)
-    am = p.ReadInt(stream)
+    form = p.ReadFrom(stream)
+    Id = p.ReadFrom(stream)
+    pw = p.ReadFrom(stream)
+    gs = p.ReadFrom(stream)
+    am = p.ReadFrom(stream)
     B = []
     for EA in range(am):
         B.append(b.ReadBeacon(stream))
-    am = p.ReadInt(stream)
+    am = p.ReadFrom(stream)
     P = []
     for EA in range(am):
-        P.append(p.Read(stream))
-    am = p.ReadInt(stream)
+        P.append(p.ReadFrom(stream))
+    am = p.ReadFrom(stream)
     T = []
     for EA in range(am):
-        T.append(p.Read(stream))
+        T.append(p.ReadFrom(stream))
     I = []
     for EI in range(am):
         I.append(i.ReadInstruction(stream))
     return Game(Id, pw, gs, B, P, T, I)
 
 def LoadGame(Id):
-    ff = open(GAME_LOCATION + '/' + Format(Id) + '.fuz', 'rb')
+    ff = ReadFromFile('/games/' + Format(Id) + '.fuz', 'rb')
     g = ReadGame(ff)
     ff.close()
     return g
@@ -88,7 +87,7 @@ def CheckGameExists(name):
 def CheckPassword(game, pw):
     if CheckGameExists(game):
         F = open(GAME_LOCATION + '/' + Format(game) + '.fuz', 'rb')
-        p.ReadByte()
+        p.ReadInt()
         N = p.Read()
         PW = p.Read()
         F.close()

@@ -1,4 +1,4 @@
-import ciPack2 as p
+import fz_pack as p
 
 class Instruction:
     def __init__(i, Id, trait, text):
@@ -11,7 +11,7 @@ class Instruction:
         p.Write(stream, i.Text)
 
 def ReadInstruction(stream):
-    Id = p.Read(stream)
-    Trait = p.Read(stream)
-    Text = p.Read(stream)
+    Id = p.ReadFrom(stream)
+    Trait = p.ReadFrom(stream)
+    Text = p.ReadFrom(stream)
     return Instruction(Id, Trait, Text)

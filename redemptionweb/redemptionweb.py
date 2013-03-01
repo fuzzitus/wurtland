@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-#Copyright (c) 2013 CageInfamous(tm)
+#Copyright (c) 2013 Nathaniel "CageInfamous" Wilson, cageinfamous@gmail.com
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
 #(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
@@ -24,6 +24,10 @@ import rw_div as div
 import rw_form as f
 import rw_button as b
 import rw_link as l
+import rw_javascript as j
+
+def GoToPage(page):
+    print '<meta http-equiv="refresh" content="0; url=' + page  + '">'
 
 import cgi
 Pars = cgi.FieldStorage()

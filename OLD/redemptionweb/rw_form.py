@@ -1,4 +1,4 @@
-#Copyright (c) 2013 Nathaniel "CageInfamous" Wilson, cageinfamous@gmail.com
+#Copyright (c) 2013 CageInfamous(tm)
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
 #(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
@@ -69,15 +69,8 @@ class Dropdown(w.Widget):
     def __call__(d):
         print '<select name="' + d.Name + '">\n'
         for EV in d.Values:
-            if len(EV) == 2:
-                print '<option value="' + EV[0] + '">' + EV[1] + '</option>\n'
-            else:
-                T = '<option value="' + EV[0]
-                for EA in EV[2]:
-                    T += ' ' + EA + '="' + EV[2][EA] + '"'
-                T += ">' + EV[1] + '</option>\n'"
-                print T
+            print '<option value="' + EV[0] + '">' + EV[1] + '</option>\n'
         print '</select>'
     def __init__(d, name, values = []):
         d.Name = name
-        d.Values = values#[[value, caption, attr]]
+        d.Values = values#[[value, caption]]

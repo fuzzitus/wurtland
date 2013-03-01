@@ -1,4 +1,4 @@
-#Copyright (c) 2013 Nathaniel "CageInfamous" Wilson, cageinfamous@gmail.com
+﻿#Copyright (c) 2013 CageInfamous(tm)
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
 #(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
@@ -11,5 +11,26 @@
 #FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 #WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-def SetBackgroundImage(image):
-    print '<body background="' + image + '">'
+def DivBackgroundImage(image, w, h):
+    if isinstance(w, int) or isinstance(w, float):
+        W = str(w) + 'px'
+    else:
+        W = w
+    if isinstance(h, int) or isinstance(h, float):
+        H = str(h) + 'px'
+    else:
+        H = h 
+    return dict(style='background-image: url(' + image + '); width: ' + W + '; height: ' + H + ';')
+
+def Merge(attrs):
+    am = len(attrs)
+    aa = attrs[0]
+    for EA in range(1, am):
+        aa.update(attrs[EA])
+    return aa
+
+def toCssStyle(style):
+    text = ''
+    for EK in style:
+        text += EK + ':' + style[EK] + ';'
+    return text

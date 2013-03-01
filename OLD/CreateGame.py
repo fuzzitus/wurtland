@@ -15,7 +15,7 @@ HOST = 'http://www.fuzzit.us/'
 
 #http://www.fuzzit.us/cgi-bin/CreateGame.py
 if len(Pars) == 0:
-    print '<meta http-equiv="refresh" content="0; url=' + HOST  + 'adminconsole.py">'
+    print '<meta http-equiv="refresh" content="0; url=' + HOST  + 'cgi-bin/adminconsole.py">'
 
 else:
     #http://www.fuzzit.us/cgi-bin/CreateGame.py?servertype=ST&gamename=GN&pw=PW
@@ -24,10 +24,10 @@ else:
     PW = Pars['pw'].value
 
     #Checks to see if the the name is already taken
-    if os.path.exists(os.getcwd() + '/games/' + g.Format(GAME_NAME) + '.fuz'):
+    if os.path.exists('/home4/fuzzitus/public_html/games/' + g.Format(GAME_NAME) + '.fuz'):
         print t.Text('Game Name Already Taken! :O', dict(size='36', align='center'))
-        print '<meta http-equiv="refresh" content="0; url=' + HOST  + 'adminconsole.py?action=createnewgame">'
+        print '<meta http-equiv="refresh" content="0; url=' + HOST  + 'cgi-bin/adminconsole.py?action=createnewgame">'
     else:
         g.Game(GAME_NAME, PW, False, [], [], []).Save()
-        print '<meta http-equiv="refresh" content="0; url=' + HOST  + 'adminconsole.py?action=adminmenu&servertype=' + SERVERTYPE + '&gamename=' + GAME_NAME + '&pw=' + PW + '">'
+        print '<meta http-equiv="refresh" content="0; url=' + HOST  + 'cgi-bin/adminconsole.py?action=adminmenu&servertype=' + SERVERTYPE + '&gamename=' + GAME_NAME + '&pw=' + PW + '">'
         

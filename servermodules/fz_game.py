@@ -1,40 +1,33 @@
 import os
 import sys
 
-import ciPack as p
+import ciPack as p2
+import ciPack2 as p
+
+import fz_beacon as b
+import fz_instruction as i
+
+GAME_LOCATION = '/home4/fuzzitus/public_html/games'
 
 def Format(txt):
-    return txt.replace('/', '_00_fuz').replace('?', '_01_fuz').replace('<', '_02_fuz').replace('>', '_03_fuz').replace(chr(92), '_04_fuz').replace(':', '_05_fuz').replace('*', '_06_fuz').replace('"', '_07_fuz').replace("'", '_08_fuz').replace(' ', '_09_fuz')
+    return txt.replace('/', '_00_fuz_').replace('?', '_01_fuz_').replace('<', '_02_fuz_').replace('>', '_03_fuz_').replace(chr(92), '_04_fuz_').replace(':', '_05_fuz_').replace('*', '_06_fuz_').replace('"', '_07_fuz_').replace("'", '_08_fuz_').replace(' ', '_09_fuz_')
 
 def FormatBack(txt):
-    return txt.replace('_00_fuz', '/').replace('_01_fuz', '?').replace('_02_fuz', '<').replace('_03_fuz', '>').replace('_04_fuz', chr(92)).replace('_05_fuz', ':').replace('_06_fuz', '*').replace('_07_fuz', '"').replace('_08_fuz', "'").replace('_09_fuz', ' ')
+    return txt.replace('_00_fuz_', '/').replace('_01_fuz_', '?').replace('_02_fuz_', '<').replace('_03_fuz_', '>').replace('_04_fuz_', chr(92)).replace('_05_fuz_', ':').replace('_06_fuz_', '*').replace('_07_fuz_', '"').replace('_08_fuz_', "'").replace('_09_fuz_', ' ')
 
 class Game:
-    def __init__(g, Id, password, gamestarted, beacons, players, traits):
+    def __init__(g, Id, password, gamestarted, beacons, players, traits, instructions):
         g.Id = Id
         g.Password = password
         g.GameStarted = gamestarted
-        g.Beacons = beacons#Beacon Ids
+        g.Beacons = beacons
         g.Players = players#Player Ids
         g.Traits = traits
+        g.Instructions = instructions
     def Save(g):
-        ff = open(os.getcwd() + '/games/' + Format(g.Id) + '.fuz', 'wb')
+        ff = open(GAME_LOCATION + '/' + Format(g.Id) + '.fuz', 'wb')
         g.Write(ff)
         ff.close()
-    def Send(g, stream):
-        p.SendByte(stream, 0)#FORMAT
-        p.SendString(stream, g.Id)
-        p.SendString(stream, g.Password)
-        p.SendBool(stream, g.GameStarted)
-        p.SendInt(stream, len(g.Beacons))
-        for EB in g.Beacons:
-            p.SendString(EB)
-        p.SendInt(stream, len(g.Players))
-        for EP in g.Players:
-            p.SendString(EP)
-        p.SendInt(stream, len(g.Traits))
-        for ET in g.Traits:
-            p.SendString(ET)
     def Write(g, stream):
         p.WriteByte(stream, 0)#FORMAT
         p.WriteString(stream, g.Id)
@@ -42,32 +35,16 @@ class Game:
         p.WriteBool(stream, g.GameStarted)
         p.WriteInt(stream, len(g.Beacons))
         for EB in g.Beacons:
-            p.WriteString(EB)
+            EB.Write(stream)
         p.WriteInt(stream, len(g.Players))
         for EP in g.Players:
             p.WriteString(EP)
         p.WriteInt(stream, len(g.Traits))
         for ET in g.Traits:
             p.WriteString(ET)
-
-def RecvGame(stream):
-    form = p.RecvByte(stream)
-    Id = p.RecvString(stream)
-    pw = p.RecvString(stream)
-    gs = p.RecvBool(stream)
-    am = p.RecvInt(stream)
-    B = []
-    for EA in range(0, am):
-        B.append(p.RecvString(stream))
-    am = p.RecvInt(stream)
-    P = []
-    for EA in range(0, am):
-        P.append(p.RecvString(stream))
-    am = p.RecvInt(stream)
-    T = []
-    for EA in range(0, am):
-        T.append(p.RecvString(stream))
-    return Game(Id, pw, gs, B, P, T)
+        p.WriteInt(stream, len(g.Instructions))
+        for EI in g.Instructions:
+            p.WriteString(EI)
 
 def ReadGame(stream):
     form = p.ReadByte(stream)
@@ -76,20 +53,43 @@ def ReadGame(stream):
     gs = p.ReadBool(stream)
     am = p.ReadInt(stream)
     B = []
-    for EA in range(0, am):
-        B.append(p.ReadString(stream))
+    for EA in range(am):
+        B.append(b.ReadBeacon(stream))
     am = p.ReadInt(stream)
     P = []
-    for EA in range(0, am):
+    for EA in range(am):
         P.append(p.ReadString(stream))
     am = p.ReadInt(stream)
     T = []
-    for EA in range(0, am):
+    for EA in range(am):
         T.append(p.ReadString(stream))
-    return Game(Id, pw, gs, B, P, T)
+    I = []
+    for EI in range(am):
+        I.append(i.ReadInstruction(stream))
+    return Game(Id, pw, gs, B, P, T, I)
 
 def LoadGame(Id):
-    ff = open(os.getcwd() + '/games/' + FormatBack(Id) + '.fuz', 'rb')
+    ff = open(GAME_LOCATION + '/' + Format(Id) + '.fuz', 'rb')
     g = ReadGame(ff)
     ff.close()
     return g
+
+def CheckGameExists(name):
+    if os.path.exists(GAME_LOCATION + '/' + Format(name) + '.fuz'):
+        return True
+    else:
+        return False
+
+def CheckPassword(game, pw):
+    if CheckGameExists(game):
+        F = open(GAME_LOCATION + '/' + Format(game) + '.fuz', 'rb')
+        p.ReadByte()
+        N = p.ReadString()
+        PW = p.ReadString()
+        F.close()
+        if PW == pw:
+            return True
+        else:
+            return False
+    else:
+        return False

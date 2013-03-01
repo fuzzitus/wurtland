@@ -1,4 +1,6 @@
-#Copyright (c) 2013 Nathaniel "CageInfamous" Wilson, cageinfamous@gmail.com
+#!/usr/bin/python
+
+#Copyright (c) 2013 CageInfamous(tm)
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
 #(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
@@ -11,5 +13,19 @@
 #FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 #WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-def SetBackgroundImage(image):
-    print '<body background="' + image + '">'
+import rw_attr as a
+import rw_data as d
+import rw_widget as w
+import rw_text as t
+import rw_imagebutton as ib
+import rw_table as tb
+import rw_image as i
+import rw_div as div
+import rw_form as f
+import rw_button as b
+import rw_link as l
+import rw_javascript as j
+
+import cgi
+Pars = cgi.FieldStorage()
+print "Content-type: text/html\n"

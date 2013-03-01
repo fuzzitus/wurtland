@@ -11,5 +11,25 @@
 #FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 #WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-def SetBackgroundImage(image):
-    print '<body background="' + image + '">'
+import rw_widget as w
+
+class Func(w.Widget):
+    def __call__(js):
+        print '<script language="JavaScript">\n'
+        TXT = 'function ' + js.Title + '('
+        for EA in js.Args:
+            TXT += EA
+            if EA <> js.Args[len(js.Args) - 1]:
+                TXT += ', '
+        print TXT + ')\n'
+        print '{\n ' + js.Body + '\n}\n</script>'
+    def __init__(js, title, args, body):
+        js.Title = title
+        js.Args = args
+        js.Body = body
+
+def ElementAtt(name, att = 'value'):
+    return "document.getElementById('" + name + "')." + att
+
+def LinkTo(url):
+    return "window.location = '" + url

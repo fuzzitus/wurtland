@@ -1,4 +1,4 @@
-#Copyright (c) 2013 Nathaniel "CageInfamous" Wilson, cageinfamous@gmail.com
+﻿#Copyright (c) 2013 CageInfamous(tm)
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
 #(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
@@ -11,5 +11,18 @@
 #FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 #WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-def SetBackgroundImage(image):
-    print '<body background="' + image + '">'
+import rw_widget as w
+
+class Div(w.Widget):
+    def __call__(w):
+        txt = '<div '
+        for EA in w.Attr:
+            txt += ' ' + EA + '="' + w.Attr[EA] + '"'
+        txt += ">"
+        print txt
+        for EO in w.Objs:
+            EO()
+        print "</div>"
+    def __init__(w, attr, objs):
+        w.Attr = attr
+        w.Objs = objs

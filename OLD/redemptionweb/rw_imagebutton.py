@@ -1,4 +1,4 @@
-#Copyright (c) 2013 Nathaniel "CageInfamous" Wilson, cageinfamous@gmail.com
+﻿#Copyright (c) 2013 CageInfamous(tm)
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
 #(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
@@ -11,5 +11,12 @@
 #FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 #WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-def SetBackgroundImage(image):
-    print '<body background="' + image + '">'
+import rw_widget as w
+
+class ImageButton(w.Widget):
+    def __call__(b):
+        print '<a href="' + b.Link + '"><img src="' + b.Images[0] + '" onmouseover="this.src=' + chr(39) + b.Images[1] + chr(39) + '" onmouseout="this.src=' + chr(39) + b.Images[0] + chr(39) + '" alt="' + b.Id + '"/></a>'
+    def __init__(b, Id, images, link):
+        b.Id = Id
+        b.Images = images
+        b.Link = link

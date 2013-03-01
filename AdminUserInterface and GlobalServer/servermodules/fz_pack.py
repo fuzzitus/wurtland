@@ -1,16 +1,17 @@
+import base64
+
+def bool(v):
+    if v == "False" or v == "0":
+        return False
+    return True
+
 def ReadFrom(dat):
     R = dat[0]
     dat.remove(dat[0])
     return R
 
 def ReadFromFile(filename):
-    return open('/home4/fuzzitus/public_html/' + filename, 'rb').read().split(chr(12) + chr(13) + chr(14))
+    return base64.b64decode(open('/home4/fuzzitus/public_html/' + filename, 'rb').read()).split('__fuzz__split__||')
     
 def Write(stream, txt):
-    if isinstance(txt, bool):
-        if txt:
-            stream.write('0' + chr(12) + chr(13) + chr(14))
-        else:
-            stream.write('1' + chr(12) + chr(13) + chr(14))
-    else:
-        stream.write(str(txt) + chr(12) + chr(13) + chr(14))
+    stream.write(base64.b64encode(str(txt) +  '__fuzz__split__||'))

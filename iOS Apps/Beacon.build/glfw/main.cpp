@@ -10467,15 +10467,15 @@ Float bb_data2_SCALE_H;
 bb_challengergui_CHGUI* bb_data2_CScale(bb_challengergui_CHGUI* t_c){
 	DBG_ENTER("CScale")
 	DBG_LOCAL(t_c,"c")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<16>");
-	t_c->f_X*=Float(bb_graphics_DeviceWidth())/bb_data2_SCALE_W;
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<17>");
-	t_c->f_W*=Float(bb_graphics_DeviceWidth())/bb_data2_SCALE_W;
+	t_c->f_X*=Float(bb_graphics_DeviceWidth())/bb_data2_SCALE_W;
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<18>");
-	t_c->f_Y*=Float(bb_graphics_DeviceHeight())/bb_data2_SCALE_H;
+	t_c->f_W*=Float(bb_graphics_DeviceWidth())/bb_data2_SCALE_W;
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<19>");
-	t_c->f_H*=Float(bb_graphics_DeviceHeight())/bb_data2_SCALE_H;
+	t_c->f_Y*=Float(bb_graphics_DeviceHeight())/bb_data2_SCALE_H;
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<20>");
+	t_c->f_H*=Float(bb_graphics_DeviceHeight())/bb_data2_SCALE_H;
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<21>");
 	return t_c;
 }
 bb_challengergui_CHGUI* bb_challengergui_CreateDropdown(int t_X,int t_Y,int t_W,int t_H,String t_Text,bb_challengergui_CHGUI* t_Parent){

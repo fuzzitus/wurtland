@@ -51,22 +51,23 @@ class Game:
             p.Write(EI)
 
 def ReadGame(stream):
-    form = p.ReadFrom(stream)
+    form = int(p.ReadFrom(stream))
     Id = p.ReadFrom(stream)
     pw = p.ReadFrom(stream)
-    gs = p.ReadFrom(stream)
-    am = p.ReadFrom(stream)
+    gs = p.bool(p.ReadFrom(stream))
+    am = int(p.ReadFrom(stream))
     B = []
     for EA in range(am):
         B.append(b.ReadBeacon(stream))
-    am = p.ReadFrom(stream)
+    am = int(p.ReadFrom(stream))
     P = []
     for EA in range(am):
         P.append(p.ReadFrom(stream))
-    am = p.ReadFrom(stream)
+    am = int(p.ReadFrom(stream))
     T = []
     for EA in range(am):
         T.append(p.ReadFrom(stream))
+    am = int(p.ReadFrom(stream))
     I = []
     for EI in range(am):
         I.append(i.ReadInstruction(stream))
@@ -86,14 +87,15 @@ def CheckGameExists(name):
 
 def CheckPassword(game, pw):
     if CheckGameExists(game):
-        F = open(GAME_LOCATION + '/' + Format(game) + '.fuz', 'rb')
-        p.ReadInt()
-        N = p.Read()
-        PW = p.Read()
-        F.close()
-        if PW == pw:
+        G = g.ReadGame(game)
+        if G.Password == pw:
             return True
         else:
             return False
     else:
         return False
+
+import base64
+F = base64.b64decode(open('J:/test.fuz', 'rb').read()).split('__fuzz__split__||')
+print F
+G = ReadGame(F)

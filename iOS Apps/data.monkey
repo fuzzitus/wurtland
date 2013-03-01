@@ -2,8 +2,9 @@ Import challengergui
 Import mojo
 Import brl
 Import protocol
+Import page
 
-Global STATUS:= "start"
+Global STATUS:= "start", SCREEN:= "normal"
 
 Global SCALE_H:= 480.0, SCALE_W:= 300.0
 

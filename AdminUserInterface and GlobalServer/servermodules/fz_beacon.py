@@ -28,10 +28,12 @@ def ReadBeacon(stream):
     form = p.ReadFrom(stream)
     Id = p.ReadFrom(stream)
     Name = p.ReadFrom(stream)
-    am = p.ReadFrom(stream)
+    X = float(p.ReadFrom(stream))
+    Y = float(p.ReadFrom(stream))
+    am = int(p.ReadFrom(stream))
     I = []
     for EI in range(am):
         I.append(p.ReadFrom(stream))
-    a = p.ReadFrom(stream)
+    a = p.bool(p.ReadFrom(stream))
     pid = p.ReadFrom(stream)
-    return Beacon(Id, Name, I, a, pid)
+    return Beacon(Id, Name, X, Y, I, a, pid)

@@ -81,8 +81,8 @@ else:
                 GoToPage(HOST + 'cgi-bin/adminconsole.py')
 
         #Delete's the beacon
-        #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=updatebeacon
-        elif ACTION == 'updatebeacon':
+        #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=deletebeacon
+        elif ACTION == 'deletebeacon':
             GAMENAME = Pars['gamename'].value
             PW = Pars['pw'].value
             BEACONNAME = Pars['beacon'].value

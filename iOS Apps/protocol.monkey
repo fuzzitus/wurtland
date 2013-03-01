@@ -39,13 +39,14 @@ End Function
 				Exit
 			Endif
 		Forever
-		Local Kind:= stream.ReadByte()
+		Local Kind:= Int(stream.ReadLine())
 		Select Kind
 			Case 4'List of Games
-				Local am:= stream.ReadByte()
+				LastP = 4
+				Local am:= Int(stream.ReadLine())
 				SList = SList.Resize(am)
 				For Local es:= 0 To am - 1
-					SList[es] = ReadString(stream)
+					SList[es] = stream.ReadLine()
 				Next
 		End select
 	End function

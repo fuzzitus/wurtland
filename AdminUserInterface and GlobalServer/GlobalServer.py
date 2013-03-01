@@ -101,15 +101,16 @@ else:
             else:
                 GoToPage(HOST + 'cgi-bin/adminconsole.py')
 
-        #TEST1
-        elif ACTION == 'text1':
-            p.WriteByte(14)
-            p.WriteByte(27)
-
         #A Mobile Device Requests The List Of Games
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgamelist
         elif ACTION == 'mobilegetgamelist':
             mp.SendGameList()
+
+        #A Mobile Device Requests The List Of Beacons
+        #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgamelist
+        elif ACTION == 'mobilegetbeaconlist':
+            GAME = Pars['game']
+            mp.SendBeaconList(GAME)
 
         #A Mobile Device Requests For A Game
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgame&gamename=GAME&pw=PASSWORD

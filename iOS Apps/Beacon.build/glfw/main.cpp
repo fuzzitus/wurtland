@@ -3759,7 +3759,6 @@ class bb_databuffer_DataBuffer;
 class bb_stream_StreamError;
 class bb_stream_StreamWriteError;
 class bb_stack_Stack;
-class bb_stream_StreamReadError;
 class bb_challengergui_CHGUI;
 class bb_fontinterface_Font;
 class bb_bitmapfont_BitmapFont;
@@ -3924,9 +3923,6 @@ class bb_stream_Stream : public Object{
 	virtual int m_Eof()=0;
 	virtual int m_Read(bb_databuffer_DataBuffer*,int,int)=0;
 	virtual String m_ReadLine();
-	virtual void m__Read(int);
-	virtual int m_ReadByte();
-	virtual int m_ReadInt();
 	bb_stream_Stream* g_new();
 	void mark();
 	String debug();
@@ -3976,7 +3972,6 @@ class bb_stream_StreamWriteError : public bb_stream_StreamError{
 String dbg_type(bb_stream_StreamWriteError**p){return "StreamWriteError";}
 int bb_protocol_Post(bb_tcpstream_TcpStream*,String);
 int bb_protocol_RequestGameList(bb_tcpstream_TcpStream*);
-extern int bb_protocol_LastP;
 class bb_stack_Stack : public Object{
 	public:
 	Array<int > f_data;
@@ -3992,17 +3987,8 @@ class bb_stack_Stack : public Object{
 	String debug();
 };
 String dbg_type(bb_stack_Stack**p){return "Stack";}
-class bb_stream_StreamReadError : public bb_stream_StreamError{
-	public:
-	bb_stream_StreamReadError();
-	bb_stream_StreamReadError* g_new(bb_stream_Stream*);
-	bb_stream_StreamReadError* g_new2();
-	void mark();
-	String debug();
-};
-String dbg_type(bb_stream_StreamReadError**p){return "StreamReadError";}
+extern int bb_protocol_LastP;
 extern Array<String > bb_protocol_SList;
-String bb_protocol_ReadString(bb_stream_Stream*);
 int bb_protocol__readp(bb_tcpstream_TcpStream*);
 int bb_protocol_ReadProtocol(bb_tcpstream_TcpStream*);
 class bb_challengergui_CHGUI : public Object{
@@ -4111,6 +4097,7 @@ class bb_challengergui_CHGUI : public Object{
 };
 String dbg_type(bb_challengergui_CHGUI**p){return "CHGUI";}
 bb_challengergui_CHGUI* bb_challengergui_CreateDropdownItem(String,bb_challengergui_CHGUI*,int);
+int bb_protocol_ResetP();
 int bb_graphics_DebugRenderDevice();
 int bb_graphics_Cls(Float,Float,Float);
 extern Array<bb_challengergui_CHGUI* > bb_challengergui_CHGUI_BottomList;
@@ -4267,10 +4254,10 @@ extern int bb_challengergui_CHGUI_FPSCounter;
 extern int bb_challengergui_CHGUI_FPS;
 int bb_challengergui_CHGUI_FPSUpdate();
 int bb_challengergui_CHGUI_Draw();
-extern int bb_challengergui_CHGUI_Started;
 extern int bb_challengergui_CHGUI_Width;
 extern int bb_challengergui_CHGUI_Height;
 extern int bb_challengergui_CHGUI_CanvasFlag;
+extern int bb_challengergui_CHGUI_Started;
 extern bb_challengergui_CHGUI* bb_challengergui_CHGUI_TopTop;
 bb_challengergui_CHGUI* bb_challengergui_CreateWindow(int,int,int,int,String,int,int,int,int,bb_challengergui_CHGUI*);
 String bb_app_LoadString(String);
@@ -4278,11 +4265,11 @@ extern bb_challengergui_CHGUI* bb_challengergui_CHGUI_KeyboardWindow;
 bb_challengergui_CHGUI* bb_challengergui_CHGUI_CreateKeyButton(int,int,int,int,String,bb_challengergui_CHGUI*);
 int bb_challengergui_CHGUI_CreateKeyboard();
 extern bb_challengergui_CHGUI* bb_challengergui_CHGUI_MsgBoxWindow;
+bb_challengergui_CHGUI* bb_challengergui_CreateLabel(int,int,String,bb_challengergui_CHGUI*);
 extern bb_challengergui_CHGUI* bb_challengergui_CHGUI_MsgBoxLabel;
 bb_challengergui_CHGUI* bb_challengergui_CreateButton(int,int,int,int,String,bb_challengergui_CHGUI*);
 extern bb_challengergui_CHGUI* bb_challengergui_CHGUI_MsgBoxButton;
 int bb_challengergui_CHGUI_Start();
-bb_challengergui_CHGUI* bb_challengergui_CreateLabel(int,int,String,bb_challengergui_CHGUI*);
 extern Float bb_data2_SCALE_W;
 extern Float bb_data2_SCALE_H;
 bb_challengergui_CHGUI* bb_data2_CScale(bb_challengergui_CHGUI*);
@@ -4450,59 +4437,63 @@ int bb_Beacon_Beacon::m_OnRender(){
 			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<28>");
 			bb_protocol_RequestGameList(f_Server);
 			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<29>");
-			while(bb_protocol_LastP!=4){
-				DBG_BLOCK();
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<30>");
-				bb_protocol_ReadProtocol(f_Server);
-			}
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<32>");
-			Array<String > t_2=bb_protocol_SList;
-			int t_3=0;
-			while(t_3<t_2.Length()){
-				DBG_BLOCK();
-				String t_ES=t_2.At(t_3);
-				t_3=t_3+1;
-				DBG_LOCAL(t_ES,"ES")
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<33>");
-				bb_challengergui_CreateDropdownItem(t_ES,f_Games,0);
-			}
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<35>");
 			bb_data2_STATUS=String(L"normal",6);
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<37>");
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<31>");
 		if(t_==String(L"normal",6)){
 			DBG_BLOCK();
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<32>");
+			bb_protocol_ReadProtocol(f_Server);
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<33>");
+			if(bb_protocol_LastP==4){
+				DBG_BLOCK();
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<34>");
+				Array<String > t_2=bb_protocol_SList;
+				int t_3=0;
+				while(t_3<t_2.Length()){
+					DBG_BLOCK();
+					String t_eS=t_2.At(t_3);
+					t_3=t_3+1;
+					DBG_LOCAL(t_eS,"eS")
+					DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<35>");
+					bb_challengergui_CreateDropdownItem(t_eS,f_Games,0);
+				}
+			}
 			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<38>");
+			bb_protocol_ResetP();
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<40>");
 			bb_graphics_Cls(FLOAT(247.0),FLOAT(247.0),FLOAT(247.0));
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<39>");
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<42>");
 			bb_challengergui_CHGUI_Draw();
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<40>");
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<43>");
 			if(t_==String(L"start",5)){
 				DBG_BLOCK();
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<41>");
-				gc_assign(f_Title,bb_data2_CScale(bb_challengergui_CreateLabel(50,10,String(L"Beacon Config",13),0)));
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<42>");
-				gc_assign(f_ServerLabel,bb_data2_CScale(bb_challengergui_CreateLabel(5,60,String(L"Server Type: Static",19),0)));
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<43>");
-				gc_assign(f_Games,bb_data2_CScale(bb_challengergui_CreateDropdown(10,110,int(bb_data2_SCALE_W-FLOAT(20.0)),40,String(L"Choose Game",11),0)));
 				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<44>");
-				gc_assign(f_PwLabel,bb_data2_CScale(bb_challengergui_CreateLabel(5,160,String(L"Password:",9),0)));
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<45>");
-				gc_assign(f_Pw,bb_data2_CScale(bb_challengergui_CreateTextfield(120,155,170,45,String(),0)));
+				bb_challengergui_CHGUI_Start();
 				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<46>");
-				gc_assign(f_BeaconList,bb_data2_CScale(bb_challengergui_CreateDropdown(10,210,int(bb_data2_SCALE_W-FLOAT(20.0)),40,String(L"Choose Beacon",13),0)));
+				gc_assign(f_Title,bb_data2_CScale(bb_challengergui_CreateLabel(50,10,String(L"Beacon Config",13),0)));
 				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<47>");
-				gc_assign(f_On_Off,bb_data2_CScale(bb_challengergui_CreateButton(10,int(bb_data2_SCALE_H-FLOAT(50.0)),int(bb_data2_SCALE_W-FLOAT(20.0)),40,String(L"On/Off",6),0)));
+				gc_assign(f_ServerLabel,bb_data2_CScale(bb_challengergui_CreateLabel(5,60,String(L"Server Type: Static",19),0)));
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<48>");
+				gc_assign(f_Games,bb_data2_CScale(bb_challengergui_CreateDropdown(10,110,int(bb_data2_SCALE_W-FLOAT(20.0)),40,String(L"Choose Game",11),0)));
 				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<49>");
-				f_isOn=false;
+				gc_assign(f_PwLabel,bb_data2_CScale(bb_challengergui_CreateLabel(5,160,String(L"Password:",9),0)));
 				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<50>");
-				gc_assign(f_Server,(new bb_tcpstream_TcpStream)->g_new());
+				gc_assign(f_Pw,bb_data2_CScale(bb_challengergui_CreateTextfield(120,155,170,45,String(),0)));
 				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<51>");
-				bb_data2_STATUS=String(L"normal",6);
+				gc_assign(f_BeaconList,bb_data2_CScale(bb_challengergui_CreateDropdown(10,210,int(bb_data2_SCALE_W-FLOAT(20.0)),40,String(L"Choose Beacon",13),0)));
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<52>");
+				gc_assign(f_On_Off,bb_data2_CScale(bb_challengergui_CreateButton(10,int(bb_data2_SCALE_H-FLOAT(50.0)),int(bb_data2_SCALE_W-FLOAT(20.0)),40,String(L"On/Off",6),0)));
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<54>");
+				f_isOn=false;
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<55>");
+				gc_assign(f_Server,(new bb_tcpstream_TcpStream)->g_new());
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<56>");
+				bb_data2_STATUS=String(L"connecting",10);
 			}
 		}
 	}
@@ -4512,13 +4503,21 @@ int bb_Beacon_Beacon::m_OnUpdate(){
 	DBG_ENTER("Beacon.OnUpdate")
 	bb_Beacon_Beacon *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<56>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<61>");
 	String t_=bb_data2_STATUS;
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<57>");
-	if(t_==String(L"normal",6)){
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<62>");
+	if(t_==String(L"connecting",10)){
 		DBG_BLOCK();
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<58>");
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<63>");
 		bb_challengergui_CHGUI_Update();
+	}else{
+		DBG_BLOCK();
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<64>");
+		if(t_==String(L"normal",6)){
+			DBG_BLOCK();
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<65>");
+			bb_challengergui_CHGUI_Update();
+		}
 	}
 	return 0;
 }
@@ -4683,7 +4682,7 @@ int bb_audio_SetAudioDevice(gxtkAudio* t_dev){
 bb_app_AppDevice* bb_app_device;
 int bbMain(){
 	DBG_ENTER("Main")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<65>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<72>");
 	(new bb_Beacon_Beacon)->g_new();
 	return 0;
 }
@@ -5311,51 +5310,6 @@ String bb_stream_Stream::m_ReadLine(){
 	String t_=String::FromChars(t_buf->m_ToArray());
 	return t_;
 }
-void bb_stream_Stream::m__Read(int t_n){
-	DBG_ENTER("Stream._Read")
-	bb_stream_Stream *self=this;
-	DBG_LOCAL(self,"Self")
-	DBG_LOCAL(t_n,"n")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<116>");
-	int t_i=0;
-	DBG_LOCAL(t_i,"i")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<117>");
-	do{
-		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<118>");
-		t_i+=m_Read(bb_stream_Stream::g__tmpbuf,t_i,t_n-t_i);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<119>");
-		if(t_i==t_n){
-			DBG_BLOCK();
-			return;
-		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<120>");
-		if((m_Eof())!=0){
-			DBG_BLOCK();
-			throw (new bb_stream_StreamReadError)->g_new(this);
-		}
-	}while(!(false));
-}
-int bb_stream_Stream::m_ReadByte(){
-	DBG_ENTER("Stream.ReadByte")
-	bb_stream_Stream *self=this;
-	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<50>");
-	m__Read(1);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<51>");
-	int t_=bb_stream_Stream::g__tmpbuf->PeekByte(0);
-	return t_;
-}
-int bb_stream_Stream::m_ReadInt(){
-	DBG_ENTER("Stream.ReadInt")
-	bb_stream_Stream *self=this;
-	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<60>");
-	m__Read(4);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<61>");
-	int t_=bb_stream_Stream::g__tmpbuf->PeekInt(0);
-	return t_;
-}
 bb_stream_Stream* bb_stream_Stream::g_new(){
 	DBG_ENTER("Stream.new")
 	bb_stream_Stream *self=this;
@@ -5542,7 +5496,6 @@ int bb_protocol_RequestGameList(bb_tcpstream_TcpStream* t_stream){
 	bb_protocol_Post(t_stream,String(L"http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgamelist",69));
 	return 0;
 }
-int bb_protocol_LastP;
 bb_stack_Stack::bb_stack_Stack(){
 	f_data=Array<int >();
 	f_length=0;
@@ -5639,52 +5592,8 @@ String bb_stack_Stack::debug(){
 	t+=dbg_decl("length",&f_length);
 	return t;
 }
-bb_stream_StreamReadError::bb_stream_StreamReadError(){
-}
-bb_stream_StreamReadError* bb_stream_StreamReadError::g_new(bb_stream_Stream* t_stream){
-	DBG_ENTER("StreamReadError.new")
-	bb_stream_StreamReadError *self=this;
-	DBG_LOCAL(self,"Self")
-	DBG_LOCAL(t_stream,"stream")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<150>");
-	bb_stream_StreamError::g_new(t_stream);
-	return this;
-}
-bb_stream_StreamReadError* bb_stream_StreamReadError::g_new2(){
-	DBG_ENTER("StreamReadError.new")
-	bb_stream_StreamReadError *self=this;
-	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<147>");
-	bb_stream_StreamError::g_new2();
-	return this;
-}
-void bb_stream_StreamReadError::mark(){
-	bb_stream_StreamError::mark();
-}
-String bb_stream_StreamReadError::debug(){
-	String t="(StreamReadError)\n";
-	t=bb_stream_StreamError::debug()+t;
-	return t;
-}
+int bb_protocol_LastP;
 Array<String > bb_protocol_SList;
-String bb_protocol_ReadString(bb_stream_Stream* t_stream){
-	DBG_ENTER("ReadString")
-	DBG_LOCAL(t_stream,"stream")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<21>");
-	int t_am=t_stream->m_ReadInt();
-	String t_txt=String();
-	DBG_LOCAL(t_am,"am")
-	DBG_LOCAL(t_txt,"txt")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<22>");
-	for(int t_EC=0;t_EC<=t_am-1;t_EC=t_EC+1){
-		DBG_BLOCK();
-		DBG_LOCAL(t_EC,"EC")
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<23>");
-		t_txt=t_txt+String((Char)(t_stream->m_ReadByte()),1);
-	}
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<25>");
-	return t_txt;
-}
 int bb_protocol__readp(bb_tcpstream_TcpStream* t_stream){
 	DBG_ENTER("_readp")
 	DBG_LOCAL(t_stream,"stream")
@@ -5702,7 +5611,7 @@ int bb_protocol__readp(bb_tcpstream_TcpStream* t_stream){
 		}
 	}while(!(false));
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<42>");
-	int t_Kind=t_stream->m_ReadByte();
+	int t_Kind=(t_stream->m_ReadLine()).ToInt();
 	DBG_LOCAL(t_Kind,"Kind")
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<43>");
 	int t_=t_Kind;
@@ -5710,16 +5619,18 @@ int bb_protocol__readp(bb_tcpstream_TcpStream* t_stream){
 	if(t_==4){
 		DBG_BLOCK();
 		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<45>");
-		int t_am=t_stream->m_ReadByte();
-		DBG_LOCAL(t_am,"am")
+		bb_protocol_LastP=4;
 		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<46>");
-		gc_assign(bb_protocol_SList,bb_protocol_SList.Resize(t_am));
+		int t_am=(t_stream->m_ReadLine()).ToInt();
+		DBG_LOCAL(t_am,"am")
 		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<47>");
+		gc_assign(bb_protocol_SList,bb_protocol_SList.Resize(t_am));
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<48>");
 		for(int t_es=0;t_es<=t_am-1;t_es=t_es+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_es,"es")
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<48>");
-			bb_protocol_SList.At(t_es)=bb_protocol_ReadString(t_stream);
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<49>");
+			bb_protocol_SList.At(t_es)=t_stream->m_ReadLine();
 		}
 	}
 	return 0;
@@ -6183,6 +6094,15 @@ bb_challengergui_CHGUI* bb_challengergui_CreateDropdownItem(String t_Text,bb_cha
 	gc_assign(t_N->f_Parent->f_DropdownItems.At(t_N->f_Parent->f_DropdownItems.Length()-1),t_N);
 	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<524>");
 	return t_N;
+}
+int bb_protocol_ResetP(){
+	DBG_ENTER("ResetP")
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<7>");
+	bb_protocol_LastP=0;
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<8>");
+	String t_[]={String()};
+	gc_assign(bb_protocol_SList,Array<String >(t_,1));
+	return 0;
 }
 int bb_graphics_DebugRenderDevice(){
 	DBG_ENTER("DebugRenderDevice")
@@ -9706,10 +9626,10 @@ int bb_challengergui_CHGUI_Draw(){
 	bb_challengergui_CHGUI_FPSUpdate();
 	return 0;
 }
-int bb_challengergui_CHGUI_Started;
 int bb_challengergui_CHGUI_Width;
 int bb_challengergui_CHGUI_Height;
 int bb_challengergui_CHGUI_CanvasFlag;
+int bb_challengergui_CHGUI_Started;
 bb_challengergui_CHGUI* bb_challengergui_CHGUI_TopTop;
 bb_challengergui_CHGUI* bb_challengergui_CreateWindow(int t_X,int t_Y,int t_W,int t_H,String t_Title,int t_Moveable,int t_CloseButton,int t_MinimiseButton,int t_Mode,bb_challengergui_CHGUI* t_Parent){
 	DBG_ENTER("CreateWindow")
@@ -10389,6 +10309,45 @@ int bb_challengergui_CHGUI_CreateKeyboard(){
 	return 0;
 }
 bb_challengergui_CHGUI* bb_challengergui_CHGUI_MsgBoxWindow;
+bb_challengergui_CHGUI* bb_challengergui_CreateLabel(int t_X,int t_Y,String t_Text,bb_challengergui_CHGUI* t_Parent){
+	DBG_ENTER("CreateLabel")
+	DBG_LOCAL(t_X,"X")
+	DBG_LOCAL(t_Y,"Y")
+	DBG_LOCAL(t_Text,"Text")
+	DBG_LOCAL(t_Parent,"Parent")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<678>");
+	if(bb_challengergui_CHGUI_Started==0){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<679>");
+		bb_challengergui_CHGUI_Started=1;
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<680>");
+		bb_challengergui_CHGUI_Start();
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<682>");
+	bb_challengergui_CHGUI* t_N=(new bb_challengergui_CHGUI)->g_new();
+	DBG_LOCAL(t_N,"N")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<683>");
+	gc_assign(t_N->f_Parent,t_Parent);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<684>");
+	if(t_Parent==0){
+		DBG_BLOCK();
+		gc_assign(t_N->f_Parent,bb_challengergui_CHGUI_Canvas);
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<685>");
+	t_N->f_X=Float(t_X);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<686>");
+	t_N->f_Y=Float(t_Y);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<687>");
+	t_N->f_Text=t_Text;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<689>");
+	t_N->f_Element=String(L"Label",5);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<691>");
+	gc_assign(t_N->f_Parent->f_Labels,t_N->f_Parent->f_Labels.Resize(t_N->f_Parent->f_Labels.Length()+1));
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<692>");
+	gc_assign(t_N->f_Parent->f_Labels.At(t_N->f_Parent->f_Labels.Length()-1),t_N);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<693>");
+	return t_N;
+}
 bb_challengergui_CHGUI* bb_challengergui_CHGUI_MsgBoxLabel;
 bb_challengergui_CHGUI* bb_challengergui_CreateButton(int t_X,int t_Y,int t_W,int t_H,String t_Text,bb_challengergui_CHGUI* t_Parent){
 	DBG_ENTER("CreateButton")
@@ -10503,59 +10462,21 @@ int bb_challengergui_CHGUI_Start(){
 	gc_assign(bb_challengergui_CHGUI_TooltipFont,bb_bitmapfont_BitmapFont::g_Load(String(L"Arial10.txt",11),true));
 	return 0;
 }
-bb_challengergui_CHGUI* bb_challengergui_CreateLabel(int t_X,int t_Y,String t_Text,bb_challengergui_CHGUI* t_Parent){
-	DBG_ENTER("CreateLabel")
-	DBG_LOCAL(t_X,"X")
-	DBG_LOCAL(t_Y,"Y")
-	DBG_LOCAL(t_Text,"Text")
-	DBG_LOCAL(t_Parent,"Parent")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<678>");
-	if(bb_challengergui_CHGUI_Started==0){
-		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<679>");
-		bb_challengergui_CHGUI_Started=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<680>");
-		bb_challengergui_CHGUI_Start();
-	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<682>");
-	bb_challengergui_CHGUI* t_N=(new bb_challengergui_CHGUI)->g_new();
-	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<683>");
-	gc_assign(t_N->f_Parent,t_Parent);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<684>");
-	if(t_Parent==0){
-		DBG_BLOCK();
-		gc_assign(t_N->f_Parent,bb_challengergui_CHGUI_Canvas);
-	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<685>");
-	t_N->f_X=Float(t_X);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<686>");
-	t_N->f_Y=Float(t_Y);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<687>");
-	t_N->f_Text=t_Text;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<689>");
-	t_N->f_Element=String(L"Label",5);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<691>");
-	gc_assign(t_N->f_Parent->f_Labels,t_N->f_Parent->f_Labels.Resize(t_N->f_Parent->f_Labels.Length()+1));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<692>");
-	gc_assign(t_N->f_Parent->f_Labels.At(t_N->f_Parent->f_Labels.Length()-1),t_N);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<693>");
-	return t_N;
-}
 Float bb_data2_SCALE_W;
 Float bb_data2_SCALE_H;
 bb_challengergui_CHGUI* bb_data2_CScale(bb_challengergui_CHGUI* t_c){
 	DBG_ENTER("CScale")
 	DBG_LOCAL(t_c,"c")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<15>");
-	t_c->f_X*=Float(bb_graphics_DeviceWidth())/bb_data2_SCALE_W;
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<16>");
-	t_c->f_W*=Float(bb_graphics_DeviceWidth())/bb_data2_SCALE_W;
+	t_c->f_X*=Float(bb_graphics_DeviceWidth())/bb_data2_SCALE_W;
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<17>");
-	t_c->f_Y*=Float(bb_graphics_DeviceHeight())/bb_data2_SCALE_H;
+	t_c->f_W*=Float(bb_graphics_DeviceWidth())/bb_data2_SCALE_W;
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<18>");
+	t_c->f_Y*=Float(bb_graphics_DeviceHeight())/bb_data2_SCALE_H;
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<19>");
 	t_c->f_H*=Float(bb_graphics_DeviceHeight())/bb_data2_SCALE_H;
-	return 0;
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<20>");
+	return t_c;
 }
 bb_challengergui_CHGUI* bb_challengergui_CreateDropdown(int t_X,int t_Y,int t_W,int t_H,String t_Text,bb_challengergui_CHGUI* t_Parent){
 	DBG_ENTER("CreateDropdown")
@@ -13631,14 +13552,14 @@ int bbInit(){
 	DBG_GLOBAL("CHGUI_FPSCounter",&bb_challengergui_CHGUI_FPSCounter);
 	bb_challengergui_CHGUI_FPS=0;
 	DBG_GLOBAL("CHGUI_FPS",&bb_challengergui_CHGUI_FPS);
-	bb_challengergui_CHGUI_Started=0;
-	DBG_GLOBAL("CHGUI_Started",&bb_challengergui_CHGUI_Started);
 	bb_challengergui_CHGUI_Width=0;
 	DBG_GLOBAL("CHGUI_Width",&bb_challengergui_CHGUI_Width);
 	bb_challengergui_CHGUI_Height=0;
 	DBG_GLOBAL("CHGUI_Height",&bb_challengergui_CHGUI_Height);
 	bb_challengergui_CHGUI_CanvasFlag=0;
 	DBG_GLOBAL("CHGUI_CanvasFlag",&bb_challengergui_CHGUI_CanvasFlag);
+	bb_challengergui_CHGUI_Started=0;
+	DBG_GLOBAL("CHGUI_Started",&bb_challengergui_CHGUI_Started);
 	bb_challengergui_CHGUI_TopTop=0;
 	DBG_GLOBAL("CHGUI_TopTop",&bb_challengergui_CHGUI_TopTop);
 	bb_challengergui_CHGUI_KeyboardWindow=0;

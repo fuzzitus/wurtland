@@ -1,0 +1,6 @@
+# view AndroidManifest.xml #generated:23
+-keep class com.monkey.MonkeyGame { <init>(...); }
+
+# view res/layout/main.xml #generated:7
+-keep class com.monkey.MonkeyGame$MonkeyView { <init>(...); }
+

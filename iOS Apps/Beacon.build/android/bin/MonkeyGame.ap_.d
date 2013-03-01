@@ -1,0 +1,24 @@
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\bin\MonkeyGame.ap_ \
+ : J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\res\drawable-hdpi\icon.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\res\drawable-ldpi\icon.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\res\drawable-mdpi\icon.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\res\layout\main.xml \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\res\values\strings.xml \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\bin\res\drawable-hdpi\icon.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\bin\res\drawable-ldpi\icon.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\bin\res\drawable-mdpi\icon.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\Arial10.txt \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\Arial10B.txt \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\Arial10B_P_1.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\Arial10_P_1.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\Arial12.txt \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\Arial12_P_1.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\Arial20B.txt \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\Arial20B_P_1.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\Arial22.txt \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\Arial22_P_1.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\GUI_mac.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\mojo_font.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\assets\monkey\Shadow.png \
+J:\WORK\Fuzzit\iOS Beacon Demo\repo\wurtland\iOS Apps\Beacon.build\android\bin\AndroidManifest.xml \

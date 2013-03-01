@@ -1,30 +1,38 @@
 import os
-import ciPack as p
+import ciPack2 as p
 import fz_game as g
 
 # A Null type, it's just good to have one...
 def Null():
     print '__server__protocol__'
-    print p.Byte(0)
+    print 0
 
 def Error(Type, msg = ''):
     print '__server__protocol__'
-    print p.Byte(1)
+    print 1
     print p.Byte(Type)
-    print p.String(msg)
+    print msg
 
 def WrongGameName():
     print '__server__protocol__'
-    print p.Byte(2)
+    print 2
 
 def WrongPassword():
     print '__server__protocol__'
-    print p.Byte(3)
+    print 3
 
 def SendGameList():
-    print '__server__protocol__'
-    print p.Byte(4)
     GAMES = os.listdir(g.GAME_LOCATION)
-    print p.Int(len(GAMES))
+    print '__server__protocol__'
+    print 4
+    print str(len(GAMES))
     for EG in GAMES:
-        print p.String(EG.replace('.fuz', ''))
+        print EG.replace('.fuz', '')
+
+def SendBeaconList(game):
+    print '__server__protocol__'
+    print 5
+    GAME = g.LoadGame(game)
+    print str(len(GAME.Beacons))
+    for EB in GAME.Beacons:
+        print EB.Id

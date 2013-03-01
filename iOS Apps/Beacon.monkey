@@ -26,18 +26,23 @@ Class Beacon Extends App
 			Case "connecting"
 				If Server.Connect("www.fuzzit.us", 80)
 					RequestGameList(Server)
-					While LastP <> 4'Until we get the list
-						ReadProtocol(Server)
-					Wend
-					For Local ES:= Eachin SList
-						CreateDropdownItem(ES, Games)
-					Next
 					STATUS = "normal"
 				Endif
 			Case "normal"
+				ReadProtocol(Server)
+				If LastP = 4
+					For Local eS:= Eachin SList
+						CreateDropdownItem(eS, Games)
+					Next
+				Endif
+				ResetP()
+				
 				Cls(247, 247, 247)
+				
 				CHGUI_Draw()
 			Case "start"
+				CHGUI_Start()
+				
 				Title = CScale(CreateLabel(50, 10, "Beacon Config"))
 				ServerLabel = CScale(CreateLabel(5, 60, "Server Type: Static"))
 				Games = CScale(CreateDropdown(10, 110, SCALE_W - 20, 40, "Choose Game"))
@@ -54,6 +59,8 @@ Class Beacon Extends App
 	
 	Method OnUpdate()
 		Select STATUS
+			Case "connecting"
+				CHGUI_Update()
 			Case "normal"
 				CHGUI_Update()
 		End Select

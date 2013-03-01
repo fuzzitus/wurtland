@@ -95,16 +95,16 @@ def String(txt):
     return Int(len(txt)) + s.pack('{}s'.format(len(txt)), txt)
 
 def WriteByte(stream, num):
-    print >> stream, Byte(num)
+    stream.write(Byte(num))
 
 def WriteFloat(stream, num):
-    print >> stream, Float(num)
+    stream.write(Float(num))
 
 def WriteInt(stream, num):
-    print >> stream, Int(num)
+    stream.write(Int(num))
 
 def WriteShort(stream, num):
-    print >> stream, Short(num)
+    stream.write(Short(num))
 
 def WriteString(stream, num):
-    print >> stream, String(num)
+    stream.write(String(num))

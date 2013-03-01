@@ -31,4 +31,4 @@ def ElementAtt(name, att = 'value'):
     return "document.getElementById('" + name + "')." + att
 
 def LinkTo(url):
-    return "window.location = '" + url
+    return "window.location = " + url

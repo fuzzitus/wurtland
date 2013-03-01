@@ -15,7 +15,7 @@ import rw_widget as w
 
 class Button(w.Widget):
     def __call__(b):
-        txt = '<button name="' + b.Name + '"'
+        txt = '<button id="' + b.Name + '"'
         if b.Attr <> None:
             for EK in b.Attr:
                 txt += ' ' + EK + '="' + b.Attr[EK] + '"'

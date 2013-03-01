@@ -52,7 +52,7 @@ else:
 
             LOGIN_FUNC = j.Func('LoginGame', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=logingame&servertype= " + ' + j.ElementAtt('servertype') + ' + "&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
             
-            CREATE = b.Button('login', 'Login', dict(onclick='LoginGame()'))
+            CREATE = b.Button('login', 'Login', dict(onclick='javascript:LoginGame()'))
             
             DIV_OBJS = [TITLE, t.br,
                         SERVER, t.br,
@@ -72,7 +72,7 @@ else:
 
             CREATE_FUNC = j.Func('CreateGame', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=creategame&servertype=" + ' + j.ElementAtt('servertype') + ' + "&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
             
-            CREATE = b.Button('create', 'Create New Game', dict(onclick='CreateGame()'))
+            CREATE = b.Button('create', 'Create New Game', dict(onclick='javascript:CreateGame()'))
             
             DIV_OBJS = [TITLE, t.br,
                         SERVER, t.br,
@@ -94,10 +94,10 @@ else:
             INS_FUNC = j.Func('GoToIns', [], j.LinkTo('"' + HOST + 'cgi-bin/adminconsole.py?action=instructions&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
             EXIT_FUNC = j.Func('GoToExit', [], j.LinkTo('"' + HOST + 'cgi-bin/adminconsole.py?'))
 
-            BEACON_BUTTON = b.Button('arbeacons', 'Add/Remove Beacons', dict(onclick='GoToBeacon()'))
-            PLAYER_BUTTON = b.Button('playertraits', 'Manually Assign Player Traits', dict(onclick='GoToPlayer()'))
-            TRAITS_BUTTON = b.Button('traits', 'Create Custom Traits', dict(onclick='GoToTraits()'))
-            INS_BUTTON = b.Button('ins', 'Configure Instructions', dict(onclick='GoToIns()'))
+            BEACON_BUTTON = b.Button('arbeacons', 'Add/Remove Beacons', dict(onclick='javascript:GoToBeacon()'))
+            PLAYER_BUTTON = b.Button('playertraits', 'Manually Assign Player Traits', dict(onclick='javascript:GoToPlayer()'))
+            TRAITS_BUTTON = b.Button('traits', 'Create Custom Traits', dict(onclick='javascript:GoToTraits()'))
+            INS_BUTTON = b.Button('ins', 'Configure Instructions', dict(onclick='javascript:GoToIns()'))
             EXIT_BUTTON = b.Button('exit', 'Exit', dict(onclick='GoToExit()'))
 
             DIV_OBJS = [TITLE, t.br,
@@ -123,16 +123,16 @@ else:
 
             BEACON_LIST = f.Dropdown('beaconlist')
             for EB in GAME.Beacons:
-                BEACON_LIST.Values.append([EB.Id, EB.Id, dict(onclick='Conv("' + EB.Id + '")')])
-            BEACON_LIST.Values.append(['create_new_beacon', 'New Beacon', dict(onclick='ConvC()')])
+                BEACON_LIST.Values.append([EB.Id, EB.Id, dict(onclick='javascript:Conv("' + EB.Id + '")')])
+            BEACON_LIST.Values.append(['create_new_beacon', 'New Beacon', dict(onclick='javascript:ConvC()')])
 
             BEACON_NAME = f.TextField('b__beacon__name', 'Name: ')
 
             UPDATE_FUNC = j.Func('UpdateBeacon', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=updatebeacon&newname=" + ' + j.ElementAtt('b__beacon__name') + ' + "&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ' + "&beacon=" + ' + j.ElementAtt('beaconlist') + ';'))
             DELETE_FUNC = j.Func('DeleteBeacon', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=deletebeacon&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ' + "&beacon=" + ' + j.ElementAtt('beaconlist') + ';'))
 
-            UPDATE_BUTTON = b.Button('update', 'UpdateBeacon()', dict(onclick='UpdateBeacon()'))
-            DELETE_BUTTON = b.Button('delete', 'DeleteBeacon()', dict(onclick='DeleteBeacon()'))
+            UPDATE_BUTTON = b.Button('update', 'UpdateBeacon()', dict(onclick='javascript:UpdateBeacon()'))
+            DELETE_BUTTON = b.Button('delete', 'DeleteBeacon()', dict(onclick='javascript:DeleteBeacon()'))
             MENU_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=adminmenu&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('menu', 'Menu')])
 
             DIV_OBJS = [TITLE, t.br, DROP_FUNC, CLEAR_FUNC,

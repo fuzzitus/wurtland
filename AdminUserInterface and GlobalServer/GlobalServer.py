@@ -36,13 +36,11 @@ else:
             SERVERTYPE = Pars['servertype'].value
 
             if g.CheckGameExists(GAMENAME):
-                if g.CheckPassword(GAMENAME, PW):
-                    g.Game(GAMENAME, PW, False, [], [], [], []).Save()
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=adminmenu&servertype=' + SERVERTYPE + '&gamename=' + GAMENAME + '&pw=' + PW)
-                else:
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=createnewgame')
-            else
                 GoToPage(HOST + 'cgi-bin/adminconsole.py?action=createnewgame')
+            else:
+                g.Game(GAMENAME, PW, False, [], [], [], []).Save()
+                GoToPage(HOST + 'cgi-bin/adminconsole.py?action=adminmenu&servertype=' + SERVERTYPE + '&gamename=' + GAMENAME + '&pw=' + PW)
+                
 
 
         #Logs into a game or returns back if the password is wrong
@@ -57,9 +55,56 @@ else:
                     GoToPage(HOST + 'cgi-bin/adminconsole.py?action=adminmenu&servertype=' + SERVERTYPE + '&gamename=' + GAMENAME + '&pw=' + PW)
                 else:
                     GoToPage(HOST + 'cgi-bin/adminconsole.py?action=logintogame')
-            else
+            else:
                 GoToPage(HOST + 'cgi-bin/adminconsole.py?action=logintogame')
 
+        #Changes the beacon's name
+        #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=updatebeacon
+        elif ACTION == 'updatebeacon':
+            GAMENAME = Pars['gamename'].value
+            PW = Pars['pw'].value
+            BEACONNAME = Pars['beacon'].value
+            NEWNAME = Pars['newname'].value
+
+            if g.CheckGameExists(GAMENAME):
+                if g.CheckPassword(GAMENAME, PW):
+
+                    GAME = g.Load(GAMENAME)
+                    BEACON = GAME.GetBeacon(BEACONNAME)
+                    BEACON.Id = NEWNAME
+                    GAME.Save()
+                    
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=beaconmenumenu&gamename=' + GAMENAME + '&pw=' + PW)
+                else:
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py')
+            else:
+                GoToPage(HOST + 'cgi-bin/adminconsole.py')
+
+        #Delete's the beacon
+        #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=updatebeacon
+        elif ACTION == 'updatebeacon':
+            GAMENAME = Pars['gamename'].value
+            PW = Pars['pw'].value
+            BEACONNAME = Pars['beacon'].value
+
+            if g.CheckGameExists(GAMENAME):
+                if g.CheckPassword(GAMENAME, PW):
+                    GAME = g.Load(GAMENAME)
+                    for EB in GAME.Beacons:
+                         if EB.Id == BEACONNAME:
+                             GAME.Beacons.remove(EB)
+                             break
+                    GAME.Save()
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=beaconmenumenu&gamename=' + GAMENAME + '&pw=' + PW)
+                else:
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py')
+            else:
+                GoToPage(HOST + 'cgi-bin/adminconsole.py')
+
+        #TEST1
+        elif ACTION == 'text1':
+            p.WriteByte(14)
+            p.WriteByte(27)
 
         #A Mobile Device Requests For A Game
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgame&gamename=GAME&pw=PASSWORD

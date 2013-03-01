@@ -69,8 +69,15 @@ class Dropdown(w.Widget):
     def __call__(d):
         print '<select name="' + d.Name + '">\n'
         for EV in d.Values:
-            print '<option value="' + EV[0] + '">' + EV[1] + '</option>\n'
+            if len(EV) == 2:
+                print '<option value="' + EV[0] + '">' + EV[1] + '</option>\n'
+            else:
+                T = '<option value="' + EV[0]
+                for EA in EV[2]:
+                    T += ' ' + EA + '="' + EV[2][EA] + '"'
+                T += ">' + EV[1] + '</option>\n'"
+                print T
         print '</select>'
     def __init__(d, name, values = []):
         d.Name = name
-        d.Values = values#[[value, caption]]
+        d.Values = values#[[value, caption, attr]]

@@ -6,12 +6,12 @@ class Instruction:
         i.Trait = trait
         i.Text = text
     def Write(i, stream):
-        p.WriteString(stream, i.Id)
-        p.WriteString(stream, i.Trait)
-        p.WriteString(stream, i.Text)
+        p.Write(stream, i.Id)
+        p.Write(stream, i.Trait)
+        p.Write(stream, i.Text)
 
 def ReadInstruction(stream):
-    Id = p.ReadString(stream)
-    Trait = p.ReadString(stream)
-    Text = p.ReadString(stream)
+    Id = p.Read(stream)
+    Trait = p.Read(stream)
+    Text = p.Read(stream)
     return Instruction(Id, Trait, Text)

@@ -24,9 +24,9 @@ if len(Pars) == 0:
     NEW_GAME_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=createnewgame', [b.Button('createnewgame', 'Create New Game')])
 
     DIV_PROPS = dict(id='main',
-                 align='center',
-                 style=a.toCssStyle(dict(position='relative',
-                                         top='20%')))
+                     align='center',
+                     style=a.toCssStyle(dict(position='relative',
+                                             top='20%')))
     
     DIV_OBJS = [LOGO, t.br, t.T('<font size=5>'),
                 LOG_IN_BUTTON, t.br,
@@ -50,7 +50,7 @@ else:
             GAME_NAME = f.TextField('gamename', 'Game Name:')
             PW = f.TextField('pw', 'Password:')
 
-            LOGIN_FUNC = j.Func('LoginGame()', [], LinkTo(HOST + 'cgi-bin/GlobalServer.py?action=logingame&servertype= " + ' + ElementAtt('servertype') + ' + "&gamename=" + ' + ElementAtt('gamename') + ' + "&pw=" + ' + ElementAtt('pw')))
+            LOGIN_FUNC = j.Func('LoginGame', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=logingame&servertype= " + ' + j.ElementAtt('servertype') + ' + "&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
             
             CREATE = b.Button('login', 'Login', dict(onclick='LoginGame()'))
             
@@ -60,8 +60,8 @@ else:
                         PW, t.br, LOGIN_FUNC,
                         CREATE]
             
-        #Log In Screen
-        #http://www.fuzzit.us/cgi-bin/adminconsole.py?action=logintogame
+        #Create New Game Screen
+        #http://www.fuzzit.us/cgi-bin/adminconsole.py?action=createnewgame
         elif ACTION == 'createnewgame':
             
             TITLE = t.Text('Create New Game', dict(size='36'))
@@ -70,7 +70,7 @@ else:
             GAME_NAME = f.TextField('gamename', 'Game Name:')
             PW = f.TextField('pw', 'Password:')
 
-            CREATE_FUNC = j.Func('CreateGame()', [], LinkTo(HOST + 'cgi-bin/GlobalServer.py?action=creategame&servertype=" + ' + ElementAtt('servertype') + ' + "&gamename=" + ' + ElementAtt('gamename') + ' + "&pw=" + ' + ElementAtt('pw')))
+            CREATE_FUNC = j.Func('CreateGame', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=creategame&servertype=" + ' + j.ElementAtt('servertype') + ' + "&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
             
             CREATE = b.Button('create', 'Create New Game', dict(onclick='CreateGame()'))
             
@@ -88,11 +88,11 @@ else:
 
             TITLE = t.Text('Menu', dict(size='36'))
 
-            BEACON_FUNC = j.Func('GoToBeacon()', [], LinkTo(HOST + 'cgi-bin/adminconsole.py?action=beaconmenu&gamename=" + ' + ElementAtt('gamename') + ' + "&pw=" + ' + ElementAtt('pw')))
-            PLAYER_FUNC = j.Func('GoToPlayer()', [], LinkTo(HOST + 'cgi-bin/adminconsole.py?action=playertraits&gamename=" + ' + ElementAtt('gamename') + ' + "&pw=" + ' + ElementAtt('pw')))
-            TRAITS_FUNC = j.Func('GoToTraits()', [], LinkTo(HOST + 'cgi-bin/adminconsole.py?action=traits&gamename=" + ' + ElementAtt('gamename') + ' + "&pw=" + ' + ElementAtt('pw')))
-            INS_FUNC = j.Func('GoToIns()', [], LinkTo(HOST + 'cgi-bin/adminconsole.py?action=instructions&gamename=" + ' + ElementAtt('gamename') + ' + "&pw=" + ' + ElementAtt('pw')))
-            EXIT_FUNC = j.Func('GoToExit()', [], LinkTo(HOST + 'cgi-bin/adminconsole.py?'))
+            BEACON_FUNC = j.Func('GoToBeacon', [], j.LinkTo('"' + HOST + 'cgi-bin/adminconsole.py?action=beaconmenu&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
+            PLAYER_FUNC = j.Func('GoToPlayer', [], j.LinkTo('"' + HOST + 'cgi-bin/adminconsole.py?action=playertraits&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
+            TRAITS_FUNC = j.Func('GoToTraits', [], j.LinkTo('"' + HOST + 'cgi-bin/adminconsole.py?action=traits&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
+            INS_FUNC = j.Func('GoToIns', [], j.LinkTo('"' + HOST + 'cgi-bin/adminconsole.py?action=instructions&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
+            EXIT_FUNC = j.Func('GoToExit', [], j.LinkTo('"' + HOST + 'cgi-bin/adminconsole.py?'))
 
             BEACON_BUTTON = b.Button('arbeacons', 'Add/Remove Beacons', dict(onclick='GoToBeacon()'))
             PLAYER_BUTTON = b.Button('playertraits', 'Manually Assign Player Traits', dict(onclick='GoToPlayer()'))
@@ -109,7 +109,7 @@ else:
             
         #Beacon Menu
         #http://www.fuzzit.us/cgi-bin/adminconsole.py?action=beaconmenu
-        elif ACTION == 'adminmenu':
+        elif ACTION == 'beaconmenu':
             import fz_game as g
             GAMENAME = Pars['gamename'].value
             PW = Pars['pw'].value
@@ -118,21 +118,34 @@ else:
 
             TITLE = t.Text('Add/Remove Beacons', dict(size='36'))
 
+            DROP_FUNC = j.Func('Conv', ['newname'], "document.getElementById('b__beacon__name').value = document.getElementById(name).value")
+            CLEAR_FUNC = j.Func('ConvC', [], "document.getElementById('b__beacon__name').value = ''")
+
             BEACON_LIST = f.Dropdown('beaconlist')
             for EB in GAME.Beacons:
-                BEACON_LIST.Values.append([EB.Id, EB.Id])
-            BEACON_LIST.Values.append(['create_new_beacon', 'New Beacon'])
+                BEACON_LIST.Values.append([EB.Id, EB.Id, dict(onclick='Conv("' + EB.Id + '")')])
+            BEACON_LIST.Values.append(['create_new_beacon', 'New Beacon', dict(onclick='ConvC()')])
 
             BEACON_NAME = f.TextField('b__beacon__name', 'Name: ')
 
-            UPDATE_FUNC = j.Func('UpdateBeacon()', [], LinkTo(HOST + 'cgi-bin/GlobalServer.py?action=updatebeacon&newname=" + ' + ElementAtt('b__beacon__name') + ' + "&gamename=" + ' + ElementAtt('gamename') + ' + "&pw=" + ' + ElementAtt('pw')))
-            DELETE_FUNC = j.Func('DeleteBeacon()', [], LinkTo(HOST + 'cgi-bin/GlobalServer.py?action=deletebeacon&newname=" + ' + ElementAtt('b__beacon__name') + ' + "&gamename=" + ' + ElementAtt('gamename') + ' + "&pw=" + ' + ElementAtt('pw')))
-            
+            UPDATE_FUNC = j.Func('UpdateBeacon', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=updatebeacon&newname=" + ' + j.ElementAtt('b__beacon__name') + ' + "&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ' + "&beacon=" + ' + j.ElementAtt('beaconlist') + ';'))
+            DELETE_FUNC = j.Func('DeleteBeacon', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=deletebeacon&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ' + "&beacon=" + ' + j.ElementAtt('beaconlist') + ';'))
+
             UPDATE_BUTTON = b.Button('update', 'UpdateBeacon()', dict(onclick='UpdateBeacon()'))
             DELETE_BUTTON = b.Button('delete', 'DeleteBeacon()', dict(onclick='DeleteBeacon()'))
             MENU_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=adminmenu&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('menu', 'Menu')])
 
-            DIV_OBJS = [TITLE, BEACON_LIST
+            DIV_OBJS = [TITLE, t.br, DROP_FUNC, CLEAR_FUNC,
+                        BEACON_LIST, t.br,
+                        BEACON_NAME, t.p, UPDATE_FUNC, DELETE_FUNC,
+                        UPDATE_BUTTON, t.br,
+                        DELETE_BUTTON, t.p,
+                        MENU_BUTTON]
+            
+        #Player Traits Menu
+        #http://www.fuzzit.us/cgi-bin/adminconsole.py?action=playertraits
+        elif ACTION == 'playertraits':
+            pass
             
 
 #EXECUTE!

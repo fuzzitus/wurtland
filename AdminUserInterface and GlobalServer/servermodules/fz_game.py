@@ -24,32 +24,37 @@ class Game:
         g.Players = players#Player Ids
         g.Traits = traits
         g.Instructions = instructions
+    def GetBeacon(name):
+        for EB in Beacons:
+            if EB.Id == name:
+                return EB
+        return None
     def Save(g):
         ff = open(GAME_LOCATION + '/' + Format(g.Id) + '.fuz', 'wb')
         g.Write(ff)
         ff.close()
     def Write(g, stream):
         p.WriteByte(stream, 0)#FORMAT
-        p.WriteString(stream, g.Id)
-        p.WriteString(stream, g.Password)
+        p.Write(stream, g.Id)
+        p.Write(stream, g.Password)
         p.WriteBool(stream, g.GameStarted)
         p.WriteInt(stream, len(g.Beacons))
         for EB in g.Beacons:
             EB.Write(stream)
         p.WriteInt(stream, len(g.Players))
         for EP in g.Players:
-            p.WriteString(EP)
+            p.Write(EP)
         p.WriteInt(stream, len(g.Traits))
         for ET in g.Traits:
-            p.WriteString(ET)
+            p.Write(ET)
         p.WriteInt(stream, len(g.Instructions))
         for EI in g.Instructions:
-            p.WriteString(EI)
+            p.Write(EI)
 
 def ReadGame(stream):
     form = p.ReadByte(stream)
-    Id = p.ReadString(stream)
-    pw = p.ReadString(stream)
+    Id = p.Read(stream)
+    pw = p.Read(stream)
     gs = p.ReadBool(stream)
     am = p.ReadInt(stream)
     B = []
@@ -58,11 +63,11 @@ def ReadGame(stream):
     am = p.ReadInt(stream)
     P = []
     for EA in range(am):
-        P.append(p.ReadString(stream))
+        P.append(p.Read(stream))
     am = p.ReadInt(stream)
     T = []
     for EA in range(am):
-        T.append(p.ReadString(stream))
+        T.append(p.Read(stream))
     I = []
     for EI in range(am):
         I.append(i.ReadInstruction(stream))
@@ -84,8 +89,8 @@ def CheckPassword(game, pw):
     if CheckGameExists(game):
         F = open(GAME_LOCATION + '/' + Format(game) + '.fuz', 'rb')
         p.ReadByte()
-        N = p.ReadString()
-        PW = p.ReadString()
+        N = p.Read()
+        PW = p.Read()
         F.close()
         if PW == pw:
             return True

@@ -48,7 +48,7 @@ Class Beacon Extends App
 				
 				isOn = False
 				Server = New TcpStream
-				STATUS = "normal"
+				STATUS = "connecting"
 		End Select
 	End Method
 	

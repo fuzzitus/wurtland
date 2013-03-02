@@ -105,6 +105,43 @@ else:
             else:
                 GoToPage(HOST + 'cgi-bin/adminconsole.py')
 
+        #Updates a trait
+        #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=updatetrait
+        elif ACTION == 'updatetrait':
+            GAMENAME = Pars['gamename'].value
+            PW = Pars['pw'].value
+            TRAIT = Pars['trait'].value
+            if g.CheckGameExists(GAMENAME):
+                if g.CheckPassword(GAMENAME, PW):
+                    GAME = g.LoadGame(GAMENAME)
+                    GAME.Traits.append(str(TRAIT))
+                    GAME.Save()
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=traits&gamename=' + GAMENAME + '&pw=' + PW)
+                else:
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py')
+            else:
+                GoToPage(HOST + 'cgi-bin/adminconsole.py')
+
+        #Delete's the trait
+        #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=deletetrait
+        elif ACTION == 'deletetrait':
+            GAMENAME = Pars['gamename'].value
+            PW = Pars['pw'].value
+            TRAIT = Pars['trait'].value
+
+            if g.CheckGameExists(GAMENAME):
+                if g.CheckPassword(GAMENAME, PW):
+                    GAME = g.LoadGame(GAMENAME)
+                    if TRAIT in GAME.Traits:
+                        GAME.Traits.remove(TRAIT)
+                        
+                    GAME.Save()
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=traits&gamename=' + GAMENAME + '&pw=' + PW)
+                else:
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py')
+            else:
+                GoToPage(HOST + 'cgi-bin/adminconsole.py')
+
         #A Mobile Device Requests The List Of Games
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgamelist
         elif ACTION == 'mobilegetgamelist':

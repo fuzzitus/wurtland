@@ -31,20 +31,19 @@ class Player:
             p2.Write(stream, ET[1])
 
 def ReadPlayer(stream):
-    form = int(p2.Read(stream))
-    Id = p2.Read(stream)
-    Pw = p2.Read(stream)
-    am = int(p2.Read(Stream))
+    form = int(p2.ReadFrom(stream))
+    Id = p2.ReadFrom(stream)
+    Pw = p2.ReadFrom(stream)
+    am = int(p2.ReadFrom(Stream))
     traits = []
     for ET in range(0, am):
-        traits.append([p2.Read(stream), ''])
-        traits[ET][1] = p2.Read(stream)
+        traits.append([p2.ReadFrom(stream), ''])
+        traits[ET][1] = p2.ReadFrom(stream)
     return Player(Id, Pw, traits)
 
 def LoadPlayer(Id):
-    ff = open(PLAYER_DIR + '/' + Format(Id) + '.fuz', 'rb')
+    ff = p2.ReadFromFile(PLAYER_DIR + '/' + Format(Id) + '.fuz', 'r')
     P = ReadPlayer(ff)
-    ff.close()
     return P
 
 def CheckPlayer(name):

@@ -43,10 +43,10 @@ class Game:
             EB.Write(stream)
         p.Write(stream, len(g.Players))
         for EP in g.Players:
-            p.Write(EP)
+            p.Write(stream, EP)
         p.Write(stream, len(g.Traits))
         for ET in g.Traits:
-            p.Write(ET)
+            p.Write(stream, ET)
         p.Write(stream, len(g.Instructions))
         for EI in g.Instructions:
             p.Write(EI)
@@ -96,3 +96,6 @@ def CheckPassword(game, pw):
             return False
     else:
         return False
+
+GAME_LOCATION = 'J:/'
+Game('gg', 's', False, [], [], [], []).Save()

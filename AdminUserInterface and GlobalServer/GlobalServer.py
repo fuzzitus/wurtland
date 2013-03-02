@@ -75,7 +75,7 @@ else:
                         GAME.Save()
                     else:
                         BEACON = GAME.GetBeacon(BEACONNAME)
-                        BEACON.Id = NEWNAME
+                        BEACON.Name = NEWNAME
                         GAME.Save()
                     
                     GoToPage(HOST + 'cgi-bin/adminconsole.py?action=beaconmenu&gamename=' + GAMENAME + '&pw=' + PW)
@@ -93,13 +93,13 @@ else:
 
             if g.CheckGameExists(GAMENAME):
                 if g.CheckPassword(GAMENAME, PW):
-                    GAME = g.Load(GAMENAME)
+                    GAME = g.LoadGame(GAMENAME)
                     for EB in GAME.Beacons:
                          if EB.Name == BEACONNAME:
                              GAME.Beacons.remove(EB)
                              break
                     GAME.Save()
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=beaconmenumenu&gamename=' + GAMENAME + '&pw=' + PW)
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=beaconmenu&gamename=' + GAMENAME + '&pw=' + PW)
                 else:
                     GoToPage(HOST + 'cgi-bin/adminconsole.py')
             else:

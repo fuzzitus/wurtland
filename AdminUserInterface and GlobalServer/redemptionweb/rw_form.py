@@ -67,7 +67,11 @@ class Checkbox(w.Widget):
 
 class Dropdown(w.Widget):
     def __call__(d):
-        print '<select id="' + d.Name + '">\n'
+        TXT = '<select id="' + d.Name + '"'
+        if d.Attr <> None:
+            for EA in d.Attr:
+                TXT += ' ' + EA + '="' + d.Attr[EA] + '"'
+        print TXT + '>\n'
         for EV in d.Values:
             if len(EV) == 2:
                 print '<option value="' + EV[0] + '">' + EV[1] + '</option>\n'
@@ -78,6 +82,7 @@ class Dropdown(w.Widget):
                 T += ">" + EV[1] + "</option>\n'"
                 print T
         print '</select>'
-    def __init__(d, name, values = []):
+    def __init__(d, name, values = [], attrs = None):
         d.Name = name
         d.Values = values#[[value, caption, attr]]
+        d.Attr = attrs

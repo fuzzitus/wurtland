@@ -19,7 +19,7 @@ DIV_OBJS = []
 
 #The Starting page: http://www.fuzzit.us/cgi-bin/adminconsole.py
 if len(Pars) == 0:
-    LOGO = i.Image('logoS', 'http://www.fuzzit.us/graphics/beacon_logo.png')
+    LOGO = i.Image('logoS', 'http://www.fuzzit.us/graphics/beacon_logo_lite.png')
     LOG_IN_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=logintogame', [b.Button('logintogame', 'Log In To Existing Game')])
     NEW_GAME_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=createnewgame', [b.Button('createnewgame', 'Create New Game')])
 
@@ -113,13 +113,14 @@ else:
 
             TITLE = t.Text('Add/Remove Beacons', dict(size='36'))
 
-            DROP_FUNC = j.Func('Conv', ['newname'], "document.getElementById('b__beacon__name').value = document.getElementById(name).value")
-            CLEAR_FUNC = j.Func('ConvC', [], "document.getElementById('b__beacon__name').value = ''")
+            LOAD_FUNC = j.Func("LoadUp", [], "document.getElementById('beaconlist').value = 'create_new_beacon';")
 
-            BEACON_LIST = f.Dropdown('beaconlist')
+            DROP_FUNC = t.T("<script language='javascript'>function Conv()\n~~t{\n~~t~~tif (document.getElementById('beaconlist').value == 'create_new_beacon')\n~~t~~t~~t{\n~~t~~t~~t~~tdocument.getElementById('b__beacon__name').value = ''\n~~t~~t~~t}\n~~t~~telse\n~~t~~t{\n~~t~~t~~tdocument.getElementById('b__beacon__name').value = document.getElementById('beaconlist').value\n~~t~~t}\n~~t}\n</script>".replace("~~t", chr(9)))
+
+            BEACON_LIST = f.Dropdown('beaconlist', [], dict(onchange="javascript:Conv()"))
             for EB in GAME.Beacons:
-                BEACON_LIST.Values.append([EB.Name, EB.Name, dict(onclick='javascript:Conv("' + EB.Name + '")')])
-            BEACON_LIST.Values.append(['create_new_beacon', 'New Beacon', dict(onclick='javascript:ConvC()')])
+                BEACON_LIST.Values.append([EB.Name, EB.Name])
+            BEACON_LIST.Values.append(['create_new_beacon', '-- New Beacon --'])
 
             BEACON_NAME = f.TextField('b__beacon__name', 'Name: ')
 
@@ -130,18 +131,64 @@ else:
             DELETE_BUTTON = b.Button('delete', 'DeleteBeacon', dict(onclick='javascript:DeleteBeacon()'))
             MENU_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=adminmenu&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('menu', 'Menu')])
 
-            DIV_OBJS = [TITLE, t.br, DROP_FUNC, CLEAR_FUNC,
+            DIV_OBJS = [TITLE, t.br, LOAD_FUNC, DROP_FUNC,
                         BEACON_LIST, t.br,
                         BEACON_NAME, t.p, UPDATE_FUNC, DELETE_FUNC,
                         UPDATE_BUTTON, t.br,
                         DELETE_BUTTON, t.p,
-                        MENU_BUTTON]
+                        MENU_BUTTON, t.T('<body onload="javascript:LoadUp()"></body>')]
             
         #Player Traits Menu
         #http://www.fuzzit.us/cgi-bin/adminconsole.py?action=playertraits
         elif ACTION == 'playertraits':
             pass
             
+        #Traits Menu
+        #http://www.fuzzit.us/cgi-bin/adminconsole.py?action=traits
+        elif ACTION == 'traits':
+            GAMENAME = Pars['gamename'].value
+            PW = Pars['pw'].value
 
+            import fz_game as g
+            import fz_player as pl
+
+            LOAD_FUNC = j.Func("LoadUp", [], "document.getElementById('traitlist').value = 'blank_trait_value';")
+            DROP_FUNC = t.T("<script language='javascript'>function Conv()\n~~t{\n~~t~~tif (document.getElementById('traitlist').value == 'blank_trait_value')\n~~t~~t~~t{\n~~t~~t~~t~~tdocument.getElementById('t__trait__name').value = ''\n~~t~~t~~t}\n~~t~~telse\n~~t~~t{\n~~t~~t~~tdocument.getElementById('t__trait__name').value = document.getElementById('traitlist').value\n~~t~~t}\n~~t}\n</script>".replace("~~t", chr(9))) 
+
+            GAME = g.LoadGame(GAMENAME)
+
+            PLAYERS = []
+            for EP in GAME.Players:
+                if pl.CheckPlayer(EP):
+                    PLAYERS.append(pl.LoadPlayer(EP))
+            TRAITS = []
+            for EP in PLAYERS:
+                for ET in EP.Traits:
+                    if ET not in TRAITS:
+                        TRAITS.append(ET)
+
+            TITLE = t.Text('Add/Remove Traits', dict(size='36'))
+
+            TRAIT_LIST = f.Dropdown('traitlist', [], dict(onchange="javascript:Conv()", width="100"))
+            for ET in TRAITS:
+                TRAIT_LIST.Values.append([ET, ET])
+            TRAIT_LIST.Values.append(['blank_trait_value', '-- New Trait --'])
+
+            NEW_TRAIT = f.TextField('t__trait__name', 'Trait Name:')
+
+            UPDATE_FUNC = j.Func('UpdateTrait', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=updatetrait&gamename=' + GAMENAME + '&pw=' + PW + '&newname=" + ' + j.ElementAtt('t__trait__name') + ' + "&trait=" + ' + j.ElementAtt('traitlist') + ';'))
+            DELETE_FUNC = j.Func('DeleteTrait', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=deletetrait&gamename=' + GAMENAME + '&pw=' + PW + '&trait=" + ' + j.ElementAtt('traitlist') + ';'))
+
+            UPDATE_BUTTON = b.Button('update', 'UpdateTrait', dict(onclick='javascript:UpdateTrait()'))
+            DELETE_BUTTON = b.Button('delete', 'DeleteTrait', dict(onclick='javascript:DeleteTrait()'))
+            MENU_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=adminmenu&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('menu', 'Menu')])
+
+            DIV_OBJS = [TITLE, t.br, LOAD_FUNC, DROP_FUNC,
+                        TRAIT_LIST, t.br,
+                        NEW_TRAIT, t.p, UPDATE_FUNC, DELETE_FUNC,
+                        UPDATE_BUTTON, t.br,
+                        DELETE_BUTTON, t.p,
+                        MENU_BUTTON, t.T('<body onload="javascript:LoadUp()"></body>')]
+        
 #EXECUTE!
 div.Div(DIV_PROPS, DIV_OBJS)()

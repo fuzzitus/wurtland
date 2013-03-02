@@ -23,8 +23,8 @@ class Game:
         g.Players = players#Player Ids
         g.Traits = traits
         g.Instructions = instructions
-    def GetBeacon(name):
-        for EB in Beacons:
+    def GetBeacon(g, name):
+        for EB in g.Beacons:
             if EB.Name == name:
                 return EB
         return None

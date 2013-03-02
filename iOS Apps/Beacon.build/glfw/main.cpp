@@ -20,6 +20,7 @@
 #define CFG_MUSIC_FILES *.wav|*.ogg
 #define CFG_OPENGL_DEPTH_BUFFER_ENABLED 0
 #define CFG_OPENGL_GLES20_ENABLED 0
+#define CFG_REFLECTION_FILTER diddy.exception
 #define CFG_SAFEMODE 0
 #define CFG_SOUND_FILES *.wav|*.ogg
 #define CFG_TARGET glfw
@@ -3747,9 +3748,295 @@ int BBFileStream::Write( BBDataBuffer *buffer,int offset,int count ){
 	if( _position>_length ) _length=_position;
 	return n;
 }
+#include <time.h>
+#include <Shellapi.h>
+
+float diddy_mouseWheel = 0.0f;
+
+float diddy_mouseZ() {
+	float ret = glfwGetMouseWheel() - diddy_mouseWheel;
+	diddy_mouseWheel = glfwGetMouseWheel();
+	return ret;
+}
+
+class diddy
+{
+	public:
+
+	static float mouseZ()
+	{
+		return diddy_mouseZ();
+	}
+	
+	static void mouseZInit()
+	{
+		return;
+	}
+	
+	// only accurate to 1 second 
+	static int systemMillisecs() {
+		time_t seconds;
+		seconds = time (NULL);
+		return seconds * 1000;
+	}
+
+	static void flushKeys() {
+		for( int i=0;i<512;++i ){
+			app->input->keyStates[i]&=0x100;
+		}
+	}
+	
+	static int getUpdateRate() {
+		return app->updateRate;
+	}
+	
+	static void showMouse()
+	{
+		//ShowCursor(true);
+		glfwEnable( GLFW_MOUSE_CURSOR );
+	}
+	
+	static void hideMouse()
+	{
+		//ShowCursor(false);
+		glfwDisable( GLFW_MOUSE_CURSOR );
+	}
+	
+	static void setGraphics(int w, int h)
+	{
+		glfwSetWindowSize(w, h);
+		GLFWvidmode desktopMode;
+		glfwGetDesktopMode( &desktopMode );
+		glfwSetWindowPos( (desktopMode.Width-w)/2,(desktopMode.Height-h)/2 );
+	}
+	
+	static void setMouse(int x, int y)
+	{
+		glfwSetMousePos(x, y);
+	}
+	
+	static void showKeyboard()
+	{
+	}
+	static void launchBrowser(String address, String windowName)
+	{
+		LPCSTR addressStr = address.ToCString<char>();
+		ShellExecute(HWND_DESKTOP, "open", addressStr, NULL, NULL, SW_SHOWNORMAL);
+	}
+	static void launchEmail(String email, String subject, String text)
+	{
+		String tmp = "mailto:";
+		tmp+=email;
+		tmp+="&subject=";
+		tmp+=subject;
+		tmp+="&body=";
+		tmp+=text;
+		LPCSTR addressStr = tmp.ToCString<char>();
+		ShellExecute(HWND_DESKTOP, "open", addressStr, NULL, NULL, SW_SHOWNORMAL);
+	}
+
+	static void startVibrate(int millisecs)
+	{
+	}
+	static void stopVibrate()
+	{
+	}
+	
+	static int getDayOfMonth()
+	{
+		SYSTEMTIME st;
+		GetSystemTime(&st);
+		return st.wDay;
+	}
+	
+	static int getDayOfWeek()
+	{
+		SYSTEMTIME st;
+		GetSystemTime(&st);
+		return st.wDayOfWeek;
+	}
+	
+	static int getMonth()
+	{
+		SYSTEMTIME st;
+		GetSystemTime(&st);
+		return st.wMonth;
+	}
+	
+	static int getYear()
+	{
+		SYSTEMTIME st;
+		GetSystemTime(&st);
+		return st.wYear;
+	}
+	
+	static int getHours()
+	{
+		SYSTEMTIME st;
+		GetSystemTime(&st);
+		return st.wHour;
+	}
+	
+	static int getMinutes()
+	{
+		SYSTEMTIME st;
+		GetSystemTime(&st);
+		return st.wMinute;
+	}
+	
+	static int getSeconds()
+	{
+		SYSTEMTIME st;
+		GetSystemTime(&st);
+		return st.wSecond;
+	}
+	
+	static int getMilliSeconds()
+	{
+		SYSTEMTIME st;
+		GetSystemTime(&st);
+		return st.wMilliseconds;
+	}
+	
+	static void startGps()
+	{
+	}
+	static String getLatitiude()
+	{
+		return "";
+	}
+	static String getLongitude()
+	{
+		return "";
+	}
+	static void showAlertDialog(String title, String message)
+	{
+	}
+	static String getInputString()
+	{
+		return "";
+	}
+	static int getPixel(int x, int y)
+	{
+		unsigned char pix[4];
+		glReadPixels(x, app->graphics->height-y ,1 ,1 ,GL_RGBA ,GL_UNSIGNED_BYTE ,pix);
+		return (pix[3]<<24) | (pix[0]<<16) | (pix[1]<<8) |  pix[2];
+	}
+	
+	static int seekMusic(int timeMillis)
+	{
+		gxtkChannel *chan = &(app->audio->channels[32]);
+		if(chan && chan->state==1)
+		{
+			alSourcef(chan->source, AL_SEC_OFFSET, (float)(timeMillis / 1000.0));
+		}
+		// TODO: check it worked
+		return 1;
+	}
+};
+class bb_exception_DiddyException;
+class bb_reflection_ClassInfo;
+class bb_map_Map;
+class bb_map_StringMap;
+class bb_map_Node;
+class bb_reflection__GetClass;
+class bb_exception_AssertException;
+class bb_exception_ConcurrentModificationException;
+class bb_exception_IndexOutOfBoundsException;
+class bb_exception_IllegalArgumentException;
+class bb_exception_XMLParseException;
+class bb_boxes_BoolObject;
+class bb_boxes_IntObject;
+class bb_boxes_FloatObject;
+class bb_boxes_StringObject;
+class bb_reflection_R16;
+class bb_reflection_R17;
+class bb_reflection_R18;
+class bb_reflection_R31;
+class bb_reflection_R33;
+class bb_reflection_R35;
+class bb_reflection_R37;
+class bb_reflection_R39;
+class bb_reflection_R41;
+class bb_reflection_R47;
+class bb_reflection_R57;
+class bb_reflection_R67;
+class bb_reflection_FunctionInfo;
+class bb_reflection_R4;
+class bb_reflection_R5;
+class bb_reflection_R6;
+class bb_reflection_R7;
+class bb_reflection_R8;
+class bb_reflection_R9;
+class bb_reflection_R10;
+class bb_reflection_R11;
+class bb_reflection_R12;
+class bb_reflection_R13;
+class bb_reflection_R14;
+class bb_reflection_R15;
+class bb_reflection___GetClass;
 class bb_app_App;
+class bb_bapp_BApp;
 class bb_Beacon_Beacon;
 class bb_app_AppDevice;
+class bb_reflection_ConstInfo;
+class bb_stack_Stack;
+class bb_reflection_FieldInfo;
+class bb_stack_Stack2;
+class bb_reflection_GlobalInfo;
+class bb_stack_Stack3;
+class bb_reflection_MethodInfo;
+class bb_stack_Stack4;
+class bb_stack_Stack5;
+class bb_reflection_R19;
+class bb_reflection_R20;
+class bb_reflection_R21;
+class bb_reflection_R22;
+class bb_reflection_R23;
+class bb_reflection_R24;
+class bb_reflection_R25;
+class bb_reflection_R26;
+class bb_reflection_R27;
+class bb_reflection_R28;
+class bb_reflection_R30;
+class bb_reflection_R29;
+class bb_reflection_R32;
+class bb_reflection_R34;
+class bb_reflection_R36;
+class bb_reflection_R38;
+class bb_reflection_R40;
+class bb_reflection_R42;
+class bb_reflection_R44;
+class bb_reflection_R45;
+class bb_reflection_R43;
+class bb_reflection_R46;
+class bb_reflection_R48;
+class bb_reflection_R51;
+class bb_reflection_R52;
+class bb_reflection_R53;
+class bb_reflection_R54;
+class bb_reflection_R55;
+class bb_reflection_R49;
+class bb_reflection_R50;
+class bb_reflection_R56;
+class bb_reflection_R58;
+class bb_reflection_R61;
+class bb_reflection_R62;
+class bb_reflection_R63;
+class bb_reflection_R64;
+class bb_reflection_R65;
+class bb_reflection_R59;
+class bb_reflection_R60;
+class bb_reflection_R66;
+class bb_reflection_R68;
+class bb_reflection_R72;
+class bb_reflection_R73;
+class bb_reflection_R74;
+class bb_reflection_R69;
+class bb_reflection_R70;
+class bb_reflection_R71;
+class bb_reflection_R75;
+class bb_reflection_UnknownClass;
 class bb_graphics_Image;
 class bb_graphics_GraphicsContext;
 class bb_graphics_Frame;
@@ -3758,7 +4045,7 @@ class bb_tcpstream_TcpStream;
 class bb_databuffer_DataBuffer;
 class bb_stream_StreamError;
 class bb_stream_StreamWriteError;
-class bb_stack_Stack;
+class bb_stack_Stack6;
 class bb_challengergui_CHGUI;
 class bb_fontinterface_Font;
 class bb_bitmapfont_BitmapFont;
@@ -3767,6 +4054,447 @@ class bb_bitmapcharmetrics_BitMapCharMetrics;
 class bb_drawingpoint_DrawingPoint;
 class bb_edrawmode_eDrawMode;
 class bb_edrawalign_eDrawAlign;
+class bb_exception_DiddyException : public ThrowableObject{
+	public:
+	String f_message;
+	ThrowableObject* f_cause;
+	String f_type;
+	String f_fullType;
+	bb_exception_DiddyException();
+	virtual String m_Message();
+	virtual void m_Message2(String);
+	virtual ThrowableObject* m_Cause();
+	virtual void m_Cause2(ThrowableObject*);
+	virtual String m_Type();
+	virtual String m_FullType();
+	virtual String m_ToString(bool);
+	bb_exception_DiddyException* g_new(String,ThrowableObject*);
+	void mark();
+	String debug();
+};
+String dbg_type(bb_exception_DiddyException**p){return "DiddyException";}
+class bb_reflection_ClassInfo : public Object{
+	public:
+	String f__name;
+	int f__attrs;
+	bb_reflection_ClassInfo* f__sclass;
+	Array<bb_reflection_ClassInfo* > f__ifaces;
+	Array<bb_reflection_ConstInfo* > f__rconsts;
+	Array<bb_reflection_ConstInfo* > f__consts;
+	Array<bb_reflection_FieldInfo* > f__rfields;
+	Array<bb_reflection_FieldInfo* > f__fields;
+	Array<bb_reflection_GlobalInfo* > f__rglobals;
+	Array<bb_reflection_GlobalInfo* > f__globals;
+	Array<bb_reflection_MethodInfo* > f__rmethods;
+	Array<bb_reflection_MethodInfo* > f__methods;
+	Array<bb_reflection_FunctionInfo* > f__rfunctions;
+	Array<bb_reflection_FunctionInfo* > f__functions;
+	Array<bb_reflection_FunctionInfo* > f__ctors;
+	bb_reflection_ClassInfo();
+	virtual String m_Name();
+	bb_reflection_ClassInfo* g_new(String,int,bb_reflection_ClassInfo*,Array<bb_reflection_ClassInfo* >);
+	bb_reflection_ClassInfo* g_new2();
+	virtual int m_Init();
+	virtual int m_InitR();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_ClassInfo**p){return "ClassInfo";}
+class bb_map_Map : public Object{
+	public:
+	bb_map_Node* f_root;
+	bb_map_Map();
+	bb_map_Map* g_new();
+	virtual int m_Compare(String,String)=0;
+	virtual int m_RotateLeft(bb_map_Node*);
+	virtual int m_RotateRight(bb_map_Node*);
+	virtual int m_InsertFixup(bb_map_Node*);
+	virtual bool m_Set(String,bb_reflection_ClassInfo*);
+	virtual bb_map_Node* m_FindNode(String);
+	virtual bool m_Contains(String);
+	virtual bb_reflection_ClassInfo* m_Get(String);
+	void mark();
+	String debug();
+};
+String dbg_type(bb_map_Map**p){return "Map";}
+class bb_map_StringMap : public bb_map_Map{
+	public:
+	bb_map_StringMap();
+	bb_map_StringMap* g_new();
+	virtual int m_Compare(String,String);
+	void mark();
+	String debug();
+};
+String dbg_type(bb_map_StringMap**p){return "StringMap";}
+extern bb_map_StringMap* bb_reflection__classesMap;
+extern Array<bb_reflection_ClassInfo* > bb_reflection__classes;
+class bb_map_Node : public Object{
+	public:
+	String f_key;
+	bb_map_Node* f_right;
+	bb_map_Node* f_left;
+	bb_reflection_ClassInfo* f_value;
+	int f_color;
+	bb_map_Node* f_parent;
+	bb_map_Node();
+	bb_map_Node* g_new(String,bb_reflection_ClassInfo*,int,bb_map_Node*);
+	bb_map_Node* g_new2();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_map_Node**p){return "Node";}
+bb_reflection_ClassInfo* bb_reflection_GetClass(String);
+class bb_reflection__GetClass : public Object{
+	public:
+	bb_reflection__GetClass();
+	virtual bb_reflection_ClassInfo* m_GetClass(Object*)=0;
+	bb_reflection__GetClass* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection__GetClass**p){return "_GetClass";}
+extern bb_reflection__GetClass* bb_reflection__getClass;
+bb_reflection_ClassInfo* bb_reflection_GetClass2(Object*);
+class bb_exception_AssertException : public bb_exception_DiddyException{
+	public:
+	bb_exception_AssertException();
+	bb_exception_AssertException* g_new(String,ThrowableObject*);
+	void mark();
+	String debug();
+};
+String dbg_type(bb_exception_AssertException**p){return "AssertException";}
+class bb_exception_ConcurrentModificationException : public bb_exception_DiddyException{
+	public:
+	bb_exception_ConcurrentModificationException();
+	bb_exception_ConcurrentModificationException* g_new(String,ThrowableObject*);
+	void mark();
+	String debug();
+};
+String dbg_type(bb_exception_ConcurrentModificationException**p){return "ConcurrentModificationException";}
+class bb_exception_IndexOutOfBoundsException : public bb_exception_DiddyException{
+	public:
+	bb_exception_IndexOutOfBoundsException();
+	bb_exception_IndexOutOfBoundsException* g_new(String,ThrowableObject*);
+	void mark();
+	String debug();
+};
+String dbg_type(bb_exception_IndexOutOfBoundsException**p){return "IndexOutOfBoundsException";}
+class bb_exception_IllegalArgumentException : public bb_exception_DiddyException{
+	public:
+	bb_exception_IllegalArgumentException();
+	bb_exception_IllegalArgumentException* g_new(String,ThrowableObject*);
+	void mark();
+	String debug();
+};
+String dbg_type(bb_exception_IllegalArgumentException**p){return "IllegalArgumentException";}
+class bb_exception_XMLParseException : public bb_exception_DiddyException{
+	public:
+	bb_exception_XMLParseException();
+	bb_exception_XMLParseException* g_new(String,ThrowableObject*);
+	void mark();
+	String debug();
+};
+String dbg_type(bb_exception_XMLParseException**p){return "XMLParseException";}
+class bb_boxes_BoolObject : public Object{
+	public:
+	bool f_value;
+	bb_boxes_BoolObject();
+	bb_boxes_BoolObject* g_new(bool);
+	virtual bool m_ToBool();
+	virtual bool m_Equals(bb_boxes_BoolObject*);
+	bb_boxes_BoolObject* g_new2();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_boxes_BoolObject**p){return "BoolObject";}
+class bb_boxes_IntObject : public Object{
+	public:
+	int f_value;
+	bb_boxes_IntObject();
+	bb_boxes_IntObject* g_new(int);
+	bb_boxes_IntObject* g_new2(Float);
+	virtual int m_ToInt();
+	virtual Float m_ToFloat();
+	virtual String m_ToString2();
+	virtual bool m_Equals2(bb_boxes_IntObject*);
+	virtual int m_Compare2(bb_boxes_IntObject*);
+	bb_boxes_IntObject* g_new3();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_boxes_IntObject**p){return "IntObject";}
+class bb_boxes_FloatObject : public Object{
+	public:
+	Float f_value;
+	bb_boxes_FloatObject();
+	bb_boxes_FloatObject* g_new(int);
+	bb_boxes_FloatObject* g_new2(Float);
+	virtual int m_ToInt();
+	virtual Float m_ToFloat();
+	virtual String m_ToString2();
+	virtual bool m_Equals3(bb_boxes_FloatObject*);
+	virtual int m_Compare3(bb_boxes_FloatObject*);
+	bb_boxes_FloatObject* g_new3();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_boxes_FloatObject**p){return "FloatObject";}
+class bb_boxes_StringObject : public Object{
+	public:
+	String f_value;
+	bb_boxes_StringObject();
+	bb_boxes_StringObject* g_new(int);
+	bb_boxes_StringObject* g_new2(Float);
+	bb_boxes_StringObject* g_new3(String);
+	virtual String m_ToString2();
+	virtual bool m_Equals4(bb_boxes_StringObject*);
+	virtual int m_Compare4(bb_boxes_StringObject*);
+	bb_boxes_StringObject* g_new4();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_boxes_StringObject**p){return "StringObject";}
+Object* bb_boxes_BoxBool(bool);
+Object* bb_boxes_BoxInt(int);
+Object* bb_boxes_BoxFloat(Float);
+Object* bb_boxes_BoxString(String);
+bool bb_boxes_UnboxBool(Object*);
+int bb_boxes_UnboxInt(Object*);
+Float bb_boxes_UnboxFloat(Object*);
+String bb_boxes_UnboxString(Object*);
+class bb_reflection_R16 : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_R16();
+	bb_reflection_R16* g_new();
+	virtual int m_Init();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R16**p){return "R16";}
+class bb_reflection_R17 : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_R17();
+	bb_reflection_R17* g_new();
+	virtual int m_Init();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R17**p){return "R17";}
+class bb_reflection_R18 : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_R18();
+	bb_reflection_R18* g_new();
+	virtual int m_Init();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R18**p){return "R18";}
+class bb_reflection_R31 : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_R31();
+	bb_reflection_R31* g_new();
+	virtual int m_Init();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R31**p){return "R31";}
+class bb_reflection_R33 : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_R33();
+	bb_reflection_R33* g_new();
+	virtual int m_Init();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R33**p){return "R33";}
+class bb_reflection_R35 : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_R35();
+	bb_reflection_R35* g_new();
+	virtual int m_Init();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R35**p){return "R35";}
+class bb_reflection_R37 : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_R37();
+	bb_reflection_R37* g_new();
+	virtual int m_Init();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R37**p){return "R37";}
+class bb_reflection_R39 : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_R39();
+	bb_reflection_R39* g_new();
+	virtual int m_Init();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R39**p){return "R39";}
+class bb_reflection_R41 : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_R41();
+	bb_reflection_R41* g_new();
+	virtual int m_Init();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R41**p){return "R41";}
+extern bb_reflection_ClassInfo* bb_reflection__boolClass;
+class bb_reflection_R47 : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_R47();
+	bb_reflection_R47* g_new();
+	virtual int m_Init();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R47**p){return "R47";}
+extern bb_reflection_ClassInfo* bb_reflection__intClass;
+class bb_reflection_R57 : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_R57();
+	bb_reflection_R57* g_new();
+	virtual int m_Init();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R57**p){return "R57";}
+extern bb_reflection_ClassInfo* bb_reflection__floatClass;
+class bb_reflection_R67 : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_R67();
+	bb_reflection_R67* g_new();
+	virtual int m_Init();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R67**p){return "R67";}
+extern bb_reflection_ClassInfo* bb_reflection__stringClass;
+class bb_reflection_FunctionInfo : public Object{
+	public:
+	String f__name;
+	int f__attrs;
+	bb_reflection_ClassInfo* f__retType;
+	Array<bb_reflection_ClassInfo* > f__argTypes;
+	bb_reflection_FunctionInfo();
+	bb_reflection_FunctionInfo* g_new(String,int,bb_reflection_ClassInfo*,Array<bb_reflection_ClassInfo* >);
+	bb_reflection_FunctionInfo* g_new2();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_FunctionInfo**p){return "FunctionInfo";}
+extern Array<bb_reflection_FunctionInfo* > bb_reflection__functions;
+class bb_reflection_R4 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R4();
+	bb_reflection_R4* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R4**p){return "R4";}
+class bb_reflection_R5 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R5();
+	bb_reflection_R5* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R5**p){return "R5";}
+class bb_reflection_R6 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R6();
+	bb_reflection_R6* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R6**p){return "R6";}
+class bb_reflection_R7 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R7();
+	bb_reflection_R7* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R7**p){return "R7";}
+class bb_reflection_R8 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R8();
+	bb_reflection_R8* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R8**p){return "R8";}
+class bb_reflection_R9 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R9();
+	bb_reflection_R9* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R9**p){return "R9";}
+class bb_reflection_R10 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R10();
+	bb_reflection_R10* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R10**p){return "R10";}
+class bb_reflection_R11 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R11();
+	bb_reflection_R11* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R11**p){return "R11";}
+class bb_reflection_R12 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R12();
+	bb_reflection_R12* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R12**p){return "R12";}
+class bb_reflection_R13 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R13();
+	bb_reflection_R13* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R13**p){return "R13";}
+class bb_reflection_R14 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R14();
+	bb_reflection_R14* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R14**p){return "R14";}
+class bb_reflection_R15 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R15();
+	bb_reflection_R15* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R15**p){return "R15";}
+class bb_reflection___GetClass : public bb_reflection__GetClass{
+	public:
+	bb_reflection___GetClass();
+	bb_reflection___GetClass* g_new();
+	virtual bb_reflection_ClassInfo* m_GetClass(Object*);
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection___GetClass**p){return "__GetClass";}
+int bb_reflection___init();
+extern int bb_reflection__init;
 class bb_app_App : public Object{
 	public:
 	bb_app_App();
@@ -3781,17 +4509,25 @@ class bb_app_App : public Object{
 	String debug();
 };
 String dbg_type(bb_app_App**p){return "App";}
-class bb_Beacon_Beacon : public bb_app_App{
+class bb_bapp_BApp : public bb_app_App{
 	public:
-	bb_tcpstream_TcpStream* f_Server;
 	bb_challengergui_CHGUI* f_Games;
+	bb_challengergui_CHGUI* f_BeaconList;
 	bb_challengergui_CHGUI* f_Title;
 	bb_challengergui_CHGUI* f_ServerLabel;
 	bb_challengergui_CHGUI* f_PwLabel;
 	bb_challengergui_CHGUI* f_Pw;
-	bb_challengergui_CHGUI* f_BeaconList;
 	bb_challengergui_CHGUI* f_On_Off;
 	bool f_isOn;
+	String f_LastGame;
+	bb_bapp_BApp();
+	bb_bapp_BApp* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_bapp_BApp**p){return "BApp";}
+class bb_Beacon_Beacon : public bb_bapp_BApp{
+	public:
 	bb_Beacon_Beacon();
 	bb_Beacon_Beacon* g_new();
 	virtual int m_OnCreate();
@@ -3827,6 +4563,513 @@ extern gxtkAudio* bb_audio_device;
 int bb_audio_SetAudioDevice(gxtkAudio*);
 extern bb_app_AppDevice* bb_app_device;
 int bbMain();
+class bb_reflection_ConstInfo : public Object{
+	public:
+	bb_reflection_ConstInfo();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_ConstInfo**p){return "ConstInfo";}
+class bb_stack_Stack : public Object{
+	public:
+	Array<bb_reflection_ConstInfo* > f_data;
+	int f_length;
+	bb_stack_Stack();
+	bb_stack_Stack* g_new();
+	bb_stack_Stack* g_new2(Array<bb_reflection_ConstInfo* >);
+	virtual int m_Push(bb_reflection_ConstInfo*);
+	virtual int m_Push2(Array<bb_reflection_ConstInfo* >,int,int);
+	virtual int m_Push3(Array<bb_reflection_ConstInfo* >,int);
+	virtual Array<bb_reflection_ConstInfo* > m_ToArray();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_stack_Stack**p){return "Stack";}
+class bb_reflection_FieldInfo : public Object{
+	public:
+	String f__name;
+	int f__attrs;
+	bb_reflection_ClassInfo* f__type;
+	bb_reflection_FieldInfo();
+	bb_reflection_FieldInfo* g_new(String,int,bb_reflection_ClassInfo*);
+	bb_reflection_FieldInfo* g_new2();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_FieldInfo**p){return "FieldInfo";}
+class bb_stack_Stack2 : public Object{
+	public:
+	Array<bb_reflection_FieldInfo* > f_data;
+	int f_length;
+	bb_stack_Stack2();
+	bb_stack_Stack2* g_new();
+	bb_stack_Stack2* g_new2(Array<bb_reflection_FieldInfo* >);
+	virtual int m_Push4(bb_reflection_FieldInfo*);
+	virtual int m_Push5(Array<bb_reflection_FieldInfo* >,int,int);
+	virtual int m_Push6(Array<bb_reflection_FieldInfo* >,int);
+	virtual Array<bb_reflection_FieldInfo* > m_ToArray();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_stack_Stack2**p){return "Stack";}
+class bb_reflection_GlobalInfo : public Object{
+	public:
+	bb_reflection_GlobalInfo();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_GlobalInfo**p){return "GlobalInfo";}
+class bb_stack_Stack3 : public Object{
+	public:
+	Array<bb_reflection_GlobalInfo* > f_data;
+	int f_length;
+	bb_stack_Stack3();
+	bb_stack_Stack3* g_new();
+	bb_stack_Stack3* g_new2(Array<bb_reflection_GlobalInfo* >);
+	virtual int m_Push7(bb_reflection_GlobalInfo*);
+	virtual int m_Push8(Array<bb_reflection_GlobalInfo* >,int,int);
+	virtual int m_Push9(Array<bb_reflection_GlobalInfo* >,int);
+	virtual Array<bb_reflection_GlobalInfo* > m_ToArray();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_stack_Stack3**p){return "Stack";}
+class bb_reflection_MethodInfo : public Object{
+	public:
+	String f__name;
+	int f__attrs;
+	bb_reflection_ClassInfo* f__retType;
+	Array<bb_reflection_ClassInfo* > f__argTypes;
+	bb_reflection_MethodInfo();
+	bb_reflection_MethodInfo* g_new(String,int,bb_reflection_ClassInfo*,Array<bb_reflection_ClassInfo* >);
+	bb_reflection_MethodInfo* g_new2();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_MethodInfo**p){return "MethodInfo";}
+class bb_stack_Stack4 : public Object{
+	public:
+	Array<bb_reflection_MethodInfo* > f_data;
+	int f_length;
+	bb_stack_Stack4();
+	bb_stack_Stack4* g_new();
+	bb_stack_Stack4* g_new2(Array<bb_reflection_MethodInfo* >);
+	virtual int m_Push10(bb_reflection_MethodInfo*);
+	virtual int m_Push11(Array<bb_reflection_MethodInfo* >,int,int);
+	virtual int m_Push12(Array<bb_reflection_MethodInfo* >,int);
+	virtual Array<bb_reflection_MethodInfo* > m_ToArray();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_stack_Stack4**p){return "Stack";}
+class bb_stack_Stack5 : public Object{
+	public:
+	Array<bb_reflection_FunctionInfo* > f_data;
+	int f_length;
+	bb_stack_Stack5();
+	bb_stack_Stack5* g_new();
+	bb_stack_Stack5* g_new2(Array<bb_reflection_FunctionInfo* >);
+	virtual int m_Push13(bb_reflection_FunctionInfo*);
+	virtual int m_Push14(Array<bb_reflection_FunctionInfo* >,int,int);
+	virtual int m_Push15(Array<bb_reflection_FunctionInfo* >,int);
+	virtual Array<bb_reflection_FunctionInfo* > m_ToArray();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_stack_Stack5**p){return "Stack";}
+class bb_reflection_R19 : public bb_reflection_FieldInfo{
+	public:
+	bb_reflection_R19();
+	bb_reflection_R19* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R19**p){return "R19";}
+class bb_reflection_R20 : public bb_reflection_FieldInfo{
+	public:
+	bb_reflection_R20();
+	bb_reflection_R20* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R20**p){return "R20";}
+class bb_reflection_R21 : public bb_reflection_FieldInfo{
+	public:
+	bb_reflection_R21();
+	bb_reflection_R21* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R21**p){return "R21";}
+class bb_reflection_R22 : public bb_reflection_FieldInfo{
+	public:
+	bb_reflection_R22();
+	bb_reflection_R22* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R22**p){return "R22";}
+class bb_reflection_R23 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R23();
+	bb_reflection_R23* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R23**p){return "R23";}
+class bb_reflection_R24 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R24();
+	bb_reflection_R24* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R24**p){return "R24";}
+class bb_reflection_R25 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R25();
+	bb_reflection_R25* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R25**p){return "R25";}
+class bb_reflection_R26 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R26();
+	bb_reflection_R26* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R26**p){return "R26";}
+class bb_reflection_R27 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R27();
+	bb_reflection_R27* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R27**p){return "R27";}
+class bb_reflection_R28 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R28();
+	bb_reflection_R28* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R28**p){return "R28";}
+class bb_reflection_R30 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R30();
+	bb_reflection_R30* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R30**p){return "R30";}
+class bb_reflection_R29 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R29();
+	bb_reflection_R29* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R29**p){return "R29";}
+class bb_reflection_R32 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R32();
+	bb_reflection_R32* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R32**p){return "R32";}
+class bb_reflection_R34 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R34();
+	bb_reflection_R34* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R34**p){return "R34";}
+class bb_reflection_R36 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R36();
+	bb_reflection_R36* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R36**p){return "R36";}
+class bb_reflection_R38 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R38();
+	bb_reflection_R38* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R38**p){return "R38";}
+class bb_reflection_R40 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R40();
+	bb_reflection_R40* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R40**p){return "R40";}
+class bb_reflection_R42 : public bb_reflection_FieldInfo{
+	public:
+	bb_reflection_R42();
+	bb_reflection_R42* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R42**p){return "R42";}
+class bb_reflection_R44 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R44();
+	bb_reflection_R44* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R44**p){return "R44";}
+class bb_reflection_R45 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R45();
+	bb_reflection_R45* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R45**p){return "R45";}
+class bb_reflection_R43 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R43();
+	bb_reflection_R43* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R43**p){return "R43";}
+class bb_reflection_R46 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R46();
+	bb_reflection_R46* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R46**p){return "R46";}
+class bb_reflection_R48 : public bb_reflection_FieldInfo{
+	public:
+	bb_reflection_R48();
+	bb_reflection_R48* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R48**p){return "R48";}
+class bb_reflection_R51 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R51();
+	bb_reflection_R51* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R51**p){return "R51";}
+class bb_reflection_R52 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R52();
+	bb_reflection_R52* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R52**p){return "R52";}
+class bb_reflection_R53 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R53();
+	bb_reflection_R53* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R53**p){return "R53";}
+class bb_reflection_R54 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R54();
+	bb_reflection_R54* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R54**p){return "R54";}
+class bb_reflection_R55 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R55();
+	bb_reflection_R55* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R55**p){return "R55";}
+class bb_reflection_R49 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R49();
+	bb_reflection_R49* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R49**p){return "R49";}
+class bb_reflection_R50 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R50();
+	bb_reflection_R50* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R50**p){return "R50";}
+class bb_reflection_R56 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R56();
+	bb_reflection_R56* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R56**p){return "R56";}
+class bb_reflection_R58 : public bb_reflection_FieldInfo{
+	public:
+	bb_reflection_R58();
+	bb_reflection_R58* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R58**p){return "R58";}
+class bb_reflection_R61 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R61();
+	bb_reflection_R61* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R61**p){return "R61";}
+class bb_reflection_R62 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R62();
+	bb_reflection_R62* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R62**p){return "R62";}
+class bb_reflection_R63 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R63();
+	bb_reflection_R63* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R63**p){return "R63";}
+class bb_reflection_R64 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R64();
+	bb_reflection_R64* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R64**p){return "R64";}
+class bb_reflection_R65 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R65();
+	bb_reflection_R65* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R65**p){return "R65";}
+class bb_reflection_R59 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R59();
+	bb_reflection_R59* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R59**p){return "R59";}
+class bb_reflection_R60 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R60();
+	bb_reflection_R60* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R60**p){return "R60";}
+class bb_reflection_R66 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R66();
+	bb_reflection_R66* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R66**p){return "R66";}
+class bb_reflection_R68 : public bb_reflection_FieldInfo{
+	public:
+	bb_reflection_R68();
+	bb_reflection_R68* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R68**p){return "R68";}
+class bb_reflection_R72 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R72();
+	bb_reflection_R72* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R72**p){return "R72";}
+class bb_reflection_R73 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R73();
+	bb_reflection_R73* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R73**p){return "R73";}
+class bb_reflection_R74 : public bb_reflection_MethodInfo{
+	public:
+	bb_reflection_R74();
+	bb_reflection_R74* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R74**p){return "R74";}
+class bb_reflection_R69 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R69();
+	bb_reflection_R69* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R69**p){return "R69";}
+class bb_reflection_R70 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R70();
+	bb_reflection_R70* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R70**p){return "R70";}
+class bb_reflection_R71 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R71();
+	bb_reflection_R71* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R71**p){return "R71";}
+class bb_reflection_R75 : public bb_reflection_FunctionInfo{
+	public:
+	bb_reflection_R75();
+	bb_reflection_R75* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_R75**p){return "R75";}
+class bb_reflection_UnknownClass : public bb_reflection_ClassInfo{
+	public:
+	bb_reflection_UnknownClass();
+	bb_reflection_UnknownClass* g_new();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_reflection_UnknownClass**p){return "UnknownClass";}
+extern bb_reflection_ClassInfo* bb_reflection__unknownClass;
 class bb_graphics_Image : public Object{
 	public:
 	gxtkSurface* f_surface;
@@ -3842,7 +5085,7 @@ class bb_graphics_Image : public Object{
 	bb_graphics_Image* g_new();
 	virtual int m_SetHandle(Float,Float);
 	virtual int m_ApplyFlags(int);
-	virtual bb_graphics_Image* m_Init(gxtkSurface*,int,int);
+	virtual bb_graphics_Image* m_Init2(gxtkSurface*,int,int);
 	virtual bb_graphics_Image* m_Grab(int,int,int,int,int,int,bb_graphics_Image*);
 	virtual bb_graphics_Image* m_GrabImage(int,int,int,int,int,int);
 	virtual int m_Width();
@@ -3915,6 +5158,7 @@ extern String bb_data2_STATUS;
 class bb_stream_Stream : public Object{
 	public:
 	bb_stream_Stream();
+	bb_stream_Stream* g_new();
 	static bb_databuffer_DataBuffer* g__tmpbuf;
 	virtual int m_Write(bb_databuffer_DataBuffer*,int,int)=0;
 	virtual void m__Write(int);
@@ -3923,7 +5167,7 @@ class bb_stream_Stream : public Object{
 	virtual int m_Eof()=0;
 	virtual int m_Read(bb_databuffer_DataBuffer*,int,int)=0;
 	virtual String m_ReadLine();
-	bb_stream_Stream* g_new();
+	virtual void m_Close()=0;
 	void mark();
 	String debug();
 };
@@ -3932,9 +5176,10 @@ class bb_tcpstream_TcpStream : public bb_stream_Stream{
 	public:
 	BBTcpStream* f__stream;
 	bb_tcpstream_TcpStream();
+	bb_tcpstream_TcpStream* g_new();
 	virtual bool m_Connect(String,int);
 	virtual int m_ReadAvail();
-	bb_tcpstream_TcpStream* g_new();
+	virtual void m_Close();
 	virtual int m_Eof();
 	virtual int m_Read(bb_databuffer_DataBuffer*,int,int);
 	virtual int m_Write(bb_databuffer_DataBuffer*,int,int);
@@ -3942,6 +5187,7 @@ class bb_tcpstream_TcpStream : public bb_stream_Stream{
 	String debug();
 };
 String dbg_type(bb_tcpstream_TcpStream**p){return "TcpStream";}
+extern bb_tcpstream_TcpStream* bb_data2_Server;
 class bb_databuffer_DataBuffer : public BBDataBuffer{
 	public:
 	bb_databuffer_DataBuffer();
@@ -3970,27 +5216,24 @@ class bb_stream_StreamWriteError : public bb_stream_StreamError{
 	String debug();
 };
 String dbg_type(bb_stream_StreamWriteError**p){return "StreamWriteError";}
-int bb_protocol_Post(bb_tcpstream_TcpStream*,String);
-int bb_protocol_RequestGameList(bb_tcpstream_TcpStream*);
-class bb_stack_Stack : public Object{
+int bb_protocol_Post(String);
+int bb_protocol_RequestGameList();
+class bb_stack_Stack6 : public Object{
 	public:
 	Array<int > f_data;
 	int f_length;
-	bb_stack_Stack();
-	bb_stack_Stack* g_new();
-	bb_stack_Stack* g_new2(Array<int >);
-	virtual int m_Push(int);
-	virtual int m_Push2(Array<int >,int,int);
-	virtual int m_Push3(Array<int >,int);
+	bb_stack_Stack6();
+	bb_stack_Stack6* g_new();
+	bb_stack_Stack6* g_new2(Array<int >);
+	virtual int m_Push16(int);
+	virtual int m_Push17(Array<int >,int,int);
+	virtual int m_Push18(Array<int >,int);
 	virtual Array<int > m_ToArray();
 	void mark();
 	String debug();
 };
-String dbg_type(bb_stack_Stack**p){return "Stack";}
-extern int bb_protocol_LastP;
-extern Array<String > bb_protocol_SList;
-int bb_protocol__readp(bb_tcpstream_TcpStream*);
-int bb_protocol_ReadProtocol(bb_tcpstream_TcpStream*);
+String dbg_type(bb_stack_Stack6**p){return "Stack";}
+extern bb_bapp_BApp* bb_data2_Game;
 class bb_challengergui_CHGUI : public Object{
 	public:
 	bb_challengergui_CHGUI* f_Parent;
@@ -4097,7 +5340,8 @@ class bb_challengergui_CHGUI : public Object{
 };
 String dbg_type(bb_challengergui_CHGUI**p){return "CHGUI";}
 bb_challengergui_CHGUI* bb_challengergui_CreateDropdownItem(String,bb_challengergui_CHGUI*,int);
-int bb_protocol_ResetP();
+int bb_protocol__readp();
+int bb_protocol_ReadProtocol();
 int bb_graphics_DebugRenderDevice();
 int bb_graphics_Cls(Float,Float,Float);
 extern Array<bb_challengergui_CHGUI* > bb_challengergui_CHGUI_BottomList;
@@ -4340,6 +5584,1849 @@ int bb_challengergui_LockFocus(bb_challengergui_CHGUI*);
 int bb_challengergui_UnlockFocus();
 int bb_challengergui_CHGUI_UpdateMsgBox();
 int bb_challengergui_CHGUI_Update();
+int bb_challengergui_CHGUI_Delete(bb_challengergui_CHGUI*);
+int bb_protocol_RequestBeaconList(String);
+bb_exception_DiddyException::bb_exception_DiddyException(){
+	f_message=String();
+	f_cause=0;
+	f_type=String();
+	f_fullType=String();
+}
+String bb_exception_DiddyException::m_Message(){
+	DBG_ENTER("DiddyException.Message")
+	bb_exception_DiddyException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<15>");
+	return f_message;
+}
+void bb_exception_DiddyException::m_Message2(String t_message){
+	DBG_ENTER("DiddyException.Message")
+	bb_exception_DiddyException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_message,"message")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<19>");
+	this->f_message=t_message;
+}
+ThrowableObject* bb_exception_DiddyException::m_Cause(){
+	DBG_ENTER("DiddyException.Cause")
+	bb_exception_DiddyException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<23>");
+	return f_cause;
+}
+void bb_exception_DiddyException::m_Cause2(ThrowableObject* t_cause){
+	DBG_ENTER("DiddyException.Cause")
+	bb_exception_DiddyException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_cause,"cause")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<27>");
+	if(t_cause==(this)){
+		DBG_BLOCK();
+		t_cause=0;
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<28>");
+	gc_assign(this->f_cause,t_cause);
+}
+String bb_exception_DiddyException::m_Type(){
+	DBG_ENTER("DiddyException.Type")
+	bb_exception_DiddyException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<32>");
+	return f_type;
+}
+String bb_exception_DiddyException::m_FullType(){
+	DBG_ENTER("DiddyException.FullType")
+	bb_exception_DiddyException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<36>");
+	return f_fullType;
+}
+String bb_exception_DiddyException::m_ToString(bool t_recurse){
+	DBG_ENTER("DiddyException.ToString")
+	bb_exception_DiddyException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_recurse,"recurse")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<56>");
+	String t_rv=f_type+String(L": ",2)+f_message;
+	DBG_LOCAL(t_rv,"rv")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<57>");
+	if(t_recurse){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<58>");
+		int t_depth=10;
+		DBG_LOCAL(t_depth,"depth")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<59>");
+		ThrowableObject* t_current=f_cause;
+		DBG_LOCAL(t_current,"current")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<60>");
+		while(((t_current)!=0) && t_depth>0){
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<61>");
+			if((dynamic_cast<bb_exception_DiddyException*>(t_current))!=0){
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<62>");
+				t_rv=t_rv+(String(L"\nCaused by ",11)+f_type+String(L": ",2)+dynamic_cast<bb_exception_DiddyException*>(t_current)->f_message);
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<63>");
+				t_current=dynamic_cast<bb_exception_DiddyException*>(t_current)->f_cause;
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<64>");
+				t_depth-=1;
+			}else{
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<66>");
+				t_rv=t_rv+String(L"\nCaused by a non-Diddy exception.",33);
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<67>");
+				t_current=0;
+			}
+		}
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<71>");
+	return t_rv;
+}
+bb_exception_DiddyException* bb_exception_DiddyException::g_new(String t_message,ThrowableObject* t_cause){
+	DBG_ENTER("DiddyException.new")
+	bb_exception_DiddyException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_message,"message")
+	DBG_LOCAL(t_cause,"cause")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<40>");
+	this->f_message=t_message;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<41>");
+	gc_assign(this->f_cause,t_cause);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<42>");
+	bb_reflection_ClassInfo* t_ci=bb_reflection_GetClass2(this);
+	DBG_LOCAL(t_ci,"ci")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<43>");
+	if((t_ci)!=0){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<44>");
+		this->f_fullType=t_ci->m_Name();
+	}else{
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<46>");
+		this->f_fullType=String(L"diddy.exception.DiddyException",30);
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<48>");
+	if(this->f_fullType.Contains(String(L".",1))){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<49>");
+		this->f_type=this->f_fullType.Slice(this->f_fullType.FindLast(String(L".",1))+1);
+	}else{
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<51>");
+		this->f_type=this->f_fullType;
+	}
+	return this;
+}
+void bb_exception_DiddyException::mark(){
+	ThrowableObject::mark();
+	gc_mark_q(f_cause);
+}
+String bb_exception_DiddyException::debug(){
+	String t="(DiddyException)\n";
+	t+=dbg_decl("message",&f_message);
+	t+=dbg_decl("cause",&f_cause);
+	t+=dbg_decl("type",&f_type);
+	t+=dbg_decl("fullType",&f_fullType);
+	return t;
+}
+bb_reflection_ClassInfo::bb_reflection_ClassInfo(){
+	f__name=String();
+	f__attrs=0;
+	f__sclass=0;
+	f__ifaces=Array<bb_reflection_ClassInfo* >();
+	f__rconsts=Array<bb_reflection_ConstInfo* >();
+	f__consts=Array<bb_reflection_ConstInfo* >();
+	f__rfields=Array<bb_reflection_FieldInfo* >();
+	f__fields=Array<bb_reflection_FieldInfo* >();
+	f__rglobals=Array<bb_reflection_GlobalInfo* >();
+	f__globals=Array<bb_reflection_GlobalInfo* >();
+	f__rmethods=Array<bb_reflection_MethodInfo* >();
+	f__methods=Array<bb_reflection_MethodInfo* >();
+	f__rfunctions=Array<bb_reflection_FunctionInfo* >();
+	f__functions=Array<bb_reflection_FunctionInfo* >();
+	f__ctors=Array<bb_reflection_FunctionInfo* >();
+}
+String bb_reflection_ClassInfo::m_Name(){
+	DBG_ENTER("ClassInfo.Name")
+	bb_reflection_ClassInfo *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<222>");
+	return f__name;
+}
+bb_reflection_ClassInfo* bb_reflection_ClassInfo::g_new(String t_name,int t_attrs,bb_reflection_ClassInfo* t_sclass,Array<bb_reflection_ClassInfo* > t_ifaces){
+	DBG_ENTER("ClassInfo.new")
+	bb_reflection_ClassInfo *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_name,"name")
+	DBG_LOCAL(t_attrs,"attrs")
+	DBG_LOCAL(t_sclass,"sclass")
+	DBG_LOCAL(t_ifaces,"ifaces")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<215>");
+	f__name=t_name;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<216>");
+	f__attrs=t_attrs;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<217>");
+	gc_assign(f__sclass,t_sclass);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<218>");
+	gc_assign(f__ifaces,t_ifaces);
+	return this;
+}
+bb_reflection_ClassInfo* bb_reflection_ClassInfo::g_new2(){
+	DBG_ENTER("ClassInfo.new")
+	bb_reflection_ClassInfo *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<212>");
+	return this;
+}
+int bb_reflection_ClassInfo::m_Init(){
+	DBG_ENTER("ClassInfo.Init")
+	bb_reflection_ClassInfo *self=this;
+	DBG_LOCAL(self,"Self")
+	return 0;
+}
+int bb_reflection_ClassInfo::m_InitR(){
+	DBG_ENTER("ClassInfo.InitR")
+	bb_reflection_ClassInfo *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<421>");
+	if((f__sclass)!=0){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<422>");
+		bb_stack_Stack* t_consts=(new bb_stack_Stack)->g_new2(f__sclass->f__rconsts);
+		DBG_LOCAL(t_consts,"consts")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<423>");
+		Array<bb_reflection_ConstInfo* > t_=f__consts;
+		int t_2=0;
+		while(t_2<t_.Length()){
+			DBG_BLOCK();
+			bb_reflection_ConstInfo* t_t=t_.At(t_2);
+			t_2=t_2+1;
+			DBG_LOCAL(t_t,"t")
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<424>");
+			t_consts->m_Push(t_t);
+		}
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<426>");
+		gc_assign(f__rconsts,t_consts->m_ToArray());
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<427>");
+		bb_stack_Stack2* t_fields=(new bb_stack_Stack2)->g_new2(f__sclass->f__rfields);
+		DBG_LOCAL(t_fields,"fields")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<428>");
+		Array<bb_reflection_FieldInfo* > t_3=f__fields;
+		int t_4=0;
+		while(t_4<t_3.Length()){
+			DBG_BLOCK();
+			bb_reflection_FieldInfo* t_t2=t_3.At(t_4);
+			t_4=t_4+1;
+			DBG_LOCAL(t_t2,"t")
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<429>");
+			t_fields->m_Push4(t_t2);
+		}
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<431>");
+		gc_assign(f__rfields,t_fields->m_ToArray());
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<432>");
+		bb_stack_Stack3* t_globals=(new bb_stack_Stack3)->g_new2(f__sclass->f__rglobals);
+		DBG_LOCAL(t_globals,"globals")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<433>");
+		Array<bb_reflection_GlobalInfo* > t_5=f__globals;
+		int t_6=0;
+		while(t_6<t_5.Length()){
+			DBG_BLOCK();
+			bb_reflection_GlobalInfo* t_t3=t_5.At(t_6);
+			t_6=t_6+1;
+			DBG_LOCAL(t_t3,"t")
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<434>");
+			t_globals->m_Push7(t_t3);
+		}
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<436>");
+		gc_assign(f__rglobals,t_globals->m_ToArray());
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<437>");
+		bb_stack_Stack4* t_methods=(new bb_stack_Stack4)->g_new2(f__sclass->f__rmethods);
+		DBG_LOCAL(t_methods,"methods")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<438>");
+		Array<bb_reflection_MethodInfo* > t_7=f__methods;
+		int t_8=0;
+		while(t_8<t_7.Length()){
+			DBG_BLOCK();
+			bb_reflection_MethodInfo* t_t4=t_7.At(t_8);
+			t_8=t_8+1;
+			DBG_LOCAL(t_t4,"t")
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<439>");
+			t_methods->m_Push10(t_t4);
+		}
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<441>");
+		gc_assign(f__rmethods,t_methods->m_ToArray());
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<442>");
+		bb_stack_Stack5* t_functions=(new bb_stack_Stack5)->g_new2(f__sclass->f__rfunctions);
+		DBG_LOCAL(t_functions,"functions")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<443>");
+		Array<bb_reflection_FunctionInfo* > t_9=f__functions;
+		int t_10=0;
+		while(t_10<t_9.Length()){
+			DBG_BLOCK();
+			bb_reflection_FunctionInfo* t_t5=t_9.At(t_10);
+			t_10=t_10+1;
+			DBG_LOCAL(t_t5,"t")
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<444>");
+			t_functions->m_Push13(t_t5);
+		}
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<446>");
+		gc_assign(f__rfunctions,t_functions->m_ToArray());
+	}else{
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<448>");
+		gc_assign(f__rconsts,f__consts);
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<449>");
+		gc_assign(f__rfields,f__fields);
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<450>");
+		gc_assign(f__rglobals,f__globals);
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<451>");
+		gc_assign(f__rmethods,f__methods);
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<452>");
+		gc_assign(f__rfunctions,f__functions);
+	}
+	return 0;
+}
+void bb_reflection_ClassInfo::mark(){
+	Object::mark();
+	gc_mark_q(f__sclass);
+	gc_mark_q(f__ifaces);
+	gc_mark_q(f__rconsts);
+	gc_mark_q(f__consts);
+	gc_mark_q(f__rfields);
+	gc_mark_q(f__fields);
+	gc_mark_q(f__rglobals);
+	gc_mark_q(f__globals);
+	gc_mark_q(f__rmethods);
+	gc_mark_q(f__methods);
+	gc_mark_q(f__rfunctions);
+	gc_mark_q(f__functions);
+	gc_mark_q(f__ctors);
+}
+String bb_reflection_ClassInfo::debug(){
+	String t="(ClassInfo)\n";
+	t+=dbg_decl("_name",&f__name);
+	t+=dbg_decl("_attrs",&f__attrs);
+	t+=dbg_decl("_sclass",&f__sclass);
+	t+=dbg_decl("_ifaces",&f__ifaces);
+	t+=dbg_decl("_consts",&f__consts);
+	t+=dbg_decl("_fields",&f__fields);
+	t+=dbg_decl("_globals",&f__globals);
+	t+=dbg_decl("_methods",&f__methods);
+	t+=dbg_decl("_functions",&f__functions);
+	t+=dbg_decl("_ctors",&f__ctors);
+	t+=dbg_decl("_rconsts",&f__rconsts);
+	t+=dbg_decl("_rglobals",&f__rglobals);
+	t+=dbg_decl("_rfields",&f__rfields);
+	t+=dbg_decl("_rmethods",&f__rmethods);
+	t+=dbg_decl("_rfunctions",&f__rfunctions);
+	return t;
+}
+bb_map_Map::bb_map_Map(){
+	f_root=0;
+}
+bb_map_Map* bb_map_Map::g_new(){
+	DBG_ENTER("Map.new")
+	bb_map_Map *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<7>");
+	return this;
+}
+int bb_map_Map::m_RotateLeft(bb_map_Node* t_node){
+	DBG_ENTER("Map.RotateLeft")
+	bb_map_Map *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_node,"node")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<251>");
+	bb_map_Node* t_child=t_node->f_right;
+	DBG_LOCAL(t_child,"child")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<252>");
+	gc_assign(t_node->f_right,t_child->f_left);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<253>");
+	if((t_child->f_left)!=0){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<254>");
+		gc_assign(t_child->f_left->f_parent,t_node);
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<256>");
+	gc_assign(t_child->f_parent,t_node->f_parent);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<257>");
+	if((t_node->f_parent)!=0){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<258>");
+		if(t_node==t_node->f_parent->f_left){
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<259>");
+			gc_assign(t_node->f_parent->f_left,t_child);
+		}else{
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<261>");
+			gc_assign(t_node->f_parent->f_right,t_child);
+		}
+	}else{
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<264>");
+		gc_assign(f_root,t_child);
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<266>");
+	gc_assign(t_child->f_left,t_node);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<267>");
+	gc_assign(t_node->f_parent,t_child);
+	return 0;
+}
+int bb_map_Map::m_RotateRight(bb_map_Node* t_node){
+	DBG_ENTER("Map.RotateRight")
+	bb_map_Map *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_node,"node")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<271>");
+	bb_map_Node* t_child=t_node->f_left;
+	DBG_LOCAL(t_child,"child")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<272>");
+	gc_assign(t_node->f_left,t_child->f_right);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<273>");
+	if((t_child->f_right)!=0){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<274>");
+		gc_assign(t_child->f_right->f_parent,t_node);
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<276>");
+	gc_assign(t_child->f_parent,t_node->f_parent);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<277>");
+	if((t_node->f_parent)!=0){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<278>");
+		if(t_node==t_node->f_parent->f_right){
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<279>");
+			gc_assign(t_node->f_parent->f_right,t_child);
+		}else{
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<281>");
+			gc_assign(t_node->f_parent->f_left,t_child);
+		}
+	}else{
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<284>");
+		gc_assign(f_root,t_child);
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<286>");
+	gc_assign(t_child->f_right,t_node);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<287>");
+	gc_assign(t_node->f_parent,t_child);
+	return 0;
+}
+int bb_map_Map::m_InsertFixup(bb_map_Node* t_node){
+	DBG_ENTER("Map.InsertFixup")
+	bb_map_Map *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_node,"node")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<212>");
+	while(((t_node->f_parent)!=0) && t_node->f_parent->f_color==-1 && ((t_node->f_parent->f_parent)!=0)){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<213>");
+		if(t_node->f_parent==t_node->f_parent->f_parent->f_left){
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<214>");
+			bb_map_Node* t_uncle=t_node->f_parent->f_parent->f_right;
+			DBG_LOCAL(t_uncle,"uncle")
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<215>");
+			if(((t_uncle)!=0) && t_uncle->f_color==-1){
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<216>");
+				t_node->f_parent->f_color=1;
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<217>");
+				t_uncle->f_color=1;
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<218>");
+				t_uncle->f_parent->f_color=-1;
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<219>");
+				t_node=t_uncle->f_parent;
+			}else{
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<221>");
+				if(t_node==t_node->f_parent->f_right){
+					DBG_BLOCK();
+					DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<222>");
+					t_node=t_node->f_parent;
+					DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<223>");
+					m_RotateLeft(t_node);
+				}
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<225>");
+				t_node->f_parent->f_color=1;
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<226>");
+				t_node->f_parent->f_parent->f_color=-1;
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<227>");
+				m_RotateRight(t_node->f_parent->f_parent);
+			}
+		}else{
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<230>");
+			bb_map_Node* t_uncle2=t_node->f_parent->f_parent->f_left;
+			DBG_LOCAL(t_uncle2,"uncle")
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<231>");
+			if(((t_uncle2)!=0) && t_uncle2->f_color==-1){
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<232>");
+				t_node->f_parent->f_color=1;
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<233>");
+				t_uncle2->f_color=1;
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<234>");
+				t_uncle2->f_parent->f_color=-1;
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<235>");
+				t_node=t_uncle2->f_parent;
+			}else{
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<237>");
+				if(t_node==t_node->f_parent->f_left){
+					DBG_BLOCK();
+					DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<238>");
+					t_node=t_node->f_parent;
+					DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<239>");
+					m_RotateRight(t_node);
+				}
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<241>");
+				t_node->f_parent->f_color=1;
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<242>");
+				t_node->f_parent->f_parent->f_color=-1;
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<243>");
+				m_RotateLeft(t_node->f_parent->f_parent);
+			}
+		}
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<247>");
+	f_root->f_color=1;
+	return 0;
+}
+bool bb_map_Map::m_Set(String t_key,bb_reflection_ClassInfo* t_value){
+	DBG_ENTER("Map.Set")
+	bb_map_Map *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_key,"key")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<29>");
+	bb_map_Node* t_node=f_root;
+	DBG_LOCAL(t_node,"node")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<30>");
+	bb_map_Node* t_parent=0;
+	int t_cmp=0;
+	DBG_LOCAL(t_parent,"parent")
+	DBG_LOCAL(t_cmp,"cmp")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<32>");
+	while((t_node)!=0){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<33>");
+		t_parent=t_node;
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<34>");
+		t_cmp=m_Compare(t_key,t_node->f_key);
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<35>");
+		if(t_cmp>0){
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<36>");
+			t_node=t_node->f_right;
+		}else{
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<37>");
+			if(t_cmp<0){
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<38>");
+				t_node=t_node->f_left;
+			}else{
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<40>");
+				gc_assign(t_node->f_value,t_value);
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<41>");
+				return false;
+			}
+		}
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<45>");
+	t_node=(new bb_map_Node)->g_new(t_key,t_value,-1,t_parent);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<47>");
+	if((t_parent)!=0){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<48>");
+		if(t_cmp>0){
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<49>");
+			gc_assign(t_parent->f_right,t_node);
+		}else{
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<51>");
+			gc_assign(t_parent->f_left,t_node);
+		}
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<53>");
+		m_InsertFixup(t_node);
+	}else{
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<55>");
+		gc_assign(f_root,t_node);
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<57>");
+	return true;
+}
+bb_map_Node* bb_map_Map::m_FindNode(String t_key){
+	DBG_ENTER("Map.FindNode")
+	bb_map_Map *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_key,"key")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<157>");
+	bb_map_Node* t_node=f_root;
+	DBG_LOCAL(t_node,"node")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<159>");
+	while((t_node)!=0){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<160>");
+		int t_cmp=m_Compare(t_key,t_node->f_key);
+		DBG_LOCAL(t_cmp,"cmp")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<161>");
+		if(t_cmp>0){
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<162>");
+			t_node=t_node->f_right;
+		}else{
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<163>");
+			if(t_cmp<0){
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<164>");
+				t_node=t_node->f_left;
+			}else{
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<166>");
+				return t_node;
+			}
+		}
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<169>");
+	return t_node;
+}
+bool bb_map_Map::m_Contains(String t_key){
+	DBG_ENTER("Map.Contains")
+	bb_map_Map *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_key,"key")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<25>");
+	bool t_=m_FindNode(t_key)!=0;
+	return t_;
+}
+bb_reflection_ClassInfo* bb_map_Map::m_Get(String t_key){
+	DBG_ENTER("Map.Get")
+	bb_map_Map *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_key,"key")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<101>");
+	bb_map_Node* t_node=m_FindNode(t_key);
+	DBG_LOCAL(t_node,"node")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<102>");
+	if((t_node)!=0){
+		DBG_BLOCK();
+		return t_node->f_value;
+	}
+	return 0;
+}
+void bb_map_Map::mark(){
+	Object::mark();
+	gc_mark_q(f_root);
+}
+String bb_map_Map::debug(){
+	String t="(Map)\n";
+	t+=dbg_decl("root",&f_root);
+	return t;
+}
+bb_map_StringMap::bb_map_StringMap(){
+}
+bb_map_StringMap* bb_map_StringMap::g_new(){
+	DBG_ENTER("StringMap.new")
+	bb_map_StringMap *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<551>");
+	bb_map_Map::g_new();
+	return this;
+}
+int bb_map_StringMap::m_Compare(String t_lhs,String t_rhs){
+	DBG_ENTER("StringMap.Compare")
+	bb_map_StringMap *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_lhs,"lhs")
+	DBG_LOCAL(t_rhs,"rhs")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<554>");
+	int t_=t_lhs.Compare(t_rhs);
+	return t_;
+}
+void bb_map_StringMap::mark(){
+	bb_map_Map::mark();
+}
+String bb_map_StringMap::debug(){
+	String t="(StringMap)\n";
+	t=bb_map_Map::debug()+t;
+	return t;
+}
+bb_map_StringMap* bb_reflection__classesMap;
+Array<bb_reflection_ClassInfo* > bb_reflection__classes;
+bb_map_Node::bb_map_Node(){
+	f_key=String();
+	f_right=0;
+	f_left=0;
+	f_value=0;
+	f_color=0;
+	f_parent=0;
+}
+bb_map_Node* bb_map_Node::g_new(String t_key,bb_reflection_ClassInfo* t_value,int t_color,bb_map_Node* t_parent){
+	DBG_ENTER("Node.new")
+	bb_map_Node *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_key,"key")
+	DBG_LOCAL(t_value,"value")
+	DBG_LOCAL(t_color,"color")
+	DBG_LOCAL(t_parent,"parent")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<364>");
+	this->f_key=t_key;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<365>");
+	gc_assign(this->f_value,t_value);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<366>");
+	this->f_color=t_color;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<367>");
+	gc_assign(this->f_parent,t_parent);
+	return this;
+}
+bb_map_Node* bb_map_Node::g_new2(){
+	DBG_ENTER("Node.new")
+	bb_map_Node *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<361>");
+	return this;
+}
+void bb_map_Node::mark(){
+	Object::mark();
+	gc_mark_q(f_right);
+	gc_mark_q(f_left);
+	gc_mark_q(f_value);
+	gc_mark_q(f_parent);
+}
+String bb_map_Node::debug(){
+	String t="(Node)\n";
+	t+=dbg_decl("key",&f_key);
+	t+=dbg_decl("value",&f_value);
+	t+=dbg_decl("color",&f_color);
+	t+=dbg_decl("parent",&f_parent);
+	t+=dbg_decl("left",&f_left);
+	t+=dbg_decl("right",&f_right);
+	return t;
+}
+bb_reflection_ClassInfo* bb_reflection_GetClass(String t_name){
+	DBG_ENTER("GetClass")
+	DBG_LOCAL(t_name,"name")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<463>");
+	if(!((bb_reflection__classesMap)!=0)){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<464>");
+		gc_assign(bb_reflection__classesMap,(new bb_map_StringMap)->g_new());
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<465>");
+		Array<bb_reflection_ClassInfo* > t_=bb_reflection__classes;
+		int t_2=0;
+		while(t_2<t_.Length()){
+			DBG_BLOCK();
+			bb_reflection_ClassInfo* t_c=t_.At(t_2);
+			t_2=t_2+1;
+			DBG_LOCAL(t_c,"c")
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<466>");
+			String t_name2=t_c->m_Name();
+			DBG_LOCAL(t_name2,"name")
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<467>");
+			bb_reflection__classesMap->m_Set(t_name2,t_c);
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<468>");
+			int t_i=t_name2.FindLast(String(L".",1));
+			DBG_LOCAL(t_i,"i")
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<469>");
+			if(t_i==-1){
+				DBG_BLOCK();
+				continue;
+			}
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<470>");
+			t_name2=t_name2.Slice(t_i+1);
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<471>");
+			if(bb_reflection__classesMap->m_Contains(t_name2)){
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<472>");
+				bb_reflection__classesMap->m_Set(t_name2,0);
+			}else{
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<474>");
+				bb_reflection__classesMap->m_Set(t_name2,t_c);
+			}
+		}
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<478>");
+	bb_reflection_ClassInfo* t_3=bb_reflection__classesMap->m_Get(t_name);
+	return t_3;
+}
+bb_reflection__GetClass::bb_reflection__GetClass(){
+}
+bb_reflection__GetClass* bb_reflection__GetClass::g_new(){
+	DBG_ENTER("_GetClass.new")
+	bb_reflection__GetClass *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<608>");
+	return this;
+}
+void bb_reflection__GetClass::mark(){
+	Object::mark();
+}
+String bb_reflection__GetClass::debug(){
+	String t="(_GetClass)\n";
+	return t;
+}
+bb_reflection__GetClass* bb_reflection__getClass;
+bb_reflection_ClassInfo* bb_reflection_GetClass2(Object* t_obj){
+	DBG_ENTER("GetClass")
+	DBG_LOCAL(t_obj,"obj")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<482>");
+	bb_reflection_ClassInfo* t_=bb_reflection__getClass->m_GetClass(t_obj);
+	return t_;
+}
+bb_exception_AssertException::bb_exception_AssertException(){
+}
+bb_exception_AssertException* bb_exception_AssertException::g_new(String t_message,ThrowableObject* t_cause){
+	DBG_ENTER("AssertException.new")
+	bb_exception_AssertException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_message,"message")
+	DBG_LOCAL(t_cause,"cause")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<79>");
+	bb_exception_DiddyException::g_new(t_message,t_cause);
+	return this;
+}
+void bb_exception_AssertException::mark(){
+	bb_exception_DiddyException::mark();
+}
+String bb_exception_AssertException::debug(){
+	String t="(AssertException)\n";
+	t=bb_exception_DiddyException::debug()+t;
+	return t;
+}
+bb_exception_ConcurrentModificationException::bb_exception_ConcurrentModificationException(){
+}
+bb_exception_ConcurrentModificationException* bb_exception_ConcurrentModificationException::g_new(String t_message,ThrowableObject* t_cause){
+	DBG_ENTER("ConcurrentModificationException.new")
+	bb_exception_ConcurrentModificationException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_message,"message")
+	DBG_LOCAL(t_cause,"cause")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<85>");
+	bb_exception_DiddyException::g_new(t_message,t_cause);
+	return this;
+}
+void bb_exception_ConcurrentModificationException::mark(){
+	bb_exception_DiddyException::mark();
+}
+String bb_exception_ConcurrentModificationException::debug(){
+	String t="(ConcurrentModificationException)\n";
+	t=bb_exception_DiddyException::debug()+t;
+	return t;
+}
+bb_exception_IndexOutOfBoundsException::bb_exception_IndexOutOfBoundsException(){
+}
+bb_exception_IndexOutOfBoundsException* bb_exception_IndexOutOfBoundsException::g_new(String t_message,ThrowableObject* t_cause){
+	DBG_ENTER("IndexOutOfBoundsException.new")
+	bb_exception_IndexOutOfBoundsException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_message,"message")
+	DBG_LOCAL(t_cause,"cause")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<91>");
+	bb_exception_DiddyException::g_new(t_message,t_cause);
+	return this;
+}
+void bb_exception_IndexOutOfBoundsException::mark(){
+	bb_exception_DiddyException::mark();
+}
+String bb_exception_IndexOutOfBoundsException::debug(){
+	String t="(IndexOutOfBoundsException)\n";
+	t=bb_exception_DiddyException::debug()+t;
+	return t;
+}
+bb_exception_IllegalArgumentException::bb_exception_IllegalArgumentException(){
+}
+bb_exception_IllegalArgumentException* bb_exception_IllegalArgumentException::g_new(String t_message,ThrowableObject* t_cause){
+	DBG_ENTER("IllegalArgumentException.new")
+	bb_exception_IllegalArgumentException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_message,"message")
+	DBG_LOCAL(t_cause,"cause")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<97>");
+	bb_exception_DiddyException::g_new(t_message,t_cause);
+	return this;
+}
+void bb_exception_IllegalArgumentException::mark(){
+	bb_exception_DiddyException::mark();
+}
+String bb_exception_IllegalArgumentException::debug(){
+	String t="(IllegalArgumentException)\n";
+	t=bb_exception_DiddyException::debug()+t;
+	return t;
+}
+bb_exception_XMLParseException::bb_exception_XMLParseException(){
+}
+bb_exception_XMLParseException* bb_exception_XMLParseException::g_new(String t_message,ThrowableObject* t_cause){
+	DBG_ENTER("XMLParseException.new")
+	bb_exception_XMLParseException *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_message,"message")
+	DBG_LOCAL(t_cause,"cause")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<103>");
+	bb_exception_DiddyException::g_new(t_message,t_cause);
+	return this;
+}
+void bb_exception_XMLParseException::mark(){
+	bb_exception_DiddyException::mark();
+}
+String bb_exception_XMLParseException::debug(){
+	String t="(XMLParseException)\n";
+	t=bb_exception_DiddyException::debug()+t;
+	return t;
+}
+bb_boxes_BoolObject::bb_boxes_BoolObject(){
+	f_value=false;
+}
+bb_boxes_BoolObject* bb_boxes_BoolObject::g_new(bool t_value){
+	DBG_ENTER("BoolObject.new")
+	bb_boxes_BoolObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<11>");
+	this->f_value=t_value;
+	return this;
+}
+bool bb_boxes_BoolObject::m_ToBool(){
+	DBG_ENTER("BoolObject.ToBool")
+	bb_boxes_BoolObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<15>");
+	return f_value;
+}
+bool bb_boxes_BoolObject::m_Equals(bb_boxes_BoolObject* t_box){
+	DBG_ENTER("BoolObject.Equals")
+	bb_boxes_BoolObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_box,"box")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<19>");
+	bool t_=f_value==t_box->f_value;
+	return t_;
+}
+bb_boxes_BoolObject* bb_boxes_BoolObject::g_new2(){
+	DBG_ENTER("BoolObject.new")
+	bb_boxes_BoolObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<7>");
+	return this;
+}
+void bb_boxes_BoolObject::mark(){
+	Object::mark();
+}
+String bb_boxes_BoolObject::debug(){
+	String t="(BoolObject)\n";
+	t+=dbg_decl("value",&f_value);
+	return t;
+}
+bb_boxes_IntObject::bb_boxes_IntObject(){
+	f_value=0;
+}
+bb_boxes_IntObject* bb_boxes_IntObject::g_new(int t_value){
+	DBG_ENTER("IntObject.new")
+	bb_boxes_IntObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<27>");
+	this->f_value=t_value;
+	return this;
+}
+bb_boxes_IntObject* bb_boxes_IntObject::g_new2(Float t_value){
+	DBG_ENTER("IntObject.new")
+	bb_boxes_IntObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<31>");
+	this->f_value=int(t_value);
+	return this;
+}
+int bb_boxes_IntObject::m_ToInt(){
+	DBG_ENTER("IntObject.ToInt")
+	bb_boxes_IntObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<35>");
+	return f_value;
+}
+Float bb_boxes_IntObject::m_ToFloat(){
+	DBG_ENTER("IntObject.ToFloat")
+	bb_boxes_IntObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<39>");
+	Float t_=Float(f_value);
+	return t_;
+}
+String bb_boxes_IntObject::m_ToString2(){
+	DBG_ENTER("IntObject.ToString")
+	bb_boxes_IntObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<43>");
+	String t_=String(f_value);
+	return t_;
+}
+bool bb_boxes_IntObject::m_Equals2(bb_boxes_IntObject* t_box){
+	DBG_ENTER("IntObject.Equals")
+	bb_boxes_IntObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_box,"box")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<47>");
+	bool t_=f_value==t_box->f_value;
+	return t_;
+}
+int bb_boxes_IntObject::m_Compare2(bb_boxes_IntObject* t_box){
+	DBG_ENTER("IntObject.Compare")
+	bb_boxes_IntObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_box,"box")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<51>");
+	int t_=f_value-t_box->f_value;
+	return t_;
+}
+bb_boxes_IntObject* bb_boxes_IntObject::g_new3(){
+	DBG_ENTER("IntObject.new")
+	bb_boxes_IntObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<23>");
+	return this;
+}
+void bb_boxes_IntObject::mark(){
+	Object::mark();
+}
+String bb_boxes_IntObject::debug(){
+	String t="(IntObject)\n";
+	t+=dbg_decl("value",&f_value);
+	return t;
+}
+bb_boxes_FloatObject::bb_boxes_FloatObject(){
+	f_value=FLOAT(.0);
+}
+bb_boxes_FloatObject* bb_boxes_FloatObject::g_new(int t_value){
+	DBG_ENTER("FloatObject.new")
+	bb_boxes_FloatObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<59>");
+	this->f_value=Float(t_value);
+	return this;
+}
+bb_boxes_FloatObject* bb_boxes_FloatObject::g_new2(Float t_value){
+	DBG_ENTER("FloatObject.new")
+	bb_boxes_FloatObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<63>");
+	this->f_value=t_value;
+	return this;
+}
+int bb_boxes_FloatObject::m_ToInt(){
+	DBG_ENTER("FloatObject.ToInt")
+	bb_boxes_FloatObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<67>");
+	int t_=int(f_value);
+	return t_;
+}
+Float bb_boxes_FloatObject::m_ToFloat(){
+	DBG_ENTER("FloatObject.ToFloat")
+	bb_boxes_FloatObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<71>");
+	return f_value;
+}
+String bb_boxes_FloatObject::m_ToString2(){
+	DBG_ENTER("FloatObject.ToString")
+	bb_boxes_FloatObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<75>");
+	String t_=String(f_value);
+	return t_;
+}
+bool bb_boxes_FloatObject::m_Equals3(bb_boxes_FloatObject* t_box){
+	DBG_ENTER("FloatObject.Equals")
+	bb_boxes_FloatObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_box,"box")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<79>");
+	bool t_=f_value==t_box->f_value;
+	return t_;
+}
+int bb_boxes_FloatObject::m_Compare3(bb_boxes_FloatObject* t_box){
+	DBG_ENTER("FloatObject.Compare")
+	bb_boxes_FloatObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_box,"box")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<83>");
+	if(f_value<t_box->f_value){
+		DBG_BLOCK();
+		return -1;
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<84>");
+	int t_=((f_value>t_box->f_value)?1:0);
+	return t_;
+}
+bb_boxes_FloatObject* bb_boxes_FloatObject::g_new3(){
+	DBG_ENTER("FloatObject.new")
+	bb_boxes_FloatObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<55>");
+	return this;
+}
+void bb_boxes_FloatObject::mark(){
+	Object::mark();
+}
+String bb_boxes_FloatObject::debug(){
+	String t="(FloatObject)\n";
+	t+=dbg_decl("value",&f_value);
+	return t;
+}
+bb_boxes_StringObject::bb_boxes_StringObject(){
+	f_value=String();
+}
+bb_boxes_StringObject* bb_boxes_StringObject::g_new(int t_value){
+	DBG_ENTER("StringObject.new")
+	bb_boxes_StringObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<92>");
+	this->f_value=String(t_value);
+	return this;
+}
+bb_boxes_StringObject* bb_boxes_StringObject::g_new2(Float t_value){
+	DBG_ENTER("StringObject.new")
+	bb_boxes_StringObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<96>");
+	this->f_value=String(t_value);
+	return this;
+}
+bb_boxes_StringObject* bb_boxes_StringObject::g_new3(String t_value){
+	DBG_ENTER("StringObject.new")
+	bb_boxes_StringObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<100>");
+	this->f_value=t_value;
+	return this;
+}
+String bb_boxes_StringObject::m_ToString2(){
+	DBG_ENTER("StringObject.ToString")
+	bb_boxes_StringObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<104>");
+	return f_value;
+}
+bool bb_boxes_StringObject::m_Equals4(bb_boxes_StringObject* t_box){
+	DBG_ENTER("StringObject.Equals")
+	bb_boxes_StringObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_box,"box")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<108>");
+	bool t_=f_value==t_box->f_value;
+	return t_;
+}
+int bb_boxes_StringObject::m_Compare4(bb_boxes_StringObject* t_box){
+	DBG_ENTER("StringObject.Compare")
+	bb_boxes_StringObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_box,"box")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<112>");
+	int t_=f_value.Compare(t_box->f_value);
+	return t_;
+}
+bb_boxes_StringObject* bb_boxes_StringObject::g_new4(){
+	DBG_ENTER("StringObject.new")
+	bb_boxes_StringObject *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<88>");
+	return this;
+}
+void bb_boxes_StringObject::mark(){
+	Object::mark();
+}
+String bb_boxes_StringObject::debug(){
+	String t="(StringObject)\n";
+	t+=dbg_decl("value",&f_value);
+	return t;
+}
+Object* bb_boxes_BoxBool(bool t_value){
+	DBG_ENTER("BoxBool")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<139>");
+	Object* t_=((new bb_boxes_BoolObject)->g_new(t_value));
+	return t_;
+}
+Object* bb_boxes_BoxInt(int t_value){
+	DBG_ENTER("BoxInt")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<143>");
+	Object* t_=((new bb_boxes_IntObject)->g_new(t_value));
+	return t_;
+}
+Object* bb_boxes_BoxFloat(Float t_value){
+	DBG_ENTER("BoxFloat")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<147>");
+	Object* t_=((new bb_boxes_FloatObject)->g_new2(t_value));
+	return t_;
+}
+Object* bb_boxes_BoxString(String t_value){
+	DBG_ENTER("BoxString")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<151>");
+	Object* t_=((new bb_boxes_StringObject)->g_new3(t_value));
+	return t_;
+}
+bool bb_boxes_UnboxBool(Object* t_box){
+	DBG_ENTER("UnboxBool")
+	DBG_LOCAL(t_box,"box")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<155>");
+	bool t_=dynamic_cast<bb_boxes_BoolObject*>(t_box)->f_value;
+	return t_;
+}
+int bb_boxes_UnboxInt(Object* t_box){
+	DBG_ENTER("UnboxInt")
+	DBG_LOCAL(t_box,"box")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<159>");
+	int t_=dynamic_cast<bb_boxes_IntObject*>(t_box)->f_value;
+	return t_;
+}
+Float bb_boxes_UnboxFloat(Object* t_box){
+	DBG_ENTER("UnboxFloat")
+	DBG_LOCAL(t_box,"box")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<163>");
+	Float t_=dynamic_cast<bb_boxes_FloatObject*>(t_box)->f_value;
+	return t_;
+}
+String bb_boxes_UnboxString(Object* t_box){
+	DBG_ENTER("UnboxString")
+	DBG_LOCAL(t_box,"box")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<167>");
+	String t_=dynamic_cast<bb_boxes_StringObject*>(t_box)->f_value;
+	return t_;
+}
+bb_reflection_R16::bb_reflection_R16(){
+}
+bb_reflection_R16* bb_reflection_R16::g_new(){
+	bb_reflection_ClassInfo::g_new(String(L"monkey.lang.Object",18),1,0,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+int bb_reflection_R16::m_Init(){
+	m_InitR();
+	return 0;
+}
+void bb_reflection_R16::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_R16::debug(){
+	String t="(R16)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_R17::bb_reflection_R17(){
+}
+bb_reflection_R17* bb_reflection_R17::g_new(){
+	bb_reflection_ClassInfo::g_new(String(L"monkey.lang.Throwable",21),33,bb_reflection__classes.At(0),Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+int bb_reflection_R17::m_Init(){
+	m_InitR();
+	return 0;
+}
+void bb_reflection_R17::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_R17::debug(){
+	String t="(R17)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_R18::bb_reflection_R18(){
+}
+bb_reflection_R18* bb_reflection_R18::g_new(){
+	bb_reflection_ClassInfo::g_new(String(L"diddy.exception.DiddyException",30),32,bb_reflection__classes.At(1),Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+int bb_reflection_R18::m_Init(){
+	gc_assign(f__fields,Array<bb_reflection_FieldInfo* >(4));
+	gc_assign(f__fields.At(0),((new bb_reflection_R19)->g_new()));
+	gc_assign(f__fields.At(1),((new bb_reflection_R20)->g_new()));
+	gc_assign(f__fields.At(2),((new bb_reflection_R21)->g_new()));
+	gc_assign(f__fields.At(3),((new bb_reflection_R22)->g_new()));
+	gc_assign(f__methods,Array<bb_reflection_MethodInfo* >(7));
+	gc_assign(f__methods.At(0),((new bb_reflection_R23)->g_new()));
+	gc_assign(f__methods.At(1),((new bb_reflection_R24)->g_new()));
+	gc_assign(f__methods.At(2),((new bb_reflection_R25)->g_new()));
+	gc_assign(f__methods.At(3),((new bb_reflection_R26)->g_new()));
+	gc_assign(f__methods.At(4),((new bb_reflection_R27)->g_new()));
+	gc_assign(f__methods.At(5),((new bb_reflection_R28)->g_new()));
+	gc_assign(f__methods.At(6),((new bb_reflection_R30)->g_new()));
+	gc_assign(f__ctors,Array<bb_reflection_FunctionInfo* >(1));
+	gc_assign(f__ctors.At(0),((new bb_reflection_R29)->g_new()));
+	m_InitR();
+	return 0;
+}
+void bb_reflection_R18::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_R18::debug(){
+	String t="(R18)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_R31::bb_reflection_R31(){
+}
+bb_reflection_R31* bb_reflection_R31::g_new(){
+	bb_reflection_ClassInfo::g_new(String(L"diddy.exception.AssertException",31),32,bb_reflection__classes.At(2),Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+int bb_reflection_R31::m_Init(){
+	gc_assign(f__ctors,Array<bb_reflection_FunctionInfo* >(1));
+	gc_assign(f__ctors.At(0),((new bb_reflection_R32)->g_new()));
+	m_InitR();
+	return 0;
+}
+void bb_reflection_R31::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_R31::debug(){
+	String t="(R31)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_R33::bb_reflection_R33(){
+}
+bb_reflection_R33* bb_reflection_R33::g_new(){
+	bb_reflection_ClassInfo::g_new(String(L"diddy.exception.ConcurrentModificationException",47),32,bb_reflection__classes.At(2),Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+int bb_reflection_R33::m_Init(){
+	gc_assign(f__ctors,Array<bb_reflection_FunctionInfo* >(1));
+	gc_assign(f__ctors.At(0),((new bb_reflection_R34)->g_new()));
+	m_InitR();
+	return 0;
+}
+void bb_reflection_R33::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_R33::debug(){
+	String t="(R33)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_R35::bb_reflection_R35(){
+}
+bb_reflection_R35* bb_reflection_R35::g_new(){
+	bb_reflection_ClassInfo::g_new(String(L"diddy.exception.IndexOutOfBoundsException",41),32,bb_reflection__classes.At(2),Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+int bb_reflection_R35::m_Init(){
+	gc_assign(f__ctors,Array<bb_reflection_FunctionInfo* >(1));
+	gc_assign(f__ctors.At(0),((new bb_reflection_R36)->g_new()));
+	m_InitR();
+	return 0;
+}
+void bb_reflection_R35::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_R35::debug(){
+	String t="(R35)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_R37::bb_reflection_R37(){
+}
+bb_reflection_R37* bb_reflection_R37::g_new(){
+	bb_reflection_ClassInfo::g_new(String(L"diddy.exception.IllegalArgumentException",40),32,bb_reflection__classes.At(2),Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+int bb_reflection_R37::m_Init(){
+	gc_assign(f__ctors,Array<bb_reflection_FunctionInfo* >(1));
+	gc_assign(f__ctors.At(0),((new bb_reflection_R38)->g_new()));
+	m_InitR();
+	return 0;
+}
+void bb_reflection_R37::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_R37::debug(){
+	String t="(R37)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_R39::bb_reflection_R39(){
+}
+bb_reflection_R39* bb_reflection_R39::g_new(){
+	bb_reflection_ClassInfo::g_new(String(L"diddy.exception.XMLParseException",33),32,bb_reflection__classes.At(2),Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+int bb_reflection_R39::m_Init(){
+	gc_assign(f__ctors,Array<bb_reflection_FunctionInfo* >(1));
+	gc_assign(f__ctors.At(0),((new bb_reflection_R40)->g_new()));
+	m_InitR();
+	return 0;
+}
+void bb_reflection_R39::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_R39::debug(){
+	String t="(R39)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_R41::bb_reflection_R41(){
+}
+bb_reflection_R41* bb_reflection_R41::g_new(){
+	bb_reflection_ClassInfo::g_new(String(L"monkey.boxes.BoolObject",23),0,bb_reflection__classes.At(0),Array<bb_reflection_ClassInfo* >());
+	gc_assign(bb_reflection__boolClass,(this));
+	return this;
+}
+int bb_reflection_R41::m_Init(){
+	gc_assign(f__fields,Array<bb_reflection_FieldInfo* >(1));
+	gc_assign(f__fields.At(0),((new bb_reflection_R42)->g_new()));
+	gc_assign(f__methods,Array<bb_reflection_MethodInfo* >(2));
+	gc_assign(f__methods.At(0),((new bb_reflection_R44)->g_new()));
+	gc_assign(f__methods.At(1),((new bb_reflection_R45)->g_new()));
+	gc_assign(f__ctors,Array<bb_reflection_FunctionInfo* >(2));
+	gc_assign(f__ctors.At(0),((new bb_reflection_R43)->g_new()));
+	gc_assign(f__ctors.At(1),((new bb_reflection_R46)->g_new()));
+	m_InitR();
+	return 0;
+}
+void bb_reflection_R41::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_R41::debug(){
+	String t="(R41)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_ClassInfo* bb_reflection__boolClass;
+bb_reflection_R47::bb_reflection_R47(){
+}
+bb_reflection_R47* bb_reflection_R47::g_new(){
+	bb_reflection_ClassInfo::g_new(String(L"monkey.boxes.IntObject",22),0,bb_reflection__classes.At(0),Array<bb_reflection_ClassInfo* >());
+	gc_assign(bb_reflection__intClass,(this));
+	return this;
+}
+int bb_reflection_R47::m_Init(){
+	gc_assign(f__fields,Array<bb_reflection_FieldInfo* >(1));
+	gc_assign(f__fields.At(0),((new bb_reflection_R48)->g_new()));
+	gc_assign(f__methods,Array<bb_reflection_MethodInfo* >(5));
+	gc_assign(f__methods.At(0),((new bb_reflection_R51)->g_new()));
+	gc_assign(f__methods.At(1),((new bb_reflection_R52)->g_new()));
+	gc_assign(f__methods.At(2),((new bb_reflection_R53)->g_new()));
+	gc_assign(f__methods.At(3),((new bb_reflection_R54)->g_new()));
+	gc_assign(f__methods.At(4),((new bb_reflection_R55)->g_new()));
+	gc_assign(f__ctors,Array<bb_reflection_FunctionInfo* >(3));
+	gc_assign(f__ctors.At(0),((new bb_reflection_R49)->g_new()));
+	gc_assign(f__ctors.At(1),((new bb_reflection_R50)->g_new()));
+	gc_assign(f__ctors.At(2),((new bb_reflection_R56)->g_new()));
+	m_InitR();
+	return 0;
+}
+void bb_reflection_R47::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_R47::debug(){
+	String t="(R47)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_ClassInfo* bb_reflection__intClass;
+bb_reflection_R57::bb_reflection_R57(){
+}
+bb_reflection_R57* bb_reflection_R57::g_new(){
+	bb_reflection_ClassInfo::g_new(String(L"monkey.boxes.FloatObject",24),0,bb_reflection__classes.At(0),Array<bb_reflection_ClassInfo* >());
+	gc_assign(bb_reflection__floatClass,(this));
+	return this;
+}
+int bb_reflection_R57::m_Init(){
+	gc_assign(f__fields,Array<bb_reflection_FieldInfo* >(1));
+	gc_assign(f__fields.At(0),((new bb_reflection_R58)->g_new()));
+	gc_assign(f__methods,Array<bb_reflection_MethodInfo* >(5));
+	gc_assign(f__methods.At(0),((new bb_reflection_R61)->g_new()));
+	gc_assign(f__methods.At(1),((new bb_reflection_R62)->g_new()));
+	gc_assign(f__methods.At(2),((new bb_reflection_R63)->g_new()));
+	gc_assign(f__methods.At(3),((new bb_reflection_R64)->g_new()));
+	gc_assign(f__methods.At(4),((new bb_reflection_R65)->g_new()));
+	gc_assign(f__ctors,Array<bb_reflection_FunctionInfo* >(3));
+	gc_assign(f__ctors.At(0),((new bb_reflection_R59)->g_new()));
+	gc_assign(f__ctors.At(1),((new bb_reflection_R60)->g_new()));
+	gc_assign(f__ctors.At(2),((new bb_reflection_R66)->g_new()));
+	m_InitR();
+	return 0;
+}
+void bb_reflection_R57::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_R57::debug(){
+	String t="(R57)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_ClassInfo* bb_reflection__floatClass;
+bb_reflection_R67::bb_reflection_R67(){
+}
+bb_reflection_R67* bb_reflection_R67::g_new(){
+	bb_reflection_ClassInfo::g_new(String(L"monkey.boxes.StringObject",25),0,bb_reflection__classes.At(0),Array<bb_reflection_ClassInfo* >());
+	gc_assign(bb_reflection__stringClass,(this));
+	return this;
+}
+int bb_reflection_R67::m_Init(){
+	gc_assign(f__fields,Array<bb_reflection_FieldInfo* >(1));
+	gc_assign(f__fields.At(0),((new bb_reflection_R68)->g_new()));
+	gc_assign(f__methods,Array<bb_reflection_MethodInfo* >(3));
+	gc_assign(f__methods.At(0),((new bb_reflection_R72)->g_new()));
+	gc_assign(f__methods.At(1),((new bb_reflection_R73)->g_new()));
+	gc_assign(f__methods.At(2),((new bb_reflection_R74)->g_new()));
+	gc_assign(f__ctors,Array<bb_reflection_FunctionInfo* >(4));
+	gc_assign(f__ctors.At(0),((new bb_reflection_R69)->g_new()));
+	gc_assign(f__ctors.At(1),((new bb_reflection_R70)->g_new()));
+	gc_assign(f__ctors.At(2),((new bb_reflection_R71)->g_new()));
+	gc_assign(f__ctors.At(3),((new bb_reflection_R75)->g_new()));
+	m_InitR();
+	return 0;
+}
+void bb_reflection_R67::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_R67::debug(){
+	String t="(R67)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_ClassInfo* bb_reflection__stringClass;
+bb_reflection_FunctionInfo::bb_reflection_FunctionInfo(){
+	f__name=String();
+	f__attrs=0;
+	f__retType=0;
+	f__argTypes=Array<bb_reflection_ClassInfo* >();
+}
+bb_reflection_FunctionInfo* bb_reflection_FunctionInfo::g_new(String t_name,int t_attrs,bb_reflection_ClassInfo* t_retType,Array<bb_reflection_ClassInfo* > t_argTypes){
+	DBG_ENTER("FunctionInfo.new")
+	bb_reflection_FunctionInfo *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_name,"name")
+	DBG_LOCAL(t_attrs,"attrs")
+	DBG_LOCAL(t_retType,"retType")
+	DBG_LOCAL(t_argTypes,"argTypes")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<179>");
+	f__name=t_name;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<180>");
+	f__attrs=t_attrs;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<181>");
+	gc_assign(f__retType,t_retType);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<182>");
+	gc_assign(f__argTypes,t_argTypes);
+	return this;
+}
+bb_reflection_FunctionInfo* bb_reflection_FunctionInfo::g_new2(){
+	DBG_ENTER("FunctionInfo.new")
+	bb_reflection_FunctionInfo *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<176>");
+	return this;
+}
+void bb_reflection_FunctionInfo::mark(){
+	Object::mark();
+	gc_mark_q(f__retType);
+	gc_mark_q(f__argTypes);
+}
+String bb_reflection_FunctionInfo::debug(){
+	String t="(FunctionInfo)\n";
+	t+=dbg_decl("_name",&f__name);
+	t+=dbg_decl("_attrs",&f__attrs);
+	t+=dbg_decl("_retType",&f__retType);
+	t+=dbg_decl("_argTypes",&f__argTypes);
+	return t;
+}
+Array<bb_reflection_FunctionInfo* > bb_reflection__functions;
+bb_reflection_R4::bb_reflection_R4(){
+}
+bb_reflection_R4* bb_reflection_R4::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__boolClass};
+	bb_reflection_FunctionInfo::g_new(String(L"monkey.boxes.BoxBool",20),0,bb_reflection__classes.At(0),Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R4::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R4::debug(){
+	String t="(R4)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R5::bb_reflection_R5(){
+}
+bb_reflection_R5* bb_reflection_R5::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__intClass};
+	bb_reflection_FunctionInfo::g_new(String(L"monkey.boxes.BoxInt",19),0,bb_reflection__classes.At(0),Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R5::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R5::debug(){
+	String t="(R5)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R6::bb_reflection_R6(){
+}
+bb_reflection_R6* bb_reflection_R6::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__floatClass};
+	bb_reflection_FunctionInfo::g_new(String(L"monkey.boxes.BoxFloat",21),0,bb_reflection__classes.At(0),Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R6::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R6::debug(){
+	String t="(R6)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R7::bb_reflection_R7(){
+}
+bb_reflection_R7* bb_reflection_R7::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__stringClass};
+	bb_reflection_FunctionInfo::g_new(String(L"monkey.boxes.BoxString",22),0,bb_reflection__classes.At(0),Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R7::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R7::debug(){
+	String t="(R7)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R8::bb_reflection_R8(){
+}
+bb_reflection_R8* bb_reflection_R8::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__classes.At(0)};
+	bb_reflection_FunctionInfo::g_new(String(L"monkey.boxes.UnboxBool",22),0,bb_reflection__boolClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R8::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R8::debug(){
+	String t="(R8)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R9::bb_reflection_R9(){
+}
+bb_reflection_R9* bb_reflection_R9::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__classes.At(0)};
+	bb_reflection_FunctionInfo::g_new(String(L"monkey.boxes.UnboxInt",21),0,bb_reflection__intClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R9::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R9::debug(){
+	String t="(R9)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R10::bb_reflection_R10(){
+}
+bb_reflection_R10* bb_reflection_R10::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__classes.At(0)};
+	bb_reflection_FunctionInfo::g_new(String(L"monkey.boxes.UnboxFloat",23),0,bb_reflection__floatClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R10::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R10::debug(){
+	String t="(R10)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R11::bb_reflection_R11(){
+}
+bb_reflection_R11* bb_reflection_R11::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__classes.At(0)};
+	bb_reflection_FunctionInfo::g_new(String(L"monkey.boxes.UnboxString",24),0,bb_reflection__stringClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R11::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R11::debug(){
+	String t="(R11)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R12::bb_reflection_R12(){
+}
+bb_reflection_R12* bb_reflection_R12::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__stringClass};
+	bb_reflection_FunctionInfo::g_new(String(L"monkey.lang.Print",17),1,bb_reflection__intClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R12::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R12::debug(){
+	String t="(R12)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R13::bb_reflection_R13(){
+}
+bb_reflection_R13* bb_reflection_R13::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__stringClass};
+	bb_reflection_FunctionInfo::g_new(String(L"monkey.lang.Error",17),1,bb_reflection__intClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R13::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R13::debug(){
+	String t="(R13)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R14::bb_reflection_R14(){
+}
+bb_reflection_R14* bb_reflection_R14::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__stringClass};
+	bb_reflection_FunctionInfo::g_new(String(L"monkey.lang.DebugLog",20),1,bb_reflection__intClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R14::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R14::debug(){
+	String t="(R14)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R15::bb_reflection_R15(){
+}
+bb_reflection_R15* bb_reflection_R15::g_new(){
+	bb_reflection_FunctionInfo::g_new(String(L"monkey.lang.DebugStop",21),1,bb_reflection__intClass,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R15::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R15::debug(){
+	String t="(R15)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection___GetClass::bb_reflection___GetClass(){
+}
+bb_reflection___GetClass* bb_reflection___GetClass::g_new(){
+	DBG_ENTER("__GetClass.new")
+	bb_reflection___GetClass *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("$SOURCE<745>");
+	bb_reflection__GetClass::g_new();
+	return this;
+}
+bb_reflection_ClassInfo* bb_reflection___GetClass::m_GetClass(Object* t_o){
+	if(dynamic_cast<bb_boxes_StringObject*>(t_o)!=0){
+		return bb_reflection__classes.At(11);
+	}
+	if(dynamic_cast<bb_boxes_FloatObject*>(t_o)!=0){
+		return bb_reflection__classes.At(10);
+	}
+	if(dynamic_cast<bb_boxes_IntObject*>(t_o)!=0){
+		return bb_reflection__classes.At(9);
+	}
+	if(dynamic_cast<bb_boxes_BoolObject*>(t_o)!=0){
+		return bb_reflection__classes.At(8);
+	}
+	if(dynamic_cast<bb_exception_XMLParseException*>(t_o)!=0){
+		return bb_reflection__classes.At(7);
+	}
+	if(dynamic_cast<bb_exception_IllegalArgumentException*>(t_o)!=0){
+		return bb_reflection__classes.At(6);
+	}
+	if(dynamic_cast<bb_exception_IndexOutOfBoundsException*>(t_o)!=0){
+		return bb_reflection__classes.At(5);
+	}
+	if(dynamic_cast<bb_exception_ConcurrentModificationException*>(t_o)!=0){
+		return bb_reflection__classes.At(4);
+	}
+	if(dynamic_cast<bb_exception_AssertException*>(t_o)!=0){
+		return bb_reflection__classes.At(3);
+	}
+	if(dynamic_cast<bb_exception_DiddyException*>(t_o)!=0){
+		return bb_reflection__classes.At(2);
+	}
+	if(dynamic_cast<ThrowableObject*>(t_o)!=0){
+		return bb_reflection__classes.At(1);
+	}
+	if(t_o!=0){
+		return bb_reflection__classes.At(0);
+	}
+	return bb_reflection__unknownClass;
+}
+void bb_reflection___GetClass::mark(){
+	bb_reflection__GetClass::mark();
+}
+String bb_reflection___GetClass::debug(){
+	String t="(__GetClass)\n";
+	t=bb_reflection__GetClass::debug()+t;
+	return t;
+}
+int bb_reflection___init(){
+	gc_assign(bb_reflection__classes,Array<bb_reflection_ClassInfo* >(12));
+	gc_assign(bb_reflection__classes.At(0),((new bb_reflection_R16)->g_new()));
+	gc_assign(bb_reflection__classes.At(1),((new bb_reflection_R17)->g_new()));
+	gc_assign(bb_reflection__classes.At(2),((new bb_reflection_R18)->g_new()));
+	gc_assign(bb_reflection__classes.At(3),((new bb_reflection_R31)->g_new()));
+	gc_assign(bb_reflection__classes.At(4),((new bb_reflection_R33)->g_new()));
+	gc_assign(bb_reflection__classes.At(5),((new bb_reflection_R35)->g_new()));
+	gc_assign(bb_reflection__classes.At(6),((new bb_reflection_R37)->g_new()));
+	gc_assign(bb_reflection__classes.At(7),((new bb_reflection_R39)->g_new()));
+	gc_assign(bb_reflection__classes.At(8),((new bb_reflection_R41)->g_new()));
+	gc_assign(bb_reflection__classes.At(9),((new bb_reflection_R47)->g_new()));
+	gc_assign(bb_reflection__classes.At(10),((new bb_reflection_R57)->g_new()));
+	gc_assign(bb_reflection__classes.At(11),((new bb_reflection_R67)->g_new()));
+	bb_reflection__classes.At(0)->m_Init();
+	bb_reflection__classes.At(1)->m_Init();
+	bb_reflection__classes.At(2)->m_Init();
+	bb_reflection__classes.At(3)->m_Init();
+	bb_reflection__classes.At(4)->m_Init();
+	bb_reflection__classes.At(5)->m_Init();
+	bb_reflection__classes.At(6)->m_Init();
+	bb_reflection__classes.At(7)->m_Init();
+	bb_reflection__classes.At(8)->m_Init();
+	bb_reflection__classes.At(9)->m_Init();
+	bb_reflection__classes.At(10)->m_Init();
+	bb_reflection__classes.At(11)->m_Init();
+	gc_assign(bb_reflection__functions,Array<bb_reflection_FunctionInfo* >(12));
+	gc_assign(bb_reflection__functions.At(0),((new bb_reflection_R4)->g_new()));
+	gc_assign(bb_reflection__functions.At(1),((new bb_reflection_R5)->g_new()));
+	gc_assign(bb_reflection__functions.At(2),((new bb_reflection_R6)->g_new()));
+	gc_assign(bb_reflection__functions.At(3),((new bb_reflection_R7)->g_new()));
+	gc_assign(bb_reflection__functions.At(4),((new bb_reflection_R8)->g_new()));
+	gc_assign(bb_reflection__functions.At(5),((new bb_reflection_R9)->g_new()));
+	gc_assign(bb_reflection__functions.At(6),((new bb_reflection_R10)->g_new()));
+	gc_assign(bb_reflection__functions.At(7),((new bb_reflection_R11)->g_new()));
+	gc_assign(bb_reflection__functions.At(8),((new bb_reflection_R12)->g_new()));
+	gc_assign(bb_reflection__functions.At(9),((new bb_reflection_R13)->g_new()));
+	gc_assign(bb_reflection__functions.At(10),((new bb_reflection_R14)->g_new()));
+	gc_assign(bb_reflection__functions.At(11),((new bb_reflection_R15)->g_new()));
+	gc_assign(bb_reflection__getClass,((new bb_reflection___GetClass)->g_new()));
+	return 0;
+}
+int bb_reflection__init;
 bb_app_App::bb_app_App(){
 }
 bb_app_App* bb_app_App::g_new(){
@@ -4393,32 +7480,66 @@ String bb_app_App::debug(){
 	String t="(App)\n";
 	return t;
 }
-bb_Beacon_Beacon::bb_Beacon_Beacon(){
-	f_Server=0;
+bb_bapp_BApp::bb_bapp_BApp(){
 	f_Games=0;
+	f_BeaconList=0;
 	f_Title=0;
 	f_ServerLabel=0;
 	f_PwLabel=0;
 	f_Pw=0;
-	f_BeaconList=0;
 	f_On_Off=0;
 	f_isOn=false;
+	f_LastGame=String();
+}
+bb_bapp_BApp* bb_bapp_BApp::g_new(){
+	DBG_ENTER("BApp.new")
+	bb_bapp_BApp *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/bapp.monkey<3>");
+	bb_app_App::g_new();
+	return this;
+}
+void bb_bapp_BApp::mark(){
+	bb_app_App::mark();
+	gc_mark_q(f_Games);
+	gc_mark_q(f_BeaconList);
+	gc_mark_q(f_Title);
+	gc_mark_q(f_ServerLabel);
+	gc_mark_q(f_PwLabel);
+	gc_mark_q(f_Pw);
+	gc_mark_q(f_On_Off);
+}
+String bb_bapp_BApp::debug(){
+	String t="(BApp)\n";
+	t=bb_app_App::debug()+t;
+	t+=dbg_decl("Title",&f_Title);
+	t+=dbg_decl("ServerLabel",&f_ServerLabel);
+	t+=dbg_decl("LastGame",&f_LastGame);
+	t+=dbg_decl("Games",&f_Games);
+	t+=dbg_decl("PwLabel",&f_PwLabel);
+	t+=dbg_decl("Pw",&f_Pw);
+	t+=dbg_decl("BeaconList",&f_BeaconList);
+	t+=dbg_decl("On_Off",&f_On_Off);
+	t+=dbg_decl("isOn",&f_isOn);
+	return t;
+}
+bb_Beacon_Beacon::bb_Beacon_Beacon(){
 }
 bb_Beacon_Beacon* bb_Beacon_Beacon::g_new(){
 	DBG_ENTER("Beacon.new")
 	bb_Beacon_Beacon *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<3>");
-	bb_app_App::g_new();
+	bb_bapp_BApp::g_new();
 	return this;
 }
 int bb_Beacon_Beacon::m_OnCreate(){
 	DBG_ENTER("Beacon.OnCreate")
 	bb_Beacon_Beacon *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<20>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<6>");
 	bb_challengergui_CHGUI_MobileMode=1;
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<21>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<7>");
 	bb_app_SetUpdateRate(30);
 	return 0;
 }
@@ -4426,73 +7547,54 @@ int bb_Beacon_Beacon::m_OnRender(){
 	DBG_ENTER("Beacon.OnRender")
 	bb_Beacon_Beacon *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<25>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<11>");
 	String t_=bb_data2_STATUS;
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<26>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<12>");
 	if(t_==String(L"connecting",10)){
 		DBG_BLOCK();
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<27>");
-		if(f_Server->m_Connect(String(L"www.fuzzit.us",13),80)){
-			DBG_BLOCK();
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<28>");
-			bb_protocol_RequestGameList(f_Server);
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<29>");
-			bb_data2_STATUS=String(L"normal",6);
-		}
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<13>");
+		bb_protocol_RequestGameList();
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<14>");
+		bb_data2_STATUS=String(L"normal",6);
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<31>");
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<15>");
 		if(t_==String(L"normal",6)){
 			DBG_BLOCK();
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<32>");
-			bb_protocol_ReadProtocol(f_Server);
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<33>");
-			if(bb_protocol_LastP==4){
-				DBG_BLOCK();
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<34>");
-				Array<String > t_2=bb_protocol_SList;
-				int t_3=0;
-				while(t_3<t_2.Length()){
-					DBG_BLOCK();
-					String t_eS=t_2.At(t_3);
-					t_3=t_3+1;
-					DBG_LOCAL(t_eS,"eS")
-					DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<35>");
-					bb_challengergui_CreateDropdownItem(t_eS,f_Games,0);
-				}
-			}
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<38>");
-			bb_protocol_ResetP();
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<40>");
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<16>");
+			bb_protocol_ReadProtocol();
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<18>");
 			bb_graphics_Cls(FLOAT(247.0),FLOAT(247.0),FLOAT(247.0));
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<42>");
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<20>");
 			bb_challengergui_CHGUI_Draw();
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<43>");
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<21>");
 			if(t_==String(L"start",5)){
 				DBG_BLOCK();
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<44>");
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<22>");
 				bb_challengergui_CHGUI_Start();
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<46>");
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<24>");
 				gc_assign(f_Title,bb_data2_CScale(bb_challengergui_CreateLabel(50,10,String(L"Beacon Config",13),0)));
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<47>");
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<25>");
 				gc_assign(f_ServerLabel,bb_data2_CScale(bb_challengergui_CreateLabel(5,60,String(L"Server Type: Static",19),0)));
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<48>");
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<26>");
 				gc_assign(f_Games,bb_data2_CScale(bb_challengergui_CreateDropdown(10,110,int(bb_data2_SCALE_W-FLOAT(20.0)),40,String(L"Choose Game",11),0)));
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<49>");
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<27>");
 				gc_assign(f_PwLabel,bb_data2_CScale(bb_challengergui_CreateLabel(5,160,String(L"Password:",9),0)));
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<50>");
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<28>");
 				gc_assign(f_Pw,bb_data2_CScale(bb_challengergui_CreateTextfield(120,155,170,45,String(),0)));
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<51>");
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<29>");
 				gc_assign(f_BeaconList,bb_data2_CScale(bb_challengergui_CreateDropdown(10,210,int(bb_data2_SCALE_W-FLOAT(20.0)),40,String(L"Choose Beacon",13),0)));
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<52>");
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<30>");
 				gc_assign(f_On_Off,bb_data2_CScale(bb_challengergui_CreateButton(10,int(bb_data2_SCALE_H-FLOAT(50.0)),int(bb_data2_SCALE_W-FLOAT(20.0)),40,String(L"On/Off",6),0)));
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<54>");
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<32>");
 				f_isOn=false;
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<55>");
-				gc_assign(f_Server,(new bb_tcpstream_TcpStream)->g_new());
-				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<56>");
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<33>");
+				gc_assign(bb_data2_Game,(this));
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<34>");
+				f_LastGame=String(L"Choose Game",11);
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<35>");
 				bb_data2_STATUS=String(L"connecting",10);
 			}
 		}
@@ -4503,47 +7605,42 @@ int bb_Beacon_Beacon::m_OnUpdate(){
 	DBG_ENTER("Beacon.OnUpdate")
 	bb_Beacon_Beacon *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<61>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<40>");
 	String t_=bb_data2_STATUS;
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<62>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<41>");
 	if(t_==String(L"connecting",10)){
 		DBG_BLOCK();
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<63>");
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<42>");
 		bb_challengergui_CHGUI_Update();
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<64>");
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<43>");
 		if(t_==String(L"normal",6)){
 			DBG_BLOCK();
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<65>");
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<44>");
 			bb_challengergui_CHGUI_Update();
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<45>");
+			if(f_LastGame!=f_Games->f_Text){
+				DBG_BLOCK();
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<46>");
+				bb_challengergui_CHGUI_Delete(f_BeaconList);
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<47>");
+				gc_assign(f_BeaconList,bb_data2_CScale(bb_challengergui_CreateDropdown(10,210,int(bb_data2_SCALE_W-FLOAT(20.0)),40,String(L"Choose Beacon",13),0)));
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<48>");
+				f_LastGame=f_Games->f_Text;
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<49>");
+				bb_protocol_RequestBeaconList(f_LastGame);
+			}
 		}
 	}
 	return 0;
 }
 void bb_Beacon_Beacon::mark(){
-	bb_app_App::mark();
-	gc_mark_q(f_Server);
-	gc_mark_q(f_Games);
-	gc_mark_q(f_Title);
-	gc_mark_q(f_ServerLabel);
-	gc_mark_q(f_PwLabel);
-	gc_mark_q(f_Pw);
-	gc_mark_q(f_BeaconList);
-	gc_mark_q(f_On_Off);
+	bb_bapp_BApp::mark();
 }
 String bb_Beacon_Beacon::debug(){
 	String t="(Beacon)\n";
-	t=bb_app_App::debug()+t;
-	t+=dbg_decl("Title",&f_Title);
-	t+=dbg_decl("ServerLabel",&f_ServerLabel);
-	t+=dbg_decl("Games",&f_Games);
-	t+=dbg_decl("PwLabel",&f_PwLabel);
-	t+=dbg_decl("Pw",&f_Pw);
-	t+=dbg_decl("BeaconList",&f_BeaconList);
-	t+=dbg_decl("On_Off",&f_On_Off);
-	t+=dbg_decl("isOn",&f_isOn);
-	t+=dbg_decl("Server",&f_Server);
+	t=bb_bapp_BApp::debug()+t;
 	return t;
 }
 bb_app_AppDevice::bb_app_AppDevice(){
@@ -4682,10 +7779,1305 @@ int bb_audio_SetAudioDevice(gxtkAudio* t_dev){
 bb_app_AppDevice* bb_app_device;
 int bbMain(){
 	DBG_ENTER("Main")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<72>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<57>");
 	(new bb_Beacon_Beacon)->g_new();
 	return 0;
 }
+bb_reflection_ConstInfo::bb_reflection_ConstInfo(){
+}
+void bb_reflection_ConstInfo::mark(){
+	Object::mark();
+}
+String bb_reflection_ConstInfo::debug(){
+	String t="(ConstInfo)\n";
+	return t;
+}
+bb_stack_Stack::bb_stack_Stack(){
+	f_data=Array<bb_reflection_ConstInfo* >();
+	f_length=0;
+}
+bb_stack_Stack* bb_stack_Stack::g_new(){
+	DBG_ENTER("Stack.new")
+	bb_stack_Stack *self=this;
+	DBG_LOCAL(self,"Self")
+	return this;
+}
+bb_stack_Stack* bb_stack_Stack::g_new2(Array<bb_reflection_ConstInfo* > t_data){
+	DBG_ENTER("Stack.new")
+	bb_stack_Stack *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_data,"data")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>");
+	gc_assign(this->f_data,t_data.Slice(0));
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>");
+	this->f_length=t_data.Length();
+	return this;
+}
+int bb_stack_Stack::m_Push(bb_reflection_ConstInfo* t_value){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>");
+	if(f_length==f_data.Length()){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>");
+		gc_assign(f_data,f_data.Resize(f_length*2+10));
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>");
+	gc_assign(f_data.At(f_length),t_value);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>");
+	f_length+=1;
+	return 0;
+}
+int bb_stack_Stack::m_Push2(Array<bb_reflection_ConstInfo* > t_values,int t_offset,int t_count){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_values,"values")
+	DBG_LOCAL(t_offset,"offset")
+	DBG_LOCAL(t_count,"count")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>");
+	for(int t_i=0;t_i<t_count;t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>");
+		m_Push(t_values.At(t_offset+t_i));
+	}
+	return 0;
+}
+int bb_stack_Stack::m_Push3(Array<bb_reflection_ConstInfo* > t_values,int t_offset){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_values,"values")
+	DBG_LOCAL(t_offset,"offset")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>");
+	for(int t_i=t_offset;t_i<t_values.Length();t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>");
+		m_Push(t_values.At(t_i));
+	}
+	return 0;
+}
+Array<bb_reflection_ConstInfo* > bb_stack_Stack::m_ToArray(){
+	DBG_ENTER("Stack.ToArray")
+	bb_stack_Stack *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>");
+	Array<bb_reflection_ConstInfo* > t_t=Array<bb_reflection_ConstInfo* >(f_length);
+	DBG_LOCAL(t_t,"t")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>");
+	for(int t_i=0;t_i<f_length;t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>");
+		gc_assign(t_t.At(t_i),f_data.At(t_i));
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>");
+	return t_t;
+}
+void bb_stack_Stack::mark(){
+	Object::mark();
+	gc_mark_q(f_data);
+}
+String bb_stack_Stack::debug(){
+	String t="(Stack)\n";
+	t+=dbg_decl("data",&f_data);
+	t+=dbg_decl("length",&f_length);
+	return t;
+}
+bb_reflection_FieldInfo::bb_reflection_FieldInfo(){
+	f__name=String();
+	f__attrs=0;
+	f__type=0;
+}
+bb_reflection_FieldInfo* bb_reflection_FieldInfo::g_new(String t_name,int t_attrs,bb_reflection_ClassInfo* t_type){
+	DBG_ENTER("FieldInfo.new")
+	bb_reflection_FieldInfo *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_name,"name")
+	DBG_LOCAL(t_attrs,"attrs")
+	DBG_LOCAL(t_type,"type")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<111>");
+	f__name=t_name;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<112>");
+	f__attrs=t_attrs;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<113>");
+	gc_assign(f__type,t_type);
+	return this;
+}
+bb_reflection_FieldInfo* bb_reflection_FieldInfo::g_new2(){
+	DBG_ENTER("FieldInfo.new")
+	bb_reflection_FieldInfo *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<108>");
+	return this;
+}
+void bb_reflection_FieldInfo::mark(){
+	Object::mark();
+	gc_mark_q(f__type);
+}
+String bb_reflection_FieldInfo::debug(){
+	String t="(FieldInfo)\n";
+	t+=dbg_decl("_name",&f__name);
+	t+=dbg_decl("_attrs",&f__attrs);
+	t+=dbg_decl("_type",&f__type);
+	return t;
+}
+bb_stack_Stack2::bb_stack_Stack2(){
+	f_data=Array<bb_reflection_FieldInfo* >();
+	f_length=0;
+}
+bb_stack_Stack2* bb_stack_Stack2::g_new(){
+	DBG_ENTER("Stack.new")
+	bb_stack_Stack2 *self=this;
+	DBG_LOCAL(self,"Self")
+	return this;
+}
+bb_stack_Stack2* bb_stack_Stack2::g_new2(Array<bb_reflection_FieldInfo* > t_data){
+	DBG_ENTER("Stack.new")
+	bb_stack_Stack2 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_data,"data")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>");
+	gc_assign(this->f_data,t_data.Slice(0));
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>");
+	this->f_length=t_data.Length();
+	return this;
+}
+int bb_stack_Stack2::m_Push4(bb_reflection_FieldInfo* t_value){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack2 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>");
+	if(f_length==f_data.Length()){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>");
+		gc_assign(f_data,f_data.Resize(f_length*2+10));
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>");
+	gc_assign(f_data.At(f_length),t_value);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>");
+	f_length+=1;
+	return 0;
+}
+int bb_stack_Stack2::m_Push5(Array<bb_reflection_FieldInfo* > t_values,int t_offset,int t_count){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack2 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_values,"values")
+	DBG_LOCAL(t_offset,"offset")
+	DBG_LOCAL(t_count,"count")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>");
+	for(int t_i=0;t_i<t_count;t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>");
+		m_Push4(t_values.At(t_offset+t_i));
+	}
+	return 0;
+}
+int bb_stack_Stack2::m_Push6(Array<bb_reflection_FieldInfo* > t_values,int t_offset){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack2 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_values,"values")
+	DBG_LOCAL(t_offset,"offset")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>");
+	for(int t_i=t_offset;t_i<t_values.Length();t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>");
+		m_Push4(t_values.At(t_i));
+	}
+	return 0;
+}
+Array<bb_reflection_FieldInfo* > bb_stack_Stack2::m_ToArray(){
+	DBG_ENTER("Stack.ToArray")
+	bb_stack_Stack2 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>");
+	Array<bb_reflection_FieldInfo* > t_t=Array<bb_reflection_FieldInfo* >(f_length);
+	DBG_LOCAL(t_t,"t")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>");
+	for(int t_i=0;t_i<f_length;t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>");
+		gc_assign(t_t.At(t_i),f_data.At(t_i));
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>");
+	return t_t;
+}
+void bb_stack_Stack2::mark(){
+	Object::mark();
+	gc_mark_q(f_data);
+}
+String bb_stack_Stack2::debug(){
+	String t="(Stack)\n";
+	t+=dbg_decl("data",&f_data);
+	t+=dbg_decl("length",&f_length);
+	return t;
+}
+bb_reflection_GlobalInfo::bb_reflection_GlobalInfo(){
+}
+void bb_reflection_GlobalInfo::mark(){
+	Object::mark();
+}
+String bb_reflection_GlobalInfo::debug(){
+	String t="(GlobalInfo)\n";
+	return t;
+}
+bb_stack_Stack3::bb_stack_Stack3(){
+	f_data=Array<bb_reflection_GlobalInfo* >();
+	f_length=0;
+}
+bb_stack_Stack3* bb_stack_Stack3::g_new(){
+	DBG_ENTER("Stack.new")
+	bb_stack_Stack3 *self=this;
+	DBG_LOCAL(self,"Self")
+	return this;
+}
+bb_stack_Stack3* bb_stack_Stack3::g_new2(Array<bb_reflection_GlobalInfo* > t_data){
+	DBG_ENTER("Stack.new")
+	bb_stack_Stack3 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_data,"data")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>");
+	gc_assign(this->f_data,t_data.Slice(0));
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>");
+	this->f_length=t_data.Length();
+	return this;
+}
+int bb_stack_Stack3::m_Push7(bb_reflection_GlobalInfo* t_value){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack3 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>");
+	if(f_length==f_data.Length()){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>");
+		gc_assign(f_data,f_data.Resize(f_length*2+10));
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>");
+	gc_assign(f_data.At(f_length),t_value);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>");
+	f_length+=1;
+	return 0;
+}
+int bb_stack_Stack3::m_Push8(Array<bb_reflection_GlobalInfo* > t_values,int t_offset,int t_count){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack3 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_values,"values")
+	DBG_LOCAL(t_offset,"offset")
+	DBG_LOCAL(t_count,"count")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>");
+	for(int t_i=0;t_i<t_count;t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>");
+		m_Push7(t_values.At(t_offset+t_i));
+	}
+	return 0;
+}
+int bb_stack_Stack3::m_Push9(Array<bb_reflection_GlobalInfo* > t_values,int t_offset){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack3 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_values,"values")
+	DBG_LOCAL(t_offset,"offset")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>");
+	for(int t_i=t_offset;t_i<t_values.Length();t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>");
+		m_Push7(t_values.At(t_i));
+	}
+	return 0;
+}
+Array<bb_reflection_GlobalInfo* > bb_stack_Stack3::m_ToArray(){
+	DBG_ENTER("Stack.ToArray")
+	bb_stack_Stack3 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>");
+	Array<bb_reflection_GlobalInfo* > t_t=Array<bb_reflection_GlobalInfo* >(f_length);
+	DBG_LOCAL(t_t,"t")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>");
+	for(int t_i=0;t_i<f_length;t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>");
+		gc_assign(t_t.At(t_i),f_data.At(t_i));
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>");
+	return t_t;
+}
+void bb_stack_Stack3::mark(){
+	Object::mark();
+	gc_mark_q(f_data);
+}
+String bb_stack_Stack3::debug(){
+	String t="(Stack)\n";
+	t+=dbg_decl("data",&f_data);
+	t+=dbg_decl("length",&f_length);
+	return t;
+}
+bb_reflection_MethodInfo::bb_reflection_MethodInfo(){
+	f__name=String();
+	f__attrs=0;
+	f__retType=0;
+	f__argTypes=Array<bb_reflection_ClassInfo* >();
+}
+bb_reflection_MethodInfo* bb_reflection_MethodInfo::g_new(String t_name,int t_attrs,bb_reflection_ClassInfo* t_retType,Array<bb_reflection_ClassInfo* > t_argTypes){
+	DBG_ENTER("MethodInfo.new")
+	bb_reflection_MethodInfo *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_name,"name")
+	DBG_LOCAL(t_attrs,"attrs")
+	DBG_LOCAL(t_retType,"retType")
+	DBG_LOCAL(t_argTypes,"argTypes")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<143>");
+	f__name=t_name;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<144>");
+	f__attrs=t_attrs;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<145>");
+	gc_assign(f__retType,t_retType);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<146>");
+	gc_assign(f__argTypes,t_argTypes);
+	return this;
+}
+bb_reflection_MethodInfo* bb_reflection_MethodInfo::g_new2(){
+	DBG_ENTER("MethodInfo.new")
+	bb_reflection_MethodInfo *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<140>");
+	return this;
+}
+void bb_reflection_MethodInfo::mark(){
+	Object::mark();
+	gc_mark_q(f__retType);
+	gc_mark_q(f__argTypes);
+}
+String bb_reflection_MethodInfo::debug(){
+	String t="(MethodInfo)\n";
+	t+=dbg_decl("_name",&f__name);
+	t+=dbg_decl("_attrs",&f__attrs);
+	t+=dbg_decl("_retType",&f__retType);
+	t+=dbg_decl("_argTypes",&f__argTypes);
+	return t;
+}
+bb_stack_Stack4::bb_stack_Stack4(){
+	f_data=Array<bb_reflection_MethodInfo* >();
+	f_length=0;
+}
+bb_stack_Stack4* bb_stack_Stack4::g_new(){
+	DBG_ENTER("Stack.new")
+	bb_stack_Stack4 *self=this;
+	DBG_LOCAL(self,"Self")
+	return this;
+}
+bb_stack_Stack4* bb_stack_Stack4::g_new2(Array<bb_reflection_MethodInfo* > t_data){
+	DBG_ENTER("Stack.new")
+	bb_stack_Stack4 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_data,"data")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>");
+	gc_assign(this->f_data,t_data.Slice(0));
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>");
+	this->f_length=t_data.Length();
+	return this;
+}
+int bb_stack_Stack4::m_Push10(bb_reflection_MethodInfo* t_value){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack4 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>");
+	if(f_length==f_data.Length()){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>");
+		gc_assign(f_data,f_data.Resize(f_length*2+10));
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>");
+	gc_assign(f_data.At(f_length),t_value);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>");
+	f_length+=1;
+	return 0;
+}
+int bb_stack_Stack4::m_Push11(Array<bb_reflection_MethodInfo* > t_values,int t_offset,int t_count){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack4 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_values,"values")
+	DBG_LOCAL(t_offset,"offset")
+	DBG_LOCAL(t_count,"count")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>");
+	for(int t_i=0;t_i<t_count;t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>");
+		m_Push10(t_values.At(t_offset+t_i));
+	}
+	return 0;
+}
+int bb_stack_Stack4::m_Push12(Array<bb_reflection_MethodInfo* > t_values,int t_offset){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack4 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_values,"values")
+	DBG_LOCAL(t_offset,"offset")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>");
+	for(int t_i=t_offset;t_i<t_values.Length();t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>");
+		m_Push10(t_values.At(t_i));
+	}
+	return 0;
+}
+Array<bb_reflection_MethodInfo* > bb_stack_Stack4::m_ToArray(){
+	DBG_ENTER("Stack.ToArray")
+	bb_stack_Stack4 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>");
+	Array<bb_reflection_MethodInfo* > t_t=Array<bb_reflection_MethodInfo* >(f_length);
+	DBG_LOCAL(t_t,"t")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>");
+	for(int t_i=0;t_i<f_length;t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>");
+		gc_assign(t_t.At(t_i),f_data.At(t_i));
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>");
+	return t_t;
+}
+void bb_stack_Stack4::mark(){
+	Object::mark();
+	gc_mark_q(f_data);
+}
+String bb_stack_Stack4::debug(){
+	String t="(Stack)\n";
+	t+=dbg_decl("data",&f_data);
+	t+=dbg_decl("length",&f_length);
+	return t;
+}
+bb_stack_Stack5::bb_stack_Stack5(){
+	f_data=Array<bb_reflection_FunctionInfo* >();
+	f_length=0;
+}
+bb_stack_Stack5* bb_stack_Stack5::g_new(){
+	DBG_ENTER("Stack.new")
+	bb_stack_Stack5 *self=this;
+	DBG_LOCAL(self,"Self")
+	return this;
+}
+bb_stack_Stack5* bb_stack_Stack5::g_new2(Array<bb_reflection_FunctionInfo* > t_data){
+	DBG_ENTER("Stack.new")
+	bb_stack_Stack5 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_data,"data")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>");
+	gc_assign(this->f_data,t_data.Slice(0));
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>");
+	this->f_length=t_data.Length();
+	return this;
+}
+int bb_stack_Stack5::m_Push13(bb_reflection_FunctionInfo* t_value){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack5 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_value,"value")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>");
+	if(f_length==f_data.Length()){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>");
+		gc_assign(f_data,f_data.Resize(f_length*2+10));
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>");
+	gc_assign(f_data.At(f_length),t_value);
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>");
+	f_length+=1;
+	return 0;
+}
+int bb_stack_Stack5::m_Push14(Array<bb_reflection_FunctionInfo* > t_values,int t_offset,int t_count){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack5 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_values,"values")
+	DBG_LOCAL(t_offset,"offset")
+	DBG_LOCAL(t_count,"count")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>");
+	for(int t_i=0;t_i<t_count;t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>");
+		m_Push13(t_values.At(t_offset+t_i));
+	}
+	return 0;
+}
+int bb_stack_Stack5::m_Push15(Array<bb_reflection_FunctionInfo* > t_values,int t_offset){
+	DBG_ENTER("Stack.Push")
+	bb_stack_Stack5 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_LOCAL(t_values,"values")
+	DBG_LOCAL(t_offset,"offset")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>");
+	for(int t_i=t_offset;t_i<t_values.Length();t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>");
+		m_Push13(t_values.At(t_i));
+	}
+	return 0;
+}
+Array<bb_reflection_FunctionInfo* > bb_stack_Stack5::m_ToArray(){
+	DBG_ENTER("Stack.ToArray")
+	bb_stack_Stack5 *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>");
+	Array<bb_reflection_FunctionInfo* > t_t=Array<bb_reflection_FunctionInfo* >(f_length);
+	DBG_LOCAL(t_t,"t")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>");
+	for(int t_i=0;t_i<f_length;t_i=t_i+1){
+		DBG_BLOCK();
+		DBG_LOCAL(t_i,"i")
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>");
+		gc_assign(t_t.At(t_i),f_data.At(t_i));
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>");
+	return t_t;
+}
+void bb_stack_Stack5::mark(){
+	Object::mark();
+	gc_mark_q(f_data);
+}
+String bb_stack_Stack5::debug(){
+	String t="(Stack)\n";
+	t+=dbg_decl("data",&f_data);
+	t+=dbg_decl("length",&f_length);
+	return t;
+}
+bb_reflection_R19::bb_reflection_R19(){
+}
+bb_reflection_R19* bb_reflection_R19::g_new(){
+	bb_reflection_FieldInfo::g_new(String(L"message",7),2,bb_reflection__stringClass);
+	return this;
+}
+void bb_reflection_R19::mark(){
+	bb_reflection_FieldInfo::mark();
+}
+String bb_reflection_R19::debug(){
+	String t="(R19)\n";
+	t=bb_reflection_FieldInfo::debug()+t;
+	return t;
+}
+bb_reflection_R20::bb_reflection_R20(){
+}
+bb_reflection_R20* bb_reflection_R20::g_new(){
+	bb_reflection_FieldInfo::g_new(String(L"cause",5),2,bb_reflection__classes.At(1));
+	return this;
+}
+void bb_reflection_R20::mark(){
+	bb_reflection_FieldInfo::mark();
+}
+String bb_reflection_R20::debug(){
+	String t="(R20)\n";
+	t=bb_reflection_FieldInfo::debug()+t;
+	return t;
+}
+bb_reflection_R21::bb_reflection_R21(){
+}
+bb_reflection_R21* bb_reflection_R21::g_new(){
+	bb_reflection_FieldInfo::g_new(String(L"type",4),2,bb_reflection__stringClass);
+	return this;
+}
+void bb_reflection_R21::mark(){
+	bb_reflection_FieldInfo::mark();
+}
+String bb_reflection_R21::debug(){
+	String t="(R21)\n";
+	t=bb_reflection_FieldInfo::debug()+t;
+	return t;
+}
+bb_reflection_R22::bb_reflection_R22(){
+}
+bb_reflection_R22* bb_reflection_R22::g_new(){
+	bb_reflection_FieldInfo::g_new(String(L"fullType",8),2,bb_reflection__stringClass);
+	return this;
+}
+void bb_reflection_R22::mark(){
+	bb_reflection_FieldInfo::mark();
+}
+String bb_reflection_R22::debug(){
+	String t="(R22)\n";
+	t=bb_reflection_FieldInfo::debug()+t;
+	return t;
+}
+bb_reflection_R23::bb_reflection_R23(){
+}
+bb_reflection_R23* bb_reflection_R23::g_new(){
+	bb_reflection_MethodInfo::g_new(String(L"Message",7),8,bb_reflection__stringClass,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R23::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R23::debug(){
+	String t="(R23)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R24::bb_reflection_R24(){
+}
+bb_reflection_R24* bb_reflection_R24::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__stringClass};
+	bb_reflection_MethodInfo::g_new(String(L"Message",7),8,0,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R24::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R24::debug(){
+	String t="(R24)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R25::bb_reflection_R25(){
+}
+bb_reflection_R25* bb_reflection_R25::g_new(){
+	bb_reflection_MethodInfo::g_new(String(L"Cause",5),8,bb_reflection__classes.At(1),Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R25::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R25::debug(){
+	String t="(R25)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R26::bb_reflection_R26(){
+}
+bb_reflection_R26* bb_reflection_R26::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__classes.At(1)};
+	bb_reflection_MethodInfo::g_new(String(L"Cause",5),8,0,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R26::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R26::debug(){
+	String t="(R26)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R27::bb_reflection_R27(){
+}
+bb_reflection_R27* bb_reflection_R27::g_new(){
+	bb_reflection_MethodInfo::g_new(String(L"Type",4),8,bb_reflection__stringClass,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R27::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R27::debug(){
+	String t="(R27)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R28::bb_reflection_R28(){
+}
+bb_reflection_R28* bb_reflection_R28::g_new(){
+	bb_reflection_MethodInfo::g_new(String(L"FullType",8),8,bb_reflection__stringClass,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R28::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R28::debug(){
+	String t="(R28)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R30::bb_reflection_R30(){
+}
+bb_reflection_R30* bb_reflection_R30::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__boolClass};
+	bb_reflection_MethodInfo::g_new(String(L"ToString",8),0,bb_reflection__stringClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R30::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R30::debug(){
+	String t="(R30)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R29::bb_reflection_R29(){
+}
+bb_reflection_R29* bb_reflection_R29::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__stringClass,bb_reflection__classes.At(1)};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(2),Array<bb_reflection_ClassInfo* >(t_,2));
+	return this;
+}
+void bb_reflection_R29::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R29::debug(){
+	String t="(R29)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R32::bb_reflection_R32(){
+}
+bb_reflection_R32* bb_reflection_R32::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__stringClass,bb_reflection__classes.At(1)};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(3),Array<bb_reflection_ClassInfo* >(t_,2));
+	return this;
+}
+void bb_reflection_R32::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R32::debug(){
+	String t="(R32)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R34::bb_reflection_R34(){
+}
+bb_reflection_R34* bb_reflection_R34::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__stringClass,bb_reflection__classes.At(1)};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(4),Array<bb_reflection_ClassInfo* >(t_,2));
+	return this;
+}
+void bb_reflection_R34::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R34::debug(){
+	String t="(R34)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R36::bb_reflection_R36(){
+}
+bb_reflection_R36* bb_reflection_R36::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__stringClass,bb_reflection__classes.At(1)};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(5),Array<bb_reflection_ClassInfo* >(t_,2));
+	return this;
+}
+void bb_reflection_R36::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R36::debug(){
+	String t="(R36)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R38::bb_reflection_R38(){
+}
+bb_reflection_R38* bb_reflection_R38::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__stringClass,bb_reflection__classes.At(1)};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(6),Array<bb_reflection_ClassInfo* >(t_,2));
+	return this;
+}
+void bb_reflection_R38::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R38::debug(){
+	String t="(R38)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R40::bb_reflection_R40(){
+}
+bb_reflection_R40* bb_reflection_R40::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__stringClass,bb_reflection__classes.At(1)};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(7),Array<bb_reflection_ClassInfo* >(t_,2));
+	return this;
+}
+void bb_reflection_R40::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R40::debug(){
+	String t="(R40)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R42::bb_reflection_R42(){
+}
+bb_reflection_R42* bb_reflection_R42::g_new(){
+	bb_reflection_FieldInfo::g_new(String(L"value",5),0,bb_reflection__boolClass);
+	return this;
+}
+void bb_reflection_R42::mark(){
+	bb_reflection_FieldInfo::mark();
+}
+String bb_reflection_R42::debug(){
+	String t="(R42)\n";
+	t=bb_reflection_FieldInfo::debug()+t;
+	return t;
+}
+bb_reflection_R44::bb_reflection_R44(){
+}
+bb_reflection_R44* bb_reflection_R44::g_new(){
+	bb_reflection_MethodInfo::g_new(String(L"ToBool",6),0,bb_reflection__boolClass,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R44::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R44::debug(){
+	String t="(R44)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R45::bb_reflection_R45(){
+}
+bb_reflection_R45* bb_reflection_R45::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__classes.At(8)};
+	bb_reflection_MethodInfo::g_new(String(L"Equals",6),0,bb_reflection__boolClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R45::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R45::debug(){
+	String t="(R45)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R43::bb_reflection_R43(){
+}
+bb_reflection_R43* bb_reflection_R43::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__boolClass};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(8),Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R43::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R43::debug(){
+	String t="(R43)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R46::bb_reflection_R46(){
+}
+bb_reflection_R46* bb_reflection_R46::g_new(){
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(8),Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R46::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R46::debug(){
+	String t="(R46)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R48::bb_reflection_R48(){
+}
+bb_reflection_R48* bb_reflection_R48::g_new(){
+	bb_reflection_FieldInfo::g_new(String(L"value",5),0,bb_reflection__intClass);
+	return this;
+}
+void bb_reflection_R48::mark(){
+	bb_reflection_FieldInfo::mark();
+}
+String bb_reflection_R48::debug(){
+	String t="(R48)\n";
+	t=bb_reflection_FieldInfo::debug()+t;
+	return t;
+}
+bb_reflection_R51::bb_reflection_R51(){
+}
+bb_reflection_R51* bb_reflection_R51::g_new(){
+	bb_reflection_MethodInfo::g_new(String(L"ToInt",5),0,bb_reflection__intClass,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R51::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R51::debug(){
+	String t="(R51)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R52::bb_reflection_R52(){
+}
+bb_reflection_R52* bb_reflection_R52::g_new(){
+	bb_reflection_MethodInfo::g_new(String(L"ToFloat",7),0,bb_reflection__floatClass,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R52::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R52::debug(){
+	String t="(R52)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R53::bb_reflection_R53(){
+}
+bb_reflection_R53* bb_reflection_R53::g_new(){
+	bb_reflection_MethodInfo::g_new(String(L"ToString",8),0,bb_reflection__stringClass,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R53::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R53::debug(){
+	String t="(R53)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R54::bb_reflection_R54(){
+}
+bb_reflection_R54* bb_reflection_R54::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__classes.At(9)};
+	bb_reflection_MethodInfo::g_new(String(L"Equals",6),0,bb_reflection__boolClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R54::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R54::debug(){
+	String t="(R54)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R55::bb_reflection_R55(){
+}
+bb_reflection_R55* bb_reflection_R55::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__classes.At(9)};
+	bb_reflection_MethodInfo::g_new(String(L"Compare",7),0,bb_reflection__intClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R55::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R55::debug(){
+	String t="(R55)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R49::bb_reflection_R49(){
+}
+bb_reflection_R49* bb_reflection_R49::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__intClass};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(9),Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R49::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R49::debug(){
+	String t="(R49)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R50::bb_reflection_R50(){
+}
+bb_reflection_R50* bb_reflection_R50::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__floatClass};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(9),Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R50::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R50::debug(){
+	String t="(R50)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R56::bb_reflection_R56(){
+}
+bb_reflection_R56* bb_reflection_R56::g_new(){
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(9),Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R56::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R56::debug(){
+	String t="(R56)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R58::bb_reflection_R58(){
+}
+bb_reflection_R58* bb_reflection_R58::g_new(){
+	bb_reflection_FieldInfo::g_new(String(L"value",5),0,bb_reflection__floatClass);
+	return this;
+}
+void bb_reflection_R58::mark(){
+	bb_reflection_FieldInfo::mark();
+}
+String bb_reflection_R58::debug(){
+	String t="(R58)\n";
+	t=bb_reflection_FieldInfo::debug()+t;
+	return t;
+}
+bb_reflection_R61::bb_reflection_R61(){
+}
+bb_reflection_R61* bb_reflection_R61::g_new(){
+	bb_reflection_MethodInfo::g_new(String(L"ToInt",5),0,bb_reflection__intClass,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R61::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R61::debug(){
+	String t="(R61)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R62::bb_reflection_R62(){
+}
+bb_reflection_R62* bb_reflection_R62::g_new(){
+	bb_reflection_MethodInfo::g_new(String(L"ToFloat",7),0,bb_reflection__floatClass,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R62::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R62::debug(){
+	String t="(R62)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R63::bb_reflection_R63(){
+}
+bb_reflection_R63* bb_reflection_R63::g_new(){
+	bb_reflection_MethodInfo::g_new(String(L"ToString",8),0,bb_reflection__stringClass,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R63::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R63::debug(){
+	String t="(R63)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R64::bb_reflection_R64(){
+}
+bb_reflection_R64* bb_reflection_R64::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__classes.At(10)};
+	bb_reflection_MethodInfo::g_new(String(L"Equals",6),0,bb_reflection__boolClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R64::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R64::debug(){
+	String t="(R64)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R65::bb_reflection_R65(){
+}
+bb_reflection_R65* bb_reflection_R65::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__classes.At(10)};
+	bb_reflection_MethodInfo::g_new(String(L"Compare",7),0,bb_reflection__intClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R65::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R65::debug(){
+	String t="(R65)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R59::bb_reflection_R59(){
+}
+bb_reflection_R59* bb_reflection_R59::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__intClass};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(10),Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R59::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R59::debug(){
+	String t="(R59)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R60::bb_reflection_R60(){
+}
+bb_reflection_R60* bb_reflection_R60::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__floatClass};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(10),Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R60::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R60::debug(){
+	String t="(R60)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R66::bb_reflection_R66(){
+}
+bb_reflection_R66* bb_reflection_R66::g_new(){
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(10),Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R66::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R66::debug(){
+	String t="(R66)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R68::bb_reflection_R68(){
+}
+bb_reflection_R68* bb_reflection_R68::g_new(){
+	bb_reflection_FieldInfo::g_new(String(L"value",5),0,bb_reflection__stringClass);
+	return this;
+}
+void bb_reflection_R68::mark(){
+	bb_reflection_FieldInfo::mark();
+}
+String bb_reflection_R68::debug(){
+	String t="(R68)\n";
+	t=bb_reflection_FieldInfo::debug()+t;
+	return t;
+}
+bb_reflection_R72::bb_reflection_R72(){
+}
+bb_reflection_R72* bb_reflection_R72::g_new(){
+	bb_reflection_MethodInfo::g_new(String(L"ToString",8),0,bb_reflection__stringClass,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R72::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R72::debug(){
+	String t="(R72)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R73::bb_reflection_R73(){
+}
+bb_reflection_R73* bb_reflection_R73::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__classes.At(11)};
+	bb_reflection_MethodInfo::g_new(String(L"Equals",6),0,bb_reflection__boolClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R73::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R73::debug(){
+	String t="(R73)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R74::bb_reflection_R74(){
+}
+bb_reflection_R74* bb_reflection_R74::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__classes.At(11)};
+	bb_reflection_MethodInfo::g_new(String(L"Compare",7),0,bb_reflection__intClass,Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R74::mark(){
+	bb_reflection_MethodInfo::mark();
+}
+String bb_reflection_R74::debug(){
+	String t="(R74)\n";
+	t=bb_reflection_MethodInfo::debug()+t;
+	return t;
+}
+bb_reflection_R69::bb_reflection_R69(){
+}
+bb_reflection_R69* bb_reflection_R69::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__intClass};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(11),Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R69::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R69::debug(){
+	String t="(R69)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R70::bb_reflection_R70(){
+}
+bb_reflection_R70* bb_reflection_R70::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__floatClass};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(11),Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R70::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R70::debug(){
+	String t="(R70)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R71::bb_reflection_R71(){
+}
+bb_reflection_R71* bb_reflection_R71::g_new(){
+	bb_reflection_ClassInfo* t_[]={bb_reflection__stringClass};
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(11),Array<bb_reflection_ClassInfo* >(t_,1));
+	return this;
+}
+void bb_reflection_R71::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R71::debug(){
+	String t="(R71)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_R75::bb_reflection_R75(){
+}
+bb_reflection_R75* bb_reflection_R75::g_new(){
+	bb_reflection_FunctionInfo::g_new(String(L"new",3),0,bb_reflection__classes.At(11),Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_R75::mark(){
+	bb_reflection_FunctionInfo::mark();
+}
+String bb_reflection_R75::debug(){
+	String t="(R75)\n";
+	t=bb_reflection_FunctionInfo::debug()+t;
+	return t;
+}
+bb_reflection_UnknownClass::bb_reflection_UnknownClass(){
+}
+bb_reflection_UnknownClass* bb_reflection_UnknownClass::g_new(){
+	DBG_ENTER("UnknownClass.new")
+	bb_reflection_UnknownClass *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<625>");
+	bb_reflection_ClassInfo::g_new(String(L"?",1),0,0,Array<bb_reflection_ClassInfo* >());
+	return this;
+}
+void bb_reflection_UnknownClass::mark(){
+	bb_reflection_ClassInfo::mark();
+}
+String bb_reflection_UnknownClass::debug(){
+	String t="(UnknownClass)\n";
+	t=bb_reflection_ClassInfo::debug()+t;
+	return t;
+}
+bb_reflection_ClassInfo* bb_reflection__unknownClass;
 bb_graphics_Image::bb_graphics_Image(){
 	f_surface=0;
 	f_width=0;
@@ -4773,7 +9165,7 @@ int bb_graphics_Image::m_ApplyFlags(int t_iflags){
 	}
 	return 0;
 }
-bb_graphics_Image* bb_graphics_Image::m_Init(gxtkSurface* t_surf,int t_nframes,int t_iflags){
+bb_graphics_Image* bb_graphics_Image::m_Init2(gxtkSurface* t_surf,int t_nframes,int t_iflags){
 	DBG_ENTER("Image.Init")
 	bb_graphics_Image *self=this;
 	DBG_LOCAL(self,"Self")
@@ -5047,7 +9439,7 @@ bb_graphics_Image* bb_graphics_LoadImage(String t_path,int t_frameCount,int t_fl
 	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<230>");
 	if((t_surf)!=0){
 		DBG_BLOCK();
-		bb_graphics_Image* t_=((new bb_graphics_Image)->g_new())->m_Init(t_surf,t_frameCount,t_flags);
+		bb_graphics_Image* t_=((new bb_graphics_Image)->g_new())->m_Init2(t_surf,t_frameCount,t_flags);
 		return t_;
 	}
 	return 0;
@@ -5231,6 +9623,13 @@ int bb_app_SetUpdateRate(int t_hertz){
 String bb_data2_STATUS;
 bb_stream_Stream::bb_stream_Stream(){
 }
+bb_stream_Stream* bb_stream_Stream::g_new(){
+	DBG_ENTER("Stream.new")
+	bb_stream_Stream *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<23>");
+	return this;
+}
 bb_databuffer_DataBuffer* bb_stream_Stream::g__tmpbuf;
 void bb_stream_Stream::m__Write(int t_n){
 	DBG_ENTER("Stream._Write")
@@ -5279,7 +9678,7 @@ String bb_stream_Stream::m_ReadLine(){
 	bb_stream_Stream *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<70>");
-	bb_stack_Stack* t_buf=(new bb_stack_Stack)->g_new();
+	bb_stack_Stack6* t_buf=(new bb_stack_Stack6)->g_new();
 	DBG_LOCAL(t_buf,"buf")
 	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<71>");
 	while(!((m_Eof())!=0)){
@@ -5303,19 +9702,12 @@ String bb_stream_Stream::m_ReadLine(){
 		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<76>");
 		if(t_ch!=13){
 			DBG_BLOCK();
-			t_buf->m_Push(t_ch);
+			t_buf->m_Push16(t_ch);
 		}
 	}
 	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<78>");
 	String t_=String::FromChars(t_buf->m_ToArray());
 	return t_;
-}
-bb_stream_Stream* bb_stream_Stream::g_new(){
-	DBG_ENTER("Stream.new")
-	bb_stream_Stream *self=this;
-	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<23>");
-	return this;
 }
 void bb_stream_Stream::mark(){
 	Object::mark();
@@ -5327,6 +9719,16 @@ String bb_stream_Stream::debug(){
 }
 bb_tcpstream_TcpStream::bb_tcpstream_TcpStream(){
 	f__stream=0;
+}
+bb_tcpstream_TcpStream* bb_tcpstream_TcpStream::g_new(){
+	DBG_ENTER("TcpStream.new")
+	bb_tcpstream_TcpStream *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<24>");
+	bb_stream_Stream::g_new();
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<25>");
+	gc_assign(f__stream,(new BBTcpStream));
+	return this;
 }
 bool bb_tcpstream_TcpStream::m_Connect(String t_host,int t_port){
 	DBG_ENTER("TcpStream.Connect")
@@ -5346,15 +9748,18 @@ int bb_tcpstream_TcpStream::m_ReadAvail(){
 	int t_=f__stream->ReadAvail();
 	return t_;
 }
-bb_tcpstream_TcpStream* bb_tcpstream_TcpStream::g_new(){
-	DBG_ENTER("TcpStream.new")
+void bb_tcpstream_TcpStream::m_Close(){
+	DBG_ENTER("TcpStream.Close")
 	bb_tcpstream_TcpStream *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<24>");
-	bb_stream_Stream::g_new();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<25>");
-	gc_assign(f__stream,(new BBTcpStream));
-	return this;
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<42>");
+	if((f__stream)!=0){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<43>");
+		f__stream->Close();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<44>");
+		f__stream=0;
+	}
 }
 int bb_tcpstream_TcpStream::m_Eof(){
 	DBG_ENTER("TcpStream.Eof")
@@ -5396,6 +9801,7 @@ String bb_tcpstream_TcpStream::debug(){
 	t+=dbg_decl("_stream",&f__stream);
 	return t;
 }
+bb_tcpstream_TcpStream* bb_data2_Server;
 bb_databuffer_DataBuffer::bb_databuffer_DataBuffer(){
 }
 bb_databuffer_DataBuffer* bb_databuffer_DataBuffer::g_new(int t_length){
@@ -5479,36 +9885,40 @@ String bb_stream_StreamWriteError::debug(){
 	t=bb_stream_StreamError::debug()+t;
 	return t;
 }
-int bb_protocol_Post(bb_tcpstream_TcpStream* t_stream,String t_url){
+int bb_protocol_Post(String t_url){
 	DBG_ENTER("Post")
-	DBG_LOCAL(t_stream,"stream")
 	DBG_LOCAL(t_url,"url")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<12>");
-	t_stream->m_WriteLine(String(L"GET ",4)+t_url+String(L" HTTP/1.0",9));
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<13>");
-	t_stream->m_WriteLine(String((Char)(10),1));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<4>");
+	bb_data2_Server->m_WriteLine(String(L"GET ",4)+t_url+String(L" HTTP/1.0",9));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<5>");
+	bb_data2_Server->m_WriteLine(String((Char)(10),1));
 	return 0;
 }
-int bb_protocol_RequestGameList(bb_tcpstream_TcpStream* t_stream){
+int bb_protocol_RequestGameList(){
 	DBG_ENTER("RequestGameList")
-	DBG_LOCAL(t_stream,"stream")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<17>");
-	bb_protocol_Post(t_stream,String(L"http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgamelist",69));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<9>");
+	gc_assign(bb_data2_Server,(new bb_tcpstream_TcpStream)->g_new());
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<10>");
+	do{
+		DBG_BLOCK();
+	}while(!(bb_data2_Server->m_Connect(String(L"www.fuzzit.us",13),80)));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<12>");
+	bb_protocol_Post(String(L"http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgamelist",69));
 	return 0;
 }
-bb_stack_Stack::bb_stack_Stack(){
+bb_stack_Stack6::bb_stack_Stack6(){
 	f_data=Array<int >();
 	f_length=0;
 }
-bb_stack_Stack* bb_stack_Stack::g_new(){
+bb_stack_Stack6* bb_stack_Stack6::g_new(){
 	DBG_ENTER("Stack.new")
-	bb_stack_Stack *self=this;
+	bb_stack_Stack6 *self=this;
 	DBG_LOCAL(self,"Self")
 	return this;
 }
-bb_stack_Stack* bb_stack_Stack::g_new2(Array<int > t_data){
+bb_stack_Stack6* bb_stack_Stack6::g_new2(Array<int > t_data){
 	DBG_ENTER("Stack.new")
-	bb_stack_Stack *self=this;
+	bb_stack_Stack6 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_data,"data")
 	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>");
@@ -5517,9 +9927,9 @@ bb_stack_Stack* bb_stack_Stack::g_new2(Array<int > t_data){
 	this->f_length=t_data.Length();
 	return this;
 }
-int bb_stack_Stack::m_Push(int t_value){
+int bb_stack_Stack6::m_Push16(int t_value){
 	DBG_ENTER("Stack.Push")
-	bb_stack_Stack *self=this;
+	bb_stack_Stack6 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
 	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>");
@@ -5534,9 +9944,9 @@ int bb_stack_Stack::m_Push(int t_value){
 	f_length+=1;
 	return 0;
 }
-int bb_stack_Stack::m_Push2(Array<int > t_values,int t_offset,int t_count){
+int bb_stack_Stack6::m_Push17(Array<int > t_values,int t_offset,int t_count){
 	DBG_ENTER("Stack.Push")
-	bb_stack_Stack *self=this;
+	bb_stack_Stack6 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
@@ -5546,13 +9956,13 @@ int bb_stack_Stack::m_Push2(Array<int > t_values,int t_offset,int t_count){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
 		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>");
-		m_Push(t_values.At(t_offset+t_i));
+		m_Push16(t_values.At(t_offset+t_i));
 	}
 	return 0;
 }
-int bb_stack_Stack::m_Push3(Array<int > t_values,int t_offset){
+int bb_stack_Stack6::m_Push18(Array<int > t_values,int t_offset){
 	DBG_ENTER("Stack.Push")
-	bb_stack_Stack *self=this;
+	bb_stack_Stack6 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
@@ -5561,13 +9971,13 @@ int bb_stack_Stack::m_Push3(Array<int > t_values,int t_offset){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
 		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>");
-		m_Push(t_values.At(t_i));
+		m_Push16(t_values.At(t_i));
 	}
 	return 0;
 }
-Array<int > bb_stack_Stack::m_ToArray(){
+Array<int > bb_stack_Stack6::m_ToArray(){
 	DBG_ENTER("Stack.ToArray")
-	bb_stack_Stack *self=this;
+	bb_stack_Stack6 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>");
 	Array<int > t_t=Array<int >(f_length);
@@ -5582,70 +9992,17 @@ Array<int > bb_stack_Stack::m_ToArray(){
 	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>");
 	return t_t;
 }
-void bb_stack_Stack::mark(){
+void bb_stack_Stack6::mark(){
 	Object::mark();
 	gc_mark_q(f_data);
 }
-String bb_stack_Stack::debug(){
+String bb_stack_Stack6::debug(){
 	String t="(Stack)\n";
 	t+=dbg_decl("data",&f_data);
 	t+=dbg_decl("length",&f_length);
 	return t;
 }
-int bb_protocol_LastP;
-Array<String > bb_protocol_SList;
-int bb_protocol__readp(bb_tcpstream_TcpStream* t_stream){
-	DBG_ENTER("_readp")
-	DBG_LOCAL(t_stream,"stream")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<36>");
-	do{
-		DBG_BLOCK();
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<37>");
-		String t_Dat=t_stream->m_ReadLine();
-		DBG_LOCAL(t_Dat,"Dat")
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<38>");
-		if(t_Dat==String(L"__server__protocol__",20)){
-			DBG_BLOCK();
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<39>");
-			break;
-		}
-	}while(!(false));
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<42>");
-	int t_Kind=(t_stream->m_ReadLine()).ToInt();
-	DBG_LOCAL(t_Kind,"Kind")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<43>");
-	int t_=t_Kind;
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<44>");
-	if(t_==4){
-		DBG_BLOCK();
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<45>");
-		bb_protocol_LastP=4;
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<46>");
-		int t_am=(t_stream->m_ReadLine()).ToInt();
-		DBG_LOCAL(t_am,"am")
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<47>");
-		gc_assign(bb_protocol_SList,bb_protocol_SList.Resize(t_am));
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<48>");
-		for(int t_es=0;t_es<=t_am-1;t_es=t_es+1){
-			DBG_BLOCK();
-			DBG_LOCAL(t_es,"es")
-			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<49>");
-			bb_protocol_SList.At(t_es)=t_stream->m_ReadLine();
-		}
-	}
-	return 0;
-}
-int bb_protocol_ReadProtocol(bb_tcpstream_TcpStream* t_stream){
-	DBG_ENTER("ReadProtocol")
-	DBG_LOCAL(t_stream,"stream")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<29>");
-	while((t_stream->m_ReadAvail())!=0){
-		DBG_BLOCK();
-		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<30>");
-		bb_protocol__readp(t_stream);
-	}
-	return 0;
-}
+bb_bapp_BApp* bb_data2_Game;
 bb_challengergui_CHGUI::bb_challengergui_CHGUI(){
 	f_Parent=0;
 	f_Value=FLOAT(.0);
@@ -6095,13 +10452,82 @@ bb_challengergui_CHGUI* bb_challengergui_CreateDropdownItem(String t_Text,bb_cha
 	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<524>");
 	return t_N;
 }
-int bb_protocol_ResetP(){
-	DBG_ENTER("ResetP")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<7>");
-	bb_protocol_LastP=0;
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<8>");
-	String t_[]={String()};
-	gc_assign(bb_protocol_SList,Array<String >(t_,1));
+int bb_protocol__readp(){
+	DBG_ENTER("_readp")
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<36>");
+	do{
+		DBG_BLOCK();
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<37>");
+		String t_Dat=bb_data2_Server->m_ReadLine();
+		DBG_LOCAL(t_Dat,"Dat")
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<38>");
+		if(t_Dat==String(L"__server__protocol__",20)){
+			DBG_BLOCK();
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<39>");
+			break;
+		}
+	}while(!(false));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<42>");
+	if((bb_data2_Server->m_ReadAvail())!=0){
+		DBG_BLOCK();
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<43>");
+		int t_Kind=(bb_data2_Server->m_ReadLine()).ToInt();
+		DBG_LOCAL(t_Kind,"Kind")
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<44>");
+		int t_=t_Kind;
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<45>");
+		if(t_==4){
+			DBG_BLOCK();
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<46>");
+			int t_am=(bb_data2_Server->m_ReadLine()).ToInt();
+			DBG_LOCAL(t_am,"am")
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<47>");
+			for(int t_es=0;t_es<=t_am-1;t_es=t_es+1){
+				DBG_BLOCK();
+				DBG_LOCAL(t_es,"es")
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<48>");
+				bb_challengergui_CreateDropdownItem(bb_data2_Server->m_ReadLine(),bb_data2_Game->f_Games,0);
+			}
+		}else{
+			DBG_BLOCK();
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<50>");
+			if(t_==5){
+				DBG_BLOCK();
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<51>");
+				int t_am2=(bb_data2_Server->m_ReadLine()).ToInt();
+				DBG_LOCAL(t_am2,"am")
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<52>");
+				for(int t_es2=0;t_es2<=t_am2-1;t_es2=t_es2+1){
+					DBG_BLOCK();
+					DBG_LOCAL(t_es2,"es")
+					DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<53>");
+					bb_challengergui_CreateDropdownItem(bb_data2_Server->m_ReadLine(),bb_data2_Game->f_BeaconList,0);
+				}
+			}
+		}
+	}
+	return 0;
+}
+int bb_protocol_ReadProtocol(){
+	DBG_ENTER("ReadProtocol")
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<23>");
+	if(bb_data2_Server!=0){
+		DBG_BLOCK();
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<24>");
+		if((bb_data2_Server->m_ReadAvail())!=0){
+			DBG_BLOCK();
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<25>");
+			while((bb_data2_Server->m_ReadAvail())!=0){
+				DBG_BLOCK();
+				DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<26>");
+				bb_protocol__readp();
+			}
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<28>");
+			bb_data2_Server->m_Close();
+			DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<29>");
+			bb_data2_Server=0;
+		}
+	}
 	return 0;
 }
 int bb_graphics_DebugRenderDevice(){
@@ -10467,15 +14893,15 @@ Float bb_data2_SCALE_H;
 bb_challengergui_CHGUI* bb_data2_CScale(bb_challengergui_CHGUI* t_c){
 	DBG_ENTER("CScale")
 	DBG_LOCAL(t_c,"c")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<17>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<23>");
 	t_c->f_X*=Float(bb_graphics_DeviceWidth())/bb_data2_SCALE_W;
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<18>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<24>");
 	t_c->f_W*=Float(bb_graphics_DeviceWidth())/bb_data2_SCALE_W;
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<19>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<25>");
 	t_c->f_Y*=Float(bb_graphics_DeviceHeight())/bb_data2_SCALE_H;
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<20>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<26>");
 	t_c->f_H*=Float(bb_graphics_DeviceHeight())/bb_data2_SCALE_H;
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<21>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<27>");
 	return t_c;
 }
 bb_challengergui_CHGUI* bb_challengergui_CreateDropdown(int t_X,int t_Y,int t_W,int t_H,String t_Text,bb_challengergui_CHGUI* t_Parent){
@@ -13484,7 +17910,478 @@ int bb_challengergui_CHGUI_Update(){
 	bb_challengergui_CHGUI_UpdateMsgBox();
 	return 0;
 }
+int bb_challengergui_CHGUI_Delete(bb_challengergui_CHGUI* t_N){
+	DBG_ENTER("CHGUI_Delete")
+	DBG_LOCAL(t_N,"N")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<933>");
+	int t_C=0;
+	DBG_LOCAL(t_C,"C")
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<936>");
+	if(t_N->f_Element==String(L"Window",6) && t_N->f_Mode==2){
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<937>");
+		for(t_C=0;t_C<=t_N->f_Parent->f_TopList.Length()-1;t_C=t_C+1){
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<938>");
+			if(t_N->f_Parent->f_TopList.At(t_C)==t_N){
+				DBG_BLOCK();
+				break;
+			}
+		}
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<941>");
+		for(int t_NN=t_C;t_NN<=t_N->f_Parent->f_TopList.Length()-2;t_NN=t_NN+1){
+			DBG_BLOCK();
+			DBG_LOCAL(t_NN,"NN")
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<942>");
+			gc_assign(t_N->f_Parent->f_TopList.At(t_NN),t_N->f_Parent->f_TopList.At(t_NN+1));
+		}
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<944>");
+		gc_assign(t_N->f_Parent->f_TopList,t_N->f_Parent->f_TopList.Slice(0,t_N->f_Parent->f_TopList.Length()-1));
+	}else{
+		DBG_BLOCK();
+		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<947>");
+		if(t_N->f_Element==String(L"Window",6) && t_N->f_Mode==1){
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<948>");
+			for(t_C=0;t_C<=t_N->f_Parent->f_VariList.Length()-1;t_C=t_C+1){
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<949>");
+				if(t_N->f_Parent->f_VariList.At(t_C)==t_N){
+					DBG_BLOCK();
+					break;
+				}
+			}
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<952>");
+			for(int t_NN2=t_C;t_NN2<=t_N->f_Parent->f_VariList.Length()-2;t_NN2=t_NN2+1){
+				DBG_BLOCK();
+				DBG_LOCAL(t_NN2,"NN")
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<953>");
+				gc_assign(t_N->f_Parent->f_VariList.At(t_NN2),t_N->f_Parent->f_VariList.At(t_NN2+1));
+			}
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<955>");
+			gc_assign(t_N->f_Parent->f_VariList,t_N->f_Parent->f_VariList.Slice(0,t_N->f_Parent->f_VariList.Length()-1));
+		}else{
+			DBG_BLOCK();
+			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<958>");
+			if(t_N->f_Element==String(L"Window",6) && t_N->f_Mode==0){
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<959>");
+				for(t_C=0;t_C<=t_N->f_Parent->f_BottomList.Length()-1;t_C=t_C+1){
+					DBG_BLOCK();
+					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<960>");
+					if(t_N->f_Parent->f_BottomList.At(t_C)==t_N){
+						DBG_BLOCK();
+						break;
+					}
+				}
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<963>");
+				for(int t_NN3=t_C;t_NN3<=t_N->f_Parent->f_BottomList.Length()-2;t_NN3=t_NN3+1){
+					DBG_BLOCK();
+					DBG_LOCAL(t_NN3,"NN")
+					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<964>");
+					gc_assign(t_N->f_Parent->f_BottomList.At(t_NN3),t_N->f_Parent->f_BottomList.At(t_NN3+1));
+				}
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<966>");
+				gc_assign(t_N->f_Parent->f_BottomList,t_N->f_Parent->f_BottomList.Slice(0,t_N->f_Parent->f_BottomList.Length()-1));
+			}else{
+				DBG_BLOCK();
+				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<969>");
+				if(t_N->f_Element==String(L"Menu",4)){
+					DBG_BLOCK();
+					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<970>");
+					for(t_C=0;t_C<=t_N->f_Parent->f_Menus.Length()-1;t_C=t_C+1){
+						DBG_BLOCK();
+						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<971>");
+						if(t_N->f_Parent->f_Menus.At(t_C)==t_N){
+							DBG_BLOCK();
+							break;
+						}
+					}
+					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<974>");
+					for(int t_NN4=t_C;t_NN4<=t_N->f_Parent->f_Menus.Length()-2;t_NN4=t_NN4+1){
+						DBG_BLOCK();
+						DBG_LOCAL(t_NN4,"NN")
+						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<975>");
+						gc_assign(t_N->f_Parent->f_Menus.At(t_NN4),t_N->f_Parent->f_Menus.At(t_NN4+1));
+					}
+					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<977>");
+					gc_assign(t_N->f_Parent->f_Menus,t_N->f_Parent->f_Menus.Slice(0,t_N->f_Parent->f_Menus.Length()-1));
+				}else{
+					DBG_BLOCK();
+					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<980>");
+					if(t_N->f_Element==String(L"MenuItem",8)){
+						DBG_BLOCK();
+						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<981>");
+						for(t_C=0;t_C<=t_N->f_Parent->f_MenuItems.Length()-1;t_C=t_C+1){
+							DBG_BLOCK();
+							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<982>");
+							if(t_N->f_Parent->f_MenuItems.At(t_C)==t_N){
+								DBG_BLOCK();
+								break;
+							}
+						}
+						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<985>");
+						for(int t_NN5=t_C;t_NN5<=t_N->f_Parent->f_MenuItems.Length()-2;t_NN5=t_NN5+1){
+							DBG_BLOCK();
+							DBG_LOCAL(t_NN5,"NN")
+							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<986>");
+							gc_assign(t_N->f_Parent->f_MenuItems.At(t_NN5),t_N->f_Parent->f_MenuItems.At(t_NN5+1));
+						}
+						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<988>");
+						gc_assign(t_N->f_Parent->f_MenuItems,t_N->f_Parent->f_MenuItems.Slice(0,t_N->f_Parent->f_MenuItems.Length()-1));
+					}else{
+						DBG_BLOCK();
+						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<991>");
+						if(t_N->f_Element==String(L"Tab",3)){
+							DBG_BLOCK();
+							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<992>");
+							for(t_C=0;t_C<=t_N->f_Parent->f_Tabs.Length()-1;t_C=t_C+1){
+								DBG_BLOCK();
+								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<993>");
+								if(t_N->f_Parent->f_Tabs.At(t_C)==t_N){
+									DBG_BLOCK();
+									break;
+								}
+							}
+							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<996>");
+							for(int t_NN6=t_C;t_NN6<=t_N->f_Parent->f_Tabs.Length()-2;t_NN6=t_NN6+1){
+								DBG_BLOCK();
+								DBG_LOCAL(t_NN6,"NN")
+								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<997>");
+								gc_assign(t_N->f_Parent->f_Tabs.At(t_NN6),t_N->f_Parent->f_Tabs.At(t_NN6+1));
+							}
+							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<999>");
+							gc_assign(t_N->f_Parent->f_Tabs,t_N->f_Parent->f_Tabs.Slice(0,t_N->f_Parent->f_Tabs.Length()-1));
+						}else{
+							DBG_BLOCK();
+							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1002>");
+							if(t_N->f_Element==String(L"Button",6)){
+								DBG_BLOCK();
+								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1003>");
+								for(t_C=0;t_C<=t_N->f_Parent->f_Buttons.Length()-1;t_C=t_C+1){
+									DBG_BLOCK();
+									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1004>");
+									if(t_N->f_Parent->f_Buttons.At(t_C)==t_N){
+										DBG_BLOCK();
+										break;
+									}
+								}
+								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1007>");
+								for(int t_NN7=t_C;t_NN7<=t_N->f_Parent->f_Buttons.Length()-2;t_NN7=t_NN7+1){
+									DBG_BLOCK();
+									DBG_LOCAL(t_NN7,"NN")
+									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1008>");
+									gc_assign(t_N->f_Parent->f_Buttons.At(t_NN7),t_N->f_Parent->f_Buttons.At(t_NN7+1));
+								}
+								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1010>");
+								gc_assign(t_N->f_Parent->f_Buttons,t_N->f_Parent->f_Buttons.Slice(0,t_N->f_Parent->f_Buttons.Length()-1));
+							}else{
+								DBG_BLOCK();
+								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1013>");
+								if(t_N->f_Element==String(L"ImageButton",11)){
+									DBG_BLOCK();
+									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1014>");
+									for(t_C=0;t_C<=t_N->f_Parent->f_ImageButtons.Length()-1;t_C=t_C+1){
+										DBG_BLOCK();
+										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1015>");
+										if(t_N->f_Parent->f_ImageButtons.At(t_C)==t_N){
+											DBG_BLOCK();
+											break;
+										}
+									}
+									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1018>");
+									for(int t_NN8=t_C;t_NN8<=t_N->f_Parent->f_ImageButtons.Length()-2;t_NN8=t_NN8+1){
+										DBG_BLOCK();
+										DBG_LOCAL(t_NN8,"NN")
+										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1019>");
+										gc_assign(t_N->f_Parent->f_ImageButtons.At(t_NN8),t_N->f_Parent->f_ImageButtons.At(t_NN8+1));
+									}
+									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1021>");
+									gc_assign(t_N->f_Parent->f_ImageButtons,t_N->f_Parent->f_ImageButtons.Slice(0,t_N->f_Parent->f_ImageButtons.Length()-1));
+								}else{
+									DBG_BLOCK();
+									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1024>");
+									if(t_N->f_Element==String(L"Tickbox",7)){
+										DBG_BLOCK();
+										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1025>");
+										for(t_C=0;t_C<=t_N->f_Parent->f_Tickboxes.Length()-1;t_C=t_C+1){
+											DBG_BLOCK();
+											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1026>");
+											if(t_N->f_Parent->f_Tickboxes.At(t_C)==t_N){
+												DBG_BLOCK();
+												break;
+											}
+										}
+										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1029>");
+										for(int t_NN9=t_C;t_NN9<=t_N->f_Parent->f_Tickboxes.Length()-2;t_NN9=t_NN9+1){
+											DBG_BLOCK();
+											DBG_LOCAL(t_NN9,"NN")
+											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1030>");
+											gc_assign(t_N->f_Parent->f_Tickboxes.At(t_NN9),t_N->f_Parent->f_Tickboxes.At(t_NN9+1));
+										}
+										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1032>");
+										gc_assign(t_N->f_Parent->f_Tickboxes,t_N->f_Parent->f_Tickboxes.Slice(0,t_N->f_Parent->f_Tickboxes.Length()-1));
+									}else{
+										DBG_BLOCK();
+										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1035>");
+										if(t_N->f_Element==String(L"Radio",5)){
+											DBG_BLOCK();
+											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1036>");
+											for(t_C=0;t_C<=t_N->f_Parent->f_Radioboxes.Length()-1;t_C=t_C+1){
+												DBG_BLOCK();
+												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1037>");
+												if(t_N->f_Parent->f_Radioboxes.At(t_C)==t_N){
+													DBG_BLOCK();
+													break;
+												}
+											}
+											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1040>");
+											for(int t_NN10=t_C;t_NN10<=t_N->f_Parent->f_Radioboxes.Length()-2;t_NN10=t_NN10+1){
+												DBG_BLOCK();
+												DBG_LOCAL(t_NN10,"NN")
+												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1041>");
+												gc_assign(t_N->f_Parent->f_Radioboxes.At(t_NN10),t_N->f_Parent->f_Radioboxes.At(t_NN10+1));
+											}
+											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1043>");
+											gc_assign(t_N->f_Parent->f_Radioboxes,t_N->f_Parent->f_Radioboxes.Slice(0,t_N->f_Parent->f_Radioboxes.Length()-1));
+										}else{
+											DBG_BLOCK();
+											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1046>");
+											if(t_N->f_Element==String(L"Listbox",7)){
+												DBG_BLOCK();
+												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1047>");
+												for(t_C=0;t_C<=t_N->f_Parent->f_Listboxes.Length()-1;t_C=t_C+1){
+													DBG_BLOCK();
+													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1048>");
+													if(t_N->f_Parent->f_Listboxes.At(t_C)==t_N){
+														DBG_BLOCK();
+														break;
+													}
+												}
+												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1051>");
+												for(int t_NN11=t_C;t_NN11<=t_N->f_Parent->f_Listboxes.Length()-2;t_NN11=t_NN11+1){
+													DBG_BLOCK();
+													DBG_LOCAL(t_NN11,"NN")
+													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1052>");
+													gc_assign(t_N->f_Parent->f_Listboxes.At(t_NN11),t_N->f_Parent->f_Listboxes.At(t_NN11+1));
+												}
+												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1054>");
+												gc_assign(t_N->f_Parent->f_Listboxes,t_N->f_Parent->f_Listboxes.Slice(0,t_N->f_Parent->f_Listboxes.Length()-1));
+											}else{
+												DBG_BLOCK();
+												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1057>");
+												if(t_N->f_Element==String(L"ListboxItem",11)){
+													DBG_BLOCK();
+													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1058>");
+													for(t_C=0;t_C<=t_N->f_Parent->f_ListboxItems.Length()-1;t_C=t_C+1){
+														DBG_BLOCK();
+														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1059>");
+														if(t_N->f_Parent->f_ListboxItems.At(t_C)==t_N){
+															DBG_BLOCK();
+															break;
+														}
+													}
+													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1062>");
+													for(int t_NN12=t_C;t_NN12<=t_N->f_Parent->f_ListboxItems.Length()-2;t_NN12=t_NN12+1){
+														DBG_BLOCK();
+														DBG_LOCAL(t_NN12,"NN")
+														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1063>");
+														gc_assign(t_N->f_Parent->f_ListboxItems.At(t_NN12),t_N->f_Parent->f_ListboxItems.At(t_NN12+1));
+													}
+													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1065>");
+													gc_assign(t_N->f_Parent->f_ListboxItems,t_N->f_Parent->f_ListboxItems.Slice(0,t_N->f_Parent->f_ListboxItems.Length()-1));
+												}else{
+													DBG_BLOCK();
+													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1068>");
+													if(t_N->f_Element==String(L"Dropdown",8)){
+														DBG_BLOCK();
+														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1069>");
+														for(t_C=0;t_C<=t_N->f_Parent->f_Dropdowns.Length()-1;t_C=t_C+1){
+															DBG_BLOCK();
+															DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1070>");
+															if(t_N->f_Parent->f_Dropdowns.At(t_C)==t_N){
+																DBG_BLOCK();
+																break;
+															}
+														}
+														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1073>");
+														for(int t_NN13=t_C;t_NN13<=t_N->f_Parent->f_Dropdowns.Length()-2;t_NN13=t_NN13+1){
+															DBG_BLOCK();
+															DBG_LOCAL(t_NN13,"NN")
+															DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1074>");
+															gc_assign(t_N->f_Parent->f_Dropdowns.At(t_NN13),t_N->f_Parent->f_Dropdowns.At(t_NN13+1));
+														}
+														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1076>");
+														gc_assign(t_N->f_Parent->f_Dropdowns,t_N->f_Parent->f_Dropdowns.Slice(0,t_N->f_Parent->f_Dropdowns.Length()-1));
+													}else{
+														DBG_BLOCK();
+														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1079>");
+														if(t_N->f_Element==String(L"DropdownItem",12)){
+															DBG_BLOCK();
+															DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1080>");
+															for(t_C=0;t_C<=t_N->f_Parent->f_DropdownItems.Length()-1;t_C=t_C+1){
+																DBG_BLOCK();
+																DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1081>");
+																if(t_N->f_Parent->f_DropdownItems.At(t_C)==t_N){
+																	DBG_BLOCK();
+																	break;
+																}
+															}
+															DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1084>");
+															for(int t_NN14=t_C;t_NN14<=t_N->f_Parent->f_DropdownItems.Length()-2;t_NN14=t_NN14+1){
+																DBG_BLOCK();
+																DBG_LOCAL(t_NN14,"NN")
+																DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1085>");
+																gc_assign(t_N->f_Parent->f_DropdownItems.At(t_NN14),t_N->f_Parent->f_DropdownItems.At(t_NN14+1));
+															}
+															DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1087>");
+															gc_assign(t_N->f_Parent->f_DropdownItems,t_N->f_Parent->f_DropdownItems.Slice(0,t_N->f_Parent->f_DropdownItems.Length()-1));
+														}else{
+															DBG_BLOCK();
+															DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1090>");
+															if(t_N->f_Element==String(L"Textfield",9)){
+																DBG_BLOCK();
+																DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1091>");
+																for(t_C=0;t_C<=t_N->f_Parent->f_Textfields.Length()-1;t_C=t_C+1){
+																	DBG_BLOCK();
+																	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1092>");
+																	if(t_N->f_Parent->f_Textfields.At(t_C)==t_N){
+																		DBG_BLOCK();
+																		break;
+																	}
+																}
+																DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1095>");
+																for(int t_NN15=t_C;t_NN15<=t_N->f_Parent->f_Textfields.Length()-2;t_NN15=t_NN15+1){
+																	DBG_BLOCK();
+																	DBG_LOCAL(t_NN15,"NN")
+																	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1096>");
+																	gc_assign(t_N->f_Parent->f_Textfields.At(t_NN15),t_N->f_Parent->f_Textfields.At(t_NN15+1));
+																}
+																DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1098>");
+																gc_assign(t_N->f_Parent->f_Textfields,t_N->f_Parent->f_Textfields.Slice(0,t_N->f_Parent->f_Textfields.Length()-1));
+															}else{
+																DBG_BLOCK();
+																DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1101>");
+																if(t_N->f_Element==String(L"Label",5)){
+																	DBG_BLOCK();
+																	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1102>");
+																	for(t_C=0;t_C<=t_N->f_Parent->f_Labels.Length()-1;t_C=t_C+1){
+																		DBG_BLOCK();
+																		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1103>");
+																		if(t_N->f_Parent->f_Labels.At(t_C)==t_N){
+																			DBG_BLOCK();
+																			break;
+																		}
+																	}
+																	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1106>");
+																	for(int t_NN16=t_C;t_NN16<=t_N->f_Parent->f_Labels.Length()-2;t_NN16=t_NN16+1){
+																		DBG_BLOCK();
+																		DBG_LOCAL(t_NN16,"NN")
+																		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1107>");
+																		gc_assign(t_N->f_Parent->f_Labels.At(t_NN16),t_N->f_Parent->f_Labels.At(t_NN16+1));
+																	}
+																	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1109>");
+																	gc_assign(t_N->f_Parent->f_Labels,t_N->f_Parent->f_Labels.Slice(0,t_N->f_Parent->f_Labels.Length()-1));
+																}else{
+																	DBG_BLOCK();
+																	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1112>");
+																	if(t_N->f_Element==String(L"VSlider",7)){
+																		DBG_BLOCK();
+																		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1113>");
+																		for(t_C=0;t_C<=t_N->f_Parent->f_VSliders.Length()-1;t_C=t_C+1){
+																			DBG_BLOCK();
+																			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1114>");
+																			if(t_N->f_Parent->f_VSliders.At(t_C)==t_N){
+																				DBG_BLOCK();
+																				break;
+																			}
+																		}
+																		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1117>");
+																		for(int t_NN17=t_C;t_NN17<=t_N->f_Parent->f_VSliders.Length()-2;t_NN17=t_NN17+1){
+																			DBG_BLOCK();
+																			DBG_LOCAL(t_NN17,"NN")
+																			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1118>");
+																			gc_assign(t_N->f_Parent->f_VSliders.At(t_NN17),t_N->f_Parent->f_VSliders.At(t_NN17+1));
+																		}
+																		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1120>");
+																		gc_assign(t_N->f_Parent->f_VSliders,t_N->f_Parent->f_VSliders.Slice(0,t_N->f_Parent->f_VSliders.Length()-1));
+																	}else{
+																		DBG_BLOCK();
+																		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1123>");
+																		if(t_N->f_Element==String(L"HSlider",7)){
+																			DBG_BLOCK();
+																			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1124>");
+																			for(t_C=0;t_C<=t_N->f_Parent->f_HSliders.Length()-1;t_C=t_C+1){
+																				DBG_BLOCK();
+																				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1125>");
+																				if(t_N->f_Parent->f_HSliders.At(t_C)==t_N){
+																					DBG_BLOCK();
+																					break;
+																				}
+																			}
+																			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1128>");
+																			for(int t_NN18=t_C;t_NN18<=t_N->f_Parent->f_HSliders.Length()-2;t_NN18=t_NN18+1){
+																				DBG_BLOCK();
+																				DBG_LOCAL(t_NN18,"NN")
+																				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1129>");
+																				gc_assign(t_N->f_Parent->f_HSliders.At(t_NN18),t_N->f_Parent->f_HSliders.At(t_NN18+1));
+																			}
+																			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1131>");
+																			gc_assign(t_N->f_Parent->f_HSliders,t_N->f_Parent->f_HSliders.Slice(0,t_N->f_Parent->f_HSliders.Length()-1));
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1137>");
+	t_N=0;
+	return 0;
+}
+int bb_protocol_RequestBeaconList(String t_game){
+	DBG_ENTER("RequestBeaconList")
+	DBG_LOCAL(t_game,"game")
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<16>");
+	gc_assign(bb_data2_Server,(new bb_tcpstream_TcpStream)->g_new());
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<17>");
+	do{
+		DBG_BLOCK();
+	}while(!(bb_data2_Server->m_Connect(String(L"www.fuzzit.us",13),80)));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<19>");
+	bb_protocol_Post(String(L"http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetbeaconlist&game=",77)+t_game);
+	return 0;
+}
 int bbInit(){
+	bb_reflection__classesMap=0;
+	DBG_GLOBAL("_classesMap",&bb_reflection__classesMap);
+	bb_reflection__classes=Array<bb_reflection_ClassInfo* >();
+	DBG_GLOBAL("_classes",&bb_reflection__classes);
+	bb_reflection__getClass=0;
+	DBG_GLOBAL("_getClass",&bb_reflection__getClass);
+	bb_reflection__boolClass=0;
+	DBG_GLOBAL("_boolClass",&bb_reflection__boolClass);
+	bb_reflection__intClass=0;
+	DBG_GLOBAL("_intClass",&bb_reflection__intClass);
+	bb_reflection__floatClass=0;
+	DBG_GLOBAL("_floatClass",&bb_reflection__floatClass);
+	bb_reflection__stringClass=0;
+	DBG_GLOBAL("_stringClass",&bb_reflection__stringClass);
+	bb_reflection__functions=Array<bb_reflection_FunctionInfo* >();
+	DBG_GLOBAL("_functions",&bb_reflection__functions);
+	bb_reflection__init=bb_reflection___init();
+	DBG_GLOBAL("_init",&bb_reflection__init);
 	bb_graphics_device=0;
 	DBG_GLOBAL("device",&bb_graphics_device);
 	bb_input_device=0;
@@ -13493,6 +18390,8 @@ int bbInit(){
 	DBG_GLOBAL("device",&bb_audio_device);
 	bb_app_device=0;
 	DBG_GLOBAL("device",&bb_app_device);
+	bb_reflection__unknownClass=((new bb_reflection_UnknownClass)->g_new());
+	DBG_GLOBAL("_unknownClass",&bb_reflection__unknownClass);
 	bb_graphics_context=(new bb_graphics_GraphicsContext)->g_new();
 	DBG_GLOBAL("context",&bb_graphics_context);
 	bb_graphics_Image::g_DefaultFlags=0;
@@ -13503,13 +18402,12 @@ int bbInit(){
 	DBG_GLOBAL("CHGUI_MobileMode",&bb_challengergui_CHGUI_MobileMode);
 	bb_data2_STATUS=String(L"start",5);
 	DBG_GLOBAL("STATUS",&bb_data2_STATUS);
+	bb_data2_Server=0;
+	DBG_GLOBAL("Server",&bb_data2_Server);
 	bb_stream_Stream::g__tmpbuf=(new bb_databuffer_DataBuffer)->g_new(4096);
 	DBG_GLOBAL("_tmpbuf",&bb_stream_Stream::g__tmpbuf);
-	bb_protocol_LastP=0;
-	DBG_GLOBAL("LastP",&bb_protocol_LastP);
-	String t_[]={String()};
-	bb_protocol_SList=Array<String >(t_,1);
-	DBG_GLOBAL("SList",&bb_protocol_SList);
+	bb_data2_Game=0;
+	DBG_GLOBAL("Game",&bb_data2_Game);
 	bb_challengergui_CHGUI_BottomList=Array<bb_challengergui_CHGUI* >();
 	DBG_GLOBAL("CHGUI_BottomList",&bb_challengergui_CHGUI_BottomList);
 	bb_challengergui_CHGUI_Canvas=0;
@@ -13635,14 +18533,24 @@ int bbInit(){
 	return 0;
 }
 void gc_mark(){
+	gc_mark_q(bb_reflection__classesMap);
+	gc_mark_q(bb_reflection__classes);
+	gc_mark_q(bb_reflection__getClass);
+	gc_mark_q(bb_reflection__boolClass);
+	gc_mark_q(bb_reflection__intClass);
+	gc_mark_q(bb_reflection__floatClass);
+	gc_mark_q(bb_reflection__stringClass);
+	gc_mark_q(bb_reflection__functions);
 	gc_mark_q(bb_graphics_device);
 	gc_mark_q(bb_input_device);
 	gc_mark_q(bb_audio_device);
 	gc_mark_q(bb_app_device);
+	gc_mark_q(bb_reflection__unknownClass);
 	gc_mark_q(bb_graphics_context);
 	gc_mark_q(bb_graphics_renderDevice);
+	gc_mark_q(bb_data2_Server);
 	gc_mark_q(bb_stream_Stream::g__tmpbuf);
-	gc_mark_q(bb_protocol_SList);
+	gc_mark_q(bb_data2_Game);
 	gc_mark_q(bb_challengergui_CHGUI_BottomList);
 	gc_mark_q(bb_challengergui_CHGUI_Canvas);
 	gc_mark_q(bb_challengergui_CHGUI_LockedWIndow);

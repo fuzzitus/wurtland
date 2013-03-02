@@ -88,33 +88,28 @@ else:
 
             TITLE = t.Text('Menu', dict(size='36'))
 
-            BEACON_FUNC = j.Func('GoToBeacon', [], j.LinkTo('"' + HOST + 'cgi-bin/adminconsole.py?action=beaconmenu&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
-            PLAYER_FUNC = j.Func('GoToPlayer', [], j.LinkTo('"' + HOST + 'cgi-bin/adminconsole.py?action=playertraits&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
-            TRAITS_FUNC = j.Func('GoToTraits', [], j.LinkTo('"' + HOST + 'cgi-bin/adminconsole.py?action=traits&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
-            INS_FUNC = j.Func('GoToIns', [], j.LinkTo('"' + HOST + 'cgi-bin/adminconsole.py?action=instructions&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ';'))
-            EXIT_FUNC = j.Func('GoToExit', [], j.LinkTo('"' + HOST + 'cgi-bin/adminconsole.py?'))
-
-            BEACON_BUTTON = b.Button('arbeacons', 'Add/Remove Beacons', dict(onclick='javascript:GoToBeacon()'))
-            PLAYER_BUTTON = b.Button('playertraits', 'Manually Assign Player Traits', dict(onclick='javascript:GoToPlayer()'))
-            TRAITS_BUTTON = b.Button('traits', 'Create Custom Traits', dict(onclick='javascript:GoToTraits()'))
-            INS_BUTTON = b.Button('ins', 'Configure Instructions', dict(onclick='javascript:GoToIns()'))
-            EXIT_BUTTON = b.Button('exit', 'Exit', dict(onclick='GoToExit()'))
-
+            BEACON_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=beaconmenu&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('arbeacons', 'Add/Remove Beacons')])
+            PLAYER_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=playertraits&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('playertraits', 'Manually Assign Player Traits')])
+            TRAITS_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=traits&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('traits', 'Create Custom Traits')])
+            INS_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=instructions&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('ins', 'Configure Instructions')])
+            EXIT_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?' + GAMENAME + '&pw=' + PW, [b.Button('exitb', 'Exit')])
+    
             DIV_OBJS = [TITLE, t.br,
-                        BEACON_FUNC, t.T('Beacons: '), BEACON_BUTTON, t.br,
-                        PLAYER_FUNC, t.T('Players: '), PLAYER_BUTTON, t.br,
-                        TRAITS_FUNC, t.T('Traits: '), TRAITS_BUTTON, t.br,
-                        INS_FUNC, t.T('Instruction: '), INS_BUTTON, t.p,
-                        EXIT_FUNC, EXIT_BUTTON, t.br]
+                        BEACON_BUTTON, t.br,
+                        PLAYER_BUTTON, t.br,
+                        TRAITS_BUTTON, t.br,
+                        INS_BUTTON, t.p,
+                        EXIT_BUTTON, t.br]
             
         #Beacon Menu
         #http://www.fuzzit.us/cgi-bin/adminconsole.py?action=beaconmenu
         elif ACTION == 'beaconmenu':
             import fz_game as g
+            
             GAMENAME = Pars['gamename'].value
             PW = Pars['pw'].value
 
-            GAME = g.Load(GAMENAME)
+            GAME = g.LoadGame(GAMENAME)
 
             TITLE = t.Text('Add/Remove Beacons', dict(size='36'))
 
@@ -123,16 +118,16 @@ else:
 
             BEACON_LIST = f.Dropdown('beaconlist')
             for EB in GAME.Beacons:
-                BEACON_LIST.Values.append([EB.Id, EB.Id, dict(onclick='javascript:Conv("' + EB.Id + '")')])
+                BEACON_LIST.Values.append([EB.Name, EB.Name, dict(onclick='javascript:Conv("' + EB.Name + '")')])
             BEACON_LIST.Values.append(['create_new_beacon', 'New Beacon', dict(onclick='javascript:ConvC()')])
 
             BEACON_NAME = f.TextField('b__beacon__name', 'Name: ')
 
-            UPDATE_FUNC = j.Func('UpdateBeacon', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=updatebeacon&newname=" + ' + j.ElementAtt('b__beacon__name') + ' + "&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ' + "&beacon=" + ' + j.ElementAtt('beaconlist') + ';'))
-            DELETE_FUNC = j.Func('DeleteBeacon', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=deletebeacon&gamename=" + ' + j.ElementAtt('gamename') + ' + "&pw=" + ' + j.ElementAtt('pw') + ' + "&beacon=" + ' + j.ElementAtt('beaconlist') + ';'))
+            UPDATE_FUNC = j.Func('UpdateBeacon', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=updatebeacon&gamename=' + GAMENAME + '&pw=' + PW + '&newname=" + ' + j.ElementAtt('b__beacon__name') + ' + "&beacon=" + ' + j.ElementAtt('beaconlist') + ';'))
+            DELETE_FUNC = j.Func('DeleteBeacon', [], j.LinkTo('"' + HOST + 'cgi-bin/GlobalServer.py?action=deletebeacon&gamename=' + GAMENAME + '&pw=' + PW + '&beacon=" + ' + j.ElementAtt('beaconlist') + ';'))
 
-            UPDATE_BUTTON = b.Button('update', 'UpdateBeacon()', dict(onclick='javascript:UpdateBeacon()'))
-            DELETE_BUTTON = b.Button('delete', 'DeleteBeacon()', dict(onclick='javascript:DeleteBeacon()'))
+            UPDATE_BUTTON = b.Button('update', 'UpdateBeacon', dict(onclick='javascript:UpdateBeacon()'))
+            DELETE_BUTTON = b.Button('delete', 'DeleteBeacon', dict(onclick='javascript:DeleteBeacon()'))
             MENU_BUTTON = l.Link(HOST + 'cgi-bin/adminconsole.py?action=adminmenu&gamename=' + GAMENAME + '&pw=' + PW, [b.Button('menu', 'Menu')])
 
             DIV_OBJS = [TITLE, t.br, DROP_FUNC, CLEAR_FUNC,

@@ -25,11 +25,12 @@ class Game:
         g.Instructions = instructions
     def GetBeacon(name):
         for EB in Beacons:
-            if EB.Id == name:
+            if EB.Name == name:
                 return EB
         return None
     def Save(g):
-        ff = open(GAME_LOCATION + '/' + Format(g.Id) + '.fuz', 'wb')
+        global GAME_LOCATION
+        ff = open(GAME_LOCATION + '/' + Format(g.Id) + '.fuz', 'w')
         g.Write(ff)
         ff.close()
     def Write(g, stream):
@@ -74,12 +75,13 @@ def ReadGame(stream):
     return Game(Id, pw, gs, B, P, T, I)
 
 def LoadGame(Id):
-    ff = ReadFromFile('/games/' + Format(Id) + '.fuz', 'rb')
+    global GAME_LOCATION
+    ff = p.ReadFromFile(GAME_LOCATION + '/' + Format(Id) + '.fuz')
     g = ReadGame(ff)
-    ff.close()
     return g
 
 def CheckGameExists(name):
+    global GAME_LOCATION
     if os.path.exists(GAME_LOCATION + '/' + Format(name) + '.fuz'):
         return True
     else:
@@ -87,15 +89,10 @@ def CheckGameExists(name):
 
 def CheckPassword(game, pw):
     if CheckGameExists(game):
-        G = g.ReadGame(game)
+        G = LoadGame(game)
         if G.Password == pw:
             return True
         else:
             return False
     else:
         return False
-
-import base64
-F = base64.b64decode(open('J:/test.fuz', 'rb').read()).split('__fuzz__split__||')
-print F
-G = ReadGame(F)

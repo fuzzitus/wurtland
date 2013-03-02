@@ -29,6 +29,14 @@ import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import android.content.res.AssetManager;
 import android.content.res.AssetFileDescriptor;
+import android.os.Vibrator;
+import android.content.Context;
+import android.location.LocationManager;
+import android.location.LocationListener;
+import android.location.Location;
+import android.app.AlertDialog;
+import android.widget.EditText;
+import android.content.DialogInterface;
 //${IMPORTS_END}
 
 class MonkeyConfig{
@@ -49,6 +57,7 @@ static final String MOJO_HICOLOR_TEXTURES="1";
 static final String MOJO_IMAGE_FILTERING_ENABLED="1";
 static final String MUSIC_FILES="*.wav|*.ogg|*.mp3|*.m4a";
 static final String OPENGL_GLES20_ENABLED="0";
+static final String REFLECTION_FILTER="diddy.exception";
 static final String SAFEMODE="0";
 static final String SOUND_FILES="*.wav|*.ogg|*.mp3|*.m4a";
 static final String TARGET="android";
@@ -2547,6 +2556,1450 @@ class BBFileStream extends BBStream{
 	RandomAccessFile _stream;
 	long _position,_length;
 }
+
+class diddy
+{
+	public static Vibrator vibrator;
+	public static LocationManager myManager;
+	public static String latitude = "";
+	public static String longitude = "";
+	public static boolean gpsStarted = false;
+	public static AlertDialog.Builder alert;
+	public static EditText input;
+	public static String inputString = "";
+	
+	static int systemMillisecs()
+	{
+		int ms = (int)System.currentTimeMillis();
+		return ms;
+	}
+	
+	static void flushKeys()
+	{
+		for( int i = 0; i < 512; ++i )
+		{
+			MonkeyGame.app.input.keyStates[i] = 0;
+		}
+	}
+	
+	static int getPixel(int x, int y)
+	{
+		ByteBuffer pixelBuffer = ByteBuffer.allocateDirect(4);
+		pixelBuffer.order(ByteOrder.LITTLE_ENDIAN); 
+		GLES11.glReadPixels((int)x, (int)MonkeyGame.app.graphics.height - y, 1, 1, GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, pixelBuffer);
+		int red = pixelBuffer.get(0) & 0xff;
+		int green = pixelBuffer.get(1) & 0xff;
+		int blue = pixelBuffer.get(2) & 0xff;
+		int alpha = pixelBuffer.get(3) & 0xff;
+		// returning ARGB
+		return (alpha<<24) | (red<<16) | (green<<8) |  blue;
+	}
+	
+	public static int getUpdateRate()
+	{
+		return MonkeyGame.app.updateRate;
+	}
+	
+	// empty function
+	static void showMouse()
+	{
+	}
+
+	// empty function
+	static void hideMouse()
+	{
+	}
+	static void setGraphics(int w, int h)
+	{
+	/*
+		For Android to set the graphics size, we need access to the surfaceholder
+		currently (V43) in Monkey we dont have access to it. To get access to you need to alter
+		the mojo.android.java:
+		
+			public static class MonkeyView extends GLSurfaceView{
+				private SurfaceHolder surfaceHolder;
+			
+				public MonkeyView( Context context ){
+					super( context );
+					setUpSurfaceHolder();
+				}
+				
+				public MonkeyView( Context context,AttributeSet attrs ){
+					super( context,attrs );
+					setUpSurfaceHolder();
+				}
+				
+				private void setUpSurfaceHolder()
+				{
+					surfaceHolder = getHolder();
+					surfaceHolder.addCallback(this);
+					surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_NORMAL);
+				}
+				
+				public SurfaceHolder getSurfaceHolder() {
+					return surfaceHolder;
+				}
+			
+		Once that change it in you can then use the following command in this file:
+	
+			MonkeyGame.view.getSurfaceHolder().setFixedSize(w, h);
+		
+	*/
+	}
+	// empty function
+	static void setMouse(int x, int y)
+	{
+	}
+	
+	static void showKeyboard()
+	{
+		android.view.inputmethod.InputMethodManager inputMgr = (android.view.inputmethod.InputMethodManager)MonkeyGame.activity.getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
+		inputMgr.toggleSoftInput(0, 0);
+	}
+	
+	static void showAlertDialog(String title, String message)
+	{
+		alert = new AlertDialog.Builder(MonkeyGame.activity);
+		alert.setTitle(title);
+		alert.setMessage(message);
+		// Set an EditText view to get user input 
+		input = new EditText(MonkeyGame.activity);
+		alert.setView(input);
+		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				inputString = input.getText().toString();
+			}
+		});
+		
+		alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() { 
+			public void onClick(DialogInterface dialog, int whichButton) {   
+				// Canceled.  
+			}
+		});
+		
+		alert.show();
+	}
+	
+	static String getInputString()
+	{
+		return inputString;
+	}
+	
+	static void launchBrowser(String address, String windowName) {
+		android.net.Uri uriUrl = android.net.Uri.parse(address);
+		android.content.Intent launchBrowserActivity = new android.content.Intent(android.content.Intent.ACTION_VIEW, uriUrl);
+		MonkeyGame.activity.startActivity(launchBrowserActivity);
+	}
+	
+	static void launchEmail(String email, String subject, String text)
+	{
+		android.content.Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);	
+		emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{email});
+		emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);  
+		emailIntent.setType("plain/text");  
+		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, text);  
+		MonkeyGame.activity.startActivity(emailIntent);
+	}
+
+	static String buildString(int[] arr, int offset, int length) {
+		if(offset<0 || length<=0 || offset+length > arr.length)
+			return "";
+		StringBuilder sb = new StringBuilder(length);
+		for(int i=offset;i<offset+length;i++) {
+			sb.append((char)arr[i]);
+		}
+		return sb.toString().intern();
+	}
+	
+	public static void startVibrate(int millisec)
+	{
+		try {
+			vibrator = (Vibrator)MonkeyGame.activity.getSystemService(Context.VIBRATOR_SERVICE);
+			if (vibrator!=null)
+				vibrator.vibrate(millisec);
+		} catch (java.lang.SecurityException e) {
+			android.util.Log.e("[Monkey]", "SecurityException: " + android.util.Log.getStackTraceString(e));
+		}
+	}
+  
+	public static void stopVibrate()
+	{
+		try {
+			if (vibrator!=null)
+				vibrator.cancel();
+		} catch (java.lang.SecurityException e) {
+			android.util.Log.e("[Monkey]", "SecurityException: " + android.util.Log.getStackTraceString(e));
+		}
+	}
+	
+	static int getDayOfMonth()
+	{
+		Calendar c = Calendar.getInstance();
+		return c.get(Calendar.DAY_OF_MONTH);
+	}
+	
+	static int getDayOfWeek()
+	{
+		Calendar c = Calendar.getInstance();
+		return c.get(Calendar.DAY_OF_WEEK);
+	}
+	
+	static int getMonth()
+	{
+		Calendar c = Calendar.getInstance();
+		return c.get(Calendar.MONTH)+1;
+	}
+	
+	static int getYear()
+	{
+		Calendar c = Calendar.getInstance();
+		return c.get(Calendar.YEAR);
+	}
+	
+	static int getHours()
+	{
+		Calendar c = Calendar.getInstance();
+		return c.get(Calendar.HOUR_OF_DAY);
+	}
+	
+	static int getMinutes()
+	{
+		Calendar c = Calendar.getInstance();
+		return c.get(Calendar.MINUTE);
+	}
+	
+	static int getSeconds()
+	{
+		Calendar c = Calendar.getInstance();
+		return c.get(Calendar.SECOND);
+	}
+	
+	static int getMilliSeconds()
+	{
+		Calendar c = Calendar.getInstance();
+		return c.get(Calendar.MILLISECOND);
+	}
+	
+	static void startGps()
+	{
+		try {
+			myManager = (LocationManager)MonkeyGame.activity.getSystemService(Context.LOCATION_SERVICE);
+
+			final LocationListener locationListener = new LocationListener() {
+
+				public void onLocationChanged(Location location) {
+					latitude = String.format("%.6f", location.getLatitude());
+					longitude = String.format("%.6f", location.getLongitude());
+				}
+				public void onStatusChanged(String provider, int status, Bundle extras) {}
+				public void onProviderEnabled(String provider) {}
+				public void onProviderDisabled(String provider) {}
+			};
+
+			MonkeyGame.activity.runOnUiThread(new Runnable() {
+				public void run() {
+					try {
+						if (!gpsStarted) {
+							myManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener); 
+							gpsStarted = true;
+						}
+					}catch (java.lang.SecurityException e) {
+						android.util.Log.e("[Monkey]", "SecurityException: " + android.util.Log.getStackTraceString(e));
+					}
+				}
+			});
+		} catch (java.lang.SecurityException e) {
+			android.util.Log.e("[Monkey]", "SecurityException: " + android.util.Log.getStackTraceString(e));
+		}
+	}
+	static String getLatitiude() {
+		return latitude;
+	}
+	static String getLongitude() {
+		return longitude;
+	}
+	
+	// empty function
+	static void mouseZInit()
+	{
+	}
+	
+	// empty function
+	static float mouseZ()
+	{
+		return 0;
+	}
+	
+	static int seekMusic(int timeMillis)
+	{
+		android.media.MediaPlayer mp = MonkeyGame.app.audio.music;
+		if(mp!=null)
+		{
+			mp.seekTo(timeMillis);
+		}
+		// TODO: check it worked
+		return 1;
+	}
+}
+class bb_exception_DiddyException extends ThrowableObject{
+	String f_message="";
+	ThrowableObject f_cause=null;
+	String f_type="";
+	String f_fullType="";
+	public String m_Message(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<15>";
+		bb_std_lang.popErr();
+		return f_message;
+	}
+	public void m_Message2(String t_message){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<19>";
+		this.f_message=t_message;
+		bb_std_lang.popErr();
+	}
+	public ThrowableObject m_Cause(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<23>";
+		bb_std_lang.popErr();
+		return f_cause;
+	}
+	public void m_Cause2(ThrowableObject t_cause){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<27>";
+		if(t_cause==(this)){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<27>";
+			t_cause=null;
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<28>";
+		this.f_cause=t_cause;
+		bb_std_lang.popErr();
+	}
+	public String m_Type(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<32>";
+		bb_std_lang.popErr();
+		return f_type;
+	}
+	public String m_FullType(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<36>";
+		bb_std_lang.popErr();
+		return f_fullType;
+	}
+	public String m_ToString(boolean t_recurse){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<56>";
+		String t_rv=f_type+": "+f_message;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<57>";
+		if(t_recurse){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<58>";
+			int t_depth=10;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<59>";
+			ThrowableObject t_current=f_cause;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<60>";
+			while(((t_current)!=null) && t_depth>0){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<61>";
+				ThrowableObject t_=t_current;
+				if((t_ instanceof bb_exception_DiddyException ? (bb_exception_DiddyException)t_ : null)!=null){
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<62>";
+					ThrowableObject t_2=t_current;
+					t_rv=t_rv+("\nCaused by "+f_type+": "+(t_2 instanceof bb_exception_DiddyException ? (bb_exception_DiddyException)t_2 : null).f_message);
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<63>";
+					ThrowableObject t_3=t_current;
+					t_current=(t_3 instanceof bb_exception_DiddyException ? (bb_exception_DiddyException)t_3 : null).f_cause;
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<64>";
+					t_depth-=1;
+				}else{
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<66>";
+					t_rv=t_rv+"\nCaused by a non-Diddy exception.";
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<67>";
+					t_current=null;
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<71>";
+		bb_std_lang.popErr();
+		return t_rv;
+	}
+	public bb_exception_DiddyException g_new(String t_message,ThrowableObject t_cause){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<40>";
+		this.f_message=t_message;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<41>";
+		this.f_cause=t_cause;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<42>";
+		bb_reflection_ClassInfo t_ci=bb_reflection.bb_reflection_GetClass2(this);
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<43>";
+		if((t_ci)!=null){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<44>";
+			this.f_fullType=t_ci.m_Name();
+		}else{
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<46>";
+			this.f_fullType="diddy.exception.DiddyException";
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<48>";
+		if(this.f_fullType.indexOf(".")!=-1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<49>";
+			this.f_type=bb_std_lang.slice(this.f_fullType,this.f_fullType.lastIndexOf(".")+1);
+		}else{
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<51>";
+			this.f_type=this.f_fullType;
+		}
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_reflection_ClassInfo extends Object{
+	String f__name="";
+	public String m_Name(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<222>";
+		bb_std_lang.popErr();
+		return f__name;
+	}
+	int f__attrs=0;
+	bb_reflection_ClassInfo f__sclass=null;
+	bb_reflection_ClassInfo[] f__ifaces=new bb_reflection_ClassInfo[0];
+	public bb_reflection_ClassInfo g_new(String t_name,int t_attrs,bb_reflection_ClassInfo t_sclass,bb_reflection_ClassInfo[] t_ifaces){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<215>";
+		f__name=t_name;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<216>";
+		f__attrs=t_attrs;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<217>";
+		f__sclass=t_sclass;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<218>";
+		f__ifaces=t_ifaces;
+		bb_std_lang.popErr();
+		return this;
+	}
+	public bb_reflection_ClassInfo g_new2(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<212>";
+		bb_std_lang.popErr();
+		return this;
+	}
+	public int m_Init(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+		return 0;
+	}
+	bb_reflection_ConstInfo[] f__rconsts=new bb_reflection_ConstInfo[0];
+	bb_reflection_ConstInfo[] f__consts=new bb_reflection_ConstInfo[0];
+	bb_reflection_FieldInfo[] f__rfields=new bb_reflection_FieldInfo[0];
+	bb_reflection_FieldInfo[] f__fields=new bb_reflection_FieldInfo[0];
+	bb_reflection_GlobalInfo[] f__rglobals=new bb_reflection_GlobalInfo[0];
+	bb_reflection_GlobalInfo[] f__globals=new bb_reflection_GlobalInfo[0];
+	bb_reflection_MethodInfo[] f__rmethods=new bb_reflection_MethodInfo[0];
+	bb_reflection_MethodInfo[] f__methods=new bb_reflection_MethodInfo[0];
+	bb_reflection_FunctionInfo[] f__rfunctions=new bb_reflection_FunctionInfo[0];
+	bb_reflection_FunctionInfo[] f__functions=new bb_reflection_FunctionInfo[0];
+	public int m_InitR(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<421>";
+		if((f__sclass)!=null){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<422>";
+			bb_stack_Stack t_consts=(new bb_stack_Stack()).g_new2(f__sclass.f__rconsts);
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<423>";
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<423>";
+			bb_reflection_ConstInfo[] t_=f__consts;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<423>";
+			int t_2=0;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<423>";
+			while(t_2<bb_std_lang.arrayLength(t_)){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<423>";
+				bb_reflection_ConstInfo t_t=t_[t_2];
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<423>";
+				t_2=t_2+1;
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<424>";
+				t_consts.m_Push(t_t);
+			}
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<426>";
+			f__rconsts=t_consts.m_ToArray();
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<427>";
+			bb_stack_Stack2 t_fields=(new bb_stack_Stack2()).g_new2(f__sclass.f__rfields);
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<428>";
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<428>";
+			bb_reflection_FieldInfo[] t_3=f__fields;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<428>";
+			int t_4=0;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<428>";
+			while(t_4<bb_std_lang.arrayLength(t_3)){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<428>";
+				bb_reflection_FieldInfo t_t2=t_3[t_4];
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<428>";
+				t_4=t_4+1;
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<429>";
+				t_fields.m_Push4(t_t2);
+			}
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<431>";
+			f__rfields=t_fields.m_ToArray();
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<432>";
+			bb_stack_Stack3 t_globals=(new bb_stack_Stack3()).g_new2(f__sclass.f__rglobals);
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<433>";
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<433>";
+			bb_reflection_GlobalInfo[] t_5=f__globals;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<433>";
+			int t_6=0;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<433>";
+			while(t_6<bb_std_lang.arrayLength(t_5)){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<433>";
+				bb_reflection_GlobalInfo t_t3=t_5[t_6];
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<433>";
+				t_6=t_6+1;
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<434>";
+				t_globals.m_Push7(t_t3);
+			}
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<436>";
+			f__rglobals=t_globals.m_ToArray();
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<437>";
+			bb_stack_Stack4 t_methods=(new bb_stack_Stack4()).g_new2(f__sclass.f__rmethods);
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<438>";
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<438>";
+			bb_reflection_MethodInfo[] t_7=f__methods;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<438>";
+			int t_8=0;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<438>";
+			while(t_8<bb_std_lang.arrayLength(t_7)){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<438>";
+				bb_reflection_MethodInfo t_t4=t_7[t_8];
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<438>";
+				t_8=t_8+1;
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<439>";
+				t_methods.m_Push10(t_t4);
+			}
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<441>";
+			f__rmethods=t_methods.m_ToArray();
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<442>";
+			bb_stack_Stack5 t_functions=(new bb_stack_Stack5()).g_new2(f__sclass.f__rfunctions);
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<443>";
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<443>";
+			bb_reflection_FunctionInfo[] t_9=f__functions;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<443>";
+			int t_10=0;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<443>";
+			while(t_10<bb_std_lang.arrayLength(t_9)){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<443>";
+				bb_reflection_FunctionInfo t_t5=t_9[t_10];
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<443>";
+				t_10=t_10+1;
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<444>";
+				t_functions.m_Push13(t_t5);
+			}
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<446>";
+			f__rfunctions=t_functions.m_ToArray();
+		}else{
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<448>";
+			f__rconsts=f__consts;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<449>";
+			f__rfields=f__fields;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<450>";
+			f__rglobals=f__globals;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<451>";
+			f__rmethods=f__methods;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<452>";
+			f__rfunctions=f__functions;
+		}
+		bb_std_lang.popErr();
+		return 0;
+	}
+	bb_reflection_FunctionInfo[] f__ctors=new bb_reflection_FunctionInfo[0];
+}
+abstract class bb_map_Map extends Object{
+	public bb_map_Map g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<7>";
+		bb_std_lang.popErr();
+		return this;
+	}
+	bb_map_Node f_root=null;
+	abstract public int m_Compare(String t_lhs,String t_rhs);
+	public int m_RotateLeft(bb_map_Node t_node){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<251>";
+		bb_map_Node t_child=t_node.f_right;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<252>";
+		t_node.f_right=t_child.f_left;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<253>";
+		if((t_child.f_left)!=null){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<254>";
+			t_child.f_left.f_parent=t_node;
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<256>";
+		t_child.f_parent=t_node.f_parent;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<257>";
+		if((t_node.f_parent)!=null){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<258>";
+			if(t_node==t_node.f_parent.f_left){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<259>";
+				t_node.f_parent.f_left=t_child;
+			}else{
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<261>";
+				t_node.f_parent.f_right=t_child;
+			}
+		}else{
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<264>";
+			f_root=t_child;
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<266>";
+		t_child.f_left=t_node;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<267>";
+		t_node.f_parent=t_child;
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public int m_RotateRight(bb_map_Node t_node){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<271>";
+		bb_map_Node t_child=t_node.f_left;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<272>";
+		t_node.f_left=t_child.f_right;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<273>";
+		if((t_child.f_right)!=null){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<274>";
+			t_child.f_right.f_parent=t_node;
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<276>";
+		t_child.f_parent=t_node.f_parent;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<277>";
+		if((t_node.f_parent)!=null){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<278>";
+			if(t_node==t_node.f_parent.f_right){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<279>";
+				t_node.f_parent.f_right=t_child;
+			}else{
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<281>";
+				t_node.f_parent.f_left=t_child;
+			}
+		}else{
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<284>";
+			f_root=t_child;
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<286>";
+		t_child.f_right=t_node;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<287>";
+		t_node.f_parent=t_child;
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public int m_InsertFixup(bb_map_Node t_node){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<212>";
+		while(((t_node.f_parent)!=null) && t_node.f_parent.f_color==-1 && ((t_node.f_parent.f_parent)!=null)){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<213>";
+			if(t_node.f_parent==t_node.f_parent.f_parent.f_left){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<214>";
+				bb_map_Node t_uncle=t_node.f_parent.f_parent.f_right;
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<215>";
+				if(((t_uncle)!=null) && t_uncle.f_color==-1){
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<216>";
+					t_node.f_parent.f_color=1;
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<217>";
+					t_uncle.f_color=1;
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<218>";
+					t_uncle.f_parent.f_color=-1;
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<219>";
+					t_node=t_uncle.f_parent;
+				}else{
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<221>";
+					if(t_node==t_node.f_parent.f_right){
+						bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<222>";
+						t_node=t_node.f_parent;
+						bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<223>";
+						m_RotateLeft(t_node);
+					}
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<225>";
+					t_node.f_parent.f_color=1;
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<226>";
+					t_node.f_parent.f_parent.f_color=-1;
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<227>";
+					m_RotateRight(t_node.f_parent.f_parent);
+				}
+			}else{
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<230>";
+				bb_map_Node t_uncle2=t_node.f_parent.f_parent.f_left;
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<231>";
+				if(((t_uncle2)!=null) && t_uncle2.f_color==-1){
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<232>";
+					t_node.f_parent.f_color=1;
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<233>";
+					t_uncle2.f_color=1;
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<234>";
+					t_uncle2.f_parent.f_color=-1;
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<235>";
+					t_node=t_uncle2.f_parent;
+				}else{
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<237>";
+					if(t_node==t_node.f_parent.f_left){
+						bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<238>";
+						t_node=t_node.f_parent;
+						bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<239>";
+						m_RotateRight(t_node);
+					}
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<241>";
+					t_node.f_parent.f_color=1;
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<242>";
+					t_node.f_parent.f_parent.f_color=-1;
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<243>";
+					m_RotateLeft(t_node.f_parent.f_parent);
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<247>";
+		f_root.f_color=1;
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public boolean m_Set(String t_key,bb_reflection_ClassInfo t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<29>";
+		bb_map_Node t_node=f_root;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<30>";
+		bb_map_Node t_parent=null;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<30>";
+		int t_cmp=0;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<32>";
+		while((t_node)!=null){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<33>";
+			t_parent=t_node;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<34>";
+			t_cmp=m_Compare(t_key,t_node.f_key);
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<35>";
+			if(t_cmp>0){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<36>";
+				t_node=t_node.f_right;
+			}else{
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<37>";
+				if(t_cmp<0){
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<38>";
+					t_node=t_node.f_left;
+				}else{
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<40>";
+					t_node.f_value=t_value;
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<41>";
+					bb_std_lang.popErr();
+					return false;
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<45>";
+		t_node=(new bb_map_Node()).g_new(t_key,t_value,-1,t_parent);
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<47>";
+		if((t_parent)!=null){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<48>";
+			if(t_cmp>0){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<49>";
+				t_parent.f_right=t_node;
+			}else{
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<51>";
+				t_parent.f_left=t_node;
+			}
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<53>";
+			m_InsertFixup(t_node);
+		}else{
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<55>";
+			f_root=t_node;
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<57>";
+		bb_std_lang.popErr();
+		return true;
+	}
+	public bb_map_Node m_FindNode(String t_key){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<157>";
+		bb_map_Node t_node=f_root;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<159>";
+		while((t_node)!=null){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<160>";
+			int t_cmp=m_Compare(t_key,t_node.f_key);
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<161>";
+			if(t_cmp>0){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<162>";
+				t_node=t_node.f_right;
+			}else{
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<163>";
+				if(t_cmp<0){
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<164>";
+					t_node=t_node.f_left;
+				}else{
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<166>";
+					bb_std_lang.popErr();
+					return t_node;
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<169>";
+		bb_std_lang.popErr();
+		return t_node;
+	}
+	public boolean m_Contains(String t_key){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<25>";
+		boolean t_=m_FindNode(t_key)!=null;
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public bb_reflection_ClassInfo m_Get(String t_key){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<101>";
+		bb_map_Node t_node=m_FindNode(t_key);
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<102>";
+		if((t_node)!=null){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<102>";
+			bb_std_lang.popErr();
+			return t_node.f_value;
+		}
+		bb_std_lang.popErr();
+		return null;
+	}
+}
+class bb_map_StringMap extends bb_map_Map{
+	public bb_map_StringMap g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<551>";
+		super.g_new();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<551>";
+		bb_std_lang.popErr();
+		return this;
+	}
+	public int m_Compare(String t_lhs,String t_rhs){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<554>";
+		int t_=t_lhs.compareTo(t_rhs);
+		bb_std_lang.popErr();
+		return t_;
+	}
+}
+class bb_map_Node extends Object{
+	String f_key="";
+	bb_map_Node f_right=null;
+	bb_map_Node f_left=null;
+	bb_reflection_ClassInfo f_value=null;
+	int f_color=0;
+	bb_map_Node f_parent=null;
+	public bb_map_Node g_new(String t_key,bb_reflection_ClassInfo t_value,int t_color,bb_map_Node t_parent){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<364>";
+		this.f_key=t_key;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<365>";
+		this.f_value=t_value;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<366>";
+		this.f_color=t_color;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<367>";
+		this.f_parent=t_parent;
+		bb_std_lang.popErr();
+		return this;
+	}
+	public bb_map_Node g_new2(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<361>";
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+abstract class bb_reflection__GetClass extends Object{
+	abstract public bb_reflection_ClassInfo m_GetClass(Object t_obj);
+	public bb_reflection__GetClass g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<608>";
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_exception_AssertException extends bb_exception_DiddyException{
+	public bb_exception_AssertException g_new(String t_message,ThrowableObject t_cause){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<79>";
+		super.g_new(t_message,t_cause);
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_exception_ConcurrentModificationException extends bb_exception_DiddyException{
+	public bb_exception_ConcurrentModificationException g_new(String t_message,ThrowableObject t_cause){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<85>";
+		super.g_new(t_message,t_cause);
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_exception_IndexOutOfBoundsException extends bb_exception_DiddyException{
+	public bb_exception_IndexOutOfBoundsException g_new(String t_message,ThrowableObject t_cause){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<91>";
+		super.g_new(t_message,t_cause);
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_exception_IllegalArgumentException extends bb_exception_DiddyException{
+	public bb_exception_IllegalArgumentException g_new(String t_message,ThrowableObject t_cause){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<97>";
+		super.g_new(t_message,t_cause);
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_exception_XMLParseException extends bb_exception_DiddyException{
+	public bb_exception_XMLParseException g_new(String t_message,ThrowableObject t_cause){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<103>";
+		super.g_new(t_message,t_cause);
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_boxes_BoolObject extends Object{
+	boolean f_value=false;
+	public bb_boxes_BoolObject g_new(boolean t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<11>";
+		this.f_value=t_value;
+		bb_std_lang.popErr();
+		return this;
+	}
+	public boolean m_ToBool(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<15>";
+		bb_std_lang.popErr();
+		return f_value;
+	}
+	public boolean m_Equals(bb_boxes_BoolObject t_box){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<19>";
+		boolean t_=f_value==t_box.f_value;
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public bb_boxes_BoolObject g_new2(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<7>";
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_boxes_IntObject extends Object{
+	int f_value=0;
+	public bb_boxes_IntObject g_new(int t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<27>";
+		this.f_value=t_value;
+		bb_std_lang.popErr();
+		return this;
+	}
+	public bb_boxes_IntObject g_new2(float t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<31>";
+		this.f_value=(int)(t_value);
+		bb_std_lang.popErr();
+		return this;
+	}
+	public int m_ToInt(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<35>";
+		bb_std_lang.popErr();
+		return f_value;
+	}
+	public float m_ToFloat(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<39>";
+		float t_=(float)(f_value);
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public String m_ToString2(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<43>";
+		String t_=String.valueOf(f_value);
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public boolean m_Equals2(bb_boxes_IntObject t_box){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<47>";
+		boolean t_=f_value==t_box.f_value;
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public int m_Compare2(bb_boxes_IntObject t_box){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<51>";
+		int t_=f_value-t_box.f_value;
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public bb_boxes_IntObject g_new3(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<23>";
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_boxes_FloatObject extends Object{
+	float f_value=.0f;
+	public bb_boxes_FloatObject g_new(int t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<59>";
+		this.f_value=(float)(t_value);
+		bb_std_lang.popErr();
+		return this;
+	}
+	public bb_boxes_FloatObject g_new2(float t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<63>";
+		this.f_value=t_value;
+		bb_std_lang.popErr();
+		return this;
+	}
+	public int m_ToInt(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<67>";
+		int t_=(int)(f_value);
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public float m_ToFloat(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<71>";
+		bb_std_lang.popErr();
+		return f_value;
+	}
+	public String m_ToString2(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<75>";
+		String t_=String.valueOf(f_value);
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public boolean m_Equals3(bb_boxes_FloatObject t_box){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<79>";
+		boolean t_=f_value==t_box.f_value;
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public int m_Compare3(bb_boxes_FloatObject t_box){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<83>";
+		if(f_value<t_box.f_value){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<83>";
+			bb_std_lang.popErr();
+			return -1;
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<84>";
+		int t_=((f_value>t_box.f_value)?1:0);
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public bb_boxes_FloatObject g_new3(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<55>";
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_boxes_StringObject extends Object{
+	String f_value="";
+	public bb_boxes_StringObject g_new(int t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<92>";
+		this.f_value=String.valueOf(t_value);
+		bb_std_lang.popErr();
+		return this;
+	}
+	public bb_boxes_StringObject g_new2(float t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<96>";
+		this.f_value=String.valueOf(t_value);
+		bb_std_lang.popErr();
+		return this;
+	}
+	public bb_boxes_StringObject g_new3(String t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<100>";
+		this.f_value=t_value;
+		bb_std_lang.popErr();
+		return this;
+	}
+	public String m_ToString2(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<104>";
+		bb_std_lang.popErr();
+		return f_value;
+	}
+	public boolean m_Equals4(bb_boxes_StringObject t_box){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<108>";
+		boolean t_=(f_value.compareTo(t_box.f_value)==0);
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public int m_Compare4(bb_boxes_StringObject t_box){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<112>";
+		int t_=f_value.compareTo(t_box.f_value);
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public bb_boxes_StringObject g_new4(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<88>";
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_reflection_R16 extends bb_reflection_ClassInfo{
+	public bb_reflection_R16 g_new(){
+		super.g_new("monkey.lang.Object",1,null,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+	public int m_Init(){
+		m_InitR();
+		return 0;
+	}
+}
+class bb_reflection_R17 extends bb_reflection_ClassInfo{
+	public bb_reflection_R17 g_new(){
+		super.g_new("monkey.lang.Throwable",33,bb_reflection.bb_reflection__classes[0],new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+	public int m_Init(){
+		m_InitR();
+		return 0;
+	}
+}
+class bb_reflection_R18 extends bb_reflection_ClassInfo{
+	public bb_reflection_R18 g_new(){
+		super.g_new("diddy.exception.DiddyException",32,bb_reflection.bb_reflection__classes[1],new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+	public int m_Init(){
+		f__fields=new bb_reflection_FieldInfo[4];
+		f__fields[0]=((new bb_reflection_R19()).g_new());
+		f__fields[1]=((new bb_reflection_R20()).g_new());
+		f__fields[2]=((new bb_reflection_R21()).g_new());
+		f__fields[3]=((new bb_reflection_R22()).g_new());
+		f__methods=new bb_reflection_MethodInfo[7];
+		f__methods[0]=((new bb_reflection_R23()).g_new());
+		f__methods[1]=((new bb_reflection_R24()).g_new());
+		f__methods[2]=((new bb_reflection_R25()).g_new());
+		f__methods[3]=((new bb_reflection_R26()).g_new());
+		f__methods[4]=((new bb_reflection_R27()).g_new());
+		f__methods[5]=((new bb_reflection_R28()).g_new());
+		f__methods[6]=((new bb_reflection_R30()).g_new());
+		f__ctors=new bb_reflection_FunctionInfo[1];
+		f__ctors[0]=((new bb_reflection_R29()).g_new());
+		m_InitR();
+		return 0;
+	}
+}
+class bb_reflection_R31 extends bb_reflection_ClassInfo{
+	public bb_reflection_R31 g_new(){
+		super.g_new("diddy.exception.AssertException",32,bb_reflection.bb_reflection__classes[2],new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+	public int m_Init(){
+		f__ctors=new bb_reflection_FunctionInfo[1];
+		f__ctors[0]=((new bb_reflection_R32()).g_new());
+		m_InitR();
+		return 0;
+	}
+}
+class bb_reflection_R33 extends bb_reflection_ClassInfo{
+	public bb_reflection_R33 g_new(){
+		super.g_new("diddy.exception.ConcurrentModificationException",32,bb_reflection.bb_reflection__classes[2],new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+	public int m_Init(){
+		f__ctors=new bb_reflection_FunctionInfo[1];
+		f__ctors[0]=((new bb_reflection_R34()).g_new());
+		m_InitR();
+		return 0;
+	}
+}
+class bb_reflection_R35 extends bb_reflection_ClassInfo{
+	public bb_reflection_R35 g_new(){
+		super.g_new("diddy.exception.IndexOutOfBoundsException",32,bb_reflection.bb_reflection__classes[2],new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+	public int m_Init(){
+		f__ctors=new bb_reflection_FunctionInfo[1];
+		f__ctors[0]=((new bb_reflection_R36()).g_new());
+		m_InitR();
+		return 0;
+	}
+}
+class bb_reflection_R37 extends bb_reflection_ClassInfo{
+	public bb_reflection_R37 g_new(){
+		super.g_new("diddy.exception.IllegalArgumentException",32,bb_reflection.bb_reflection__classes[2],new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+	public int m_Init(){
+		f__ctors=new bb_reflection_FunctionInfo[1];
+		f__ctors[0]=((new bb_reflection_R38()).g_new());
+		m_InitR();
+		return 0;
+	}
+}
+class bb_reflection_R39 extends bb_reflection_ClassInfo{
+	public bb_reflection_R39 g_new(){
+		super.g_new("diddy.exception.XMLParseException",32,bb_reflection.bb_reflection__classes[2],new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+	public int m_Init(){
+		f__ctors=new bb_reflection_FunctionInfo[1];
+		f__ctors[0]=((new bb_reflection_R40()).g_new());
+		m_InitR();
+		return 0;
+	}
+}
+class bb_reflection_R41 extends bb_reflection_ClassInfo{
+	public bb_reflection_R41 g_new(){
+		super.g_new("monkey.boxes.BoolObject",0,bb_reflection.bb_reflection__classes[0],new bb_reflection_ClassInfo[0]);
+		bb_reflection.bb_reflection__boolClass=(this);
+		return this;
+	}
+	public int m_Init(){
+		f__fields=new bb_reflection_FieldInfo[1];
+		f__fields[0]=((new bb_reflection_R42()).g_new());
+		f__methods=new bb_reflection_MethodInfo[2];
+		f__methods[0]=((new bb_reflection_R44()).g_new());
+		f__methods[1]=((new bb_reflection_R45()).g_new());
+		f__ctors=new bb_reflection_FunctionInfo[2];
+		f__ctors[0]=((new bb_reflection_R43()).g_new());
+		f__ctors[1]=((new bb_reflection_R46()).g_new());
+		m_InitR();
+		return 0;
+	}
+}
+class bb_reflection_R47 extends bb_reflection_ClassInfo{
+	public bb_reflection_R47 g_new(){
+		super.g_new("monkey.boxes.IntObject",0,bb_reflection.bb_reflection__classes[0],new bb_reflection_ClassInfo[0]);
+		bb_reflection.bb_reflection__intClass=(this);
+		return this;
+	}
+	public int m_Init(){
+		f__fields=new bb_reflection_FieldInfo[1];
+		f__fields[0]=((new bb_reflection_R48()).g_new());
+		f__methods=new bb_reflection_MethodInfo[5];
+		f__methods[0]=((new bb_reflection_R51()).g_new());
+		f__methods[1]=((new bb_reflection_R52()).g_new());
+		f__methods[2]=((new bb_reflection_R53()).g_new());
+		f__methods[3]=((new bb_reflection_R54()).g_new());
+		f__methods[4]=((new bb_reflection_R55()).g_new());
+		f__ctors=new bb_reflection_FunctionInfo[3];
+		f__ctors[0]=((new bb_reflection_R49()).g_new());
+		f__ctors[1]=((new bb_reflection_R50()).g_new());
+		f__ctors[2]=((new bb_reflection_R56()).g_new());
+		m_InitR();
+		return 0;
+	}
+}
+class bb_reflection_R57 extends bb_reflection_ClassInfo{
+	public bb_reflection_R57 g_new(){
+		super.g_new("monkey.boxes.FloatObject",0,bb_reflection.bb_reflection__classes[0],new bb_reflection_ClassInfo[0]);
+		bb_reflection.bb_reflection__floatClass=(this);
+		return this;
+	}
+	public int m_Init(){
+		f__fields=new bb_reflection_FieldInfo[1];
+		f__fields[0]=((new bb_reflection_R58()).g_new());
+		f__methods=new bb_reflection_MethodInfo[5];
+		f__methods[0]=((new bb_reflection_R61()).g_new());
+		f__methods[1]=((new bb_reflection_R62()).g_new());
+		f__methods[2]=((new bb_reflection_R63()).g_new());
+		f__methods[3]=((new bb_reflection_R64()).g_new());
+		f__methods[4]=((new bb_reflection_R65()).g_new());
+		f__ctors=new bb_reflection_FunctionInfo[3];
+		f__ctors[0]=((new bb_reflection_R59()).g_new());
+		f__ctors[1]=((new bb_reflection_R60()).g_new());
+		f__ctors[2]=((new bb_reflection_R66()).g_new());
+		m_InitR();
+		return 0;
+	}
+}
+class bb_reflection_R67 extends bb_reflection_ClassInfo{
+	public bb_reflection_R67 g_new(){
+		super.g_new("monkey.boxes.StringObject",0,bb_reflection.bb_reflection__classes[0],new bb_reflection_ClassInfo[0]);
+		bb_reflection.bb_reflection__stringClass=(this);
+		return this;
+	}
+	public int m_Init(){
+		f__fields=new bb_reflection_FieldInfo[1];
+		f__fields[0]=((new bb_reflection_R68()).g_new());
+		f__methods=new bb_reflection_MethodInfo[3];
+		f__methods[0]=((new bb_reflection_R72()).g_new());
+		f__methods[1]=((new bb_reflection_R73()).g_new());
+		f__methods[2]=((new bb_reflection_R74()).g_new());
+		f__ctors=new bb_reflection_FunctionInfo[4];
+		f__ctors[0]=((new bb_reflection_R69()).g_new());
+		f__ctors[1]=((new bb_reflection_R70()).g_new());
+		f__ctors[2]=((new bb_reflection_R71()).g_new());
+		f__ctors[3]=((new bb_reflection_R75()).g_new());
+		m_InitR();
+		return 0;
+	}
+}
+abstract class bb_reflection_FunctionInfo extends Object{
+	String f__name="";
+	int f__attrs=0;
+	bb_reflection_ClassInfo f__retType=null;
+	bb_reflection_ClassInfo[] f__argTypes=new bb_reflection_ClassInfo[0];
+	public bb_reflection_FunctionInfo g_new(String t_name,int t_attrs,bb_reflection_ClassInfo t_retType,bb_reflection_ClassInfo[] t_argTypes){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<179>";
+		f__name=t_name;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<180>";
+		f__attrs=t_attrs;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<181>";
+		f__retType=t_retType;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<182>";
+		f__argTypes=t_argTypes;
+		bb_std_lang.popErr();
+		return this;
+	}
+	public bb_reflection_FunctionInfo g_new2(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<176>";
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_reflection_R4 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R4 g_new(){
+		super.g_new("monkey.boxes.BoxBool",0,bb_reflection.bb_reflection__classes[0],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__boolClass});
+		return this;
+	}
+}
+class bb_reflection_R5 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R5 g_new(){
+		super.g_new("monkey.boxes.BoxInt",0,bb_reflection.bb_reflection__classes[0],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__intClass});
+		return this;
+	}
+}
+class bb_reflection_R6 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R6 g_new(){
+		super.g_new("monkey.boxes.BoxFloat",0,bb_reflection.bb_reflection__classes[0],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__floatClass});
+		return this;
+	}
+}
+class bb_reflection_R7 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R7 g_new(){
+		super.g_new("monkey.boxes.BoxString",0,bb_reflection.bb_reflection__classes[0],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__stringClass});
+		return this;
+	}
+}
+class bb_reflection_R8 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R8 g_new(){
+		super.g_new("monkey.boxes.UnboxBool",0,bb_reflection.bb_reflection__boolClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__classes[0]});
+		return this;
+	}
+}
+class bb_reflection_R9 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R9 g_new(){
+		super.g_new("monkey.boxes.UnboxInt",0,bb_reflection.bb_reflection__intClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__classes[0]});
+		return this;
+	}
+}
+class bb_reflection_R10 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R10 g_new(){
+		super.g_new("monkey.boxes.UnboxFloat",0,bb_reflection.bb_reflection__floatClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__classes[0]});
+		return this;
+	}
+}
+class bb_reflection_R11 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R11 g_new(){
+		super.g_new("monkey.boxes.UnboxString",0,bb_reflection.bb_reflection__stringClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__classes[0]});
+		return this;
+	}
+}
+class bb_reflection_R12 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R12 g_new(){
+		super.g_new("monkey.lang.Print",1,bb_reflection.bb_reflection__intClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__stringClass});
+		return this;
+	}
+}
+class bb_reflection_R13 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R13 g_new(){
+		super.g_new("monkey.lang.Error",1,bb_reflection.bb_reflection__intClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__stringClass});
+		return this;
+	}
+}
+class bb_reflection_R14 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R14 g_new(){
+		super.g_new("monkey.lang.DebugLog",1,bb_reflection.bb_reflection__intClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__stringClass});
+		return this;
+	}
+}
+class bb_reflection_R15 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R15 g_new(){
+		super.g_new("monkey.lang.DebugStop",1,bb_reflection.bb_reflection__intClass,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection___GetClass extends bb_reflection__GetClass{
+	public bb_reflection___GetClass g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="$SOURCE<745>";
+		super.g_new();
+		bb_std_lang.errInfo="$SOURCE<745>";
+		bb_std_lang.popErr();
+		return this;
+	}
+	public bb_reflection_ClassInfo m_GetClass(Object t_o){
+		Object t_=t_o;
+		if((t_ instanceof bb_boxes_StringObject ? (bb_boxes_StringObject)t_ : null)!=null){
+			return bb_reflection.bb_reflection__classes[11];
+		}
+		Object t_2=t_o;
+		if((t_2 instanceof bb_boxes_FloatObject ? (bb_boxes_FloatObject)t_2 : null)!=null){
+			return bb_reflection.bb_reflection__classes[10];
+		}
+		Object t_3=t_o;
+		if((t_3 instanceof bb_boxes_IntObject ? (bb_boxes_IntObject)t_3 : null)!=null){
+			return bb_reflection.bb_reflection__classes[9];
+		}
+		Object t_4=t_o;
+		if((t_4 instanceof bb_boxes_BoolObject ? (bb_boxes_BoolObject)t_4 : null)!=null){
+			return bb_reflection.bb_reflection__classes[8];
+		}
+		Object t_5=t_o;
+		if((t_5 instanceof bb_exception_XMLParseException ? (bb_exception_XMLParseException)t_5 : null)!=null){
+			return bb_reflection.bb_reflection__classes[7];
+		}
+		Object t_6=t_o;
+		if((t_6 instanceof bb_exception_IllegalArgumentException ? (bb_exception_IllegalArgumentException)t_6 : null)!=null){
+			return bb_reflection.bb_reflection__classes[6];
+		}
+		Object t_7=t_o;
+		if((t_7 instanceof bb_exception_IndexOutOfBoundsException ? (bb_exception_IndexOutOfBoundsException)t_7 : null)!=null){
+			return bb_reflection.bb_reflection__classes[5];
+		}
+		Object t_8=t_o;
+		if((t_8 instanceof bb_exception_ConcurrentModificationException ? (bb_exception_ConcurrentModificationException)t_8 : null)!=null){
+			return bb_reflection.bb_reflection__classes[4];
+		}
+		Object t_9=t_o;
+		if((t_9 instanceof bb_exception_AssertException ? (bb_exception_AssertException)t_9 : null)!=null){
+			return bb_reflection.bb_reflection__classes[3];
+		}
+		Object t_10=t_o;
+		if((t_10 instanceof bb_exception_DiddyException ? (bb_exception_DiddyException)t_10 : null)!=null){
+			return bb_reflection.bb_reflection__classes[2];
+		}
+		Object t_11=t_o;
+		if((t_11 instanceof ThrowableObject ? (ThrowableObject)t_11 : null)!=null){
+			return bb_reflection.bb_reflection__classes[1];
+		}
+		if(t_o!=null){
+			return bb_reflection.bb_reflection__classes[0];
+		}
+		return bb_reflection.bb_reflection__unknownClass;
+	}
+}
 class bb_app_App extends Object{
 	public bb_app_App g_new(){
 		bb_std_lang.pushErr();
@@ -2586,7 +4039,26 @@ class bb_app_App extends Object{
 		return 0;
 	}
 }
-class bb__Beacon extends bb_app_App{
+class bb_bapp_BApp extends bb_app_App{
+	public bb_bapp_BApp g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/bapp.monkey<3>";
+		super.g_new();
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/bapp.monkey<3>";
+		bb_std_lang.popErr();
+		return this;
+	}
+	bb_challengergui_CHGUI f_Games=null;
+	bb_challengergui_CHGUI f_BeaconList=null;
+	bb_challengergui_CHGUI f_Title=null;
+	bb_challengergui_CHGUI f_ServerLabel=null;
+	bb_challengergui_CHGUI f_PwLabel=null;
+	bb_challengergui_CHGUI f_Pw=null;
+	bb_challengergui_CHGUI f_On_Off=null;
+	boolean f_isOn=false;
+	String f_LastGame="";
+}
+class bb__Beacon extends bb_bapp_BApp{
 	public bb__Beacon g_new(){
 		bb_std_lang.pushErr();
 		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<3>";
@@ -2597,87 +4069,58 @@ class bb__Beacon extends bb_app_App{
 	}
 	public int m_OnCreate(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<20>";
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<6>";
 		bb_challengergui.bb_challengergui_CHGUI_MobileMode=1;
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<21>";
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<7>";
 		bb_app.bb_app_SetUpdateRate(30);
 		bb_std_lang.popErr();
 		return 0;
 	}
-	bb_tcpstream_TcpStream f_Server=null;
-	bb_challengergui_CHGUI f_Games=null;
-	bb_challengergui_CHGUI f_Title=null;
-	bb_challengergui_CHGUI f_ServerLabel=null;
-	bb_challengergui_CHGUI f_PwLabel=null;
-	bb_challengergui_CHGUI f_Pw=null;
-	bb_challengergui_CHGUI f_BeaconList=null;
-	bb_challengergui_CHGUI f_On_Off=null;
-	boolean f_isOn=false;
 	public int m_OnRender(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<25>";
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<11>";
 		String t_=bb_data2.bb_data2_STATUS;
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<26>";
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<12>";
 		if(t_.compareTo("connecting")==0){
-			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<27>";
-			if(f_Server.m_Connect("www.fuzzit.us",80)){
-				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<28>";
-				bb_protocol.bb_protocol_RequestGameList(f_Server);
-				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<29>";
-				bb_data2.bb_data2_STATUS="normal";
-			}
+			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<13>";
+			bb_protocol.bb_protocol_RequestGameList();
+			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<14>";
+			bb_data2.bb_data2_STATUS="normal";
 		}else{
-			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<31>";
+			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<15>";
 			if(t_.compareTo("normal")==0){
-				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<32>";
-				bb_protocol.bb_protocol_ReadProtocol(f_Server);
-				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<33>";
-				if(bb_protocol.bb_protocol_LastP==4){
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<34>";
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<34>";
-					String[] t_2=bb_protocol.bb_protocol_SList;
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<34>";
-					int t_3=0;
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<34>";
-					while(t_3<bb_std_lang.arrayLength(t_2)){
-						bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<34>";
-						String t_eS=t_2[t_3];
-						bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<34>";
-						t_3=t_3+1;
-						bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<35>";
-						bb_challengergui.bb_challengergui_CreateDropdownItem(t_eS,f_Games,0);
-					}
-				}
-				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<38>";
-				bb_protocol.bb_protocol_ResetP();
-				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<40>";
+				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<16>";
+				bb_protocol.bb_protocol_ReadProtocol();
+				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<18>";
 				bb_graphics.bb_graphics_Cls(247.0f,247.0f,247.0f);
-				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<42>";
+				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<20>";
 				bb_challengergui.bb_challengergui_CHGUI_Draw();
 			}else{
-				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<43>";
+				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<21>";
 				if(t_.compareTo("start")==0){
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<44>";
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<22>";
 					bb_challengergui.bb_challengergui_CHGUI_Start();
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<46>";
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<24>";
 					f_Title=bb_data2.bb_data2_CScale(bb_challengergui.bb_challengergui_CreateLabel(50,10,"Beacon Config",null));
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<47>";
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<25>";
 					f_ServerLabel=bb_data2.bb_data2_CScale(bb_challengergui.bb_challengergui_CreateLabel(5,60,"Server Type: Static",null));
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<48>";
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<26>";
 					f_Games=bb_data2.bb_data2_CScale(bb_challengergui.bb_challengergui_CreateDropdown(10,110,(int)(bb_data2.bb_data2_SCALE_W-20.0f),40,"Choose Game",null));
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<49>";
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<27>";
 					f_PwLabel=bb_data2.bb_data2_CScale(bb_challengergui.bb_challengergui_CreateLabel(5,160,"Password:",null));
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<50>";
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<28>";
 					f_Pw=bb_data2.bb_data2_CScale(bb_challengergui.bb_challengergui_CreateTextfield(120,155,170,45,"",null));
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<51>";
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<29>";
 					f_BeaconList=bb_data2.bb_data2_CScale(bb_challengergui.bb_challengergui_CreateDropdown(10,210,(int)(bb_data2.bb_data2_SCALE_W-20.0f),40,"Choose Beacon",null));
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<52>";
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<30>";
 					f_On_Off=bb_data2.bb_data2_CScale(bb_challengergui.bb_challengergui_CreateButton(10,(int)(bb_data2.bb_data2_SCALE_H-50.0f),(int)(bb_data2.bb_data2_SCALE_W-20.0f),40,"On/Off",null));
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<54>";
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<32>";
 					f_isOn=false;
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<55>";
-					f_Server=(new bb_tcpstream_TcpStream()).g_new();
-					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<56>";
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<33>";
+					bb_data2.bb_data2_Game=(this);
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<34>";
+					f_LastGame="Choose Game";
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<35>";
 					bb_data2.bb_data2_STATUS="connecting";
 				}
 			}
@@ -2687,17 +4130,28 @@ class bb__Beacon extends bb_app_App{
 	}
 	public int m_OnUpdate(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<61>";
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<40>";
 		String t_=bb_data2.bb_data2_STATUS;
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<62>";
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<41>";
 		if(t_.compareTo("connecting")==0){
-			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<63>";
+			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<42>";
 			bb_challengergui.bb_challengergui_CHGUI_Update();
 		}else{
-			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<64>";
+			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<43>";
 			if(t_.compareTo("normal")==0){
-				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<65>";
+				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<44>";
 				bb_challengergui.bb_challengergui_CHGUI_Update();
+				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<45>";
+				if(f_LastGame.compareTo(f_Games.f_Text)!=0){
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<46>";
+					bb_challengergui.bb_challengergui_CHGUI_Delete(f_BeaconList);
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<47>";
+					f_BeaconList=bb_data2.bb_data2_CScale(bb_challengergui.bb_challengergui_CreateDropdown(10,210,(int)(bb_data2.bb_data2_SCALE_W-20.0f),40,"Choose Beacon",null));
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<48>";
+					f_LastGame=f_Games.f_Text;
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<49>";
+					bb_protocol.bb_protocol_RequestBeaconList(f_LastGame);
+				}
 			}
 		}
 		bb_std_lang.popErr();
@@ -2790,6 +4244,679 @@ class bb_app_AppDevice extends gxtkApp{
 		return 0;
 	}
 }
+class bb_reflection_ConstInfo extends Object{
+}
+class bb_stack_Stack extends Object{
+	public bb_stack_Stack g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+		return this;
+	}
+	bb_reflection_ConstInfo[] f_data=new bb_reflection_ConstInfo[0];
+	int f_length=0;
+	public bb_stack_Stack g_new2(bb_reflection_ConstInfo[] t_data){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>";
+		this.f_data=((bb_reflection_ConstInfo[])bb_std_lang.sliceArray(t_data,0));
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>";
+		this.f_length=bb_std_lang.arrayLength(t_data);
+		bb_std_lang.popErr();
+		return this;
+	}
+	public int m_Push(bb_reflection_ConstInfo t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>";
+		if(f_length==bb_std_lang.arrayLength(f_data)){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>";
+			f_data=(bb_reflection_ConstInfo[])bb_std_lang.resizeArray(f_data,f_length*2+10);
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>";
+		f_data[f_length]=t_value;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>";
+		f_length+=1;
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public int m_Push2(bb_reflection_ConstInfo[] t_values,int t_offset,int t_count){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>";
+		for(int t_i=0;t_i<t_count;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>";
+			m_Push(t_values[t_offset+t_i]);
+		}
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public int m_Push3(bb_reflection_ConstInfo[] t_values,int t_offset){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>";
+		for(int t_i=t_offset;t_i<bb_std_lang.arrayLength(t_values);t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>";
+			m_Push(t_values[t_i]);
+		}
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public bb_reflection_ConstInfo[] m_ToArray(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>";
+		bb_reflection_ConstInfo[] t_t=new bb_reflection_ConstInfo[f_length];
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>";
+		for(int t_i=0;t_i<f_length;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>";
+			t_t[t_i]=f_data[t_i];
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>";
+		bb_std_lang.popErr();
+		return t_t;
+	}
+}
+abstract class bb_reflection_FieldInfo extends Object{
+	String f__name="";
+	int f__attrs=0;
+	bb_reflection_ClassInfo f__type=null;
+	public bb_reflection_FieldInfo g_new(String t_name,int t_attrs,bb_reflection_ClassInfo t_type){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<111>";
+		f__name=t_name;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<112>";
+		f__attrs=t_attrs;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<113>";
+		f__type=t_type;
+		bb_std_lang.popErr();
+		return this;
+	}
+	public bb_reflection_FieldInfo g_new2(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<108>";
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_stack_Stack2 extends Object{
+	public bb_stack_Stack2 g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+		return this;
+	}
+	bb_reflection_FieldInfo[] f_data=new bb_reflection_FieldInfo[0];
+	int f_length=0;
+	public bb_stack_Stack2 g_new2(bb_reflection_FieldInfo[] t_data){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>";
+		this.f_data=((bb_reflection_FieldInfo[])bb_std_lang.sliceArray(t_data,0));
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>";
+		this.f_length=bb_std_lang.arrayLength(t_data);
+		bb_std_lang.popErr();
+		return this;
+	}
+	public int m_Push4(bb_reflection_FieldInfo t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>";
+		if(f_length==bb_std_lang.arrayLength(f_data)){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>";
+			f_data=(bb_reflection_FieldInfo[])bb_std_lang.resizeArray(f_data,f_length*2+10);
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>";
+		f_data[f_length]=t_value;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>";
+		f_length+=1;
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public int m_Push5(bb_reflection_FieldInfo[] t_values,int t_offset,int t_count){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>";
+		for(int t_i=0;t_i<t_count;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>";
+			m_Push4(t_values[t_offset+t_i]);
+		}
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public int m_Push6(bb_reflection_FieldInfo[] t_values,int t_offset){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>";
+		for(int t_i=t_offset;t_i<bb_std_lang.arrayLength(t_values);t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>";
+			m_Push4(t_values[t_i]);
+		}
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public bb_reflection_FieldInfo[] m_ToArray(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>";
+		bb_reflection_FieldInfo[] t_t=new bb_reflection_FieldInfo[f_length];
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>";
+		for(int t_i=0;t_i<f_length;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>";
+			t_t[t_i]=f_data[t_i];
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>";
+		bb_std_lang.popErr();
+		return t_t;
+	}
+}
+abstract class bb_reflection_GlobalInfo extends Object{
+}
+class bb_stack_Stack3 extends Object{
+	public bb_stack_Stack3 g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+		return this;
+	}
+	bb_reflection_GlobalInfo[] f_data=new bb_reflection_GlobalInfo[0];
+	int f_length=0;
+	public bb_stack_Stack3 g_new2(bb_reflection_GlobalInfo[] t_data){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>";
+		this.f_data=((bb_reflection_GlobalInfo[])bb_std_lang.sliceArray(t_data,0));
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>";
+		this.f_length=bb_std_lang.arrayLength(t_data);
+		bb_std_lang.popErr();
+		return this;
+	}
+	public int m_Push7(bb_reflection_GlobalInfo t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>";
+		if(f_length==bb_std_lang.arrayLength(f_data)){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>";
+			f_data=(bb_reflection_GlobalInfo[])bb_std_lang.resizeArray(f_data,f_length*2+10);
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>";
+		f_data[f_length]=t_value;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>";
+		f_length+=1;
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public int m_Push8(bb_reflection_GlobalInfo[] t_values,int t_offset,int t_count){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>";
+		for(int t_i=0;t_i<t_count;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>";
+			m_Push7(t_values[t_offset+t_i]);
+		}
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public int m_Push9(bb_reflection_GlobalInfo[] t_values,int t_offset){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>";
+		for(int t_i=t_offset;t_i<bb_std_lang.arrayLength(t_values);t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>";
+			m_Push7(t_values[t_i]);
+		}
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public bb_reflection_GlobalInfo[] m_ToArray(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>";
+		bb_reflection_GlobalInfo[] t_t=new bb_reflection_GlobalInfo[f_length];
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>";
+		for(int t_i=0;t_i<f_length;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>";
+			t_t[t_i]=f_data[t_i];
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>";
+		bb_std_lang.popErr();
+		return t_t;
+	}
+}
+abstract class bb_reflection_MethodInfo extends Object{
+	String f__name="";
+	int f__attrs=0;
+	bb_reflection_ClassInfo f__retType=null;
+	bb_reflection_ClassInfo[] f__argTypes=new bb_reflection_ClassInfo[0];
+	public bb_reflection_MethodInfo g_new(String t_name,int t_attrs,bb_reflection_ClassInfo t_retType,bb_reflection_ClassInfo[] t_argTypes){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<143>";
+		f__name=t_name;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<144>";
+		f__attrs=t_attrs;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<145>";
+		f__retType=t_retType;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<146>";
+		f__argTypes=t_argTypes;
+		bb_std_lang.popErr();
+		return this;
+	}
+	public bb_reflection_MethodInfo g_new2(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<140>";
+		bb_std_lang.popErr();
+		return this;
+	}
+}
+class bb_stack_Stack4 extends Object{
+	public bb_stack_Stack4 g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+		return this;
+	}
+	bb_reflection_MethodInfo[] f_data=new bb_reflection_MethodInfo[0];
+	int f_length=0;
+	public bb_stack_Stack4 g_new2(bb_reflection_MethodInfo[] t_data){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>";
+		this.f_data=((bb_reflection_MethodInfo[])bb_std_lang.sliceArray(t_data,0));
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>";
+		this.f_length=bb_std_lang.arrayLength(t_data);
+		bb_std_lang.popErr();
+		return this;
+	}
+	public int m_Push10(bb_reflection_MethodInfo t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>";
+		if(f_length==bb_std_lang.arrayLength(f_data)){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>";
+			f_data=(bb_reflection_MethodInfo[])bb_std_lang.resizeArray(f_data,f_length*2+10);
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>";
+		f_data[f_length]=t_value;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>";
+		f_length+=1;
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public int m_Push11(bb_reflection_MethodInfo[] t_values,int t_offset,int t_count){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>";
+		for(int t_i=0;t_i<t_count;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>";
+			m_Push10(t_values[t_offset+t_i]);
+		}
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public int m_Push12(bb_reflection_MethodInfo[] t_values,int t_offset){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>";
+		for(int t_i=t_offset;t_i<bb_std_lang.arrayLength(t_values);t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>";
+			m_Push10(t_values[t_i]);
+		}
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public bb_reflection_MethodInfo[] m_ToArray(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>";
+		bb_reflection_MethodInfo[] t_t=new bb_reflection_MethodInfo[f_length];
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>";
+		for(int t_i=0;t_i<f_length;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>";
+			t_t[t_i]=f_data[t_i];
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>";
+		bb_std_lang.popErr();
+		return t_t;
+	}
+}
+class bb_stack_Stack5 extends Object{
+	public bb_stack_Stack5 g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+		return this;
+	}
+	bb_reflection_FunctionInfo[] f_data=new bb_reflection_FunctionInfo[0];
+	int f_length=0;
+	public bb_stack_Stack5 g_new2(bb_reflection_FunctionInfo[] t_data){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>";
+		this.f_data=((bb_reflection_FunctionInfo[])bb_std_lang.sliceArray(t_data,0));
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>";
+		this.f_length=bb_std_lang.arrayLength(t_data);
+		bb_std_lang.popErr();
+		return this;
+	}
+	public int m_Push13(bb_reflection_FunctionInfo t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>";
+		if(f_length==bb_std_lang.arrayLength(f_data)){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>";
+			f_data=(bb_reflection_FunctionInfo[])bb_std_lang.resizeArray(f_data,f_length*2+10);
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>";
+		f_data[f_length]=t_value;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>";
+		f_length+=1;
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public int m_Push14(bb_reflection_FunctionInfo[] t_values,int t_offset,int t_count){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>";
+		for(int t_i=0;t_i<t_count;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>";
+			m_Push13(t_values[t_offset+t_i]);
+		}
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public int m_Push15(bb_reflection_FunctionInfo[] t_values,int t_offset){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>";
+		for(int t_i=t_offset;t_i<bb_std_lang.arrayLength(t_values);t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>";
+			m_Push13(t_values[t_i]);
+		}
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public bb_reflection_FunctionInfo[] m_ToArray(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>";
+		bb_reflection_FunctionInfo[] t_t=new bb_reflection_FunctionInfo[f_length];
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>";
+		for(int t_i=0;t_i<f_length;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>";
+			t_t[t_i]=f_data[t_i];
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>";
+		bb_std_lang.popErr();
+		return t_t;
+	}
+}
+class bb_reflection_R19 extends bb_reflection_FieldInfo{
+	public bb_reflection_R19 g_new(){
+		super.g_new("message",2,bb_reflection.bb_reflection__stringClass);
+		return this;
+	}
+}
+class bb_reflection_R20 extends bb_reflection_FieldInfo{
+	public bb_reflection_R20 g_new(){
+		super.g_new("cause",2,bb_reflection.bb_reflection__classes[1]);
+		return this;
+	}
+}
+class bb_reflection_R21 extends bb_reflection_FieldInfo{
+	public bb_reflection_R21 g_new(){
+		super.g_new("type",2,bb_reflection.bb_reflection__stringClass);
+		return this;
+	}
+}
+class bb_reflection_R22 extends bb_reflection_FieldInfo{
+	public bb_reflection_R22 g_new(){
+		super.g_new("fullType",2,bb_reflection.bb_reflection__stringClass);
+		return this;
+	}
+}
+class bb_reflection_R23 extends bb_reflection_MethodInfo{
+	public bb_reflection_R23 g_new(){
+		super.g_new("Message",8,bb_reflection.bb_reflection__stringClass,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R24 extends bb_reflection_MethodInfo{
+	public bb_reflection_R24 g_new(){
+		super.g_new("Message",8,null,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__stringClass});
+		return this;
+	}
+}
+class bb_reflection_R25 extends bb_reflection_MethodInfo{
+	public bb_reflection_R25 g_new(){
+		super.g_new("Cause",8,bb_reflection.bb_reflection__classes[1],new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R26 extends bb_reflection_MethodInfo{
+	public bb_reflection_R26 g_new(){
+		super.g_new("Cause",8,null,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__classes[1]});
+		return this;
+	}
+}
+class bb_reflection_R27 extends bb_reflection_MethodInfo{
+	public bb_reflection_R27 g_new(){
+		super.g_new("Type",8,bb_reflection.bb_reflection__stringClass,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R28 extends bb_reflection_MethodInfo{
+	public bb_reflection_R28 g_new(){
+		super.g_new("FullType",8,bb_reflection.bb_reflection__stringClass,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R30 extends bb_reflection_MethodInfo{
+	public bb_reflection_R30 g_new(){
+		super.g_new("ToString",0,bb_reflection.bb_reflection__stringClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__boolClass});
+		return this;
+	}
+}
+class bb_reflection_R29 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R29 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[2],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__stringClass,bb_reflection.bb_reflection__classes[1]});
+		return this;
+	}
+}
+class bb_reflection_R32 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R32 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[3],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__stringClass,bb_reflection.bb_reflection__classes[1]});
+		return this;
+	}
+}
+class bb_reflection_R34 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R34 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[4],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__stringClass,bb_reflection.bb_reflection__classes[1]});
+		return this;
+	}
+}
+class bb_reflection_R36 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R36 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[5],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__stringClass,bb_reflection.bb_reflection__classes[1]});
+		return this;
+	}
+}
+class bb_reflection_R38 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R38 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[6],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__stringClass,bb_reflection.bb_reflection__classes[1]});
+		return this;
+	}
+}
+class bb_reflection_R40 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R40 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[7],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__stringClass,bb_reflection.bb_reflection__classes[1]});
+		return this;
+	}
+}
+class bb_reflection_R42 extends bb_reflection_FieldInfo{
+	public bb_reflection_R42 g_new(){
+		super.g_new("value",0,bb_reflection.bb_reflection__boolClass);
+		return this;
+	}
+}
+class bb_reflection_R44 extends bb_reflection_MethodInfo{
+	public bb_reflection_R44 g_new(){
+		super.g_new("ToBool",0,bb_reflection.bb_reflection__boolClass,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R45 extends bb_reflection_MethodInfo{
+	public bb_reflection_R45 g_new(){
+		super.g_new("Equals",0,bb_reflection.bb_reflection__boolClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__classes[8]});
+		return this;
+	}
+}
+class bb_reflection_R43 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R43 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[8],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__boolClass});
+		return this;
+	}
+}
+class bb_reflection_R46 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R46 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[8],new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R48 extends bb_reflection_FieldInfo{
+	public bb_reflection_R48 g_new(){
+		super.g_new("value",0,bb_reflection.bb_reflection__intClass);
+		return this;
+	}
+}
+class bb_reflection_R51 extends bb_reflection_MethodInfo{
+	public bb_reflection_R51 g_new(){
+		super.g_new("ToInt",0,bb_reflection.bb_reflection__intClass,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R52 extends bb_reflection_MethodInfo{
+	public bb_reflection_R52 g_new(){
+		super.g_new("ToFloat",0,bb_reflection.bb_reflection__floatClass,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R53 extends bb_reflection_MethodInfo{
+	public bb_reflection_R53 g_new(){
+		super.g_new("ToString",0,bb_reflection.bb_reflection__stringClass,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R54 extends bb_reflection_MethodInfo{
+	public bb_reflection_R54 g_new(){
+		super.g_new("Equals",0,bb_reflection.bb_reflection__boolClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__classes[9]});
+		return this;
+	}
+}
+class bb_reflection_R55 extends bb_reflection_MethodInfo{
+	public bb_reflection_R55 g_new(){
+		super.g_new("Compare",0,bb_reflection.bb_reflection__intClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__classes[9]});
+		return this;
+	}
+}
+class bb_reflection_R49 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R49 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[9],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__intClass});
+		return this;
+	}
+}
+class bb_reflection_R50 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R50 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[9],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__floatClass});
+		return this;
+	}
+}
+class bb_reflection_R56 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R56 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[9],new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R58 extends bb_reflection_FieldInfo{
+	public bb_reflection_R58 g_new(){
+		super.g_new("value",0,bb_reflection.bb_reflection__floatClass);
+		return this;
+	}
+}
+class bb_reflection_R61 extends bb_reflection_MethodInfo{
+	public bb_reflection_R61 g_new(){
+		super.g_new("ToInt",0,bb_reflection.bb_reflection__intClass,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R62 extends bb_reflection_MethodInfo{
+	public bb_reflection_R62 g_new(){
+		super.g_new("ToFloat",0,bb_reflection.bb_reflection__floatClass,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R63 extends bb_reflection_MethodInfo{
+	public bb_reflection_R63 g_new(){
+		super.g_new("ToString",0,bb_reflection.bb_reflection__stringClass,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R64 extends bb_reflection_MethodInfo{
+	public bb_reflection_R64 g_new(){
+		super.g_new("Equals",0,bb_reflection.bb_reflection__boolClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__classes[10]});
+		return this;
+	}
+}
+class bb_reflection_R65 extends bb_reflection_MethodInfo{
+	public bb_reflection_R65 g_new(){
+		super.g_new("Compare",0,bb_reflection.bb_reflection__intClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__classes[10]});
+		return this;
+	}
+}
+class bb_reflection_R59 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R59 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[10],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__intClass});
+		return this;
+	}
+}
+class bb_reflection_R60 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R60 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[10],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__floatClass});
+		return this;
+	}
+}
+class bb_reflection_R66 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R66 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[10],new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R68 extends bb_reflection_FieldInfo{
+	public bb_reflection_R68 g_new(){
+		super.g_new("value",0,bb_reflection.bb_reflection__stringClass);
+		return this;
+	}
+}
+class bb_reflection_R72 extends bb_reflection_MethodInfo{
+	public bb_reflection_R72 g_new(){
+		super.g_new("ToString",0,bb_reflection.bb_reflection__stringClass,new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_R73 extends bb_reflection_MethodInfo{
+	public bb_reflection_R73 g_new(){
+		super.g_new("Equals",0,bb_reflection.bb_reflection__boolClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__classes[11]});
+		return this;
+	}
+}
+class bb_reflection_R74 extends bb_reflection_MethodInfo{
+	public bb_reflection_R74 g_new(){
+		super.g_new("Compare",0,bb_reflection.bb_reflection__intClass,new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__classes[11]});
+		return this;
+	}
+}
+class bb_reflection_R69 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R69 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[11],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__intClass});
+		return this;
+	}
+}
+class bb_reflection_R70 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R70 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[11],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__floatClass});
+		return this;
+	}
+}
+class bb_reflection_R71 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R71 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[11],new bb_reflection_ClassInfo[]{bb_reflection.bb_reflection__stringClass});
+		return this;
+	}
+}
+class bb_reflection_R75 extends bb_reflection_FunctionInfo{
+	public bb_reflection_R75 g_new(){
+		super.g_new("new",0,bb_reflection.bb_reflection__classes[11],new bb_reflection_ClassInfo[0]);
+		return this;
+	}
+}
+class bb_reflection_UnknownClass extends bb_reflection_ClassInfo{
+	public bb_reflection_UnknownClass g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<625>";
+		super.g_new("?",0,null,new bb_reflection_ClassInfo[0]);
+		bb_std_lang.popErr();
+		return this;
+	}
+}
 class bb_graphics_Image extends Object{
 	static int g_DefaultFlags;
 	public bb_graphics_Image g_new(){
@@ -2871,7 +4998,7 @@ class bb_graphics_Image extends Object{
 		bb_std_lang.popErr();
 		return 0;
 	}
-	public bb_graphics_Image m_Init(gxtkSurface t_surf,int t_nframes,int t_iflags){
+	public bb_graphics_Image m_Init2(gxtkSurface t_surf,int t_nframes,int t_iflags){
 		bb_std_lang.pushErr();
 		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<136>";
 		f_surface=t_surf;
@@ -3022,6 +5149,12 @@ class bb_graphics_Frame extends Object{
 	}
 }
 abstract class bb_stream_Stream extends Object{
+	public bb_stream_Stream g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<23>";
+		bb_std_lang.popErr();
+		return this;
+	}
 	static bb_databuffer_DataBuffer g__tmpbuf;
 	abstract public int m_Write(bb_databuffer_DataBuffer t_buffer,int t_offset,int t_count);
 	public void m__Write(int t_n){
@@ -3068,7 +5201,7 @@ abstract class bb_stream_Stream extends Object{
 	public String m_ReadLine(){
 		bb_std_lang.pushErr();
 		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<70>";
-		bb_stack_Stack t_buf=(new bb_stack_Stack()).g_new();
+		bb_stack_Stack6 t_buf=(new bb_stack_Stack6()).g_new();
 		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<71>";
 		while(!((m_Eof())!=0)){
 			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<72>";
@@ -3088,7 +5221,7 @@ abstract class bb_stream_Stream extends Object{
 			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<76>";
 			if(t_ch!=13){
 				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<76>";
-				t_buf.m_Push(t_ch);
+				t_buf.m_Push16(t_ch);
 			}
 		}
 		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<78>";
@@ -3096,15 +5229,19 @@ abstract class bb_stream_Stream extends Object{
 		bb_std_lang.popErr();
 		return t_;
 	}
-	public bb_stream_Stream g_new(){
-		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<23>";
-		bb_std_lang.popErr();
-		return this;
-	}
+	abstract public void m_Close();
 }
 class bb_tcpstream_TcpStream extends bb_stream_Stream{
 	BBTcpStream f__stream=null;
+	public bb_tcpstream_TcpStream g_new(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<24>";
+		super.g_new();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<25>";
+		f__stream=(new BBTcpStream());
+		bb_std_lang.popErr();
+		return this;
+	}
 	public boolean m_Connect(String t_host,int t_port){
 		bb_std_lang.pushErr();
 		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<29>";
@@ -3119,14 +5256,16 @@ class bb_tcpstream_TcpStream extends bb_stream_Stream{
 		bb_std_lang.popErr();
 		return t_;
 	}
-	public bb_tcpstream_TcpStream g_new(){
+	public void m_Close(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<24>";
-		super.g_new();
-		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<25>";
-		f__stream=(new BBTcpStream());
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<42>";
+		if((f__stream)!=null){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<43>";
+			f__stream.Close();
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<44>";
+			f__stream=null;
+		}
 		bb_std_lang.popErr();
-		return this;
 	}
 	public int m_Eof(){
 		bb_std_lang.pushErr();
@@ -3201,15 +5340,15 @@ class bb_stream_StreamWriteError extends bb_stream_StreamError{
 		return this;
 	}
 }
-class bb_stack_Stack extends Object{
-	public bb_stack_Stack g_new(){
+class bb_stack_Stack6 extends Object{
+	public bb_stack_Stack6 g_new(){
 		bb_std_lang.pushErr();
 		bb_std_lang.popErr();
 		return this;
 	}
 	int[] f_data=new int[0];
 	int f_length=0;
-	public bb_stack_Stack g_new2(int[] t_data){
+	public bb_stack_Stack6 g_new2(int[] t_data){
 		bb_std_lang.pushErr();
 		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>";
 		this.f_data=((int[])bb_std_lang.sliceArray(t_data,0));
@@ -3218,7 +5357,7 @@ class bb_stack_Stack extends Object{
 		bb_std_lang.popErr();
 		return this;
 	}
-	public int m_Push(int t_value){
+	public int m_Push16(int t_value){
 		bb_std_lang.pushErr();
 		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>";
 		if(f_length==bb_std_lang.arrayLength(f_data)){
@@ -3232,22 +5371,22 @@ class bb_stack_Stack extends Object{
 		bb_std_lang.popErr();
 		return 0;
 	}
-	public int m_Push2(int[] t_values,int t_offset,int t_count){
+	public int m_Push17(int[] t_values,int t_offset,int t_count){
 		bb_std_lang.pushErr();
 		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>";
 		for(int t_i=0;t_i<t_count;t_i=t_i+1){
 			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>";
-			m_Push(t_values[t_offset+t_i]);
+			m_Push16(t_values[t_offset+t_i]);
 		}
 		bb_std_lang.popErr();
 		return 0;
 	}
-	public int m_Push3(int[] t_values,int t_offset){
+	public int m_Push18(int[] t_values,int t_offset){
 		bb_std_lang.pushErr();
 		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>";
 		for(int t_i=t_offset;t_i<bb_std_lang.arrayLength(t_values);t_i=t_i+1){
 			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>";
-			m_Push(t_values[t_i]);
+			m_Push16(t_values[t_i]);
 		}
 		bb_std_lang.popErr();
 		return 0;
@@ -9626,6 +11765,418 @@ class bb_challengergui{
 		bb_std_lang.popErr();
 		return 0;
 	}
+	static public int bb_challengergui_CHGUI_Delete(bb_challengergui_CHGUI t_N){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<933>";
+		int t_C=0;
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<936>";
+		if((t_N.f_Element.compareTo("Window")==0) && t_N.f_Mode==2){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<937>";
+			for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_TopList)-1;t_C=t_C+1){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<938>";
+				if(t_N.f_Parent.f_TopList[t_C]==t_N){
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<938>";
+					break;
+				}
+			}
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<941>";
+			for(int t_NN=t_C;t_NN<=bb_std_lang.arrayLength(t_N.f_Parent.f_TopList)-2;t_NN=t_NN+1){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<942>";
+				t_N.f_Parent.f_TopList[t_NN]=t_N.f_Parent.f_TopList[t_NN+1];
+			}
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<944>";
+			t_N.f_Parent.f_TopList=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_TopList,0,bb_std_lang.arrayLength(t_N.f_Parent.f_TopList)-1));
+		}else{
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<947>";
+			if((t_N.f_Element.compareTo("Window")==0) && t_N.f_Mode==1){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<948>";
+				for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_VariList)-1;t_C=t_C+1){
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<949>";
+					if(t_N.f_Parent.f_VariList[t_C]==t_N){
+						bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<949>";
+						break;
+					}
+				}
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<952>";
+				for(int t_NN2=t_C;t_NN2<=bb_std_lang.arrayLength(t_N.f_Parent.f_VariList)-2;t_NN2=t_NN2+1){
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<953>";
+					t_N.f_Parent.f_VariList[t_NN2]=t_N.f_Parent.f_VariList[t_NN2+1];
+				}
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<955>";
+				t_N.f_Parent.f_VariList=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_VariList,0,bb_std_lang.arrayLength(t_N.f_Parent.f_VariList)-1));
+			}else{
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<958>";
+				if((t_N.f_Element.compareTo("Window")==0) && t_N.f_Mode==0){
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<959>";
+					for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_BottomList)-1;t_C=t_C+1){
+						bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<960>";
+						if(t_N.f_Parent.f_BottomList[t_C]==t_N){
+							bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<960>";
+							break;
+						}
+					}
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<963>";
+					for(int t_NN3=t_C;t_NN3<=bb_std_lang.arrayLength(t_N.f_Parent.f_BottomList)-2;t_NN3=t_NN3+1){
+						bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<964>";
+						t_N.f_Parent.f_BottomList[t_NN3]=t_N.f_Parent.f_BottomList[t_NN3+1];
+					}
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<966>";
+					t_N.f_Parent.f_BottomList=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_BottomList,0,bb_std_lang.arrayLength(t_N.f_Parent.f_BottomList)-1));
+				}else{
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<969>";
+					if(t_N.f_Element.compareTo("Menu")==0){
+						bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<970>";
+						for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_Menus)-1;t_C=t_C+1){
+							bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<971>";
+							if(t_N.f_Parent.f_Menus[t_C]==t_N){
+								bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<971>";
+								break;
+							}
+						}
+						bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<974>";
+						for(int t_NN4=t_C;t_NN4<=bb_std_lang.arrayLength(t_N.f_Parent.f_Menus)-2;t_NN4=t_NN4+1){
+							bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<975>";
+							t_N.f_Parent.f_Menus[t_NN4]=t_N.f_Parent.f_Menus[t_NN4+1];
+						}
+						bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<977>";
+						t_N.f_Parent.f_Menus=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_Menus,0,bb_std_lang.arrayLength(t_N.f_Parent.f_Menus)-1));
+					}else{
+						bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<980>";
+						if(t_N.f_Element.compareTo("MenuItem")==0){
+							bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<981>";
+							for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_MenuItems)-1;t_C=t_C+1){
+								bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<982>";
+								if(t_N.f_Parent.f_MenuItems[t_C]==t_N){
+									bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<982>";
+									break;
+								}
+							}
+							bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<985>";
+							for(int t_NN5=t_C;t_NN5<=bb_std_lang.arrayLength(t_N.f_Parent.f_MenuItems)-2;t_NN5=t_NN5+1){
+								bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<986>";
+								t_N.f_Parent.f_MenuItems[t_NN5]=t_N.f_Parent.f_MenuItems[t_NN5+1];
+							}
+							bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<988>";
+							t_N.f_Parent.f_MenuItems=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_MenuItems,0,bb_std_lang.arrayLength(t_N.f_Parent.f_MenuItems)-1));
+						}else{
+							bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<991>";
+							if(t_N.f_Element.compareTo("Tab")==0){
+								bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<992>";
+								for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_Tabs)-1;t_C=t_C+1){
+									bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<993>";
+									if(t_N.f_Parent.f_Tabs[t_C]==t_N){
+										bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<993>";
+										break;
+									}
+								}
+								bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<996>";
+								for(int t_NN6=t_C;t_NN6<=bb_std_lang.arrayLength(t_N.f_Parent.f_Tabs)-2;t_NN6=t_NN6+1){
+									bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<997>";
+									t_N.f_Parent.f_Tabs[t_NN6]=t_N.f_Parent.f_Tabs[t_NN6+1];
+								}
+								bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<999>";
+								t_N.f_Parent.f_Tabs=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_Tabs,0,bb_std_lang.arrayLength(t_N.f_Parent.f_Tabs)-1));
+							}else{
+								bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1002>";
+								if(t_N.f_Element.compareTo("Button")==0){
+									bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1003>";
+									for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_Buttons)-1;t_C=t_C+1){
+										bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1004>";
+										if(t_N.f_Parent.f_Buttons[t_C]==t_N){
+											bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1004>";
+											break;
+										}
+									}
+									bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1007>";
+									for(int t_NN7=t_C;t_NN7<=bb_std_lang.arrayLength(t_N.f_Parent.f_Buttons)-2;t_NN7=t_NN7+1){
+										bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1008>";
+										t_N.f_Parent.f_Buttons[t_NN7]=t_N.f_Parent.f_Buttons[t_NN7+1];
+									}
+									bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1010>";
+									t_N.f_Parent.f_Buttons=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_Buttons,0,bb_std_lang.arrayLength(t_N.f_Parent.f_Buttons)-1));
+								}else{
+									bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1013>";
+									if(t_N.f_Element.compareTo("ImageButton")==0){
+										bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1014>";
+										for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_ImageButtons)-1;t_C=t_C+1){
+											bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1015>";
+											if(t_N.f_Parent.f_ImageButtons[t_C]==t_N){
+												bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1015>";
+												break;
+											}
+										}
+										bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1018>";
+										for(int t_NN8=t_C;t_NN8<=bb_std_lang.arrayLength(t_N.f_Parent.f_ImageButtons)-2;t_NN8=t_NN8+1){
+											bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1019>";
+											t_N.f_Parent.f_ImageButtons[t_NN8]=t_N.f_Parent.f_ImageButtons[t_NN8+1];
+										}
+										bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1021>";
+										t_N.f_Parent.f_ImageButtons=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_ImageButtons,0,bb_std_lang.arrayLength(t_N.f_Parent.f_ImageButtons)-1));
+									}else{
+										bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1024>";
+										if(t_N.f_Element.compareTo("Tickbox")==0){
+											bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1025>";
+											for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_Tickboxes)-1;t_C=t_C+1){
+												bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1026>";
+												if(t_N.f_Parent.f_Tickboxes[t_C]==t_N){
+													bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1026>";
+													break;
+												}
+											}
+											bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1029>";
+											for(int t_NN9=t_C;t_NN9<=bb_std_lang.arrayLength(t_N.f_Parent.f_Tickboxes)-2;t_NN9=t_NN9+1){
+												bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1030>";
+												t_N.f_Parent.f_Tickboxes[t_NN9]=t_N.f_Parent.f_Tickboxes[t_NN9+1];
+											}
+											bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1032>";
+											t_N.f_Parent.f_Tickboxes=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_Tickboxes,0,bb_std_lang.arrayLength(t_N.f_Parent.f_Tickboxes)-1));
+										}else{
+											bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1035>";
+											if(t_N.f_Element.compareTo("Radio")==0){
+												bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1036>";
+												for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_Radioboxes)-1;t_C=t_C+1){
+													bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1037>";
+													if(t_N.f_Parent.f_Radioboxes[t_C]==t_N){
+														bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1037>";
+														break;
+													}
+												}
+												bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1040>";
+												for(int t_NN10=t_C;t_NN10<=bb_std_lang.arrayLength(t_N.f_Parent.f_Radioboxes)-2;t_NN10=t_NN10+1){
+													bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1041>";
+													t_N.f_Parent.f_Radioboxes[t_NN10]=t_N.f_Parent.f_Radioboxes[t_NN10+1];
+												}
+												bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1043>";
+												t_N.f_Parent.f_Radioboxes=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_Radioboxes,0,bb_std_lang.arrayLength(t_N.f_Parent.f_Radioboxes)-1));
+											}else{
+												bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1046>";
+												if(t_N.f_Element.compareTo("Listbox")==0){
+													bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1047>";
+													for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_Listboxes)-1;t_C=t_C+1){
+														bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1048>";
+														if(t_N.f_Parent.f_Listboxes[t_C]==t_N){
+															bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1048>";
+															break;
+														}
+													}
+													bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1051>";
+													for(int t_NN11=t_C;t_NN11<=bb_std_lang.arrayLength(t_N.f_Parent.f_Listboxes)-2;t_NN11=t_NN11+1){
+														bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1052>";
+														t_N.f_Parent.f_Listboxes[t_NN11]=t_N.f_Parent.f_Listboxes[t_NN11+1];
+													}
+													bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1054>";
+													t_N.f_Parent.f_Listboxes=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_Listboxes,0,bb_std_lang.arrayLength(t_N.f_Parent.f_Listboxes)-1));
+												}else{
+													bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1057>";
+													if(t_N.f_Element.compareTo("ListboxItem")==0){
+														bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1058>";
+														for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_ListboxItems)-1;t_C=t_C+1){
+															bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1059>";
+															if(t_N.f_Parent.f_ListboxItems[t_C]==t_N){
+																bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1059>";
+																break;
+															}
+														}
+														bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1062>";
+														for(int t_NN12=t_C;t_NN12<=bb_std_lang.arrayLength(t_N.f_Parent.f_ListboxItems)-2;t_NN12=t_NN12+1){
+															bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1063>";
+															t_N.f_Parent.f_ListboxItems[t_NN12]=t_N.f_Parent.f_ListboxItems[t_NN12+1];
+														}
+														bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1065>";
+														t_N.f_Parent.f_ListboxItems=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_ListboxItems,0,bb_std_lang.arrayLength(t_N.f_Parent.f_ListboxItems)-1));
+													}else{
+														bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1068>";
+														if(t_N.f_Element.compareTo("Dropdown")==0){
+															bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1069>";
+															for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_Dropdowns)-1;t_C=t_C+1){
+																bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1070>";
+																if(t_N.f_Parent.f_Dropdowns[t_C]==t_N){
+																	bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1070>";
+																	break;
+																}
+															}
+															bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1073>";
+															for(int t_NN13=t_C;t_NN13<=bb_std_lang.arrayLength(t_N.f_Parent.f_Dropdowns)-2;t_NN13=t_NN13+1){
+																bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1074>";
+																t_N.f_Parent.f_Dropdowns[t_NN13]=t_N.f_Parent.f_Dropdowns[t_NN13+1];
+															}
+															bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1076>";
+															t_N.f_Parent.f_Dropdowns=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_Dropdowns,0,bb_std_lang.arrayLength(t_N.f_Parent.f_Dropdowns)-1));
+														}else{
+															bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1079>";
+															if(t_N.f_Element.compareTo("DropdownItem")==0){
+																bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1080>";
+																for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_DropdownItems)-1;t_C=t_C+1){
+																	bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1081>";
+																	if(t_N.f_Parent.f_DropdownItems[t_C]==t_N){
+																		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1081>";
+																		break;
+																	}
+																}
+																bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1084>";
+																for(int t_NN14=t_C;t_NN14<=bb_std_lang.arrayLength(t_N.f_Parent.f_DropdownItems)-2;t_NN14=t_NN14+1){
+																	bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1085>";
+																	t_N.f_Parent.f_DropdownItems[t_NN14]=t_N.f_Parent.f_DropdownItems[t_NN14+1];
+																}
+																bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1087>";
+																t_N.f_Parent.f_DropdownItems=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_DropdownItems,0,bb_std_lang.arrayLength(t_N.f_Parent.f_DropdownItems)-1));
+															}else{
+																bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1090>";
+																if(t_N.f_Element.compareTo("Textfield")==0){
+																	bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1091>";
+																	for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_Textfields)-1;t_C=t_C+1){
+																		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1092>";
+																		if(t_N.f_Parent.f_Textfields[t_C]==t_N){
+																			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1092>";
+																			break;
+																		}
+																	}
+																	bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1095>";
+																	for(int t_NN15=t_C;t_NN15<=bb_std_lang.arrayLength(t_N.f_Parent.f_Textfields)-2;t_NN15=t_NN15+1){
+																		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1096>";
+																		t_N.f_Parent.f_Textfields[t_NN15]=t_N.f_Parent.f_Textfields[t_NN15+1];
+																	}
+																	bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1098>";
+																	t_N.f_Parent.f_Textfields=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_Textfields,0,bb_std_lang.arrayLength(t_N.f_Parent.f_Textfields)-1));
+																}else{
+																	bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1101>";
+																	if(t_N.f_Element.compareTo("Label")==0){
+																		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1102>";
+																		for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_Labels)-1;t_C=t_C+1){
+																			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1103>";
+																			if(t_N.f_Parent.f_Labels[t_C]==t_N){
+																				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1103>";
+																				break;
+																			}
+																		}
+																		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1106>";
+																		for(int t_NN16=t_C;t_NN16<=bb_std_lang.arrayLength(t_N.f_Parent.f_Labels)-2;t_NN16=t_NN16+1){
+																			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1107>";
+																			t_N.f_Parent.f_Labels[t_NN16]=t_N.f_Parent.f_Labels[t_NN16+1];
+																		}
+																		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1109>";
+																		t_N.f_Parent.f_Labels=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_Labels,0,bb_std_lang.arrayLength(t_N.f_Parent.f_Labels)-1));
+																	}else{
+																		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1112>";
+																		if(t_N.f_Element.compareTo("VSlider")==0){
+																			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1113>";
+																			for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_VSliders)-1;t_C=t_C+1){
+																				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1114>";
+																				if(t_N.f_Parent.f_VSliders[t_C]==t_N){
+																					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1114>";
+																					break;
+																				}
+																			}
+																			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1117>";
+																			for(int t_NN17=t_C;t_NN17<=bb_std_lang.arrayLength(t_N.f_Parent.f_VSliders)-2;t_NN17=t_NN17+1){
+																				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1118>";
+																				t_N.f_Parent.f_VSliders[t_NN17]=t_N.f_Parent.f_VSliders[t_NN17+1];
+																			}
+																			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1120>";
+																			t_N.f_Parent.f_VSliders=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_VSliders,0,bb_std_lang.arrayLength(t_N.f_Parent.f_VSliders)-1));
+																		}else{
+																			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1123>";
+																			if(t_N.f_Element.compareTo("HSlider")==0){
+																				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1124>";
+																				for(t_C=0;t_C<=bb_std_lang.arrayLength(t_N.f_Parent.f_HSliders)-1;t_C=t_C+1){
+																					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1125>";
+																					if(t_N.f_Parent.f_HSliders[t_C]==t_N){
+																						bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1125>";
+																						break;
+																					}
+																				}
+																				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1128>";
+																				for(int t_NN18=t_C;t_NN18<=bb_std_lang.arrayLength(t_N.f_Parent.f_HSliders)-2;t_NN18=t_NN18+1){
+																					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1129>";
+																					t_N.f_Parent.f_HSliders[t_NN18]=t_N.f_Parent.f_HSliders[t_NN18+1];
+																				}
+																				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1131>";
+																				t_N.f_Parent.f_HSliders=((bb_challengergui_CHGUI[])bb_std_lang.sliceArray(t_N.f_Parent.f_HSliders,0,bb_std_lang.arrayLength(t_N.f_Parent.f_HSliders)-1));
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1137>";
+		t_N=null;
+		bb_std_lang.popErr();
+		return 0;
+	}
+}
+class bb_arrays{
+}
+class bb_assert{
+}
+class bb_base64{
+}
+class bb_collections{
+}
+class bb_constants{
+}
+class bb_diddy{
+}
+class bb_diddydata{
+}
+class bb_exception{
+}
+class bb_externfunctions{
+}
+class bb_filesystem{
+}
+class bb_font{
+}
+class bb_format{
+}
+class bb_framework{
+}
+class bb_functions{
+}
+class bb_components{
+}
+class bb_core{
+}
+class bb_gui{
+}
+class bb_layout{
+}
+class bb_i18n{
+}
+class bb_inputcache{
+}
+class bb_io{
+}
+class bb_pathFind{
+}
+class bb_psystem{
+}
+class bb_serialization{
+}
+class bb_simplegui{
+}
+class bb_storyboard{
+}
+class bb_stringbuilder{
+}
+class bb_tile{
+}
+class bb_tween{
+}
+class bb_vector2d{
+}
+class bb_xml{
 }
 class bb_bitmapchar{
 }
@@ -9727,7 +12278,7 @@ class bb_graphics{
 		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<230>";
 		if((t_surf)!=null){
 			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<230>";
-			bb_graphics_Image t_=((new bb_graphics_Image()).g_new()).m_Init(t_surf,t_frameCount,t_flags);
+			bb_graphics_Image t_=((new bb_graphics_Image()).g_new()).m_Init2(t_surf,t_frameCount,t_flags);
 			bb_std_lang.popErr();
 			return t_;
 		}
@@ -10192,6 +12743,66 @@ class bb_inputdevice{
 class bb_mojo{
 }
 class bb_boxes{
+	static public Object bb_boxes_BoxBool(boolean t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<139>";
+		Object t_=((new bb_boxes_BoolObject()).g_new(t_value));
+		bb_std_lang.popErr();
+		return t_;
+	}
+	static public Object bb_boxes_BoxInt(int t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<143>";
+		Object t_=((new bb_boxes_IntObject()).g_new(t_value));
+		bb_std_lang.popErr();
+		return t_;
+	}
+	static public Object bb_boxes_BoxFloat(float t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<147>";
+		Object t_=((new bb_boxes_FloatObject()).g_new2(t_value));
+		bb_std_lang.popErr();
+		return t_;
+	}
+	static public Object bb_boxes_BoxString(String t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<151>";
+		Object t_=((new bb_boxes_StringObject()).g_new3(t_value));
+		bb_std_lang.popErr();
+		return t_;
+	}
+	static public boolean bb_boxes_UnboxBool(Object t_box){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<155>";
+		Object t_2=t_box;
+		boolean t_=(t_2 instanceof bb_boxes_BoolObject ? (bb_boxes_BoolObject)t_2 : null).f_value;
+		bb_std_lang.popErr();
+		return t_;
+	}
+	static public int bb_boxes_UnboxInt(Object t_box){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<159>";
+		Object t_2=t_box;
+		int t_=(t_2 instanceof bb_boxes_IntObject ? (bb_boxes_IntObject)t_2 : null).f_value;
+		bb_std_lang.popErr();
+		return t_;
+	}
+	static public float bb_boxes_UnboxFloat(Object t_box){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<163>";
+		Object t_2=t_box;
+		float t_=(t_2 instanceof bb_boxes_FloatObject ? (bb_boxes_FloatObject)t_2 : null).f_value;
+		bb_std_lang.popErr();
+		return t_;
+	}
+	static public String bb_boxes_UnboxString(Object t_box){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<167>";
+		Object t_2=t_box;
+		String t_=(t_2 instanceof bb_boxes_StringObject ? (bb_boxes_StringObject)t_2 : null).f_value;
+		bb_std_lang.popErr();
+		return t_;
+	}
 }
 class bb_lang{
 }
@@ -10235,27 +12846,143 @@ class bb_set{
 }
 class bb_stack{
 }
+class bb_reflection{
+	static bb_map_StringMap bb_reflection__classesMap;
+	static bb_reflection_ClassInfo[] bb_reflection__classes;
+	static public bb_reflection_ClassInfo bb_reflection_GetClass(String t_name){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<463>";
+		if(!((bb_reflection.bb_reflection__classesMap)!=null)){
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<464>";
+			bb_reflection.bb_reflection__classesMap=(new bb_map_StringMap()).g_new();
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<465>";
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<465>";
+			bb_reflection_ClassInfo[] t_=bb_reflection.bb_reflection__classes;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<465>";
+			int t_2=0;
+			bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<465>";
+			while(t_2<bb_std_lang.arrayLength(t_)){
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<465>";
+				bb_reflection_ClassInfo t_c=t_[t_2];
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<465>";
+				t_2=t_2+1;
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<466>";
+				String t_name2=t_c.m_Name();
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<467>";
+				bb_reflection.bb_reflection__classesMap.m_Set(t_name2,t_c);
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<468>";
+				int t_i=t_name2.lastIndexOf(".");
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<469>";
+				if(t_i==-1){
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<469>";
+					continue;
+				}
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<470>";
+				t_name2=bb_std_lang.slice(t_name2,t_i+1);
+				bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<471>";
+				if(bb_reflection.bb_reflection__classesMap.m_Contains(t_name2)){
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<472>";
+					bb_reflection.bb_reflection__classesMap.m_Set(t_name2,null);
+				}else{
+					bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<474>";
+					bb_reflection.bb_reflection__classesMap.m_Set(t_name2,t_c);
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<478>";
+		bb_reflection_ClassInfo t_3=bb_reflection.bb_reflection__classesMap.m_Get(t_name);
+		bb_std_lang.popErr();
+		return t_3;
+	}
+	static bb_reflection__GetClass bb_reflection__getClass;
+	static public bb_reflection_ClassInfo bb_reflection_GetClass2(Object t_obj){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<482>";
+		bb_reflection_ClassInfo t_=bb_reflection.bb_reflection__getClass.m_GetClass(t_obj);
+		bb_std_lang.popErr();
+		return t_;
+	}
+	static bb_reflection_ClassInfo bb_reflection__boolClass;
+	static bb_reflection_ClassInfo bb_reflection__intClass;
+	static bb_reflection_ClassInfo bb_reflection__floatClass;
+	static bb_reflection_ClassInfo bb_reflection__stringClass;
+	static bb_reflection_FunctionInfo[] bb_reflection__functions;
+	static public int bb_reflection___init(){
+		bb_reflection.bb_reflection__classes=new bb_reflection_ClassInfo[12];
+		bb_reflection.bb_reflection__classes[0]=((new bb_reflection_R16()).g_new());
+		bb_reflection.bb_reflection__classes[1]=((new bb_reflection_R17()).g_new());
+		bb_reflection.bb_reflection__classes[2]=((new bb_reflection_R18()).g_new());
+		bb_reflection.bb_reflection__classes[3]=((new bb_reflection_R31()).g_new());
+		bb_reflection.bb_reflection__classes[4]=((new bb_reflection_R33()).g_new());
+		bb_reflection.bb_reflection__classes[5]=((new bb_reflection_R35()).g_new());
+		bb_reflection.bb_reflection__classes[6]=((new bb_reflection_R37()).g_new());
+		bb_reflection.bb_reflection__classes[7]=((new bb_reflection_R39()).g_new());
+		bb_reflection.bb_reflection__classes[8]=((new bb_reflection_R41()).g_new());
+		bb_reflection.bb_reflection__classes[9]=((new bb_reflection_R47()).g_new());
+		bb_reflection.bb_reflection__classes[10]=((new bb_reflection_R57()).g_new());
+		bb_reflection.bb_reflection__classes[11]=((new bb_reflection_R67()).g_new());
+		bb_reflection.bb_reflection__classes[0].m_Init();
+		bb_reflection.bb_reflection__classes[1].m_Init();
+		bb_reflection.bb_reflection__classes[2].m_Init();
+		bb_reflection.bb_reflection__classes[3].m_Init();
+		bb_reflection.bb_reflection__classes[4].m_Init();
+		bb_reflection.bb_reflection__classes[5].m_Init();
+		bb_reflection.bb_reflection__classes[6].m_Init();
+		bb_reflection.bb_reflection__classes[7].m_Init();
+		bb_reflection.bb_reflection__classes[8].m_Init();
+		bb_reflection.bb_reflection__classes[9].m_Init();
+		bb_reflection.bb_reflection__classes[10].m_Init();
+		bb_reflection.bb_reflection__classes[11].m_Init();
+		bb_reflection.bb_reflection__functions=new bb_reflection_FunctionInfo[12];
+		bb_reflection.bb_reflection__functions[0]=((new bb_reflection_R4()).g_new());
+		bb_reflection.bb_reflection__functions[1]=((new bb_reflection_R5()).g_new());
+		bb_reflection.bb_reflection__functions[2]=((new bb_reflection_R6()).g_new());
+		bb_reflection.bb_reflection__functions[3]=((new bb_reflection_R7()).g_new());
+		bb_reflection.bb_reflection__functions[4]=((new bb_reflection_R8()).g_new());
+		bb_reflection.bb_reflection__functions[5]=((new bb_reflection_R9()).g_new());
+		bb_reflection.bb_reflection__functions[6]=((new bb_reflection_R10()).g_new());
+		bb_reflection.bb_reflection__functions[7]=((new bb_reflection_R11()).g_new());
+		bb_reflection.bb_reflection__functions[8]=((new bb_reflection_R12()).g_new());
+		bb_reflection.bb_reflection__functions[9]=((new bb_reflection_R13()).g_new());
+		bb_reflection.bb_reflection__functions[10]=((new bb_reflection_R14()).g_new());
+		bb_reflection.bb_reflection__functions[11]=((new bb_reflection_R15()).g_new());
+		bb_reflection.bb_reflection__getClass=((new bb_reflection___GetClass()).g_new());
+		return 0;
+	}
+	static int bb_reflection__init;
+	static bb_reflection_ClassInfo bb_reflection__unknownClass;
+}
 class bb_{
 	static public int bbMain(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<72>";
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/Beacon.monkey<57>";
 		(new bb__Beacon()).g_new();
 		bb_std_lang.popErr();
 		return 0;
 	}
 	public static int bbInit(){
+		bb_reflection.bb_reflection__classesMap=null;
+		bb_reflection.bb_reflection__classes=new bb_reflection_ClassInfo[0];
+		bb_reflection.bb_reflection__getClass=null;
+		bb_reflection.bb_reflection__boolClass=null;
+		bb_reflection.bb_reflection__intClass=null;
+		bb_reflection.bb_reflection__floatClass=null;
+		bb_reflection.bb_reflection__stringClass=null;
+		bb_reflection.bb_reflection__functions=new bb_reflection_FunctionInfo[0];
+		bb_reflection.bb_reflection__init=bb_reflection.bb_reflection___init();
 		bb_graphics.bb_graphics_device=null;
 		bb_input.bb_input_device=null;
 		bb_audio.bb_audio_device=null;
 		bb_app.bb_app_device=null;
+		bb_reflection.bb_reflection__unknownClass=((new bb_reflection_UnknownClass()).g_new());
 		bb_graphics.bb_graphics_context=(new bb_graphics_GraphicsContext()).g_new();
 		bb_graphics_Image.g_DefaultFlags=0;
 		bb_graphics.bb_graphics_renderDevice=null;
 		bb_challengergui.bb_challengergui_CHGUI_MobileMode=0;
 		bb_data2.bb_data2_STATUS="start";
+		bb_data2.bb_data2_Server=null;
 		bb_stream_Stream.g__tmpbuf=(new bb_databuffer_DataBuffer()).g_new(4096);
-		bb_protocol.bb_protocol_LastP=0;
-		bb_protocol.bb_protocol_SList=new String[]{""};
+		bb_data2.bb_data2_Game=null;
 		bb_challengergui.bb_challengergui_CHGUI_BottomList=new bb_challengergui_CHGUI[0];
 		bb_challengergui.bb_challengergui_CHGUI_Canvas=null;
 		bb_challengergui.bb_challengergui_CHGUI_OffsetX=.0f;
@@ -10320,50 +13047,59 @@ class bb_{
 		return 0;
 	}
 }
+class bb_bapp{
+}
 class bb_data2{
 	static String bb_data2_STATUS;
+	static bb_tcpstream_TcpStream bb_data2_Server;
+	static bb_bapp_BApp bb_data2_Game;
 	static float bb_data2_SCALE_W;
 	static float bb_data2_SCALE_H;
 	static public bb_challengergui_CHGUI bb_data2_CScale(bb_challengergui_CHGUI t_c){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<16>";
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<23>";
 		t_c.f_X*=(float)(bb_graphics.bb_graphics_DeviceWidth())/bb_data2.bb_data2_SCALE_W;
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<17>";
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<24>";
 		t_c.f_W*=(float)(bb_graphics.bb_graphics_DeviceWidth())/bb_data2.bb_data2_SCALE_W;
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<18>";
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<25>";
 		t_c.f_Y*=(float)(bb_graphics.bb_graphics_DeviceHeight())/bb_data2.bb_data2_SCALE_H;
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<19>";
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<26>";
 		t_c.f_H*=(float)(bb_graphics.bb_graphics_DeviceHeight())/bb_data2.bb_data2_SCALE_H;
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<20>";
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/data.monkey<27>";
 		bb_std_lang.popErr();
 		return t_c;
 	}
 }
+class bb_page{
+}
 class bb_protocol{
-	static public int bb_protocol_Post(bb_tcpstream_TcpStream t_stream,String t_url){
+	static public int bb_protocol_Post(String t_url){
 		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<4>";
+		bb_data2.bb_data2_Server.m_WriteLine("GET "+t_url+" HTTP/1.0");
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<5>";
+		bb_data2.bb_data2_Server.m_WriteLine(String.valueOf((char)(10)));
+		bb_std_lang.popErr();
+		return 0;
+	}
+	static public int bb_protocol_RequestGameList(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<9>";
+		bb_data2.bb_data2_Server=(new bb_tcpstream_TcpStream()).g_new();
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<10>";
+		do{
+		}while(!(bb_data2.bb_data2_Server.m_Connect("www.fuzzit.us",80)));
 		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<12>";
-		t_stream.m_WriteLine("GET "+t_url+" HTTP/1.0");
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<13>";
-		t_stream.m_WriteLine(String.valueOf((char)(10)));
+		bb_protocol.bb_protocol_Post("http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgamelist");
 		bb_std_lang.popErr();
 		return 0;
 	}
-	static public int bb_protocol_RequestGameList(bb_tcpstream_TcpStream t_stream){
-		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<17>";
-		bb_protocol.bb_protocol_Post(t_stream,"http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgamelist");
-		bb_std_lang.popErr();
-		return 0;
-	}
-	static int bb_protocol_LastP;
-	static String[] bb_protocol_SList;
-	static public int bb_protocol__readp(bb_tcpstream_TcpStream t_stream){
+	static public int bb_protocol__readp(){
 		bb_std_lang.pushErr();
 		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<36>";
 		do{
 			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<37>";
-			String t_Dat=t_stream.m_ReadLine();
+			String t_Dat=bb_data2.bb_data2_Server.m_ReadLine();
 			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<38>";
 			if(t_Dat.compareTo("__server__protocol__")==0){
 				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<39>";
@@ -10371,42 +13107,65 @@ class bb_protocol{
 			}
 		}while(!(false));
 		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<42>";
-		int t_Kind=Integer.parseInt((t_stream.m_ReadLine()).trim());
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<43>";
-		int t_=t_Kind;
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<44>";
-		if(t_==4){
+		if((bb_data2.bb_data2_Server.m_ReadAvail())!=0){
+			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<43>";
+			int t_Kind=Integer.parseInt((bb_data2.bb_data2_Server.m_ReadLine()).trim());
+			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<44>";
+			int t_=t_Kind;
 			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<45>";
-			bb_protocol.bb_protocol_LastP=4;
-			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<46>";
-			int t_am=Integer.parseInt((t_stream.m_ReadLine()).trim());
-			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<47>";
-			bb_protocol.bb_protocol_SList=(String[])bb_std_lang.resizeStringArray(bb_protocol.bb_protocol_SList,t_am);
-			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<48>";
-			for(int t_es=0;t_es<=t_am-1;t_es=t_es+1){
-				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<49>";
-				bb_protocol.bb_protocol_SList[t_es]=t_stream.m_ReadLine();
+			if(t_==4){
+				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<46>";
+				int t_am=Integer.parseInt((bb_data2.bb_data2_Server.m_ReadLine()).trim());
+				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<47>";
+				for(int t_es=0;t_es<=t_am-1;t_es=t_es+1){
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<48>";
+					bb_challengergui.bb_challengergui_CreateDropdownItem(bb_data2.bb_data2_Server.m_ReadLine(),bb_data2.bb_data2_Game.f_Games,0);
+				}
+			}else{
+				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<50>";
+				if(t_==5){
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<51>";
+					int t_am2=Integer.parseInt((bb_data2.bb_data2_Server.m_ReadLine()).trim());
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<52>";
+					for(int t_es2=0;t_es2<=t_am2-1;t_es2=t_es2+1){
+						bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<53>";
+						bb_challengergui.bb_challengergui_CreateDropdownItem(bb_data2.bb_data2_Server.m_ReadLine(),bb_data2.bb_data2_Game.f_BeaconList,0);
+					}
+				}
 			}
 		}
 		bb_std_lang.popErr();
 		return 0;
 	}
-	static public int bb_protocol_ReadProtocol(bb_tcpstream_TcpStream t_stream){
+	static public int bb_protocol_ReadProtocol(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<29>";
-		while((t_stream.m_ReadAvail())!=0){
-			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<30>";
-			bb_protocol.bb_protocol__readp(t_stream);
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<23>";
+		if(bb_data2.bb_data2_Server!=null){
+			bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<24>";
+			if((bb_data2.bb_data2_Server.m_ReadAvail())!=0){
+				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<25>";
+				while((bb_data2.bb_data2_Server.m_ReadAvail())!=0){
+					bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<26>";
+					bb_protocol.bb_protocol__readp();
+				}
+				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<28>";
+				bb_data2.bb_data2_Server.m_Close();
+				bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<29>";
+				bb_data2.bb_data2_Server=null;
+			}
 		}
 		bb_std_lang.popErr();
 		return 0;
 	}
-	static public int bb_protocol_ResetP(){
+	static public int bb_protocol_RequestBeaconList(String t_game){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<7>";
-		bb_protocol.bb_protocol_LastP=0;
-		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<8>";
-		bb_protocol.bb_protocol_SList=new String[]{""};
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<16>";
+		bb_data2.bb_data2_Server=(new bb_tcpstream_TcpStream()).g_new();
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<17>";
+		do{
+		}while(!(bb_data2.bb_data2_Server.m_Connect("www.fuzzit.us",80)));
+		bb_std_lang.errInfo="J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/protocol.monkey<19>";
+		bb_protocol.bb_protocol_Post("http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetbeaconlist&game="+t_game);
 		bb_std_lang.popErr();
 		return 0;
 	}

@@ -3,6 +3,12 @@ Import mojo
 Import brl
 Import protocol
 Import page
+Import bapp
+Import diddy
+
+Global Game:BApp
+
+Global Server:TcpStream
 
 Global STATUS:= "start", SCREEN:= "normal"
 

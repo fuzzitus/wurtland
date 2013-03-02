@@ -69,12 +69,16 @@ else:
             if g.CheckGameExists(GAMENAME):
                 if g.CheckPassword(GAMENAME, PW):
 
-                    GAME = g.Load(GAMENAME)
-                    BEACON = GAME.GetBeacon(BEACONNAME)
-                    BEACON.Id = NEWNAME
-                    GAME.Save()
+                    GAME = g.LoadGame(GAMENAME)
+                    if BEACONNAME == 'create_new_beacon':
+                        GAME.Beacons.append(b.Beacon(NEWNAME, 0.0, 0.0, [], False, ''))
+                        GAME.Save()
+                    else:
+                        BEACON = GAME.GetBeacon(BEACONNAME)
+                        BEACON.Id = NEWNAME
+                        GAME.Save()
                     
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=beaconmenumenu&gamename=' + GAMENAME + '&pw=' + PW)
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=beaconmenu&gamename=' + GAMENAME + '&pw=' + PW)
                 else:
                     GoToPage(HOST + 'cgi-bin/adminconsole.py')
             else:
@@ -91,7 +95,7 @@ else:
                 if g.CheckPassword(GAMENAME, PW):
                     GAME = g.Load(GAMENAME)
                     for EB in GAME.Beacons:
-                         if EB.Id == BEACONNAME:
+                         if EB.Name == BEACONNAME:
                              GAME.Beacons.remove(EB)
                              break
                     GAME.Save()
@@ -109,7 +113,7 @@ else:
         #A Mobile Device Requests The List Of Beacons
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgamelist
         elif ACTION == 'mobilegetbeaconlist':
-            GAME = Pars['game']
+            GAME = Pars['game'].value
             mp.SendBeaconList(GAME)
 
         #A Mobile Device Requests For A Game

@@ -1,5 +1,3 @@
-import base64
-
 def bool(v):
     if v == "False" or v == "0":
         return False
@@ -11,7 +9,8 @@ def ReadFrom(dat):
     return R
 
 def ReadFromFile(filename):
-    return base64.b64decode(open('/home4/fuzzitus/public_html/' + filename, 'rb').read()).split('__fuzz__split__||')
+    return open(filename, 'r').read().split('_f_s_||')
     
 def Write(stream, txt):
-    stream.write(base64.b64encode(str(txt) +  '__fuzz__split__||'))
+    stream.write(str(txt) +  '_f_s_||')
+

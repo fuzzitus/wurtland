@@ -1,20 +1,6 @@
 Import data
 
-Class Beacon Extends App
-
-	'WIDGETS
-	Field Title:CHGUI'The Title
-	Field ServerLabel:CHGUI
-	Field Games:CHGUI
-	Field PwLabel:CHGUI, Pw:CHGUI
-	Field BeaconList:CHGUI
-	Field On_Off:CHGUI
-	
-	'Status
-	Field isOn:Bool
-	
-	'Net
-	Field Server:TcpStream
+Class Beacon Extends BApp
 	
 	Method OnCreate()
 		CHGUI_MobileMode = 1
@@ -24,18 +10,10 @@ Class Beacon Extends App
 	Method OnRender()
 		Select STATUS
 			Case "connecting"
-				If Server.Connect("www.fuzzit.us", 80)
-					RequestGameList(Server)
-					STATUS = "normal"
-				Endif
+				RequestGameList()
+				STATUS = "normal"
 			Case "normal"
-				ReadProtocol(Server)
-				If LastP = 4
-					For Local eS:= Eachin SList
-						CreateDropdownItem(eS, Games)
-					Next
-				Endif
-				ResetP()
+				ReadProtocol()
 				
 				Cls(247, 247, 247)
 				
@@ -52,7 +30,8 @@ Class Beacon Extends App
 				On_Off = CScale(CreateButton(10, SCALE_H - 50, SCALE_W - 20, 40, "On/Off"))
 				
 				isOn = False
-				Server = New TcpStream
+				Game = Self
+				LastGame = "Choose Game"
 				STATUS = "connecting"
 		End Select
 	End Method
@@ -63,6 +42,12 @@ Class Beacon Extends App
 				CHGUI_Update()
 			Case "normal"
 				CHGUI_Update()
+				If LastGame <> Games.Text
+					CHGUI_Delete(BeaconList)
+					BeaconList = CScale(CreateDropdown(10, 210, SCALE_W - 20, 40, "Choose Beacon"))
+					LastGame = Games.Text
+					RequestBeaconList(LastGame)
+				endif
 		End Select
 	End Method
 	

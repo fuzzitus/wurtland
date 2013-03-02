@@ -1,52 +1,57 @@
 Import data
 
-Global LastP:= 0
-Global SList:= [""]
-
-Function ResetP()
-	LastP = 0
-	SList = [""]
-End function
-
-Function Post(stream:TcpStream, url:string)
-	stream.WriteLine("GET " + url + " HTTP/1.0")
-	stream.WriteLine(String.FromChar(10))
+Function Post(url:string)
+	Server.WriteLine("GET " + url + " HTTP/1.0")
+	Server.WriteLine(String.FromChar(10))
 End Function
 
-Function RequestGameList(stream:TcpStream)
-	Post(stream, "http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgamelist")
+Function RequestGameList()
+	Server = New TcpStream
+	Repeat
+	Until Server.Connect("www.fuzzit.us", 80)
+	Post("http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgamelist")
 End Function
 
-Function ReadString:string(stream:Stream)
-	Local am:= stream.ReadInt(), txt:= ""
-	For Local EC:= 0 To am - 1
-		txt += String.FromChar(stream.ReadByte())
-	Next
-	Return txt
+Function RequestBeaconList(game:String)
+	Server = New TcpStream
+	Repeat
+	Until Server.Connect("www.fuzzit.us", 80)
+	Post("http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetbeaconlist&game=" + game)
 End Function
 
-Function ReadProtocol(stream:TcpStream)
-	While stream.ReadAvail()
-		_readp(stream)
-	Wend
+Function ReadProtocol()
+	If Server <> Null
+		If Server.ReadAvail()
+			While Server.ReadAvail()
+				_readp()
+			Wend
+			Server.Close()
+			Server = Null
+		endif
+	Endif
 End Function
 
-	Function _readp(stream:TcpStream)
+	Function _readp()
 		'Clean The Garbage
 		Repeat
-			Local Dat:= stream.ReadLine()
+			Local Dat:= Server.ReadLine()
 			If Dat = "__server__protocol__"
 				Exit
 			Endif
 		Forever
-		Local Kind:= Int(stream.ReadLine())
-		Select Kind
-			Case 4'List of Games
-				LastP = 4
-				Local am:= Int(stream.ReadLine())
-				SList = SList.Resize(am)
-				For Local es:= 0 To am - 1
-					SList[es] = stream.ReadLine()
-				Next
-		End select
+		If Server.ReadAvail()
+			Local Kind:= Int(Server.ReadLine())
+			Select Kind
+				Case 4'List of Games
+					Local am:= Int(Server.ReadLine())
+					For Local es:= 0 To am - 1
+						CreateDropdownItem(Server.ReadLine(), Game.Games)
+					Next
+				Case 5'List of Beacons
+					Local am:= Int(Server.ReadLine())
+					For Local es:= 0 To am - 1
+						CreateDropdownItem(Server.ReadLine(), Game.BeaconList)
+					Next
+			End Select
+		endif
 	End function

@@ -3766,6 +3766,7 @@ class bb_edrawmode_eDrawMode;
 class bb_edrawalign_eDrawAlign;
 class bb_page_SplashPage;
 class bb_page_CreateAccountPage;
+class bb_page_LoginPage;
 class bb_app_App : public Object{
 	public:
 	bb_app_App();
@@ -4317,6 +4318,22 @@ class bb_page_CreateAccountPage : public bb_page_Page{
 };
 String dbg_type(bb_page_CreateAccountPage**p){return "CreateAccountPage";}
 bb_challengergui_CHGUI* bb_challengergui_CreateTextfield(int,int,int,int,String,bb_challengergui_CHGUI*);
+class bb_page_LoginPage : public bb_page_Page{
+	public:
+	bb_challengergui_CHGUI* f_Title;
+	bb_challengergui_CHGUI* f_Un;
+	bb_challengergui_CHGUI* f_Pw;
+	bb_challengergui_CHGUI* f_T_Un;
+	bb_challengergui_CHGUI* f_T_Pw;
+	bb_challengergui_CHGUI* f_Login;
+	bb_page_LoginPage();
+	bb_page_LoginPage* g_new();
+	virtual int m_Render();
+	virtual int m_Update();
+	void mark();
+	String debug();
+};
+String dbg_type(bb_page_LoginPage**p){return "LoginPage";}
 bb_app_App::bb_app_App(){
 }
 bb_app_App* bb_app_App::g_new(){
@@ -9214,13 +9231,13 @@ int bb_page_SplashPage::m_Clear(){
 	DBG_ENTER("SplashPage.Clear")
 	bb_page_SplashPage *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<36>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<40>");
 	bb_challengergui_CHGUI_Delete(f_Title);
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<37>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<41>");
 	bb_challengergui_CHGUI_Delete(f_Login);
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<38>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<42>");
 	bb_challengergui_CHGUI_Delete(f_LoginFB);
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<39>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<43>");
 	bb_challengergui_CHGUI_Delete(f_NewAccount);
 	return 0;
 }
@@ -9237,6 +9254,14 @@ int bb_page_SplashPage::m_Update(){
 		m_Clear();
 		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<32>");
 		gc_assign(bb_page_CUR_PAGE,((new bb_page_CreateAccountPage)->g_new()));
+	}
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<34>");
+	if((f_Login->f_Clicked)!=0){
+		DBG_BLOCK();
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<35>");
+		m_Clear();
+		DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<36>");
+		gc_assign(bb_page_CUR_PAGE,((new bb_page_LoginPage)->g_new()));
 	}
 	return 0;
 }
@@ -13482,31 +13507,31 @@ bb_page_CreateAccountPage* bb_page_CreateAccountPage::g_new(){
 	DBG_ENTER("CreateAccountPage.new")
 	bb_page_CreateAccountPage *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<51>");
-	bb_page_Page::g_new();
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<52>");
-	gc_assign(f_Title,bb_data2_CScale(bb_challengergui_CreateLabel(80,10,String(L"Create Account",14),0)));
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<53>");
-	gc_assign(f_FirstName,bb_data2_CScale(bb_challengergui_CreateLabel(5,60,String(L"First Name:",11),0)));
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<54>");
-	gc_assign(f_LastName,bb_data2_CScale(bb_challengergui_CreateLabel(5,100,String(L"Last Name:",10),0)));
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<55>");
-	gc_assign(f_Username,bb_data2_CScale(bb_challengergui_CreateLabel(5,140,String(L"Username:",9),0)));
+	bb_page_Page::g_new();
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<56>");
-	gc_assign(f_Pw,bb_data2_CScale(bb_challengergui_CreateLabel(5,180,String(L"Password:",9),0)));
+	gc_assign(f_Title,bb_data2_CScale(bb_challengergui_CreateLabel(80,10,String(L"Create Account",14),0)));
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<57>");
-	gc_assign(f_Interests,bb_data2_CScale(bb_challengergui_CreateLabel(5,220,String(L"Interests:",10),0)));
+	gc_assign(f_FirstName,bb_data2_CScale(bb_challengergui_CreateLabel(5,60,String(L"First Name:",11),0)));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<58>");
+	gc_assign(f_LastName,bb_data2_CScale(bb_challengergui_CreateLabel(5,100,String(L"Last Name:",10),0)));
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<59>");
-	gc_assign(f_T_FN,bb_data2_CScale(bb_challengergui_CreateTextfield(int(FLOAT(10.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(f_FirstName->f_Text)),55,140,35,String(),0)));
+	gc_assign(f_Username,bb_data2_CScale(bb_challengergui_CreateLabel(5,140,String(L"Username:",9),0)));
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<60>");
-	gc_assign(f_T_LN,bb_data2_CScale(bb_challengergui_CreateTextfield(int(FLOAT(10.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(f_FirstName->f_Text)),95,140,35,String(),0)));
+	gc_assign(f_Pw,bb_data2_CScale(bb_challengergui_CreateLabel(5,180,String(L"Password:",9),0)));
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<61>");
-	gc_assign(f_T_UN,bb_data2_CScale(bb_challengergui_CreateTextfield(int(FLOAT(10.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(f_FirstName->f_Text)),135,140,35,String(),0)));
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<62>");
-	gc_assign(f_T_PW,bb_data2_CScale(bb_challengergui_CreateTextfield(int(FLOAT(10.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(f_FirstName->f_Text)),175,140,35,String(),0)));
+	gc_assign(f_Interests,bb_data2_CScale(bb_challengergui_CreateLabel(5,220,String(L"Interests:",10),0)));
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<63>");
-	gc_assign(f_T_I,bb_data2_CScale(bb_challengergui_CreateTextfield(int(FLOAT(10.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(f_FirstName->f_Text)),215,140,35,String(),0)));
+	gc_assign(f_T_FN,bb_data2_CScale(bb_challengergui_CreateTextfield(int(FLOAT(10.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(f_FirstName->f_Text)),55,140,35,String(),0)));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<64>");
+	gc_assign(f_T_LN,bb_data2_CScale(bb_challengergui_CreateTextfield(int(FLOAT(10.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(f_FirstName->f_Text)),95,140,35,String(),0)));
 	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<65>");
+	gc_assign(f_T_UN,bb_data2_CScale(bb_challengergui_CreateTextfield(int(FLOAT(10.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(f_FirstName->f_Text)),135,140,35,String(),0)));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<66>");
+	gc_assign(f_T_PW,bb_data2_CScale(bb_challengergui_CreateTextfield(int(FLOAT(10.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(f_FirstName->f_Text)),175,140,35,String(),0)));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<67>");
+	gc_assign(f_T_I,bb_data2_CScale(bb_challengergui_CreateTextfield(int(FLOAT(10.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(f_FirstName->f_Text)),215,140,35,String(),0)));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<69>");
 	gc_assign(f_Start,bb_data2_CScale(bb_challengergui_CreateButton(20,int(bb_data2_SCALE_H-FLOAT(60.0)),int(bb_data2_SCALE_W-FLOAT(40.0)),50,String(L"Start",5),0)));
 	return this;
 }
@@ -13514,7 +13539,7 @@ int bb_page_CreateAccountPage::m_Render(){
 	DBG_ENTER("CreateAccountPage.Render")
 	bb_page_CreateAccountPage *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<68>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<72>");
 	bb_challengergui_CHGUI_Draw();
 	return 0;
 }
@@ -13522,7 +13547,7 @@ int bb_page_CreateAccountPage::m_Update(){
 	DBG_ENTER("CreateAccountPage.Update")
 	bb_page_CreateAccountPage *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<71>");
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<75>");
 	bb_challengergui_CHGUI_Update();
 	return 0;
 }
@@ -13602,6 +13627,70 @@ bb_challengergui_CHGUI* bb_challengergui_CreateTextfield(int t_X,int t_Y,int t_W
 	gc_assign(t_N->f_Parent->f_Textfields.At(t_N->f_Parent->f_Textfields.Length()-1),t_N);
 	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<650>");
 	return t_N;
+}
+bb_page_LoginPage::bb_page_LoginPage(){
+	f_Title=0;
+	f_Un=0;
+	f_Pw=0;
+	f_T_Un=0;
+	f_T_Pw=0;
+	f_Login=0;
+}
+bb_page_LoginPage* bb_page_LoginPage::g_new(){
+	DBG_ENTER("LoginPage.new")
+	bb_page_LoginPage *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<84>");
+	bb_page_Page::g_new();
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<85>");
+	gc_assign(f_Title,bb_data2_CScale(bb_challengergui_CreateLabel(100,10,String(L"Login",5),0)));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<86>");
+	gc_assign(f_Un,bb_data2_CScale(bb_challengergui_CreateLabel(5,60,String(L"Username:",9),0)));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<87>");
+	gc_assign(f_Pw,bb_data2_CScale(bb_challengergui_CreateLabel(5,100,String(L"Password:",9),0)));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<88>");
+	gc_assign(f_T_Un,bb_data2_CScale(bb_challengergui_CreateTextfield(int(FLOAT(10.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(f_Un->f_Text)),55,140,35,String(),0)));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<89>");
+	gc_assign(f_T_Pw,bb_data2_CScale(bb_challengergui_CreateTextfield(int(FLOAT(10.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(f_Un->f_Text)),95,140,35,String(),0)));
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<90>");
+	gc_assign(f_Login,bb_data2_CScale(bb_challengergui_CreateButton(20,int(bb_data2_SCALE_H-FLOAT(60.0)),int(bb_data2_SCALE_W-FLOAT(40.0)),50,String(L"Login",5),0)));
+	return this;
+}
+int bb_page_LoginPage::m_Render(){
+	DBG_ENTER("LoginPage.Render")
+	bb_page_LoginPage *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<93>");
+	bb_challengergui_CHGUI_Draw();
+	return 0;
+}
+int bb_page_LoginPage::m_Update(){
+	DBG_ENTER("LoginPage.Update")
+	bb_page_LoginPage *self=this;
+	DBG_LOCAL(self,"Self")
+	DBG_INFO("J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps/page.monkey<96>");
+	bb_challengergui_CHGUI_Update();
+	return 0;
+}
+void bb_page_LoginPage::mark(){
+	bb_page_Page::mark();
+	gc_mark_q(f_Title);
+	gc_mark_q(f_Un);
+	gc_mark_q(f_Pw);
+	gc_mark_q(f_T_Un);
+	gc_mark_q(f_T_Pw);
+	gc_mark_q(f_Login);
+}
+String bb_page_LoginPage::debug(){
+	String t="(LoginPage)\n";
+	t=bb_page_Page::debug()+t;
+	t+=dbg_decl("Title",&f_Title);
+	t+=dbg_decl("Un",&f_Un);
+	t+=dbg_decl("T_Un",&f_T_Un);
+	t+=dbg_decl("Pw",&f_Pw);
+	t+=dbg_decl("T_Pw",&f_T_Pw);
+	t+=dbg_decl("Login",&f_Login);
+	return t;
 }
 int bbInit(){
 	bb_graphics_device=0;

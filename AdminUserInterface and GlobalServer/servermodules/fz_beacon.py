@@ -4,8 +4,7 @@ import sys
 import fz_pack as p
 
 class Beacon:
-    def __init__(b, Id, name, x, y, instructions, activated, phoneid = ''):
-        b.Id = Id
+    def __init__(b, name, x, y, instructions, activated, phoneid = ''):
         b.Name = name
         b.X = x
         b.Y = y
@@ -14,7 +13,6 @@ class Beacon:
         b.PhoneId = phoneid
     def Write(b, stream):
         p.Write(stream, 0)#FORMAT
-        p.Write(stream, b.Id)
         p.Write(stream, b.Name)
         p.Write(stream, b.X)
         p.Write(stream, b.Y)
@@ -26,7 +24,6 @@ class Beacon:
 
 def ReadBeacon(stream):
     form = p.ReadFrom(stream)
-    Id = p.ReadFrom(stream)
     Name = p.ReadFrom(stream)
     X = float(p.ReadFrom(stream))
     Y = float(p.ReadFrom(stream))
@@ -36,4 +33,4 @@ def ReadBeacon(stream):
         I.append(p.ReadFrom(stream))
     a = p.bool(p.ReadFrom(stream))
     pid = p.ReadFrom(stream)
-    return Beacon(Id, Name, X, Y, I, a, pid)
+    return Beacon(Name, X, Y, I, a, pid)

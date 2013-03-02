@@ -35,4 +35,4 @@ def SendBeaconList(game):
     GAME = g.LoadGame(game)
     print str(len(GAME.Beacons))
     for EB in GAME.Beacons:
-        print EB.Id
+        print EB.Name

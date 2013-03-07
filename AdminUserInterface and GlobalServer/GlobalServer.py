@@ -5,10 +5,12 @@ sys.path.append(os.getcwd() + '/servermodules')
 sys.path.append(os.getcwd() + '/redemptionweb')
 from redemptionweb import *
 
-import fz_player as p
+import fz_player as P
 import fz_beacon as b
 import fz_game as g
 import fz_mobileprotocol as mp
+import fz_instruction as i
+import random as R
 
 import ciPack as p
 
@@ -33,7 +35,6 @@ else:
         if ACTION == 'creategame':
             GAMENAME = Pars['gamename'].value
             PW = Pars['pw'].value
-            SERVERTYPE = Pars['servertype'].value
 
             if g.CheckGameExists(GAMENAME):
                 GoToPage(HOST + 'cgi-bin/adminconsole.py?action=createnewgame')
@@ -45,10 +46,9 @@ else:
 
         #Logs into a game or returns back if the password is wrong
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=login&gamename=GAME&pw=PASSWORD&servertype=static
-        elif ACTION == 'logingame':
+        elif ACTION == 'logintogame':
             GAMENAME = Pars['gamename'].value
             PW = Pars['pw'].value
-            SERVERTYPE = Pars['servertype'].value
 
             if g.CheckGameExists(GAMENAME):
                 if g.CheckPassword(GAMENAME, PW):
@@ -105,6 +105,37 @@ else:
             else:
                 GoToPage(HOST + 'cgi-bin/adminconsole.py')
 
+        #Updates Player Trait
+        #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=updateplayertrait
+        elif ACTION == 'updateplayertrait':
+            GAMENAME = Pars['gamename'].value
+            PW = Pars['pw'].value
+            PL = Pars['player'].value
+
+            if PL == '':
+                GoToPage(HOST + 'cgi-bin/adminconsole.py?action=playertraits&gamename=' + GAMENAME + '&pw=' + PW)
+
+            if g.CheckGameExists(GAMENAME):
+                if g.CheckPassword(GAMENAME, PW):
+                    
+                    GAME = g.LoadGame(GAMENAME)
+                    PLAYER = P.LoadPlayer(PL)
+                    PLAYER.Traits = []
+                    
+                    for ET in Pars:
+                        if ET.startswith('cb_fuz_'):
+                            PLAYER.Traits.append(ET.replace('cb_fuz_', ''))
+
+                    PLAYER.Save()
+                    GAME.Save()
+                    
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=playertraits&gamename=' + GAMENAME + '&pw=' + PW + '&player=' + PL)
+                else:
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py')
+            else:
+                GoToPage(HOST + 'cgi-bin/adminconsole.py')
+            
+
         #Updates a trait
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=updatetrait
         elif ACTION == 'updatetrait':
@@ -141,6 +172,35 @@ else:
                     GoToPage(HOST + 'cgi-bin/adminconsole.py')
             else:
                 GoToPage(HOST + 'cgi-bin/adminconsole.py')
+
+        #Updates instruction
+        #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=updateinstruction
+        elif ACTION == 'updateinstruction':
+            GAMENAME = Pars['gamename'].value
+            PW = Pars['pw'].value
+            I_NAME = Pars['i__ins__name'].value
+            B_NAME = Pars['blist'].value
+
+            T_LIST = []
+            for EV in Pars:
+                if EV.startswith('st_fuz_'):
+                    T_LIST.append(EV.replace('st_fuz_', ''))
+                    
+            if g.CheckGameExists(GAMENAME):
+                if g.CheckPassword(GAMENAME, PW):
+                    GAME = g.LoadGame(GAMENAME)
+                    I_ID = str(R.randint(0, 9999999999))
+                    GAME.Instructions.append(i.Instruction(I_ID, T_LIST, I_NAME))
+                    BEACON = GAME.GetBeacon(B_NAME)
+                    BEACON.Instructions.append(I_ID)
+                    GAME.Save()
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=instructions&gamename=' + GAMENAME + '&pw=' + PW)
+                else:
+                    GoToPage(HOST + 'cgi-bin/adminconsole.py')
+            else:
+                GoToPage(HOST + 'cgi-bin/adminconsole.py')
+			
+
 
         #A Mobile Device Requests The List Of Games
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=mobilegetgamelist

@@ -14,7 +14,7 @@
 #define CFG_HOST winnt
 #define CFG_IMAGE_FILES *.png|*.jpg
 #define CFG_LANG cpp
-#define CFG_MODPATH .;J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps;C:/Program Files (x86)/Monkey/modules
+#define CFG_MODPATH .;J:/WORK/Fuzzit/iOS Beacon Demo/repo/wurtland/iOS Apps;J:/APPLICATIONS/Monkey/modules
 #define CFG_MOJO_AUTO_SUSPEND_ENABLED 0
 #define CFG_MOJO_IMAGE_FILTERING_ENABLED 1
 #define CFG_MUSIC_FILES *.wav|*.ogg
@@ -5596,7 +5596,7 @@ String bb_exception_DiddyException::m_Message(){
 	DBG_ENTER("DiddyException.Message")
 	bb_exception_DiddyException *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<15>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<15>");
 	return f_message;
 }
 void bb_exception_DiddyException::m_Message2(String t_message){
@@ -5604,14 +5604,14 @@ void bb_exception_DiddyException::m_Message2(String t_message){
 	bb_exception_DiddyException *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_message,"message")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<19>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<19>");
 	this->f_message=t_message;
 }
 ThrowableObject* bb_exception_DiddyException::m_Cause(){
 	DBG_ENTER("DiddyException.Cause")
 	bb_exception_DiddyException *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<23>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<23>");
 	return f_cause;
 }
 void bb_exception_DiddyException::m_Cause2(ThrowableObject* t_cause){
@@ -5619,26 +5619,26 @@ void bb_exception_DiddyException::m_Cause2(ThrowableObject* t_cause){
 	bb_exception_DiddyException *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_cause,"cause")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<27>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<27>");
 	if(t_cause==(this)){
 		DBG_BLOCK();
 		t_cause=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<28>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<28>");
 	gc_assign(this->f_cause,t_cause);
 }
 String bb_exception_DiddyException::m_Type(){
 	DBG_ENTER("DiddyException.Type")
 	bb_exception_DiddyException *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<32>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<32>");
 	return f_type;
 }
 String bb_exception_DiddyException::m_FullType(){
 	DBG_ENTER("DiddyException.FullType")
 	bb_exception_DiddyException *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<36>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<36>");
 	return f_fullType;
 }
 String bb_exception_DiddyException::m_ToString(bool t_recurse){
@@ -5646,40 +5646,40 @@ String bb_exception_DiddyException::m_ToString(bool t_recurse){
 	bb_exception_DiddyException *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_recurse,"recurse")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<56>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<56>");
 	String t_rv=f_type+String(L": ",2)+f_message;
 	DBG_LOCAL(t_rv,"rv")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<57>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<57>");
 	if(t_recurse){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<58>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<58>");
 		int t_depth=10;
 		DBG_LOCAL(t_depth,"depth")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<59>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<59>");
 		ThrowableObject* t_current=f_cause;
 		DBG_LOCAL(t_current,"current")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<60>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<60>");
 		while(((t_current)!=0) && t_depth>0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<61>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<61>");
 			if((dynamic_cast<bb_exception_DiddyException*>(t_current))!=0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<62>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<62>");
 				t_rv=t_rv+(String(L"\nCaused by ",11)+f_type+String(L": ",2)+dynamic_cast<bb_exception_DiddyException*>(t_current)->f_message);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<63>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<63>");
 				t_current=dynamic_cast<bb_exception_DiddyException*>(t_current)->f_cause;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<64>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<64>");
 				t_depth-=1;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<66>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<66>");
 				t_rv=t_rv+String(L"\nCaused by a non-Diddy exception.",33);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<67>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<67>");
 				t_current=0;
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<71>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<71>");
 	return t_rv;
 }
 bb_exception_DiddyException* bb_exception_DiddyException::g_new(String t_message,ThrowableObject* t_cause){
@@ -5688,31 +5688,31 @@ bb_exception_DiddyException* bb_exception_DiddyException::g_new(String t_message
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_message,"message")
 	DBG_LOCAL(t_cause,"cause")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<40>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<40>");
 	this->f_message=t_message;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<41>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<41>");
 	gc_assign(this->f_cause,t_cause);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<42>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<42>");
 	bb_reflection_ClassInfo* t_ci=bb_reflection_GetClass2(this);
 	DBG_LOCAL(t_ci,"ci")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<43>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<43>");
 	if((t_ci)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<44>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<44>");
 		this->f_fullType=t_ci->m_Name();
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<46>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<46>");
 		this->f_fullType=String(L"diddy.exception.DiddyException",30);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<48>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<48>");
 	if(this->f_fullType.Contains(String(L".",1))){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<49>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<49>");
 		this->f_type=this->f_fullType.Slice(this->f_fullType.FindLast(String(L".",1))+1);
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<51>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<51>");
 		this->f_type=this->f_fullType;
 	}
 	return this;
@@ -5750,7 +5750,7 @@ String bb_reflection_ClassInfo::m_Name(){
 	DBG_ENTER("ClassInfo.Name")
 	bb_reflection_ClassInfo *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<222>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<222>");
 	return f__name;
 }
 bb_reflection_ClassInfo* bb_reflection_ClassInfo::g_new(String t_name,int t_attrs,bb_reflection_ClassInfo* t_sclass,Array<bb_reflection_ClassInfo* > t_ifaces){
@@ -5761,13 +5761,13 @@ bb_reflection_ClassInfo* bb_reflection_ClassInfo::g_new(String t_name,int t_attr
 	DBG_LOCAL(t_attrs,"attrs")
 	DBG_LOCAL(t_sclass,"sclass")
 	DBG_LOCAL(t_ifaces,"ifaces")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<215>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<215>");
 	f__name=t_name;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<216>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<216>");
 	f__attrs=t_attrs;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<217>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<217>");
 	gc_assign(f__sclass,t_sclass);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<218>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<218>");
 	gc_assign(f__ifaces,t_ifaces);
 	return this;
 }
@@ -5775,7 +5775,7 @@ bb_reflection_ClassInfo* bb_reflection_ClassInfo::g_new2(){
 	DBG_ENTER("ClassInfo.new")
 	bb_reflection_ClassInfo *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<212>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<212>");
 	return this;
 }
 int bb_reflection_ClassInfo::m_Init(){
@@ -5788,13 +5788,13 @@ int bb_reflection_ClassInfo::m_InitR(){
 	DBG_ENTER("ClassInfo.InitR")
 	bb_reflection_ClassInfo *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<421>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<421>");
 	if((f__sclass)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<422>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<422>");
 		bb_stack_Stack* t_consts=(new bb_stack_Stack)->g_new2(f__sclass->f__rconsts);
 		DBG_LOCAL(t_consts,"consts")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<423>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<423>");
 		Array<bb_reflection_ConstInfo* > t_=f__consts;
 		int t_2=0;
 		while(t_2<t_.Length()){
@@ -5802,15 +5802,15 @@ int bb_reflection_ClassInfo::m_InitR(){
 			bb_reflection_ConstInfo* t_t=t_.At(t_2);
 			t_2=t_2+1;
 			DBG_LOCAL(t_t,"t")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<424>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<424>");
 			t_consts->m_Push(t_t);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<426>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<426>");
 		gc_assign(f__rconsts,t_consts->m_ToArray());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<427>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<427>");
 		bb_stack_Stack2* t_fields=(new bb_stack_Stack2)->g_new2(f__sclass->f__rfields);
 		DBG_LOCAL(t_fields,"fields")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<428>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<428>");
 		Array<bb_reflection_FieldInfo* > t_3=f__fields;
 		int t_4=0;
 		while(t_4<t_3.Length()){
@@ -5818,15 +5818,15 @@ int bb_reflection_ClassInfo::m_InitR(){
 			bb_reflection_FieldInfo* t_t2=t_3.At(t_4);
 			t_4=t_4+1;
 			DBG_LOCAL(t_t2,"t")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<429>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<429>");
 			t_fields->m_Push4(t_t2);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<431>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<431>");
 		gc_assign(f__rfields,t_fields->m_ToArray());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<432>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<432>");
 		bb_stack_Stack3* t_globals=(new bb_stack_Stack3)->g_new2(f__sclass->f__rglobals);
 		DBG_LOCAL(t_globals,"globals")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<433>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<433>");
 		Array<bb_reflection_GlobalInfo* > t_5=f__globals;
 		int t_6=0;
 		while(t_6<t_5.Length()){
@@ -5834,15 +5834,15 @@ int bb_reflection_ClassInfo::m_InitR(){
 			bb_reflection_GlobalInfo* t_t3=t_5.At(t_6);
 			t_6=t_6+1;
 			DBG_LOCAL(t_t3,"t")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<434>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<434>");
 			t_globals->m_Push7(t_t3);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<436>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<436>");
 		gc_assign(f__rglobals,t_globals->m_ToArray());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<437>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<437>");
 		bb_stack_Stack4* t_methods=(new bb_stack_Stack4)->g_new2(f__sclass->f__rmethods);
 		DBG_LOCAL(t_methods,"methods")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<438>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<438>");
 		Array<bb_reflection_MethodInfo* > t_7=f__methods;
 		int t_8=0;
 		while(t_8<t_7.Length()){
@@ -5850,15 +5850,15 @@ int bb_reflection_ClassInfo::m_InitR(){
 			bb_reflection_MethodInfo* t_t4=t_7.At(t_8);
 			t_8=t_8+1;
 			DBG_LOCAL(t_t4,"t")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<439>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<439>");
 			t_methods->m_Push10(t_t4);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<441>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<441>");
 		gc_assign(f__rmethods,t_methods->m_ToArray());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<442>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<442>");
 		bb_stack_Stack5* t_functions=(new bb_stack_Stack5)->g_new2(f__sclass->f__rfunctions);
 		DBG_LOCAL(t_functions,"functions")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<443>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<443>");
 		Array<bb_reflection_FunctionInfo* > t_9=f__functions;
 		int t_10=0;
 		while(t_10<t_9.Length()){
@@ -5866,22 +5866,22 @@ int bb_reflection_ClassInfo::m_InitR(){
 			bb_reflection_FunctionInfo* t_t5=t_9.At(t_10);
 			t_10=t_10+1;
 			DBG_LOCAL(t_t5,"t")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<444>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<444>");
 			t_functions->m_Push13(t_t5);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<446>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<446>");
 		gc_assign(f__rfunctions,t_functions->m_ToArray());
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<448>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<448>");
 		gc_assign(f__rconsts,f__consts);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<449>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<449>");
 		gc_assign(f__rfields,f__fields);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<450>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<450>");
 		gc_assign(f__rglobals,f__globals);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<451>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<451>");
 		gc_assign(f__rmethods,f__methods);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<452>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<452>");
 		gc_assign(f__rfunctions,f__functions);
 	}
 	return 0;
@@ -5928,7 +5928,7 @@ bb_map_Map* bb_map_Map::g_new(){
 	DBG_ENTER("Map.new")
 	bb_map_Map *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<7>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<7>");
 	return this;
 }
 int bb_map_Map::m_RotateLeft(bb_map_Node* t_node){
@@ -5936,40 +5936,40 @@ int bb_map_Map::m_RotateLeft(bb_map_Node* t_node){
 	bb_map_Map *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_node,"node")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<251>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<251>");
 	bb_map_Node* t_child=t_node->f_right;
 	DBG_LOCAL(t_child,"child")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<252>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<252>");
 	gc_assign(t_node->f_right,t_child->f_left);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<253>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<253>");
 	if((t_child->f_left)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<254>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<254>");
 		gc_assign(t_child->f_left->f_parent,t_node);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<256>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<256>");
 	gc_assign(t_child->f_parent,t_node->f_parent);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<257>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<257>");
 	if((t_node->f_parent)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<258>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<258>");
 		if(t_node==t_node->f_parent->f_left){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<259>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<259>");
 			gc_assign(t_node->f_parent->f_left,t_child);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<261>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<261>");
 			gc_assign(t_node->f_parent->f_right,t_child);
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<264>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<264>");
 		gc_assign(f_root,t_child);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<266>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<266>");
 	gc_assign(t_child->f_left,t_node);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<267>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<267>");
 	gc_assign(t_node->f_parent,t_child);
 	return 0;
 }
@@ -5978,40 +5978,40 @@ int bb_map_Map::m_RotateRight(bb_map_Node* t_node){
 	bb_map_Map *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_node,"node")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<271>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<271>");
 	bb_map_Node* t_child=t_node->f_left;
 	DBG_LOCAL(t_child,"child")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<272>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<272>");
 	gc_assign(t_node->f_left,t_child->f_right);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<273>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<273>");
 	if((t_child->f_right)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<274>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<274>");
 		gc_assign(t_child->f_right->f_parent,t_node);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<276>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<276>");
 	gc_assign(t_child->f_parent,t_node->f_parent);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<277>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<277>");
 	if((t_node->f_parent)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<278>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<278>");
 		if(t_node==t_node->f_parent->f_right){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<279>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<279>");
 			gc_assign(t_node->f_parent->f_right,t_child);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<281>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<281>");
 			gc_assign(t_node->f_parent->f_left,t_child);
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<284>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<284>");
 		gc_assign(f_root,t_child);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<286>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<286>");
 	gc_assign(t_child->f_right,t_node);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<287>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<287>");
 	gc_assign(t_node->f_parent,t_child);
 	return 0;
 }
@@ -6020,79 +6020,79 @@ int bb_map_Map::m_InsertFixup(bb_map_Node* t_node){
 	bb_map_Map *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_node,"node")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<212>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<212>");
 	while(((t_node->f_parent)!=0) && t_node->f_parent->f_color==-1 && ((t_node->f_parent->f_parent)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<213>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<213>");
 		if(t_node->f_parent==t_node->f_parent->f_parent->f_left){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<214>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<214>");
 			bb_map_Node* t_uncle=t_node->f_parent->f_parent->f_right;
 			DBG_LOCAL(t_uncle,"uncle")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<215>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<215>");
 			if(((t_uncle)!=0) && t_uncle->f_color==-1){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<216>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<216>");
 				t_node->f_parent->f_color=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<217>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<217>");
 				t_uncle->f_color=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<218>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<218>");
 				t_uncle->f_parent->f_color=-1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<219>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<219>");
 				t_node=t_uncle->f_parent;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<221>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<221>");
 				if(t_node==t_node->f_parent->f_right){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<222>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<222>");
 					t_node=t_node->f_parent;
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<223>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<223>");
 					m_RotateLeft(t_node);
 				}
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<225>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<225>");
 				t_node->f_parent->f_color=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<226>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<226>");
 				t_node->f_parent->f_parent->f_color=-1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<227>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<227>");
 				m_RotateRight(t_node->f_parent->f_parent);
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<230>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<230>");
 			bb_map_Node* t_uncle2=t_node->f_parent->f_parent->f_left;
 			DBG_LOCAL(t_uncle2,"uncle")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<231>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<231>");
 			if(((t_uncle2)!=0) && t_uncle2->f_color==-1){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<232>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<232>");
 				t_node->f_parent->f_color=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<233>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<233>");
 				t_uncle2->f_color=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<234>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<234>");
 				t_uncle2->f_parent->f_color=-1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<235>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<235>");
 				t_node=t_uncle2->f_parent;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<237>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<237>");
 				if(t_node==t_node->f_parent->f_left){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<238>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<238>");
 					t_node=t_node->f_parent;
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<239>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<239>");
 					m_RotateRight(t_node);
 				}
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<241>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<241>");
 				t_node->f_parent->f_color=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<242>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<242>");
 				t_node->f_parent->f_parent->f_color=-1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<243>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<243>");
 				m_RotateLeft(t_node->f_parent->f_parent);
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<247>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<247>");
 	f_root->f_color=1;
 	return 0;
 }
@@ -6102,65 +6102,65 @@ bool bb_map_Map::m_Set(String t_key,bb_reflection_ClassInfo* t_value){
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_key,"key")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<29>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<29>");
 	bb_map_Node* t_node=f_root;
 	DBG_LOCAL(t_node,"node")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<30>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<30>");
 	bb_map_Node* t_parent=0;
 	int t_cmp=0;
 	DBG_LOCAL(t_parent,"parent")
 	DBG_LOCAL(t_cmp,"cmp")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<32>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<32>");
 	while((t_node)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<33>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<33>");
 		t_parent=t_node;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<34>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<34>");
 		t_cmp=m_Compare(t_key,t_node->f_key);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<35>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<35>");
 		if(t_cmp>0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<36>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<36>");
 			t_node=t_node->f_right;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<37>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<37>");
 			if(t_cmp<0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<38>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<38>");
 				t_node=t_node->f_left;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<40>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<40>");
 				gc_assign(t_node->f_value,t_value);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<41>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<41>");
 				return false;
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<45>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<45>");
 	t_node=(new bb_map_Node)->g_new(t_key,t_value,-1,t_parent);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<47>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<47>");
 	if((t_parent)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<48>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<48>");
 		if(t_cmp>0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<49>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<49>");
 			gc_assign(t_parent->f_right,t_node);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<51>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<51>");
 			gc_assign(t_parent->f_left,t_node);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<53>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<53>");
 		m_InsertFixup(t_node);
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<55>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<55>");
 		gc_assign(f_root,t_node);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<57>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<57>");
 	return true;
 }
 bb_map_Node* bb_map_Map::m_FindNode(String t_key){
@@ -6168,35 +6168,35 @@ bb_map_Node* bb_map_Map::m_FindNode(String t_key){
 	bb_map_Map *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_key,"key")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<157>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<157>");
 	bb_map_Node* t_node=f_root;
 	DBG_LOCAL(t_node,"node")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<159>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<159>");
 	while((t_node)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<160>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<160>");
 		int t_cmp=m_Compare(t_key,t_node->f_key);
 		DBG_LOCAL(t_cmp,"cmp")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<161>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<161>");
 		if(t_cmp>0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<162>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<162>");
 			t_node=t_node->f_right;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<163>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<163>");
 			if(t_cmp<0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<164>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<164>");
 				t_node=t_node->f_left;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<166>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<166>");
 				return t_node;
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<169>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<169>");
 	return t_node;
 }
 bool bb_map_Map::m_Contains(String t_key){
@@ -6204,7 +6204,7 @@ bool bb_map_Map::m_Contains(String t_key){
 	bb_map_Map *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_key,"key")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<25>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<25>");
 	bool t_=m_FindNode(t_key)!=0;
 	return t_;
 }
@@ -6213,10 +6213,10 @@ bb_reflection_ClassInfo* bb_map_Map::m_Get(String t_key){
 	bb_map_Map *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_key,"key")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<101>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<101>");
 	bb_map_Node* t_node=m_FindNode(t_key);
 	DBG_LOCAL(t_node,"node")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<102>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<102>");
 	if((t_node)!=0){
 		DBG_BLOCK();
 		return t_node->f_value;
@@ -6238,7 +6238,7 @@ bb_map_StringMap* bb_map_StringMap::g_new(){
 	DBG_ENTER("StringMap.new")
 	bb_map_StringMap *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<551>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<551>");
 	bb_map_Map::g_new();
 	return this;
 }
@@ -6248,7 +6248,7 @@ int bb_map_StringMap::m_Compare(String t_lhs,String t_rhs){
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_lhs,"lhs")
 	DBG_LOCAL(t_rhs,"rhs")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<554>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<554>");
 	int t_=t_lhs.Compare(t_rhs);
 	return t_;
 }
@@ -6278,13 +6278,13 @@ bb_map_Node* bb_map_Node::g_new(String t_key,bb_reflection_ClassInfo* t_value,in
 	DBG_LOCAL(t_value,"value")
 	DBG_LOCAL(t_color,"color")
 	DBG_LOCAL(t_parent,"parent")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<364>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<364>");
 	this->f_key=t_key;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<365>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<365>");
 	gc_assign(this->f_value,t_value);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<366>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<366>");
 	this->f_color=t_color;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<367>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<367>");
 	gc_assign(this->f_parent,t_parent);
 	return this;
 }
@@ -6292,7 +6292,7 @@ bb_map_Node* bb_map_Node::g_new2(){
 	DBG_ENTER("Node.new")
 	bb_map_Node *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/map.monkey<361>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/map.monkey<361>");
 	return this;
 }
 void bb_map_Node::mark(){
@@ -6315,12 +6315,12 @@ String bb_map_Node::debug(){
 bb_reflection_ClassInfo* bb_reflection_GetClass(String t_name){
 	DBG_ENTER("GetClass")
 	DBG_LOCAL(t_name,"name")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<463>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<463>");
 	if(!((bb_reflection__classesMap)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<464>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<464>");
 		gc_assign(bb_reflection__classesMap,(new bb_map_StringMap)->g_new());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<465>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<465>");
 		Array<bb_reflection_ClassInfo* > t_=bb_reflection__classes;
 		int t_2=0;
 		while(t_2<t_.Length()){
@@ -6328,34 +6328,34 @@ bb_reflection_ClassInfo* bb_reflection_GetClass(String t_name){
 			bb_reflection_ClassInfo* t_c=t_.At(t_2);
 			t_2=t_2+1;
 			DBG_LOCAL(t_c,"c")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<466>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<466>");
 			String t_name2=t_c->m_Name();
 			DBG_LOCAL(t_name2,"name")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<467>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<467>");
 			bb_reflection__classesMap->m_Set(t_name2,t_c);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<468>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<468>");
 			int t_i=t_name2.FindLast(String(L".",1));
 			DBG_LOCAL(t_i,"i")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<469>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<469>");
 			if(t_i==-1){
 				DBG_BLOCK();
 				continue;
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<470>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<470>");
 			t_name2=t_name2.Slice(t_i+1);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<471>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<471>");
 			if(bb_reflection__classesMap->m_Contains(t_name2)){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<472>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<472>");
 				bb_reflection__classesMap->m_Set(t_name2,0);
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<474>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<474>");
 				bb_reflection__classesMap->m_Set(t_name2,t_c);
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<478>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<478>");
 	bb_reflection_ClassInfo* t_3=bb_reflection__classesMap->m_Get(t_name);
 	return t_3;
 }
@@ -6365,7 +6365,7 @@ bb_reflection__GetClass* bb_reflection__GetClass::g_new(){
 	DBG_ENTER("_GetClass.new")
 	bb_reflection__GetClass *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<608>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<608>");
 	return this;
 }
 void bb_reflection__GetClass::mark(){
@@ -6379,7 +6379,7 @@ bb_reflection__GetClass* bb_reflection__getClass;
 bb_reflection_ClassInfo* bb_reflection_GetClass2(Object* t_obj){
 	DBG_ENTER("GetClass")
 	DBG_LOCAL(t_obj,"obj")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<482>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<482>");
 	bb_reflection_ClassInfo* t_=bb_reflection__getClass->m_GetClass(t_obj);
 	return t_;
 }
@@ -6391,7 +6391,7 @@ bb_exception_AssertException* bb_exception_AssertException::g_new(String t_messa
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_message,"message")
 	DBG_LOCAL(t_cause,"cause")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<79>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<79>");
 	bb_exception_DiddyException::g_new(t_message,t_cause);
 	return this;
 }
@@ -6411,7 +6411,7 @@ bb_exception_ConcurrentModificationException* bb_exception_ConcurrentModificatio
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_message,"message")
 	DBG_LOCAL(t_cause,"cause")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<85>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<85>");
 	bb_exception_DiddyException::g_new(t_message,t_cause);
 	return this;
 }
@@ -6431,7 +6431,7 @@ bb_exception_IndexOutOfBoundsException* bb_exception_IndexOutOfBoundsException::
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_message,"message")
 	DBG_LOCAL(t_cause,"cause")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<91>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<91>");
 	bb_exception_DiddyException::g_new(t_message,t_cause);
 	return this;
 }
@@ -6451,7 +6451,7 @@ bb_exception_IllegalArgumentException* bb_exception_IllegalArgumentException::g_
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_message,"message")
 	DBG_LOCAL(t_cause,"cause")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<97>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<97>");
 	bb_exception_DiddyException::g_new(t_message,t_cause);
 	return this;
 }
@@ -6471,7 +6471,7 @@ bb_exception_XMLParseException* bb_exception_XMLParseException::g_new(String t_m
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_message,"message")
 	DBG_LOCAL(t_cause,"cause")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/diddy/exception.monkey<103>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/diddy/exception.monkey<103>");
 	bb_exception_DiddyException::g_new(t_message,t_cause);
 	return this;
 }
@@ -6491,7 +6491,7 @@ bb_boxes_BoolObject* bb_boxes_BoolObject::g_new(bool t_value){
 	bb_boxes_BoolObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<11>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<11>");
 	this->f_value=t_value;
 	return this;
 }
@@ -6499,7 +6499,7 @@ bool bb_boxes_BoolObject::m_ToBool(){
 	DBG_ENTER("BoolObject.ToBool")
 	bb_boxes_BoolObject *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<15>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<15>");
 	return f_value;
 }
 bool bb_boxes_BoolObject::m_Equals(bb_boxes_BoolObject* t_box){
@@ -6507,7 +6507,7 @@ bool bb_boxes_BoolObject::m_Equals(bb_boxes_BoolObject* t_box){
 	bb_boxes_BoolObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_box,"box")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<19>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<19>");
 	bool t_=f_value==t_box->f_value;
 	return t_;
 }
@@ -6515,7 +6515,7 @@ bb_boxes_BoolObject* bb_boxes_BoolObject::g_new2(){
 	DBG_ENTER("BoolObject.new")
 	bb_boxes_BoolObject *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<7>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<7>");
 	return this;
 }
 void bb_boxes_BoolObject::mark(){
@@ -6534,7 +6534,7 @@ bb_boxes_IntObject* bb_boxes_IntObject::g_new(int t_value){
 	bb_boxes_IntObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<27>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<27>");
 	this->f_value=t_value;
 	return this;
 }
@@ -6543,7 +6543,7 @@ bb_boxes_IntObject* bb_boxes_IntObject::g_new2(Float t_value){
 	bb_boxes_IntObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<31>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<31>");
 	this->f_value=int(t_value);
 	return this;
 }
@@ -6551,14 +6551,14 @@ int bb_boxes_IntObject::m_ToInt(){
 	DBG_ENTER("IntObject.ToInt")
 	bb_boxes_IntObject *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<35>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<35>");
 	return f_value;
 }
 Float bb_boxes_IntObject::m_ToFloat(){
 	DBG_ENTER("IntObject.ToFloat")
 	bb_boxes_IntObject *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<39>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<39>");
 	Float t_=Float(f_value);
 	return t_;
 }
@@ -6566,7 +6566,7 @@ String bb_boxes_IntObject::m_ToString2(){
 	DBG_ENTER("IntObject.ToString")
 	bb_boxes_IntObject *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<43>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<43>");
 	String t_=String(f_value);
 	return t_;
 }
@@ -6575,7 +6575,7 @@ bool bb_boxes_IntObject::m_Equals2(bb_boxes_IntObject* t_box){
 	bb_boxes_IntObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_box,"box")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<47>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<47>");
 	bool t_=f_value==t_box->f_value;
 	return t_;
 }
@@ -6584,7 +6584,7 @@ int bb_boxes_IntObject::m_Compare2(bb_boxes_IntObject* t_box){
 	bb_boxes_IntObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_box,"box")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<51>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<51>");
 	int t_=f_value-t_box->f_value;
 	return t_;
 }
@@ -6592,7 +6592,7 @@ bb_boxes_IntObject* bb_boxes_IntObject::g_new3(){
 	DBG_ENTER("IntObject.new")
 	bb_boxes_IntObject *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<23>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<23>");
 	return this;
 }
 void bb_boxes_IntObject::mark(){
@@ -6611,7 +6611,7 @@ bb_boxes_FloatObject* bb_boxes_FloatObject::g_new(int t_value){
 	bb_boxes_FloatObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<59>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<59>");
 	this->f_value=Float(t_value);
 	return this;
 }
@@ -6620,7 +6620,7 @@ bb_boxes_FloatObject* bb_boxes_FloatObject::g_new2(Float t_value){
 	bb_boxes_FloatObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<63>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<63>");
 	this->f_value=t_value;
 	return this;
 }
@@ -6628,7 +6628,7 @@ int bb_boxes_FloatObject::m_ToInt(){
 	DBG_ENTER("FloatObject.ToInt")
 	bb_boxes_FloatObject *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<67>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<67>");
 	int t_=int(f_value);
 	return t_;
 }
@@ -6636,14 +6636,14 @@ Float bb_boxes_FloatObject::m_ToFloat(){
 	DBG_ENTER("FloatObject.ToFloat")
 	bb_boxes_FloatObject *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<71>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<71>");
 	return f_value;
 }
 String bb_boxes_FloatObject::m_ToString2(){
 	DBG_ENTER("FloatObject.ToString")
 	bb_boxes_FloatObject *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<75>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<75>");
 	String t_=String(f_value);
 	return t_;
 }
@@ -6652,7 +6652,7 @@ bool bb_boxes_FloatObject::m_Equals3(bb_boxes_FloatObject* t_box){
 	bb_boxes_FloatObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_box,"box")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<79>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<79>");
 	bool t_=f_value==t_box->f_value;
 	return t_;
 }
@@ -6661,12 +6661,12 @@ int bb_boxes_FloatObject::m_Compare3(bb_boxes_FloatObject* t_box){
 	bb_boxes_FloatObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_box,"box")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<83>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<83>");
 	if(f_value<t_box->f_value){
 		DBG_BLOCK();
 		return -1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<84>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<84>");
 	int t_=((f_value>t_box->f_value)?1:0);
 	return t_;
 }
@@ -6674,7 +6674,7 @@ bb_boxes_FloatObject* bb_boxes_FloatObject::g_new3(){
 	DBG_ENTER("FloatObject.new")
 	bb_boxes_FloatObject *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<55>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<55>");
 	return this;
 }
 void bb_boxes_FloatObject::mark(){
@@ -6693,7 +6693,7 @@ bb_boxes_StringObject* bb_boxes_StringObject::g_new(int t_value){
 	bb_boxes_StringObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<92>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<92>");
 	this->f_value=String(t_value);
 	return this;
 }
@@ -6702,7 +6702,7 @@ bb_boxes_StringObject* bb_boxes_StringObject::g_new2(Float t_value){
 	bb_boxes_StringObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<96>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<96>");
 	this->f_value=String(t_value);
 	return this;
 }
@@ -6711,7 +6711,7 @@ bb_boxes_StringObject* bb_boxes_StringObject::g_new3(String t_value){
 	bb_boxes_StringObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<100>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<100>");
 	this->f_value=t_value;
 	return this;
 }
@@ -6719,7 +6719,7 @@ String bb_boxes_StringObject::m_ToString2(){
 	DBG_ENTER("StringObject.ToString")
 	bb_boxes_StringObject *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<104>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<104>");
 	return f_value;
 }
 bool bb_boxes_StringObject::m_Equals4(bb_boxes_StringObject* t_box){
@@ -6727,7 +6727,7 @@ bool bb_boxes_StringObject::m_Equals4(bb_boxes_StringObject* t_box){
 	bb_boxes_StringObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_box,"box")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<108>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<108>");
 	bool t_=f_value==t_box->f_value;
 	return t_;
 }
@@ -6736,7 +6736,7 @@ int bb_boxes_StringObject::m_Compare4(bb_boxes_StringObject* t_box){
 	bb_boxes_StringObject *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_box,"box")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<112>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<112>");
 	int t_=f_value.Compare(t_box->f_value);
 	return t_;
 }
@@ -6744,7 +6744,7 @@ bb_boxes_StringObject* bb_boxes_StringObject::g_new4(){
 	DBG_ENTER("StringObject.new")
 	bb_boxes_StringObject *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<88>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<88>");
 	return this;
 }
 void bb_boxes_StringObject::mark(){
@@ -6758,56 +6758,56 @@ String bb_boxes_StringObject::debug(){
 Object* bb_boxes_BoxBool(bool t_value){
 	DBG_ENTER("BoxBool")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<139>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<139>");
 	Object* t_=((new bb_boxes_BoolObject)->g_new(t_value));
 	return t_;
 }
 Object* bb_boxes_BoxInt(int t_value){
 	DBG_ENTER("BoxInt")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<143>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<143>");
 	Object* t_=((new bb_boxes_IntObject)->g_new(t_value));
 	return t_;
 }
 Object* bb_boxes_BoxFloat(Float t_value){
 	DBG_ENTER("BoxFloat")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<147>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<147>");
 	Object* t_=((new bb_boxes_FloatObject)->g_new2(t_value));
 	return t_;
 }
 Object* bb_boxes_BoxString(String t_value){
 	DBG_ENTER("BoxString")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<151>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<151>");
 	Object* t_=((new bb_boxes_StringObject)->g_new3(t_value));
 	return t_;
 }
 bool bb_boxes_UnboxBool(Object* t_box){
 	DBG_ENTER("UnboxBool")
 	DBG_LOCAL(t_box,"box")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<155>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<155>");
 	bool t_=dynamic_cast<bb_boxes_BoolObject*>(t_box)->f_value;
 	return t_;
 }
 int bb_boxes_UnboxInt(Object* t_box){
 	DBG_ENTER("UnboxInt")
 	DBG_LOCAL(t_box,"box")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<159>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<159>");
 	int t_=dynamic_cast<bb_boxes_IntObject*>(t_box)->f_value;
 	return t_;
 }
 Float bb_boxes_UnboxFloat(Object* t_box){
 	DBG_ENTER("UnboxFloat")
 	DBG_LOCAL(t_box,"box")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<163>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<163>");
 	Float t_=dynamic_cast<bb_boxes_FloatObject*>(t_box)->f_value;
 	return t_;
 }
 String bb_boxes_UnboxString(Object* t_box){
 	DBG_ENTER("UnboxString")
 	DBG_LOCAL(t_box,"box")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/boxes.monkey<167>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/boxes.monkey<167>");
 	String t_=dynamic_cast<bb_boxes_StringObject*>(t_box)->f_value;
 	return t_;
 }
@@ -7117,13 +7117,13 @@ bb_reflection_FunctionInfo* bb_reflection_FunctionInfo::g_new(String t_name,int 
 	DBG_LOCAL(t_attrs,"attrs")
 	DBG_LOCAL(t_retType,"retType")
 	DBG_LOCAL(t_argTypes,"argTypes")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<179>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<179>");
 	f__name=t_name;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<180>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<180>");
 	f__attrs=t_attrs;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<181>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<181>");
 	gc_assign(f__retType,t_retType);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<182>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<182>");
 	gc_assign(f__argTypes,t_argTypes);
 	return this;
 }
@@ -7131,7 +7131,7 @@ bb_reflection_FunctionInfo* bb_reflection_FunctionInfo::g_new2(){
 	DBG_ENTER("FunctionInfo.new")
 	bb_reflection_FunctionInfo *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<176>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<176>");
 	return this;
 }
 void bb_reflection_FunctionInfo::mark(){
@@ -7433,7 +7433,7 @@ bb_app_App* bb_app_App::g_new(){
 	DBG_ENTER("App.new")
 	bb_app_App *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<109>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<109>");
 	gc_assign(bb_app_device,(new bb_app_AppDevice)->g_new(this));
 	return this;
 }
@@ -7652,13 +7652,13 @@ bb_app_AppDevice* bb_app_AppDevice::g_new(bb_app_App* t_app){
 	bb_app_AppDevice *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_app,"app")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<49>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<49>");
 	gc_assign(this->f_app,t_app);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<50>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<50>");
 	bb_graphics_SetGraphicsDevice(GraphicsDevice());
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<51>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<51>");
 	bb_input_SetInputDevice(InputDevice());
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<52>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<52>");
 	bb_audio_SetAudioDevice(AudioDevice());
 	return this;
 }
@@ -7666,16 +7666,16 @@ bb_app_AppDevice* bb_app_AppDevice::g_new2(){
 	DBG_ENTER("AppDevice.new")
 	bb_app_AppDevice *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<46>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<46>");
 	return this;
 }
 int bb_app_AppDevice::OnCreate(){
 	DBG_ENTER("AppDevice.OnCreate")
 	bb_app_AppDevice *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<56>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<56>");
 	bb_graphics_SetFont(0,32);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<57>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<57>");
 	int t_=f_app->m_OnCreate();
 	return t_;
 }
@@ -7683,7 +7683,7 @@ int bb_app_AppDevice::OnUpdate(){
 	DBG_ENTER("AppDevice.OnUpdate")
 	bb_app_AppDevice *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<61>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<61>");
 	int t_=f_app->m_OnUpdate();
 	return t_;
 }
@@ -7691,7 +7691,7 @@ int bb_app_AppDevice::OnSuspend(){
 	DBG_ENTER("AppDevice.OnSuspend")
 	bb_app_AppDevice *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<65>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<65>");
 	int t_=f_app->m_OnSuspend();
 	return t_;
 }
@@ -7699,7 +7699,7 @@ int bb_app_AppDevice::OnResume(){
 	DBG_ENTER("AppDevice.OnResume")
 	bb_app_AppDevice *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<69>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<69>");
 	int t_=f_app->m_OnResume();
 	return t_;
 }
@@ -7707,28 +7707,28 @@ int bb_app_AppDevice::OnRender(){
 	DBG_ENTER("AppDevice.OnRender")
 	bb_app_AppDevice *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<73>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<73>");
 	bb_graphics_BeginRender();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<74>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<74>");
 	int t_r=f_app->m_OnRender();
 	DBG_LOCAL(t_r,"r")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<75>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<75>");
 	bb_graphics_EndRender();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<76>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<76>");
 	return t_r;
 }
 int bb_app_AppDevice::OnLoading(){
 	DBG_ENTER("AppDevice.OnLoading")
 	bb_app_AppDevice *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<80>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<80>");
 	bb_graphics_BeginRender();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<81>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<81>");
 	int t_r=f_app->m_OnLoading();
 	DBG_LOCAL(t_r,"r")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<82>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<82>");
 	bb_graphics_EndRender();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<83>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<83>");
 	return t_r;
 }
 int bb_app_AppDevice::SetUpdateRate(int t_hertz){
@@ -7736,9 +7736,9 @@ int bb_app_AppDevice::SetUpdateRate(int t_hertz){
 	bb_app_AppDevice *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_hertz,"hertz")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<87>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<87>");
 	gxtkApp::SetUpdateRate(t_hertz);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<88>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<88>");
 	f_updateRate=t_hertz;
 	return 0;
 }
@@ -7756,7 +7756,7 @@ gxtkGraphics* bb_graphics_device;
 int bb_graphics_SetGraphicsDevice(gxtkGraphics* t_dev){
 	DBG_ENTER("SetGraphicsDevice")
 	DBG_LOCAL(t_dev,"dev")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<58>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<58>");
 	gc_assign(bb_graphics_device,t_dev);
 	return 0;
 }
@@ -7764,7 +7764,7 @@ gxtkInput* bb_input_device;
 int bb_input_SetInputDevice(gxtkInput* t_dev){
 	DBG_ENTER("SetInputDevice")
 	DBG_LOCAL(t_dev,"dev")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/input.monkey<16>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/input.monkey<16>");
 	gc_assign(bb_input_device,t_dev);
 	return 0;
 }
@@ -7772,7 +7772,7 @@ gxtkAudio* bb_audio_device;
 int bb_audio_SetAudioDevice(gxtkAudio* t_dev){
 	DBG_ENTER("SetAudioDevice")
 	DBG_LOCAL(t_dev,"dev")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/audio.monkey<17>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/audio.monkey<17>");
 	gc_assign(bb_audio_device,t_dev);
 	return 0;
 }
@@ -7807,9 +7807,9 @@ bb_stack_Stack* bb_stack_Stack::g_new2(Array<bb_reflection_ConstInfo* > t_data){
 	bb_stack_Stack *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_data,"data")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<13>");
 	gc_assign(this->f_data,t_data.Slice(0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<14>");
 	this->f_length=t_data.Length();
 	return this;
 }
@@ -7818,15 +7818,15 @@ int bb_stack_Stack::m_Push(bb_reflection_ConstInfo* t_value){
 	bb_stack_Stack *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<52>");
 	if(f_length==f_data.Length()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<53>");
 		gc_assign(f_data,f_data.Resize(f_length*2+10));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<55>");
 	gc_assign(f_data.At(f_length),t_value);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<56>");
 	f_length+=1;
 	return 0;
 }
@@ -7837,11 +7837,11 @@ int bb_stack_Stack::m_Push2(Array<bb_reflection_ConstInfo* > t_values,int t_offs
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
 	DBG_LOCAL(t_count,"count")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<66>");
 	for(int t_i=0;t_i<t_count;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<67>");
 		m_Push(t_values.At(t_offset+t_i));
 	}
 	return 0;
@@ -7852,11 +7852,11 @@ int bb_stack_Stack::m_Push3(Array<bb_reflection_ConstInfo* > t_values,int t_offs
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<60>");
 	for(int t_i=t_offset;t_i<t_values.Length();t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<61>");
 		m_Push(t_values.At(t_i));
 	}
 	return 0;
@@ -7865,17 +7865,17 @@ Array<bb_reflection_ConstInfo* > bb_stack_Stack::m_ToArray(){
 	DBG_ENTER("Stack.ToArray")
 	bb_stack_Stack *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<18>");
 	Array<bb_reflection_ConstInfo* > t_t=Array<bb_reflection_ConstInfo* >(f_length);
 	DBG_LOCAL(t_t,"t")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<19>");
 	for(int t_i=0;t_i<f_length;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<20>");
 		gc_assign(t_t.At(t_i),f_data.At(t_i));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<22>");
 	return t_t;
 }
 void bb_stack_Stack::mark(){
@@ -7900,11 +7900,11 @@ bb_reflection_FieldInfo* bb_reflection_FieldInfo::g_new(String t_name,int t_attr
 	DBG_LOCAL(t_name,"name")
 	DBG_LOCAL(t_attrs,"attrs")
 	DBG_LOCAL(t_type,"type")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<111>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<111>");
 	f__name=t_name;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<112>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<112>");
 	f__attrs=t_attrs;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<113>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<113>");
 	gc_assign(f__type,t_type);
 	return this;
 }
@@ -7912,7 +7912,7 @@ bb_reflection_FieldInfo* bb_reflection_FieldInfo::g_new2(){
 	DBG_ENTER("FieldInfo.new")
 	bb_reflection_FieldInfo *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<108>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<108>");
 	return this;
 }
 void bb_reflection_FieldInfo::mark(){
@@ -7941,9 +7941,9 @@ bb_stack_Stack2* bb_stack_Stack2::g_new2(Array<bb_reflection_FieldInfo* > t_data
 	bb_stack_Stack2 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_data,"data")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<13>");
 	gc_assign(this->f_data,t_data.Slice(0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<14>");
 	this->f_length=t_data.Length();
 	return this;
 }
@@ -7952,15 +7952,15 @@ int bb_stack_Stack2::m_Push4(bb_reflection_FieldInfo* t_value){
 	bb_stack_Stack2 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<52>");
 	if(f_length==f_data.Length()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<53>");
 		gc_assign(f_data,f_data.Resize(f_length*2+10));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<55>");
 	gc_assign(f_data.At(f_length),t_value);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<56>");
 	f_length+=1;
 	return 0;
 }
@@ -7971,11 +7971,11 @@ int bb_stack_Stack2::m_Push5(Array<bb_reflection_FieldInfo* > t_values,int t_off
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
 	DBG_LOCAL(t_count,"count")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<66>");
 	for(int t_i=0;t_i<t_count;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<67>");
 		m_Push4(t_values.At(t_offset+t_i));
 	}
 	return 0;
@@ -7986,11 +7986,11 @@ int bb_stack_Stack2::m_Push6(Array<bb_reflection_FieldInfo* > t_values,int t_off
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<60>");
 	for(int t_i=t_offset;t_i<t_values.Length();t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<61>");
 		m_Push4(t_values.At(t_i));
 	}
 	return 0;
@@ -7999,17 +7999,17 @@ Array<bb_reflection_FieldInfo* > bb_stack_Stack2::m_ToArray(){
 	DBG_ENTER("Stack.ToArray")
 	bb_stack_Stack2 *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<18>");
 	Array<bb_reflection_FieldInfo* > t_t=Array<bb_reflection_FieldInfo* >(f_length);
 	DBG_LOCAL(t_t,"t")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<19>");
 	for(int t_i=0;t_i<f_length;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<20>");
 		gc_assign(t_t.At(t_i),f_data.At(t_i));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<22>");
 	return t_t;
 }
 void bb_stack_Stack2::mark(){
@@ -8046,9 +8046,9 @@ bb_stack_Stack3* bb_stack_Stack3::g_new2(Array<bb_reflection_GlobalInfo* > t_dat
 	bb_stack_Stack3 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_data,"data")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<13>");
 	gc_assign(this->f_data,t_data.Slice(0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<14>");
 	this->f_length=t_data.Length();
 	return this;
 }
@@ -8057,15 +8057,15 @@ int bb_stack_Stack3::m_Push7(bb_reflection_GlobalInfo* t_value){
 	bb_stack_Stack3 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<52>");
 	if(f_length==f_data.Length()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<53>");
 		gc_assign(f_data,f_data.Resize(f_length*2+10));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<55>");
 	gc_assign(f_data.At(f_length),t_value);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<56>");
 	f_length+=1;
 	return 0;
 }
@@ -8076,11 +8076,11 @@ int bb_stack_Stack3::m_Push8(Array<bb_reflection_GlobalInfo* > t_values,int t_of
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
 	DBG_LOCAL(t_count,"count")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<66>");
 	for(int t_i=0;t_i<t_count;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<67>");
 		m_Push7(t_values.At(t_offset+t_i));
 	}
 	return 0;
@@ -8091,11 +8091,11 @@ int bb_stack_Stack3::m_Push9(Array<bb_reflection_GlobalInfo* > t_values,int t_of
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<60>");
 	for(int t_i=t_offset;t_i<t_values.Length();t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<61>");
 		m_Push7(t_values.At(t_i));
 	}
 	return 0;
@@ -8104,17 +8104,17 @@ Array<bb_reflection_GlobalInfo* > bb_stack_Stack3::m_ToArray(){
 	DBG_ENTER("Stack.ToArray")
 	bb_stack_Stack3 *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<18>");
 	Array<bb_reflection_GlobalInfo* > t_t=Array<bb_reflection_GlobalInfo* >(f_length);
 	DBG_LOCAL(t_t,"t")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<19>");
 	for(int t_i=0;t_i<f_length;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<20>");
 		gc_assign(t_t.At(t_i),f_data.At(t_i));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<22>");
 	return t_t;
 }
 void bb_stack_Stack3::mark(){
@@ -8141,13 +8141,13 @@ bb_reflection_MethodInfo* bb_reflection_MethodInfo::g_new(String t_name,int t_at
 	DBG_LOCAL(t_attrs,"attrs")
 	DBG_LOCAL(t_retType,"retType")
 	DBG_LOCAL(t_argTypes,"argTypes")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<143>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<143>");
 	f__name=t_name;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<144>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<144>");
 	f__attrs=t_attrs;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<145>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<145>");
 	gc_assign(f__retType,t_retType);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<146>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<146>");
 	gc_assign(f__argTypes,t_argTypes);
 	return this;
 }
@@ -8155,7 +8155,7 @@ bb_reflection_MethodInfo* bb_reflection_MethodInfo::g_new2(){
 	DBG_ENTER("MethodInfo.new")
 	bb_reflection_MethodInfo *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<140>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<140>");
 	return this;
 }
 void bb_reflection_MethodInfo::mark(){
@@ -8186,9 +8186,9 @@ bb_stack_Stack4* bb_stack_Stack4::g_new2(Array<bb_reflection_MethodInfo* > t_dat
 	bb_stack_Stack4 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_data,"data")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<13>");
 	gc_assign(this->f_data,t_data.Slice(0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<14>");
 	this->f_length=t_data.Length();
 	return this;
 }
@@ -8197,15 +8197,15 @@ int bb_stack_Stack4::m_Push10(bb_reflection_MethodInfo* t_value){
 	bb_stack_Stack4 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<52>");
 	if(f_length==f_data.Length()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<53>");
 		gc_assign(f_data,f_data.Resize(f_length*2+10));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<55>");
 	gc_assign(f_data.At(f_length),t_value);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<56>");
 	f_length+=1;
 	return 0;
 }
@@ -8216,11 +8216,11 @@ int bb_stack_Stack4::m_Push11(Array<bb_reflection_MethodInfo* > t_values,int t_o
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
 	DBG_LOCAL(t_count,"count")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<66>");
 	for(int t_i=0;t_i<t_count;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<67>");
 		m_Push10(t_values.At(t_offset+t_i));
 	}
 	return 0;
@@ -8231,11 +8231,11 @@ int bb_stack_Stack4::m_Push12(Array<bb_reflection_MethodInfo* > t_values,int t_o
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<60>");
 	for(int t_i=t_offset;t_i<t_values.Length();t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<61>");
 		m_Push10(t_values.At(t_i));
 	}
 	return 0;
@@ -8244,17 +8244,17 @@ Array<bb_reflection_MethodInfo* > bb_stack_Stack4::m_ToArray(){
 	DBG_ENTER("Stack.ToArray")
 	bb_stack_Stack4 *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<18>");
 	Array<bb_reflection_MethodInfo* > t_t=Array<bb_reflection_MethodInfo* >(f_length);
 	DBG_LOCAL(t_t,"t")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<19>");
 	for(int t_i=0;t_i<f_length;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<20>");
 		gc_assign(t_t.At(t_i),f_data.At(t_i));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<22>");
 	return t_t;
 }
 void bb_stack_Stack4::mark(){
@@ -8282,9 +8282,9 @@ bb_stack_Stack5* bb_stack_Stack5::g_new2(Array<bb_reflection_FunctionInfo* > t_d
 	bb_stack_Stack5 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_data,"data")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<13>");
 	gc_assign(this->f_data,t_data.Slice(0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<14>");
 	this->f_length=t_data.Length();
 	return this;
 }
@@ -8293,15 +8293,15 @@ int bb_stack_Stack5::m_Push13(bb_reflection_FunctionInfo* t_value){
 	bb_stack_Stack5 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<52>");
 	if(f_length==f_data.Length()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<53>");
 		gc_assign(f_data,f_data.Resize(f_length*2+10));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<55>");
 	gc_assign(f_data.At(f_length),t_value);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<56>");
 	f_length+=1;
 	return 0;
 }
@@ -8312,11 +8312,11 @@ int bb_stack_Stack5::m_Push14(Array<bb_reflection_FunctionInfo* > t_values,int t
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
 	DBG_LOCAL(t_count,"count")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<66>");
 	for(int t_i=0;t_i<t_count;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<67>");
 		m_Push13(t_values.At(t_offset+t_i));
 	}
 	return 0;
@@ -8327,11 +8327,11 @@ int bb_stack_Stack5::m_Push15(Array<bb_reflection_FunctionInfo* > t_values,int t
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<60>");
 	for(int t_i=t_offset;t_i<t_values.Length();t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<61>");
 		m_Push13(t_values.At(t_i));
 	}
 	return 0;
@@ -8340,17 +8340,17 @@ Array<bb_reflection_FunctionInfo* > bb_stack_Stack5::m_ToArray(){
 	DBG_ENTER("Stack.ToArray")
 	bb_stack_Stack5 *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<18>");
 	Array<bb_reflection_FunctionInfo* > t_t=Array<bb_reflection_FunctionInfo* >(f_length);
 	DBG_LOCAL(t_t,"t")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<19>");
 	for(int t_i=0;t_i<f_length;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<20>");
 		gc_assign(t_t.At(t_i),f_data.At(t_i));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<22>");
 	return t_t;
 }
 void bb_stack_Stack5::mark(){
@@ -9065,7 +9065,7 @@ bb_reflection_UnknownClass* bb_reflection_UnknownClass::g_new(){
 	DBG_ENTER("UnknownClass.new")
 	bb_reflection_UnknownClass *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/reflection/reflection.monkey<625>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/reflection/reflection.monkey<625>");
 	bb_reflection_ClassInfo::g_new(String(L"?",1),0,0,Array<bb_reflection_ClassInfo* >());
 	return this;
 }
@@ -9093,7 +9093,7 @@ bb_graphics_Image* bb_graphics_Image::g_new(){
 	DBG_ENTER("Image.new")
 	bb_graphics_Image *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<65>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<65>");
 	return this;
 }
 int bb_graphics_Image::m_SetHandle(Float t_tx,Float t_ty){
@@ -9102,11 +9102,11 @@ int bb_graphics_Image::m_SetHandle(Float t_tx,Float t_ty){
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_tx,"tx")
 	DBG_LOCAL(t_ty,"ty")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<109>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<109>");
 	this->f_tx=t_tx;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<110>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<110>");
 	this->f_ty=t_ty;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<111>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<111>");
 	this->f_flags=this->f_flags&-2;
 	return 0;
 }
@@ -9115,12 +9115,12 @@ int bb_graphics_Image::m_ApplyFlags(int t_iflags){
 	bb_graphics_Image *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_iflags,"iflags")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<178>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<178>");
 	f_flags=t_iflags;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<180>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<180>");
 	if((f_flags&2)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<181>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<181>");
 		Array<bb_graphics_Frame* > t_=f_frames;
 		int t_2=0;
 		while(t_2<t_.Length()){
@@ -9128,16 +9128,16 @@ int bb_graphics_Image::m_ApplyFlags(int t_iflags){
 			bb_graphics_Frame* t_f=t_.At(t_2);
 			t_2=t_2+1;
 			DBG_LOCAL(t_f,"f")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<182>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<182>");
 			t_f->f_x+=1;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<184>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<184>");
 		f_width-=2;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<187>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<187>");
 	if((f_flags&4)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<188>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<188>");
 		Array<bb_graphics_Frame* > t_3=f_frames;
 		int t_4=0;
 		while(t_4<t_3.Length()){
@@ -9145,22 +9145,22 @@ int bb_graphics_Image::m_ApplyFlags(int t_iflags){
 			bb_graphics_Frame* t_f2=t_3.At(t_4);
 			t_4=t_4+1;
 			DBG_LOCAL(t_f2,"f")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<189>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<189>");
 			t_f2->f_y+=1;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<191>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<191>");
 		f_height-=2;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<194>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<194>");
 	if((f_flags&1)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<195>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<195>");
 		m_SetHandle(Float(f_width)/FLOAT(2.0),Float(f_height)/FLOAT(2.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<198>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<198>");
 	if(f_frames.Length()==1 && f_frames.At(0)->f_x==0 && f_frames.At(0)->f_y==0 && f_width==f_surface->Width() && f_height==f_surface->Height()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<199>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<199>");
 		f_flags|=65536;
 	}
 	return 0;
@@ -9172,24 +9172,24 @@ bb_graphics_Image* bb_graphics_Image::m_Init2(gxtkSurface* t_surf,int t_nframes,
 	DBG_LOCAL(t_surf,"surf")
 	DBG_LOCAL(t_nframes,"nframes")
 	DBG_LOCAL(t_iflags,"iflags")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<136>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<136>");
 	gc_assign(f_surface,t_surf);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<138>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<138>");
 	f_width=f_surface->Width()/t_nframes;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<139>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<139>");
 	f_height=f_surface->Height();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<141>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<141>");
 	gc_assign(f_frames,Array<bb_graphics_Frame* >(t_nframes));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<142>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<142>");
 	for(int t_i=0;t_i<t_nframes;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<143>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<143>");
 		gc_assign(f_frames.At(t_i),(new bb_graphics_Frame)->g_new(t_i*f_width,0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<146>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<146>");
 	m_ApplyFlags(t_iflags);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<147>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<147>");
 	return this;
 }
 bb_graphics_Image* bb_graphics_Image::m_Grab(int t_x,int t_y,int t_iwidth,int t_iheight,int t_nframes,int t_iflags,bb_graphics_Image* t_source){
@@ -9203,47 +9203,47 @@ bb_graphics_Image* bb_graphics_Image::m_Grab(int t_x,int t_y,int t_iwidth,int t_
 	DBG_LOCAL(t_nframes,"nframes")
 	DBG_LOCAL(t_iflags,"iflags")
 	DBG_LOCAL(t_source,"source")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<151>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<151>");
 	gc_assign(this->f_source,t_source);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<152>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<152>");
 	gc_assign(f_surface,t_source->f_surface);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<154>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<154>");
 	f_width=t_iwidth;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<155>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<155>");
 	f_height=t_iheight;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<157>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<157>");
 	gc_assign(f_frames,Array<bb_graphics_Frame* >(t_nframes));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<159>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<159>");
 	int t_ix=t_x;
 	int t_iy=t_y;
 	DBG_LOCAL(t_ix,"ix")
 	DBG_LOCAL(t_iy,"iy")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<161>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<161>");
 	for(int t_i=0;t_i<t_nframes;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<162>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<162>");
 		if(t_ix+f_width>t_source->f_width){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<163>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<163>");
 			t_ix=0;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<164>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<164>");
 			t_iy+=f_height;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<166>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<166>");
 		if(t_ix+f_width>t_source->f_width || t_iy+f_height>t_source->f_height){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<167>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<167>");
 			Error(String(L"Image frame outside surface",27));
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<169>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<169>");
 		gc_assign(f_frames.At(t_i),(new bb_graphics_Frame)->g_new(t_ix+t_source->f_frames.At(0)->f_x,t_iy+t_source->f_frames.At(0)->f_y));
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<170>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<170>");
 		t_ix+=f_width;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<173>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<173>");
 	m_ApplyFlags(t_iflags);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<174>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<174>");
 	return this;
 }
 bb_graphics_Image* bb_graphics_Image::m_GrabImage(int t_x,int t_y,int t_width,int t_height,int t_frames,int t_flags){
@@ -9256,12 +9256,12 @@ bb_graphics_Image* bb_graphics_Image::m_GrabImage(int t_x,int t_y,int t_width,in
 	DBG_LOCAL(t_height,"height")
 	DBG_LOCAL(t_frames,"frames")
 	DBG_LOCAL(t_flags,"flags")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<104>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<104>");
 	if(this->f_frames.Length()!=1){
 		DBG_BLOCK();
 		return 0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<105>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<105>");
 	bb_graphics_Image* t_=((new bb_graphics_Image)->g_new())->m_Grab(t_x,t_y,t_width,t_height,t_frames,t_flags,this);
 	return t_;
 }
@@ -9269,14 +9269,14 @@ int bb_graphics_Image::m_Width(){
 	DBG_ENTER("Image.Width")
 	bb_graphics_Image *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<76>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<76>");
 	return f_width;
 }
 int bb_graphics_Image::m_Height(){
 	DBG_ENTER("Image.Height")
 	bb_graphics_Image *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<80>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<80>");
 	return f_height;
 }
 void bb_graphics_Image::mark(){
@@ -9326,19 +9326,19 @@ bb_graphics_GraphicsContext* bb_graphics_GraphicsContext::g_new(){
 	DBG_ENTER("GraphicsContext.new")
 	bb_graphics_GraphicsContext *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<24>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<24>");
 	return this;
 }
 int bb_graphics_GraphicsContext::m_Validate(){
 	DBG_ENTER("GraphicsContext.Validate")
 	bb_graphics_GraphicsContext *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<35>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<35>");
 	if((f_matDirty)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<36>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<36>");
 		bb_graphics_renderDevice->SetMatrix(bb_graphics_context->f_ix,bb_graphics_context->f_iy,bb_graphics_context->f_jx,bb_graphics_context->f_jy,bb_graphics_context->f_tx,bb_graphics_context->f_ty);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<37>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<37>");
 		f_matDirty=0;
 	}
 	return 0;
@@ -9379,20 +9379,20 @@ bb_graphics_GraphicsContext* bb_graphics_context;
 String bb_data_FixDataPath(String t_path){
 	DBG_ENTER("FixDataPath")
 	DBG_LOCAL(t_path,"path")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/data.monkey<3>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/data.monkey<3>");
 	int t_i=t_path.Find(String(L":/",2),0);
 	DBG_LOCAL(t_i,"i")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/data.monkey<4>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/data.monkey<4>");
 	if(t_i!=-1 && t_path.Find(String(L"/",1),0)==t_i+1){
 		DBG_BLOCK();
 		return t_path;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/data.monkey<5>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/data.monkey<5>");
 	if(t_path.StartsWith(String(L"./",2)) || t_path.StartsWith(String(L"/",1))){
 		DBG_BLOCK();
 		return t_path;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/data.monkey<6>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/data.monkey<6>");
 	String t_=String(L"monkey://data/",14)+t_path;
 	return t_;
 }
@@ -9406,9 +9406,9 @@ bb_graphics_Frame* bb_graphics_Frame::g_new(int t_x,int t_y){
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_x,"x")
 	DBG_LOCAL(t_y,"y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<18>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<18>");
 	this->f_x=t_x;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<19>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<19>");
 	this->f_y=t_y;
 	return this;
 }
@@ -9416,7 +9416,7 @@ bb_graphics_Frame* bb_graphics_Frame::g_new2(){
 	DBG_ENTER("Frame.new")
 	bb_graphics_Frame *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<13>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<13>");
 	return this;
 }
 void bb_graphics_Frame::mark(){
@@ -9433,10 +9433,10 @@ bb_graphics_Image* bb_graphics_LoadImage(String t_path,int t_frameCount,int t_fl
 	DBG_LOCAL(t_path,"path")
 	DBG_LOCAL(t_frameCount,"frameCount")
 	DBG_LOCAL(t_flags,"flags")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<229>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<229>");
 	gxtkSurface* t_surf=bb_graphics_device->LoadSurface(bb_data_FixDataPath(t_path));
 	DBG_LOCAL(t_surf,"surf")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<230>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<230>");
 	if((t_surf)!=0){
 		DBG_BLOCK();
 		bb_graphics_Image* t_=((new bb_graphics_Image)->g_new())->m_Init2(t_surf,t_frameCount,t_flags);
@@ -9451,10 +9451,10 @@ bb_graphics_Image* bb_graphics_LoadImage2(String t_path,int t_frameWidth,int t_f
 	DBG_LOCAL(t_frameHeight,"frameHeight")
 	DBG_LOCAL(t_frameCount,"frameCount")
 	DBG_LOCAL(t_flags,"flags")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<234>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<234>");
 	bb_graphics_Image* t_atlas=bb_graphics_LoadImage(t_path,1,0);
 	DBG_LOCAL(t_atlas,"atlas")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<235>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<235>");
 	if((t_atlas)!=0){
 		DBG_BLOCK();
 		bb_graphics_Image* t_=t_atlas->m_GrabImage(0,0,t_frameWidth,t_frameHeight,t_frameCount,t_flags);
@@ -9466,23 +9466,23 @@ int bb_graphics_SetFont(bb_graphics_Image* t_font,int t_firstChar){
 	DBG_ENTER("SetFont")
 	DBG_LOCAL(t_font,"font")
 	DBG_LOCAL(t_firstChar,"firstChar")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<524>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<524>");
 	if(!((t_font)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<525>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<525>");
 		if(!((bb_graphics_context->f_defaultFont)!=0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<526>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<526>");
 			gc_assign(bb_graphics_context->f_defaultFont,bb_graphics_LoadImage(String(L"mojo_font.png",13),96,2));
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<528>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<528>");
 		t_font=bb_graphics_context->f_defaultFont;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<529>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<529>");
 		t_firstChar=32;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<531>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<531>");
 	gc_assign(bb_graphics_context->f_font,t_font);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<532>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<532>");
 	bb_graphics_context->f_firstChar=t_firstChar;
 	return 0;
 }
@@ -9495,28 +9495,28 @@ int bb_graphics_SetMatrix(Float t_ix,Float t_iy,Float t_jx,Float t_jy,Float t_tx
 	DBG_LOCAL(t_jy,"jy")
 	DBG_LOCAL(t_tx,"tx")
 	DBG_LOCAL(t_ty,"ty")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<289>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<289>");
 	bb_graphics_context->f_ix=t_ix;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<290>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<290>");
 	bb_graphics_context->f_iy=t_iy;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<291>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<291>");
 	bb_graphics_context->f_jx=t_jx;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<292>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<292>");
 	bb_graphics_context->f_jy=t_jy;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<293>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<293>");
 	bb_graphics_context->f_tx=t_tx;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<294>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<294>");
 	bb_graphics_context->f_ty=t_ty;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<295>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<295>");
 	bb_graphics_context->f_tformed=((t_ix!=FLOAT(1.0) || t_iy!=FLOAT(0.0) || t_jx!=FLOAT(0.0) || t_jy!=FLOAT(1.0) || t_tx!=FLOAT(0.0) || t_ty!=FLOAT(0.0))?1:0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<296>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<296>");
 	bb_graphics_context->f_matDirty=1;
 	return 0;
 }
 int bb_graphics_SetMatrix2(Array<Float > t_m){
 	DBG_ENTER("SetMatrix")
 	DBG_LOCAL(t_m,"m")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<285>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<285>");
 	bb_graphics_SetMatrix(t_m.At(0),t_m.At(1),t_m.At(2),t_m.At(3),t_m.At(4),t_m.At(5));
 	return 0;
 }
@@ -9525,43 +9525,43 @@ int bb_graphics_SetColor(Float t_r,Float t_g,Float t_b){
 	DBG_LOCAL(t_r,"r")
 	DBG_LOCAL(t_g,"g")
 	DBG_LOCAL(t_b,"b")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<244>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<244>");
 	bb_graphics_context->f_color_r=t_r;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<245>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<245>");
 	bb_graphics_context->f_color_g=t_g;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<246>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<246>");
 	bb_graphics_context->f_color_b=t_b;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<247>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<247>");
 	bb_graphics_renderDevice->SetColor(t_r,t_g,t_b);
 	return 0;
 }
 int bb_graphics_SetAlpha(Float t_alpha){
 	DBG_ENTER("SetAlpha")
 	DBG_LOCAL(t_alpha,"alpha")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<255>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<255>");
 	bb_graphics_context->f_alpha=t_alpha;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<256>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<256>");
 	bb_graphics_renderDevice->SetAlpha(t_alpha);
 	return 0;
 }
 int bb_graphics_SetBlend(int t_blend){
 	DBG_ENTER("SetBlend")
 	DBG_LOCAL(t_blend,"blend")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<264>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<264>");
 	bb_graphics_context->f_blend=t_blend;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<265>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<265>");
 	bb_graphics_renderDevice->SetBlend(t_blend);
 	return 0;
 }
 int bb_graphics_DeviceWidth(){
 	DBG_ENTER("DeviceWidth")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<221>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<221>");
 	int t_=bb_graphics_device->Width();
 	return t_;
 }
 int bb_graphics_DeviceHeight(){
 	DBG_ENTER("DeviceHeight")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<225>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<225>");
 	int t_=bb_graphics_device->Height();
 	return t_;
 }
@@ -9571,44 +9571,44 @@ int bb_graphics_SetScissor(Float t_x,Float t_y,Float t_width,Float t_height){
 	DBG_LOCAL(t_y,"y")
 	DBG_LOCAL(t_width,"width")
 	DBG_LOCAL(t_height,"height")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<273>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<273>");
 	bb_graphics_context->f_scissor_x=t_x;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<274>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<274>");
 	bb_graphics_context->f_scissor_y=t_y;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<275>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<275>");
 	bb_graphics_context->f_scissor_width=t_width;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<276>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<276>");
 	bb_graphics_context->f_scissor_height=t_height;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<277>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<277>");
 	bb_graphics_renderDevice->SetScissor(int(t_x),int(t_y),int(t_width),int(t_height));
 	return 0;
 }
 int bb_graphics_BeginRender(){
 	DBG_ENTER("BeginRender")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<206>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<206>");
 	if(!((bb_graphics_device->Mode())!=0)){
 		DBG_BLOCK();
 		return 0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<207>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<207>");
 	gc_assign(bb_graphics_renderDevice,bb_graphics_device);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<208>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<208>");
 	bb_graphics_context->f_matrixSp=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<209>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<209>");
 	bb_graphics_SetMatrix(FLOAT(1.0),FLOAT(0.0),FLOAT(0.0),FLOAT(1.0),FLOAT(0.0),FLOAT(0.0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<210>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<210>");
 	bb_graphics_SetColor(FLOAT(255.0),FLOAT(255.0),FLOAT(255.0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<211>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<211>");
 	bb_graphics_SetAlpha(FLOAT(1.0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<212>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<212>");
 	bb_graphics_SetBlend(0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<213>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<213>");
 	bb_graphics_SetScissor(FLOAT(0.0),FLOAT(0.0),Float(bb_graphics_DeviceWidth()),Float(bb_graphics_DeviceHeight()));
 	return 0;
 }
 int bb_graphics_EndRender(){
 	DBG_ENTER("EndRender")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<217>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<217>");
 	bb_graphics_renderDevice=0;
 	return 0;
 }
@@ -9616,7 +9616,7 @@ int bb_challengergui_CHGUI_MobileMode;
 int bb_app_SetUpdateRate(int t_hertz){
 	DBG_ENTER("SetUpdateRate")
 	DBG_LOCAL(t_hertz,"hertz")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<145>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<145>");
 	int t_=bb_app_device->SetUpdateRate(t_hertz);
 	return t_;
 }
@@ -9627,7 +9627,7 @@ bb_stream_Stream* bb_stream_Stream::g_new(){
 	DBG_ENTER("Stream.new")
 	bb_stream_Stream *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<23>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<23>");
 	return this;
 }
 bb_databuffer_DataBuffer* bb_stream_Stream::g__tmpbuf;
@@ -9636,7 +9636,7 @@ void bb_stream_Stream::m__Write(int t_n){
 	bb_stream_Stream *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_n,"n")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<125>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<125>");
 	if(m_Write(bb_stream_Stream::g__tmpbuf,0,t_n)!=t_n){
 		DBG_BLOCK();
 		throw (new bb_stream_StreamWriteError)->g_new(this);
@@ -9647,9 +9647,9 @@ void bb_stream_Stream::m_WriteByte(int t_value){
 	bb_stream_Stream *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<82>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<82>");
 	bb_stream_Stream::g__tmpbuf->PokeByte(0,t_value);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<83>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<83>");
 	m__Write(1);
 }
 void bb_stream_Stream::m_WriteLine(String t_str){
@@ -9657,7 +9657,7 @@ void bb_stream_Stream::m_WriteLine(String t_str){
 	bb_stream_Stream *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_str,"str")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<102>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<102>");
 	String t_=t_str;
 	int t_2=0;
 	while(t_2<t_.Length()){
@@ -9665,47 +9665,47 @@ void bb_stream_Stream::m_WriteLine(String t_str){
 		int t_ch=(int)t_[t_2];
 		t_2=t_2+1;
 		DBG_LOCAL(t_ch,"ch")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<103>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<103>");
 		m_WriteByte(t_ch);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<105>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<105>");
 	m_WriteByte(13);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<106>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<106>");
 	m_WriteByte(10);
 }
 String bb_stream_Stream::m_ReadLine(){
 	DBG_ENTER("Stream.ReadLine")
 	bb_stream_Stream *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<70>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<70>");
 	bb_stack_Stack6* t_buf=(new bb_stack_Stack6)->g_new();
 	DBG_LOCAL(t_buf,"buf")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<71>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<71>");
 	while(!((m_Eof())!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<72>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<72>");
 		int t_n=m_Read(bb_stream_Stream::g__tmpbuf,0,1);
 		DBG_LOCAL(t_n,"n")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<73>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<73>");
 		if(!((t_n)!=0)){
 			DBG_BLOCK();
 			break;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<74>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<74>");
 		int t_ch=bb_stream_Stream::g__tmpbuf->PeekByte(0);
 		DBG_LOCAL(t_ch,"ch")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<75>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<75>");
 		if(!((t_ch)!=0) || t_ch==10){
 			DBG_BLOCK();
 			break;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<76>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<76>");
 		if(t_ch!=13){
 			DBG_BLOCK();
 			t_buf->m_Push16(t_ch);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<78>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<78>");
 	String t_=String::FromChars(t_buf->m_ToArray());
 	return t_;
 }
@@ -9724,9 +9724,9 @@ bb_tcpstream_TcpStream* bb_tcpstream_TcpStream::g_new(){
 	DBG_ENTER("TcpStream.new")
 	bb_tcpstream_TcpStream *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<24>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/tcpstream.monkey<24>");
 	bb_stream_Stream::g_new();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<25>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/tcpstream.monkey<25>");
 	gc_assign(f__stream,(new BBTcpStream));
 	return this;
 }
@@ -9736,7 +9736,7 @@ bool bb_tcpstream_TcpStream::m_Connect(String t_host,int t_port){
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_host,"host")
 	DBG_LOCAL(t_port,"port")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<29>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/tcpstream.monkey<29>");
 	bool t_=f__stream->Connect(t_host,t_port);
 	return t_;
 }
@@ -9744,7 +9744,7 @@ int bb_tcpstream_TcpStream::m_ReadAvail(){
 	DBG_ENTER("TcpStream.ReadAvail")
 	bb_tcpstream_TcpStream *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<33>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/tcpstream.monkey<33>");
 	int t_=f__stream->ReadAvail();
 	return t_;
 }
@@ -9752,12 +9752,12 @@ void bb_tcpstream_TcpStream::m_Close(){
 	DBG_ENTER("TcpStream.Close")
 	bb_tcpstream_TcpStream *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<42>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/tcpstream.monkey<42>");
 	if((f__stream)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<43>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/tcpstream.monkey<43>");
 		f__stream->Close();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<44>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/tcpstream.monkey<44>");
 		f__stream=0;
 	}
 }
@@ -9765,7 +9765,7 @@ int bb_tcpstream_TcpStream::m_Eof(){
 	DBG_ENTER("TcpStream.Eof")
 	bb_tcpstream_TcpStream *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<49>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/tcpstream.monkey<49>");
 	int t_=f__stream->Eof();
 	return t_;
 }
@@ -9776,7 +9776,7 @@ int bb_tcpstream_TcpStream::m_Read(bb_databuffer_DataBuffer* t_buffer,int t_offs
 	DBG_LOCAL(t_buffer,"buffer")
 	DBG_LOCAL(t_offset,"offset")
 	DBG_LOCAL(t_count,"count")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<65>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/tcpstream.monkey<65>");
 	int t_=f__stream->Read(t_buffer,t_offset,t_count);
 	return t_;
 }
@@ -9787,7 +9787,7 @@ int bb_tcpstream_TcpStream::m_Write(bb_databuffer_DataBuffer* t_buffer,int t_off
 	DBG_LOCAL(t_buffer,"buffer")
 	DBG_LOCAL(t_offset,"offset")
 	DBG_LOCAL(t_count,"count")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/tcpstream.monkey<69>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/tcpstream.monkey<69>");
 	int t_=f__stream->Write(t_buffer,t_offset,t_count);
 	return t_;
 }
@@ -9809,7 +9809,7 @@ bb_databuffer_DataBuffer* bb_databuffer_DataBuffer::g_new(int t_length){
 	bb_databuffer_DataBuffer *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_length,"length")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/databuffer.monkey<41>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/databuffer.monkey<41>");
 	if(!_New(t_length)){
 		DBG_BLOCK();
 		Error(String(L"Allocate DataBuffer failed",26));
@@ -9820,7 +9820,7 @@ bb_databuffer_DataBuffer* bb_databuffer_DataBuffer::g_new2(){
 	DBG_ENTER("DataBuffer.new")
 	bb_databuffer_DataBuffer *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/databuffer.monkey<38>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/databuffer.monkey<38>");
 	return this;
 }
 void bb_databuffer_DataBuffer::mark(){
@@ -9838,7 +9838,7 @@ bb_stream_StreamError* bb_stream_StreamError::g_new(bb_stream_Stream* t_stream){
 	bb_stream_StreamError *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_stream,"stream")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<133>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<133>");
 	gc_assign(f__stream,t_stream);
 	return this;
 }
@@ -9846,7 +9846,7 @@ bb_stream_StreamError* bb_stream_StreamError::g_new2(){
 	DBG_ENTER("StreamError.new")
 	bb_stream_StreamError *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<130>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<130>");
 	return this;
 }
 void bb_stream_StreamError::mark(){
@@ -9865,7 +9865,7 @@ bb_stream_StreamWriteError* bb_stream_StreamWriteError::g_new(bb_stream_Stream* 
 	bb_stream_StreamWriteError *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_stream,"stream")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<162>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<162>");
 	bb_stream_StreamError::g_new(t_stream);
 	return this;
 }
@@ -9873,7 +9873,7 @@ bb_stream_StreamWriteError* bb_stream_StreamWriteError::g_new2(){
 	DBG_ENTER("StreamWriteError.new")
 	bb_stream_StreamWriteError *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/brl/stream.monkey<159>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/brl/stream.monkey<159>");
 	bb_stream_StreamError::g_new2();
 	return this;
 }
@@ -9921,9 +9921,9 @@ bb_stack_Stack6* bb_stack_Stack6::g_new2(Array<int > t_data){
 	bb_stack_Stack6 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_data,"data")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<13>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<13>");
 	gc_assign(this->f_data,t_data.Slice(0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<14>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<14>");
 	this->f_length=t_data.Length();
 	return this;
 }
@@ -9932,15 +9932,15 @@ int bb_stack_Stack6::m_Push16(int t_value){
 	bb_stack_Stack6 *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<52>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<52>");
 	if(f_length==f_data.Length()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<53>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<53>");
 		gc_assign(f_data,f_data.Resize(f_length*2+10));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<55>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<55>");
 	f_data.At(f_length)=t_value;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<56>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<56>");
 	f_length+=1;
 	return 0;
 }
@@ -9951,11 +9951,11 @@ int bb_stack_Stack6::m_Push17(Array<int > t_values,int t_offset,int t_count){
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
 	DBG_LOCAL(t_count,"count")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<66>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<66>");
 	for(int t_i=0;t_i<t_count;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<67>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<67>");
 		m_Push16(t_values.At(t_offset+t_i));
 	}
 	return 0;
@@ -9966,11 +9966,11 @@ int bb_stack_Stack6::m_Push18(Array<int > t_values,int t_offset){
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_values,"values")
 	DBG_LOCAL(t_offset,"offset")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<60>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<60>");
 	for(int t_i=t_offset;t_i<t_values.Length();t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<61>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<61>");
 		m_Push16(t_values.At(t_i));
 	}
 	return 0;
@@ -9979,17 +9979,17 @@ Array<int > bb_stack_Stack6::m_ToArray(){
 	DBG_ENTER("Stack.ToArray")
 	bb_stack_Stack6 *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<18>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<18>");
 	Array<int > t_t=Array<int >(f_length);
 	DBG_LOCAL(t_t,"t")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<19>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<19>");
 	for(int t_i=0;t_i<f_length;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<20>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<20>");
 		t_t.At(t_i)=f_data.At(t_i);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/stack.monkey<22>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/stack.monkey<22>");
 	return t_t;
 }
 void bb_stack_Stack6::mark(){
@@ -10103,46 +10103,46 @@ bb_challengergui_CHGUI* bb_challengergui_CHGUI::g_new(){
 	DBG_ENTER("CHGUI.new")
 	bb_challengergui_CHGUI *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<139>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<139>");
 	return this;
 }
 int bb_challengergui_CHGUI::m_CheckClicked(){
 	DBG_ENTER("CHGUI.CheckClicked")
 	bb_challengergui_CHGUI *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<349>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<349>");
 	if(bb_challengergui_CHGUI_RealActive(this)==0 || bb_challengergui_CHGUI_RealVisible(this)==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<350>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<350>");
 		f_Over=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<351>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<351>");
 		f_Down=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<352>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<352>");
 		f_Clicked=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<354>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<354>");
 	if(((f_Over)!=0) && ((f_Down)!=0) && bb_input_TouchDown(0)==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<355>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<355>");
 		f_Clicked=1;
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<357>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<357>");
 		f_Clicked=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<361>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<361>");
 	if((f_Clicked)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<362>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<362>");
 		if(bb_app_Millisecs()<f_DoubleClickMillisecs){
 			DBG_BLOCK();
 			f_DoubleClicked=1;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<363>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<363>");
 		f_DoubleClickMillisecs=bb_app_Millisecs()+275;
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<365>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<365>");
 		f_DoubleClicked=0;
 	}
 	return 0;
@@ -10151,73 +10151,73 @@ int bb_challengergui_CHGUI::m_CheckOver(){
 	DBG_ENTER("CHGUI.CheckOver")
 	bb_challengergui_CHGUI *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<276>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<276>");
 	if(f_Minimised==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<277>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<277>");
 		if(this!=bb_challengergui_CHGUI_Canvas){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<278>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<278>");
 			int t_XX=bb_challengergui_CHGUI_RealX(this);
 			DBG_LOCAL(t_XX,"XX")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<279>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<279>");
 			int t_YY=bb_challengergui_CHGUI_RealY(this);
 			DBG_LOCAL(t_YY,"YY")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<281>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<281>");
 			if(bb_challengergui_CHGUI_OverFlag==0 && bb_challengergui_CHGUI_IgnoreMouse==0 && bb_input_TouchX(0)>Float(t_XX) && bb_input_TouchX(0)<Float(t_XX)+f_W && bb_input_TouchY(0)>Float(t_YY) && bb_input_TouchY(0)<Float(t_YY)+f_H){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<282>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<282>");
 				f_Over=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<283>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<283>");
 				bb_challengergui_CHGUI_Over=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<284>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<284>");
 				bb_challengergui_CHGUI_OverFlag=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<285>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<285>");
 				if(f_Element!=String(L"Window",6)){
 					DBG_BLOCK();
 					bb_challengergui_CHGUI_DragOver=1;
 				}
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<286>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<286>");
 				f_OverTime=bb_app_Millisecs()-f_StartOvertime;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<288>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<288>");
 				f_Over=0;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<289>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<289>");
 				f_OverTime=0;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<290>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<290>");
 				f_StartOvertime=bb_app_Millisecs();
 			}
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<294>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<294>");
 		if(this!=bb_challengergui_CHGUI_Canvas){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<295>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<295>");
 			int t_XX2=bb_challengergui_CHGUI_RealX(this);
 			DBG_LOCAL(t_XX2,"XX")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<296>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<296>");
 			int t_YY2=bb_challengergui_CHGUI_RealY(this);
 			DBG_LOCAL(t_YY2,"YY")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<297>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<297>");
 			if(bb_challengergui_CHGUI_OverFlag==0 && bb_challengergui_CHGUI_IgnoreMouse==0 && bb_input_TouchX(0)>Float(t_XX2) && bb_input_TouchX(0)<Float(t_XX2)+f_W && bb_input_TouchY(0)>Float(t_YY2) && bb_input_TouchY(0)<Float(t_YY2)+bb_challengergui_CHGUI_TitleHeight){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<298>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<298>");
 				f_Over=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<299>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<299>");
 				bb_challengergui_CHGUI_Over=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<300>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<300>");
 				bb_challengergui_CHGUI_OverFlag=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<301>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<301>");
 				f_OverTime=bb_app_Millisecs()-f_StartOvertime;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<303>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<303>");
 				f_Over=0;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<304>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<304>");
 				f_OverTime=0;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<305>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<305>");
 				f_StartOvertime=bb_app_Millisecs();
 			}
 		}
@@ -10228,72 +10228,72 @@ int bb_challengergui_CHGUI::m_CheckDown(){
 	DBG_ENTER("CHGUI.CheckDown")
 	bb_challengergui_CHGUI *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<314>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<314>");
 	if(((f_Over)!=0) && ((bb_input_TouchDown(0))!=0) && bb_challengergui_CHGUI_MouseBusy==0 || f_Down==1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<315>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<315>");
 		bb_challengergui_CHGUI_DownFlag=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<316>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<316>");
 		bb_challengergui_CHGUI_MouseBusy=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<317>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<317>");
 		f_Down=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<318>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<318>");
 		if(f_Element!=String(L"Window",6)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DragOver=1;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<319>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<319>");
 		f_DownTime=bb_app_Millisecs()-f_StartDowntime;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<320>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<320>");
 		f_StartOvertime=bb_app_Millisecs();
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<322>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<322>");
 	if(bb_input_TouchDown(0)==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<323>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<323>");
 		f_Down=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<324>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<324>");
 		f_DownTime=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<325>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<325>");
 		f_StartDowntime=bb_app_Millisecs();
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<327>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<327>");
 	if(f_Over==1 && ((bb_input_TouchDown(0))!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<328>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<328>");
 		if(f_Down==0){
 			DBG_BLOCK();
 			f_Over=0;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<331>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<331>");
 	if((f_Down)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<332>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<332>");
 		if(f_Mode==1){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_Reorder(this);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<333>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<333>");
 		bb_challengergui_CHGUI* t_E=this;
 		DBG_LOCAL(t_E,"E")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<334>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<334>");
 		do{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<335>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<335>");
 			if(t_E->f_Parent!=0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<336>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<336>");
 				if(t_E->f_Parent->f_Element==String(L"Window",6) && t_E->f_Parent->f_Mode==1){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<337>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<337>");
 					bb_challengergui_CHGUI_Reorder(t_E->f_Parent);
 				}
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<339>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<339>");
 				t_E=t_E->f_Parent;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<341>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<341>");
 				break;
 			}
 		}while(!(false));
@@ -10434,22 +10434,22 @@ bb_challengergui_CHGUI* bb_challengergui_CreateDropdownItem(String t_Text,bb_cha
 	DBG_LOCAL(t_Text,"Text")
 	DBG_LOCAL(t_Dropdown,"Dropdown")
 	DBG_LOCAL(t_Value,"Value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<515>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<515>");
 	bb_challengergui_CHGUI* t_N=(new bb_challengergui_CHGUI)->g_new();
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<516>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<516>");
 	gc_assign(t_N->f_Parent,t_Dropdown);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<518>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<518>");
 	t_N->f_Value=Float(t_Value);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<519>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<519>");
 	t_N->f_Text=t_Text;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<520>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<520>");
 	t_N->f_Element=String(L"DropdownItem",12);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<522>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<522>");
 	gc_assign(t_N->f_Parent->f_DropdownItems,t_N->f_Parent->f_DropdownItems.Resize(t_N->f_Parent->f_DropdownItems.Length()+1));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<523>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<523>");
 	gc_assign(t_N->f_Parent->f_DropdownItems.At(t_N->f_Parent->f_DropdownItems.Length()-1),t_N);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<524>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<524>");
 	return t_N;
 }
 int bb_protocol__readp(){
@@ -10532,7 +10532,7 @@ int bb_protocol_ReadProtocol(){
 }
 int bb_graphics_DebugRenderDevice(){
 	DBG_ENTER("DebugRenderDevice")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<48>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<48>");
 	if(!((bb_graphics_renderDevice)!=0)){
 		DBG_BLOCK();
 		Error(String(L"Rendering operations can only be performed inside OnRender",58));
@@ -10544,9 +10544,9 @@ int bb_graphics_Cls(Float t_r,Float t_g,Float t_b){
 	DBG_LOCAL(t_r,"r")
 	DBG_LOCAL(t_g,"g")
 	DBG_LOCAL(t_b,"b")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<354>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<354>");
 	bb_graphics_DebugRenderDevice();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<356>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<356>");
 	bb_graphics_renderDevice->Cls(t_r,t_g,t_b);
 	return 0;
 }
@@ -10555,168 +10555,168 @@ bb_challengergui_CHGUI* bb_challengergui_CHGUI_Canvas;
 int bb_challengergui_CHGUI_RealVisible(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_RealVisible")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3921>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3921>");
 	bb_challengergui_CHGUI* t_E=0;
 	DBG_LOCAL(t_E,"E")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3922>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3922>");
 	t_E=t_N;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3923>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3923>");
 	int t_V=t_N->f_Visible;
 	DBG_LOCAL(t_V,"V")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3924>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3924>");
 	if(t_V==0){
 		DBG_BLOCK();
 		return t_V;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3925>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3925>");
 	do{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3926>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3926>");
 		if(t_E->f_Parent!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3927>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3927>");
 			t_V=t_E->f_Parent->f_Visible;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3928>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3928>");
 			if(t_V==0){
 				DBG_BLOCK();
 				break;
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3929>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3929>");
 			t_E=t_E->f_Parent;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3931>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3931>");
 			break;
 		}
 	}while(!(false));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3934>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3934>");
 	if(bb_challengergui_CHGUI_Canvas->f_Visible==0){
 		DBG_BLOCK();
 		t_V=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3935>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3935>");
 	return t_V;
 }
 int bb_challengergui_CHGUI_RealMinimised(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_RealMinimised")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3962>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3962>");
 	bb_challengergui_CHGUI* t_E=0;
 	DBG_LOCAL(t_E,"E")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3963>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3963>");
 	t_E=t_N;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3964>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3964>");
 	int t_M=t_E->f_Minimised;
 	DBG_LOCAL(t_M,"M")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3965>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3965>");
 	if(t_M==1){
 		DBG_BLOCK();
 		return t_M;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3966>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3966>");
 	do{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3967>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3967>");
 		if(t_E->f_Parent!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3968>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3968>");
 			t_M=t_E->f_Parent->f_Minimised;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3969>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3969>");
 			if(t_M==1){
 				DBG_BLOCK();
 				break;
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3970>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3970>");
 			t_E=t_E->f_Parent;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3972>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3972>");
 			break;
 		}
 	}while(!(false));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3975>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3975>");
 	return t_M;
 }
 Float bb_challengergui_CHGUI_OffsetX;
 int bb_challengergui_CHGUI_RealX(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_RealX")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3881>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3881>");
 	bb_challengergui_CHGUI* t_E=0;
 	DBG_LOCAL(t_E,"E")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3882>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3882>");
 	t_E=t_N;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3883>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3883>");
 	int t_X=int(t_N->f_X);
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3884>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3884>");
 	do{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3885>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3885>");
 		if(t_E->f_Parent!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3886>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3886>");
 			if(t_E->f_Parent->f_Element!=String(L"Tab",3)){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3887>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3887>");
 				t_X=int(Float(t_X)+t_E->f_Parent->f_X);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3888>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3888>");
 				t_E=t_E->f_Parent;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3890>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3890>");
 				t_E=t_E->f_Parent;
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3893>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3893>");
 			break;
 		}
 	}while(!(false));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3896>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3896>");
 	t_X=int(Float(t_X)+bb_challengergui_CHGUI_OffsetX);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3897>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3897>");
 	return t_X;
 }
 Float bb_challengergui_CHGUI_OffsetY;
 int bb_challengergui_CHGUI_RealY(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_RealY")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3901>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3901>");
 	bb_challengergui_CHGUI* t_E=0;
 	DBG_LOCAL(t_E,"E")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3902>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3902>");
 	t_E=t_N;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3903>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3903>");
 	int t_Y=int(t_N->f_Y);
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3904>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3904>");
 	do{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3905>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3905>");
 		if(t_E->f_Parent!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3906>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3906>");
 			if(t_E->f_Parent->f_Element!=String(L"Tab",3)){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3907>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3907>");
 				t_Y=int(Float(t_Y)+t_E->f_Parent->f_Y);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3908>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3908>");
 				t_E=t_E->f_Parent;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3910>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3910>");
 				t_E=t_E->f_Parent;
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3913>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3913>");
 			break;
 		}
 	}while(!(false));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3916>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3916>");
 	t_Y=int(Float(t_Y)+bb_challengergui_CHGUI_OffsetY);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3917>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3917>");
 	return t_Y;
 }
 Float bb_challengergui_CHGUI_TitleHeight;
@@ -10724,74 +10724,74 @@ bb_challengergui_CHGUI* bb_challengergui_CHGUI_LockedWIndow;
 int bb_challengergui_CHGUI_RealActive(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_RealActive")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3939>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3939>");
 	bb_challengergui_CHGUI* t_E=0;
 	DBG_LOCAL(t_E,"E")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3940>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3940>");
 	t_E=t_N;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3941>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3941>");
 	int t_A=t_N->f_Active;
 	DBG_LOCAL(t_A,"A")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3942>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3942>");
 	if(t_A==0){
 		DBG_BLOCK();
 		return t_A;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3943>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3943>");
 	do{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3944>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3944>");
 		if(t_E==bb_challengergui_CHGUI_LockedWIndow){
 			DBG_BLOCK();
 			return 1;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3945>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3945>");
 		if(t_E->f_Parent!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3946>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3946>");
 			if(t_E->f_Parent==bb_challengergui_CHGUI_LockedWIndow){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3947>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3947>");
 				return 1;
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3949>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3949>");
 			t_A=t_E->f_Parent->f_Active;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3950>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3950>");
 			if(t_A==0){
 				DBG_BLOCK();
 				break;
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3952>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3952>");
 			t_E=t_E->f_Parent;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3954>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3954>");
 			break;
 		}
 	}while(!(false));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3958>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3958>");
 	return t_A;
 }
 int bb_challengergui_CHGUI_Shadow;
 bb_graphics_Image* bb_challengergui_CHGUI_ShadowImg;
 int bb_graphics_PushMatrix(){
 	DBG_ENTER("PushMatrix")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<310>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<310>");
 	int t_sp=bb_graphics_context->f_matrixSp;
 	DBG_LOCAL(t_sp,"sp")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<311>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<311>");
 	bb_graphics_context->f_matrixStack.At(t_sp+0)=bb_graphics_context->f_ix;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<312>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<312>");
 	bb_graphics_context->f_matrixStack.At(t_sp+1)=bb_graphics_context->f_iy;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<313>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<313>");
 	bb_graphics_context->f_matrixStack.At(t_sp+2)=bb_graphics_context->f_jx;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<314>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<314>");
 	bb_graphics_context->f_matrixStack.At(t_sp+3)=bb_graphics_context->f_jy;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<315>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<315>");
 	bb_graphics_context->f_matrixStack.At(t_sp+4)=bb_graphics_context->f_tx;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<316>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<316>");
 	bb_graphics_context->f_matrixStack.At(t_sp+5)=bb_graphics_context->f_ty;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<317>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<317>");
 	bb_graphics_context->f_matrixSp=t_sp+6;
 	return 0;
 }
@@ -10803,32 +10803,32 @@ int bb_graphics_Transform(Float t_ix,Float t_iy,Float t_jx,Float t_jy,Float t_tx
 	DBG_LOCAL(t_jy,"jy")
 	DBG_LOCAL(t_tx,"tx")
 	DBG_LOCAL(t_ty,"ty")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<331>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<331>");
 	Float t_ix2=t_ix*bb_graphics_context->f_ix+t_iy*bb_graphics_context->f_jx;
 	DBG_LOCAL(t_ix2,"ix2")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<332>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<332>");
 	Float t_iy2=t_ix*bb_graphics_context->f_iy+t_iy*bb_graphics_context->f_jy;
 	DBG_LOCAL(t_iy2,"iy2")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<333>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<333>");
 	Float t_jx2=t_jx*bb_graphics_context->f_ix+t_jy*bb_graphics_context->f_jx;
 	DBG_LOCAL(t_jx2,"jx2")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<334>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<334>");
 	Float t_jy2=t_jx*bb_graphics_context->f_iy+t_jy*bb_graphics_context->f_jy;
 	DBG_LOCAL(t_jy2,"jy2")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<335>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<335>");
 	Float t_tx2=t_tx*bb_graphics_context->f_ix+t_ty*bb_graphics_context->f_jx+bb_graphics_context->f_tx;
 	DBG_LOCAL(t_tx2,"tx2")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<336>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<336>");
 	Float t_ty2=t_tx*bb_graphics_context->f_iy+t_ty*bb_graphics_context->f_jy+bb_graphics_context->f_ty;
 	DBG_LOCAL(t_ty2,"ty2")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<337>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<337>");
 	bb_graphics_SetMatrix(t_ix2,t_iy2,t_jx2,t_jy2,t_tx2,t_ty2);
 	return 0;
 }
 int bb_graphics_Transform2(Array<Float > t_m){
 	DBG_ENTER("Transform")
 	DBG_LOCAL(t_m,"m")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<327>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<327>");
 	bb_graphics_Transform(t_m.At(0),t_m.At(1),t_m.At(2),t_m.At(3),t_m.At(4),t_m.At(5));
 	return 0;
 }
@@ -10836,18 +10836,18 @@ int bb_graphics_Translate(Float t_x,Float t_y){
 	DBG_ENTER("Translate")
 	DBG_LOCAL(t_x,"x")
 	DBG_LOCAL(t_y,"y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<341>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<341>");
 	bb_graphics_Transform(FLOAT(1.0),FLOAT(0.0),FLOAT(0.0),FLOAT(1.0),t_x,t_y);
 	return 0;
 }
 int bb_graphics_PopMatrix(){
 	DBG_ENTER("PopMatrix")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<321>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<321>");
 	int t_sp=bb_graphics_context->f_matrixSp-6;
 	DBG_LOCAL(t_sp,"sp")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<322>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<322>");
 	bb_graphics_SetMatrix(bb_graphics_context->f_matrixStack.At(t_sp+0),bb_graphics_context->f_matrixStack.At(t_sp+1),bb_graphics_context->f_matrixStack.At(t_sp+2),bb_graphics_context->f_matrixStack.At(t_sp+3),bb_graphics_context->f_matrixStack.At(t_sp+4),bb_graphics_context->f_matrixStack.At(t_sp+5));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<323>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<323>");
 	bb_graphics_context->f_matrixSp=t_sp;
 	return 0;
 }
@@ -10861,29 +10861,29 @@ int bb_graphics_DrawImageRect(bb_graphics_Image* t_image,Float t_x,Float t_y,int
 	DBG_LOCAL(t_srcWidth,"srcWidth")
 	DBG_LOCAL(t_srcHeight,"srcHeight")
 	DBG_LOCAL(t_frame,"frame")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<473>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<473>");
 	bb_graphics_DebugRenderDevice();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<475>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<475>");
 	bb_graphics_Frame* t_f=t_image->f_frames.At(t_frame);
 	DBG_LOCAL(t_f,"f")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<477>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<477>");
 	if((bb_graphics_context->f_tformed)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<478>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<478>");
 		bb_graphics_PushMatrix();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<481>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<481>");
 		bb_graphics_Translate(-t_image->f_tx+t_x,-t_image->f_ty+t_y);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<483>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<483>");
 		bb_graphics_context->m_Validate();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<485>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<485>");
 		bb_graphics_renderDevice->DrawSurface2(t_image->f_surface,FLOAT(0.0),FLOAT(0.0),t_srcX+t_f->f_x,t_srcY+t_f->f_y,t_srcWidth,t_srcHeight);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<487>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<487>");
 		bb_graphics_PopMatrix();
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<489>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<489>");
 		bb_graphics_context->m_Validate();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<491>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<491>");
 		bb_graphics_renderDevice->DrawSurface2(t_image->f_surface,-t_image->f_tx+t_x,-t_image->f_ty+t_y,t_srcX+t_f->f_x,t_srcY+t_f->f_y,t_srcWidth,t_srcHeight);
 	}
 	return 0;
@@ -10891,7 +10891,7 @@ int bb_graphics_DrawImageRect(bb_graphics_Image* t_image,Float t_x,Float t_y,int
 int bb_graphics_Rotate(Float t_angle){
 	DBG_ENTER("Rotate")
 	DBG_LOCAL(t_angle,"angle")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<349>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<349>");
 	bb_graphics_Transform((Float)cos((t_angle)*D2R),-(Float)sin((t_angle)*D2R),(Float)sin((t_angle)*D2R),(Float)cos((t_angle)*D2R),FLOAT(0.0),FLOAT(0.0));
 	return 0;
 }
@@ -10899,7 +10899,7 @@ int bb_graphics_Scale(Float t_x,Float t_y){
 	DBG_ENTER("Scale")
 	DBG_LOCAL(t_x,"x")
 	DBG_LOCAL(t_y,"y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<345>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<345>");
 	bb_graphics_Transform(t_x,FLOAT(0.0),FLOAT(0.0),t_y,FLOAT(0.0),FLOAT(0.0));
 	return 0;
 }
@@ -10916,26 +10916,26 @@ int bb_graphics_DrawImageRect2(bb_graphics_Image* t_image,Float t_x,Float t_y,in
 	DBG_LOCAL(t_scaleX,"scaleX")
 	DBG_LOCAL(t_scaleY,"scaleY")
 	DBG_LOCAL(t_frame,"frame")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<497>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<497>");
 	bb_graphics_DebugRenderDevice();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<499>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<499>");
 	bb_graphics_Frame* t_f=t_image->f_frames.At(t_frame);
 	DBG_LOCAL(t_f,"f")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<501>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<501>");
 	bb_graphics_PushMatrix();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<503>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<503>");
 	bb_graphics_Translate(t_x,t_y);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<504>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<504>");
 	bb_graphics_Rotate(t_rotation);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<505>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<505>");
 	bb_graphics_Scale(t_scaleX,t_scaleY);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<506>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<506>");
 	bb_graphics_Translate(-t_image->f_tx,-t_image->f_ty);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<508>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<508>");
 	bb_graphics_context->m_Validate();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<510>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<510>");
 	bb_graphics_renderDevice->DrawSurface2(t_image->f_surface,FLOAT(0.0),FLOAT(0.0),t_srcX+t_f->f_x,t_srcY+t_f->f_y,t_srcWidth,t_srcHeight);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<512>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<512>");
 	bb_graphics_PopMatrix();
 	return 0;
 }
@@ -10953,12 +10953,12 @@ int bb_bitmapfont_BitmapFont::m_GetFontHeight(){
 	DBG_ENTER("BitmapFont.GetFontHeight")
 	bb_bitmapfont_BitmapFont *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<263>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<263>");
 	if(f_faceChars.At(32)==0){
 		DBG_BLOCK();
 		return 0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<264>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<264>");
 	int t_=int(f_faceChars.At(32)->f_drawingMetrics->f_drawingSize->f_y);
 	return t_;
 }
@@ -10966,7 +10966,7 @@ bool bb_bitmapfont_BitmapFont::m_DrawShadow(){
 	DBG_ENTER("BitmapFont.DrawShadow")
 	bb_bitmapfont_BitmapFont *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<66>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<66>");
 	return f__drawShadow;
 }
 int bb_bitmapfont_BitmapFont::m_DrawShadow2(bool t_value){
@@ -10974,7 +10974,7 @@ int bb_bitmapfont_BitmapFont::m_DrawShadow2(bool t_value){
 	bb_bitmapfont_BitmapFont *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<70>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<70>");
 	f__drawShadow=t_value;
 	return 0;
 }
@@ -10982,12 +10982,12 @@ bb_drawingpoint_DrawingPoint* bb_bitmapfont_BitmapFont::m_Kerning(){
 	DBG_ENTER("BitmapFont.Kerning")
 	bb_bitmapfont_BitmapFont *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<667>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<667>");
 	if(f__kerning==0){
 		DBG_BLOCK();
 		gc_assign(f__kerning,(new bb_drawingpoint_DrawingPoint)->g_new());
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<668>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<668>");
 	return f__kerning;
 }
 void bb_bitmapfont_BitmapFont::m_Kerning2(bb_drawingpoint_DrawingPoint* t_value){
@@ -10995,7 +10995,7 @@ void bb_bitmapfont_BitmapFont::m_Kerning2(bb_drawingpoint_DrawingPoint* t_value)
 	bb_bitmapfont_BitmapFont *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<672>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<672>");
 	gc_assign(f__kerning,t_value);
 }
 Float bb_bitmapfont_BitmapFont::m_GetTxtWidth(String t_text,int t_fromChar,int t_toChar){
@@ -11005,70 +11005,70 @@ Float bb_bitmapfont_BitmapFont::m_GetTxtWidth(String t_text,int t_fromChar,int t
 	DBG_LOCAL(t_text,"text")
 	DBG_LOCAL(t_fromChar,"fromChar")
 	DBG_LOCAL(t_toChar,"toChar")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<214>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<214>");
 	Float t_twidth=FLOAT(.0);
 	DBG_LOCAL(t_twidth,"twidth")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<215>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<215>");
 	Float t_MaxWidth=FLOAT(0.0);
 	DBG_LOCAL(t_MaxWidth,"MaxWidth")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<216>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<216>");
 	int t_char=0;
 	DBG_LOCAL(t_char,"char")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<217>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<217>");
 	int t_lastchar=0;
 	DBG_LOCAL(t_lastchar,"lastchar")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<219>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<219>");
 	for(int t_i=t_fromChar;t_i<=t_toChar;t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<220>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<220>");
 		t_char=(int)t_text[t_i-1];
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<221>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<221>");
 		if(t_char>=0 && t_char<f_faceChars.Length() && t_char!=10 && t_char!=13){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<222>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<222>");
 			if(f_faceChars.At(t_char)!=0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<223>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<223>");
 				t_lastchar=t_char;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<224>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<224>");
 				t_twidth=t_twidth+f_faceChars.At(t_char)->f_drawingMetrics->f_drawingWidth+m_Kerning()->f_x;
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<226>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<226>");
 			if(t_char==10){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<227>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<227>");
 				if(bb_math_Abs2(t_MaxWidth)<bb_math_Abs2(t_twidth)){
 					DBG_BLOCK();
 					t_MaxWidth=t_twidth-m_Kerning()->f_x-f_faceChars.At(t_lastchar)->f_drawingMetrics->f_drawingWidth+f_faceChars.At(t_lastchar)->f_drawingMetrics->f_drawingSize->f_x;
 				}
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<228>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<228>");
 				t_twidth=FLOAT(0.0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<229>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<229>");
 				t_lastchar=t_char;
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<232>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<232>");
 	if(t_lastchar>=0 && t_lastchar<f_faceChars.Length()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<233>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<233>");
 		if(f_faceChars.At(t_lastchar)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<234>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<234>");
 			t_twidth=t_twidth-f_faceChars.At(t_lastchar)->f_drawingMetrics->f_drawingWidth;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<235>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<235>");
 			t_twidth=t_twidth+f_faceChars.At(t_lastchar)->f_drawingMetrics->f_drawingSize->f_x;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<238>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<238>");
 	if(bb_math_Abs2(t_MaxWidth)<bb_math_Abs2(t_twidth)){
 		DBG_BLOCK();
 		t_MaxWidth=t_twidth-m_Kerning()->f_x;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<239>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<239>");
 	return t_MaxWidth;
 }
 Float bb_bitmapfont_BitmapFont::m_GetTxtWidth2(String t_text){
@@ -11076,7 +11076,7 @@ Float bb_bitmapfont_BitmapFont::m_GetTxtWidth2(String t_text){
 	bb_bitmapfont_BitmapFont *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_text,"text")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<205>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<205>");
 	Float t_=m_GetTxtWidth(t_text,1,t_text.Length());
 	return t_;
 }
@@ -11090,88 +11090,88 @@ int bb_bitmapfont_BitmapFont::m_DrawCharsText(String t_text,Float t_x,Float t_y,
 	DBG_LOCAL(t_target,"target")
 	DBG_LOCAL(t_align,"align")
 	DBG_LOCAL(t_startPos,"startPos")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<619>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<619>");
 	Float t_drx=t_x;
 	Float t_dry=t_y;
 	DBG_LOCAL(t_drx,"drx")
 	DBG_LOCAL(t_dry,"dry")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<620>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<620>");
 	Float t_oldX=t_x;
 	DBG_LOCAL(t_oldX,"oldX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<621>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<621>");
 	int t_xOffset=0;
 	DBG_LOCAL(t_xOffset,"xOffset")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<624>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<624>");
 	if(t_align!=1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<625>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<625>");
 		int t_lineSepPos=t_text.Find(String(L"\n",1),t_startPos);
 		DBG_LOCAL(t_lineSepPos,"lineSepPos")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<626>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<626>");
 		if(t_lineSepPos<0){
 			DBG_BLOCK();
 			t_lineSepPos=t_text.Length();
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<627>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<627>");
 		int t_=t_align;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<628>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<628>");
 		if(t_==2){
 			DBG_BLOCK();
 			t_xOffset=int(this->m_GetTxtWidth(t_text,t_startPos,t_lineSepPos)/FLOAT(2.0));
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<629>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<629>");
 			if(t_==3){
 				DBG_BLOCK();
 				t_xOffset=int(this->m_GetTxtWidth(t_text,t_startPos,t_lineSepPos));
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<633>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<633>");
 	for(int t_i=t_startPos;t_i<=t_text.Length();t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<634>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<634>");
 		int t_char=(int)t_text[t_i-1];
 		DBG_LOCAL(t_char,"char")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<635>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<635>");
 		if(t_char>=0 && t_char<=t_target.Length()){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<636>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<636>");
 			if(t_char==10){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<637>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<637>");
 				t_dry+=f_faceChars.At(32)->f_drawingMetrics->f_drawingSize->f_y+m_Kerning()->f_y;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<638>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<638>");
 				this->m_DrawCharsText(t_text,t_oldX,t_dry,t_target,t_align,t_i+1);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<639>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<639>");
 				return 0;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<640>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<640>");
 				if(t_target.At(t_char)!=0){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<641>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<641>");
 					if(t_target.At(t_char)->m_CharImageLoaded()==false){
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<642>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<642>");
 						t_target.At(t_char)->m_LoadCharImage();
 					}
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<644>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<644>");
 					if(t_target.At(t_char)->f_image!=0){
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<645>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<645>");
 						bb_graphics_DrawImage(t_target.At(t_char)->f_image,t_drx-Float(t_xOffset),t_dry,0);
 					}else{
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<646>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<646>");
 						if(t_target.At(t_char)->f_packedFontIndex>0){
 							DBG_BLOCK();
-							DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<647>");
+							DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<647>");
 							bb_graphics_DrawImageRect(f_packedImages.At(t_target.At(t_char)->f_packedFontIndex),Float(-t_xOffset)+t_drx+t_target.At(t_char)->f_drawingMetrics->f_drawingOffset->f_x,t_dry+t_target.At(t_char)->f_drawingMetrics->f_drawingOffset->f_y,int(t_target.At(t_char)->f_packedPosition->f_x),int(t_target.At(t_char)->f_packedPosition->f_y),int(t_target.At(t_char)->f_packedSize->f_x),int(t_target.At(t_char)->f_packedSize->f_y),0);
 						}
 					}
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<649>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<649>");
 					t_drx+=f_faceChars.At(t_char)->f_drawingMetrics->f_drawingWidth+m_Kerning()->f_x;
 				}
 			}
@@ -11188,21 +11188,21 @@ int bb_bitmapfont_BitmapFont::m_DrawCharsText2(String t_text,Float t_x,Float t_y
 	DBG_LOCAL(t_y,"y")
 	DBG_LOCAL(t_mode,"mode")
 	DBG_LOCAL(t_align,"align")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<606>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<606>");
 	if(t_mode==1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<607>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<607>");
 		m_DrawCharsText(t_text,t_x,t_y,f_borderChars,t_align,1);
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<608>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<608>");
 		if(t_mode==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<609>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<609>");
 			m_DrawCharsText(t_text,t_x,t_y,f_faceChars,t_align,1);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<611>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<611>");
 			m_DrawCharsText(t_text,t_x,t_y,f_shadowChars,t_align,1);
 		}
 	}
@@ -11212,7 +11212,7 @@ bool bb_bitmapfont_BitmapFont::m_DrawBorder(){
 	DBG_ENTER("BitmapFont.DrawBorder")
 	bb_bitmapfont_BitmapFont *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<79>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<79>");
 	return f__drawBorder;
 }
 int bb_bitmapfont_BitmapFont::m_DrawBorder2(bool t_value){
@@ -11220,7 +11220,7 @@ int bb_bitmapfont_BitmapFont::m_DrawBorder2(bool t_value){
 	bb_bitmapfont_BitmapFont *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<83>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<83>");
 	f__drawBorder=t_value;
 	return 0;
 }
@@ -11232,17 +11232,17 @@ int bb_bitmapfont_BitmapFont::m_DrawText(String t_text,Float t_x,Float t_y,int t
 	DBG_LOCAL(t_x,"x")
 	DBG_LOCAL(t_y,"y")
 	DBG_LOCAL(t_align,"align")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<187>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<187>");
 	if(m_DrawShadow()){
 		DBG_BLOCK();
 		m_DrawCharsText2(t_text,t_x,t_y,2,t_align);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<188>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<188>");
 	if(m_DrawBorder()){
 		DBG_BLOCK();
 		m_DrawCharsText2(t_text,t_x,t_y,1,t_align);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<189>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<189>");
 	m_DrawCharsText2(t_text,t_x,t_y,0,t_align);
 	return 0;
 }
@@ -11253,7 +11253,7 @@ int bb_bitmapfont_BitmapFont::m_DrawText2(String t_text,Float t_x,Float t_y){
 	DBG_LOCAL(t_text,"text")
 	DBG_LOCAL(t_x,"x")
 	DBG_LOCAL(t_y,"y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<197>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<197>");
 	this->m_DrawText(t_text,t_x,t_y,1);
 	return 0;
 }
@@ -11262,21 +11262,21 @@ Float bb_bitmapfont_BitmapFont::m_GetTxtHeight(String t_Text){
 	bb_bitmapfont_BitmapFont *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_Text,"Text")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<250>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<250>");
 	int t_count=0;
 	DBG_LOCAL(t_count,"count")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<251>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<251>");
 	for(int t_i=0;t_i<t_Text.Length();t_i=t_i+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_i,"i")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<252>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<252>");
 		if((int)t_Text[t_i]==10){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<253>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<253>");
 			t_count+=1;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<256>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<256>");
 	Float t_=Float(t_count)*(f_faceChars.At(32)->f_drawingMetrics->f_drawingSize->f_y+m_Kerning()->f_y)+Float(m_GetFontHeight());
 	return t_;
 }
@@ -11287,56 +11287,56 @@ int bb_bitmapfont_BitmapFont::m_LoadPacked(String t_info,String t_fontName,bool 
 	DBG_LOCAL(t_info,"info")
 	DBG_LOCAL(t_fontName,"fontName")
 	DBG_LOCAL(t_dynamicLoad,"dynamicLoad")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<542>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<542>");
 	String t_header=t_info.Slice(0,t_info.Find(String(L",",1),0));
 	DBG_LOCAL(t_header,"header")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<544>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<544>");
 	String t_separator=String();
 	DBG_LOCAL(t_separator,"separator")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<545>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<545>");
 	String t_=t_header;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<546>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<546>");
 	if(t_==String(L"P1",2)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<547>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<547>");
 		t_separator=String(L".",1);
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<548>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<548>");
 		if(t_==String(L"P1.01",5)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<549>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<549>");
 			t_separator=String(L"_P_",3);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<551>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<551>");
 	t_info=t_info.Slice(t_info.Find(String(L",",1),0)+1);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<552>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<552>");
 	gc_assign(f_borderChars,Array<bb_bitmapchar_BitMapChar* >(65536));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<553>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<553>");
 	gc_assign(f_faceChars,Array<bb_bitmapchar_BitMapChar* >(65536));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<554>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<554>");
 	gc_assign(f_shadowChars,Array<bb_bitmapchar_BitMapChar* >(65536));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<555>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<555>");
 	gc_assign(f_packedImages,Array<bb_graphics_Image* >(256));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<556>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<556>");
 	int t_maxPacked=0;
 	DBG_LOCAL(t_maxPacked,"maxPacked")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<557>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<557>");
 	int t_maxChar=0;
 	DBG_LOCAL(t_maxChar,"maxChar")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<559>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<559>");
 	String t_prefixName=t_fontName;
 	DBG_LOCAL(t_prefixName,"prefixName")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<560>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<560>");
 	if(t_prefixName.ToLower().EndsWith(String(L".txt",4))){
 		DBG_BLOCK();
 		t_prefixName=t_prefixName.Slice(0,-4);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<562>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<562>");
 	Array<String > t_charList=t_info.Split(String(L";",1));
 	DBG_LOCAL(t_charList,"charList")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<563>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<563>");
 	Array<String > t_2=t_charList;
 	int t_3=0;
 	while(t_3<t_2.Length()){
@@ -11344,94 +11344,94 @@ int bb_bitmapfont_BitmapFont::m_LoadPacked(String t_info,String t_fontName,bool 
 		String t_chr=t_2.At(t_3);
 		t_3=t_3+1;
 		DBG_LOCAL(t_chr,"chr")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<565>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<565>");
 		Array<String > t_chrdata=t_chr.Split(String(L",",1));
 		DBG_LOCAL(t_chrdata,"chrdata")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<566>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<566>");
 		if(t_chrdata.Length()<2){
 			DBG_BLOCK();
 			break;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<567>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<567>");
 		bb_bitmapchar_BitMapChar* t_char=0;
 		DBG_LOCAL(t_char,"char")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<568>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<568>");
 		int t_charIndex=(t_chrdata.At(0)).ToInt();
 		DBG_LOCAL(t_charIndex,"charIndex")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<569>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<569>");
 		if(t_maxChar<t_charIndex){
 			DBG_BLOCK();
 			t_maxChar=t_charIndex;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<571>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<571>");
 		String t_4=t_chrdata.At(1);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<572>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<572>");
 		if(t_4==String(L"B",1)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<573>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<573>");
 			gc_assign(f_borderChars.At(t_charIndex),(new bb_bitmapchar_BitMapChar)->g_new());
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<574>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<574>");
 			t_char=f_borderChars.At(t_charIndex);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<575>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<575>");
 			if(t_4==String(L"F",1)){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<576>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<576>");
 				gc_assign(f_faceChars.At(t_charIndex),(new bb_bitmapchar_BitMapChar)->g_new());
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<577>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<577>");
 				t_char=f_faceChars.At(t_charIndex);
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<578>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<578>");
 				if(t_4==String(L"S",1)){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<579>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<579>");
 					gc_assign(f_shadowChars.At(t_charIndex),(new bb_bitmapchar_BitMapChar)->g_new());
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<580>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<580>");
 					t_char=f_shadowChars.At(t_charIndex);
 				}
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<582>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<582>");
 		t_char->f_packedFontIndex=(t_chrdata.At(2)).ToInt();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<583>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<583>");
 		if(f_packedImages.At(t_char->f_packedFontIndex)==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<584>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<584>");
 			gc_assign(f_packedImages.At(t_char->f_packedFontIndex),bb_graphics_LoadImage(t_prefixName+t_separator+String(t_char->f_packedFontIndex)+String(L".png",4),1,bb_graphics_Image::g_DefaultFlags));
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<585>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<585>");
 			if(t_maxPacked<t_char->f_packedFontIndex){
 				DBG_BLOCK();
 				t_maxPacked=t_char->f_packedFontIndex;
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<587>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<587>");
 		t_char->f_packedPosition->f_x=Float((t_chrdata.At(3)).ToInt());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<588>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<588>");
 		t_char->f_packedPosition->f_y=Float((t_chrdata.At(4)).ToInt());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<589>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<589>");
 		t_char->f_packedSize->f_x=Float((t_chrdata.At(5)).ToInt());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<590>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<590>");
 		t_char->f_packedSize->f_y=Float((t_chrdata.At(6)).ToInt());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<591>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<591>");
 		t_char->f_drawingMetrics->f_drawingOffset->f_x=Float((t_chrdata.At(8)).ToInt());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<592>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<592>");
 		t_char->f_drawingMetrics->f_drawingOffset->f_y=Float((t_chrdata.At(9)).ToInt());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<593>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<593>");
 		t_char->f_drawingMetrics->f_drawingSize->f_x=Float((t_chrdata.At(10)).ToInt());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<594>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<594>");
 		t_char->f_drawingMetrics->f_drawingSize->f_y=Float((t_chrdata.At(11)).ToInt());
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<595>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<595>");
 		t_char->f_drawingMetrics->f_drawingWidth=Float((t_chrdata.At(12)).ToInt());
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<598>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<598>");
 	gc_assign(f_borderChars,f_borderChars.Slice(0,t_maxChar+1));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<599>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<599>");
 	gc_assign(f_faceChars,f_faceChars.Slice(0,t_maxChar+1));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<600>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<600>");
 	gc_assign(f_shadowChars,f_shadowChars.Slice(0,t_maxChar+1));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<601>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<601>");
 	gc_assign(f_packedImages,f_packedImages.Slice(0,t_maxPacked+1));
 	return 0;
 }
@@ -11442,181 +11442,181 @@ int bb_bitmapfont_BitmapFont::m_LoadFontData(String t_Info,String t_fontName,boo
 	DBG_LOCAL(t_Info,"Info")
 	DBG_LOCAL(t_fontName,"fontName")
 	DBG_LOCAL(t_dynamicLoad,"dynamicLoad")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<440>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<440>");
 	if(t_Info.StartsWith(String(L"P1",2))){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<441>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<441>");
 		m_LoadPacked(t_Info,t_fontName,t_dynamicLoad);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<442>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<442>");
 		return 0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<444>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<444>");
 	Array<String > t_tokenStream=t_Info.Split(String(L",",1));
 	DBG_LOCAL(t_tokenStream,"tokenStream")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<445>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<445>");
 	int t_index=0;
 	DBG_LOCAL(t_index,"index")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<446>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<446>");
 	gc_assign(f_borderChars,Array<bb_bitmapchar_BitMapChar* >(65536));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<447>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<447>");
 	gc_assign(f_faceChars,Array<bb_bitmapchar_BitMapChar* >(65536));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<448>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<448>");
 	gc_assign(f_shadowChars,Array<bb_bitmapchar_BitMapChar* >(65536));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<450>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<450>");
 	String t_prefixName=t_fontName;
 	DBG_LOCAL(t_prefixName,"prefixName")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<451>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<451>");
 	if(t_prefixName.ToLower().EndsWith(String(L".txt",4))){
 		DBG_BLOCK();
 		t_prefixName=t_prefixName.Slice(0,-4);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<453>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<453>");
 	int t_char=0;
 	DBG_LOCAL(t_char,"char")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<454>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<454>");
 	while(t_index<t_tokenStream.Length()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<456>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<456>");
 		String t_strChar=t_tokenStream.At(t_index);
 		DBG_LOCAL(t_strChar,"strChar")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<457>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<457>");
 		if(t_strChar.Trim()==String()){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<459>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<459>");
 			t_index+=1;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<460>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<460>");
 			break;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<462>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<462>");
 		t_char=(t_strChar).ToInt();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<464>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<464>");
 		t_index+=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<466>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<466>");
 		String t_kind=t_tokenStream.At(t_index);
 		DBG_LOCAL(t_kind,"kind")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<468>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<468>");
 		t_index+=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<470>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<470>");
 		String t_=t_kind;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<471>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<471>");
 		if(t_==String(L"{BR",3)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<472>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<472>");
 			t_index+=3;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<473>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<473>");
 			gc_assign(f_borderChars.At(t_char),(new bb_bitmapchar_BitMapChar)->g_new());
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<474>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<474>");
 			f_borderChars.At(t_char)->f_drawingMetrics->f_drawingOffset->f_x=Float((t_tokenStream.At(t_index)).ToInt());
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<475>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<475>");
 			f_borderChars.At(t_char)->f_drawingMetrics->f_drawingOffset->f_y=Float((t_tokenStream.At(t_index+1)).ToInt());
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<476>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<476>");
 			f_borderChars.At(t_char)->f_drawingMetrics->f_drawingSize->f_x=Float((t_tokenStream.At(t_index+2)).ToInt());
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<477>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<477>");
 			f_borderChars.At(t_char)->f_drawingMetrics->f_drawingSize->f_y=Float((t_tokenStream.At(t_index+3)).ToInt());
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<478>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<478>");
 			f_borderChars.At(t_char)->f_drawingMetrics->f_drawingWidth=Float((t_tokenStream.At(t_index+4)).ToInt());
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<479>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<479>");
 			if(t_dynamicLoad==false){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<480>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<480>");
 				gc_assign(f_borderChars.At(t_char)->f_image,bb_graphics_LoadImage(t_prefixName+String(L"_BORDER_",8)+String(t_char)+String(L".png",4),1,bb_graphics_Image::g_DefaultFlags));
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<481>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<481>");
 				f_borderChars.At(t_char)->f_image->m_SetHandle(-f_borderChars.At(t_char)->f_drawingMetrics->f_drawingOffset->f_x,-f_borderChars.At(t_char)->f_drawingMetrics->f_drawingOffset->f_y);
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<483>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<483>");
 				f_borderChars.At(t_char)->m_SetImageResourceName(t_prefixName+String(L"_BORDER_",8)+String(t_char)+String(L".png",4));
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<485>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<485>");
 			t_index+=5;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<486>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<486>");
 			t_index+=1;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<488>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<488>");
 			if(t_==String(L"{SH",3)){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<489>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<489>");
 				t_index+=3;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<490>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<490>");
 				gc_assign(f_shadowChars.At(t_char),(new bb_bitmapchar_BitMapChar)->g_new());
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<491>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<491>");
 				f_shadowChars.At(t_char)->f_drawingMetrics->f_drawingOffset->f_x=Float((t_tokenStream.At(t_index)).ToInt());
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<492>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<492>");
 				f_shadowChars.At(t_char)->f_drawingMetrics->f_drawingOffset->f_y=Float((t_tokenStream.At(t_index+1)).ToInt());
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<493>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<493>");
 				f_shadowChars.At(t_char)->f_drawingMetrics->f_drawingSize->f_x=Float((t_tokenStream.At(t_index+2)).ToInt());
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<494>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<494>");
 				f_shadowChars.At(t_char)->f_drawingMetrics->f_drawingSize->f_y=Float((t_tokenStream.At(t_index+3)).ToInt());
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<495>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<495>");
 				f_shadowChars.At(t_char)->f_drawingMetrics->f_drawingWidth=Float((t_tokenStream.At(t_index+4)).ToInt());
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<496>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<496>");
 				String t_filename=t_prefixName+String(L"_SHADOW_",8)+String(t_char)+String(L".png",4);
 				DBG_LOCAL(t_filename,"filename")
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<497>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<497>");
 				if(t_dynamicLoad==false){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<498>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<498>");
 					gc_assign(f_shadowChars.At(t_char)->f_image,bb_graphics_LoadImage(t_filename,1,bb_graphics_Image::g_DefaultFlags));
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<499>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<499>");
 					f_shadowChars.At(t_char)->f_image->m_SetHandle(-f_shadowChars.At(t_char)->f_drawingMetrics->f_drawingOffset->f_x,-f_shadowChars.At(t_char)->f_drawingMetrics->f_drawingOffset->f_y);
 				}else{
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<501>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<501>");
 					f_shadowChars.At(t_char)->m_SetImageResourceName(t_filename);
 				}
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<508>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<508>");
 				t_index+=5;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<509>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<509>");
 				t_index+=1;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<511>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<511>");
 				if(t_==String(L"{FC",3)){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<512>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<512>");
 					t_index+=3;
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<513>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<513>");
 					gc_assign(f_faceChars.At(t_char),(new bb_bitmapchar_BitMapChar)->g_new());
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<514>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<514>");
 					f_faceChars.At(t_char)->f_drawingMetrics->f_drawingOffset->f_x=Float((t_tokenStream.At(t_index)).ToInt());
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<515>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<515>");
 					f_faceChars.At(t_char)->f_drawingMetrics->f_drawingOffset->f_y=Float((t_tokenStream.At(t_index+1)).ToInt());
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<516>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<516>");
 					f_faceChars.At(t_char)->f_drawingMetrics->f_drawingSize->f_x=Float((t_tokenStream.At(t_index+2)).ToInt());
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<517>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<517>");
 					f_faceChars.At(t_char)->f_drawingMetrics->f_drawingSize->f_y=Float((t_tokenStream.At(t_index+3)).ToInt());
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<518>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<518>");
 					f_faceChars.At(t_char)->f_drawingMetrics->f_drawingWidth=Float((t_tokenStream.At(t_index+4)).ToInt());
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<519>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<519>");
 					if(t_dynamicLoad==false){
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<520>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<520>");
 						gc_assign(f_faceChars.At(t_char)->f_image,bb_graphics_LoadImage(t_prefixName+String(L"_",1)+String(t_char)+String(L".png",4),1,bb_graphics_Image::g_DefaultFlags));
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<521>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<521>");
 						f_faceChars.At(t_char)->f_image->m_SetHandle(-f_faceChars.At(t_char)->f_drawingMetrics->f_drawingOffset->f_x,-f_faceChars.At(t_char)->f_drawingMetrics->f_drawingOffset->f_y);
 					}else{
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<523>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<523>");
 						f_faceChars.At(t_char)->m_SetImageResourceName(t_prefixName+String(L"_",1)+String(t_char)+String(L".png",4));
 					}
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<525>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<525>");
 					t_index+=5;
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<526>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<526>");
 					t_index+=1;
 				}else{
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<529>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<529>");
 					Print(String(L"Error loading font! Char = ",27)+String(t_char));
 				}
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<533>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<533>");
 	gc_assign(f_borderChars,f_borderChars.Slice(0,t_char+1));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<534>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<534>");
 	gc_assign(f_faceChars,f_faceChars.Slice(0,t_char+1));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<535>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<535>");
 	gc_assign(f_shadowChars,f_shadowChars.Slice(0,t_char+1));
 	return 0;
 }
@@ -11626,15 +11626,15 @@ bb_bitmapfont_BitmapFont* bb_bitmapfont_BitmapFont::g_new(String t_fontDescripti
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_fontDescriptionFilePath,"fontDescriptionFilePath")
 	DBG_LOCAL(t_dynamicLoad,"dynamicLoad")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<45>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<45>");
 	String t_text=bb_app_LoadString(t_fontDescriptionFilePath);
 	DBG_LOCAL(t_text,"text")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<46>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<46>");
 	if(t_text==String()){
 		DBG_BLOCK();
 		Print(String(L"FONT ",5)+t_fontDescriptionFilePath+String(L" WAS NOT FOUND!!!",17));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<47>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<47>");
 	m_LoadFontData(t_text,t_fontDescriptionFilePath,t_dynamicLoad);
 	return this;
 }
@@ -11643,15 +11643,15 @@ bb_bitmapfont_BitmapFont* bb_bitmapfont_BitmapFont::g_new2(String t_fontDescript
 	bb_bitmapfont_BitmapFont *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_fontDescriptionFilePath,"fontDescriptionFilePath")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<55>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<55>");
 	String t_text=bb_app_LoadString(t_fontDescriptionFilePath);
 	DBG_LOCAL(t_text,"text")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<56>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<56>");
 	if(t_text==String()){
 		DBG_BLOCK();
 		Print(String(L"FONT ",5)+t_fontDescriptionFilePath+String(L" WAS NOT FOUND!!!",17));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<57>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<57>");
 	m_LoadFontData(t_text,t_fontDescriptionFilePath,true);
 	return this;
 }
@@ -11659,17 +11659,17 @@ bb_bitmapfont_BitmapFont* bb_bitmapfont_BitmapFont::g_new3(){
 	DBG_ENTER("BitmapFont.new")
 	bb_bitmapfont_BitmapFont *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<28>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<28>");
 	return this;
 }
 bb_bitmapfont_BitmapFont* bb_bitmapfont_BitmapFont::g_Load(String t_fontName,bool t_dynamicLoad){
 	DBG_ENTER("BitmapFont.Load")
 	DBG_LOCAL(t_fontName,"fontName")
 	DBG_LOCAL(t_dynamicLoad,"dynamicLoad")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<35>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<35>");
 	bb_bitmapfont_BitmapFont* t_font=(new bb_bitmapfont_BitmapFont)->g_new(t_fontName,t_dynamicLoad);
 	DBG_LOCAL(t_font,"font")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapfont.monkey<36>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapfont.monkey<36>");
 	return t_font;
 }
 void bb_bitmapfont_BitmapFont::mark(){
@@ -11705,7 +11705,7 @@ bool bb_bitmapchar_BitMapChar::m_CharImageLoaded(){
 	DBG_ENTER("BitMapChar.CharImageLoaded")
 	bb_bitmapchar_BitMapChar *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapchar.monkey<42>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapchar.monkey<42>");
 	if(f_image==0 && f_imageResourceName!=String()){
 		DBG_BLOCK();
 		return false;
@@ -11718,16 +11718,16 @@ int bb_bitmapchar_BitMapChar::m_LoadCharImage(){
 	DBG_ENTER("BitMapChar.LoadCharImage")
 	bb_bitmapchar_BitMapChar *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapchar.monkey<30>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapchar.monkey<30>");
 	if(m_CharImageLoaded()==false){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapchar.monkey<31>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapchar.monkey<31>");
 		gc_assign(f_image,bb_graphics_LoadImage(f_imageResourceName,1,bb_graphics_Image::g_DefaultFlags));
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapchar.monkey<32>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapchar.monkey<32>");
 		f_image->m_SetHandle(-this->f_drawingMetrics->f_drawingOffset->f_x,-this->f_drawingMetrics->f_drawingOffset->f_y);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapchar.monkey<33>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapchar.monkey<33>");
 		f_imageResourceNameBackup=f_imageResourceName;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapchar.monkey<34>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapchar.monkey<34>");
 		f_imageResourceName=String();
 	}
 	return 0;
@@ -11736,7 +11736,7 @@ bb_bitmapchar_BitMapChar* bb_bitmapchar_BitMapChar::g_new(){
 	DBG_ENTER("BitMapChar.new")
 	bb_bitmapchar_BitMapChar *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapchar.monkey<15>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapchar.monkey<15>");
 	return this;
 }
 int bb_bitmapchar_BitMapChar::m_SetImageResourceName(String t_value){
@@ -11744,7 +11744,7 @@ int bb_bitmapchar_BitMapChar::m_SetImageResourceName(String t_value){
 	bb_bitmapchar_BitMapChar *self=this;
 	DBG_LOCAL(self,"Self")
 	DBG_LOCAL(t_value,"value")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapchar.monkey<46>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapchar.monkey<46>");
 	f_imageResourceName=t_value;
 	return 0;
 }
@@ -11775,7 +11775,7 @@ bb_bitmapcharmetrics_BitMapCharMetrics* bb_bitmapcharmetrics_BitMapCharMetrics::
 	DBG_ENTER("BitMapCharMetrics.new")
 	bb_bitmapcharmetrics_BitMapCharMetrics *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/bitmapcharmetrics.monkey<12>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/bitmapcharmetrics.monkey<12>");
 	return this;
 }
 void bb_bitmapcharmetrics_BitMapCharMetrics::mark(){
@@ -11798,7 +11798,7 @@ bb_drawingpoint_DrawingPoint* bb_drawingpoint_DrawingPoint::g_new(){
 	DBG_ENTER("DrawingPoint.new")
 	bb_drawingpoint_DrawingPoint *self=this;
 	DBG_LOCAL(self,"Self")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/fontmachine/drawingpoint.monkey<8>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/fontmachine/drawingpoint.monkey<8>");
 	return this;
 }
 void bb_drawingpoint_DrawingPoint::mark(){
@@ -11814,23 +11814,23 @@ Float bb_challengergui_CHGUI_TextHeight(bb_bitmapfont_BitmapFont* t_Fnt,String t
 	DBG_ENTER("CHGUI_TextHeight")
 	DBG_LOCAL(t_Fnt,"Fnt")
 	DBG_LOCAL(t_Text,"Text")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3871>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3871>");
 	Array<String > t_Split=t_Text.Split(String(L"\n",1));
 	DBG_LOCAL(t_Split,"Split")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3872>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3872>");
 	Float t_H=Float(t_Fnt->m_GetFontHeight());
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3873>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3873>");
 	Float t_Height=FLOAT(0.0);
 	DBG_LOCAL(t_Height,"Height")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3874>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3874>");
 	for(int t_N=0;t_N<=t_Split.Length()-1;t_N=t_N+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_N,"N")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3875>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3875>");
 		t_Height=t_Height+t_H;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3877>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3877>");
 	return t_Height;
 }
 bb_edrawmode_eDrawMode::bb_edrawmode_eDrawMode(){
@@ -11854,24 +11854,24 @@ String bb_edrawalign_eDrawAlign::debug(){
 int bb_math_Abs(int t_x){
 	DBG_ENTER("Abs")
 	DBG_LOCAL(t_x,"x")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/math.monkey<46>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/math.monkey<46>");
 	if(t_x>=0){
 		DBG_BLOCK();
 		return t_x;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/math.monkey<47>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/math.monkey<47>");
 	int t_=-t_x;
 	return t_;
 }
 Float bb_math_Abs2(Float t_x){
 	DBG_ENTER("Abs")
 	DBG_LOCAL(t_x,"x")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/math.monkey<73>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/math.monkey<73>");
 	if(t_x>=FLOAT(0.0)){
 		DBG_BLOCK();
 		return t_x;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/monkey/math.monkey<74>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/monkey/math.monkey<74>");
 	Float t_=-t_x;
 	return t_;
 }
@@ -11881,44 +11881,44 @@ int bb_graphics_DrawImage(bb_graphics_Image* t_image,Float t_x,Float t_y,int t_f
 	DBG_LOCAL(t_x,"x")
 	DBG_LOCAL(t_y,"y")
 	DBG_LOCAL(t_frame,"frame")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<417>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<417>");
 	bb_graphics_DebugRenderDevice();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<419>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<419>");
 	bb_graphics_Frame* t_f=t_image->f_frames.At(t_frame);
 	DBG_LOCAL(t_f,"f")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<421>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<421>");
 	if((bb_graphics_context->f_tformed)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<422>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<422>");
 		bb_graphics_PushMatrix();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<424>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<424>");
 		bb_graphics_Translate(t_x-t_image->f_tx,t_y-t_image->f_ty);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<426>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<426>");
 		bb_graphics_context->m_Validate();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<428>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<428>");
 		if((t_image->f_flags&65536)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<429>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<429>");
 			bb_graphics_renderDevice->DrawSurface(t_image->f_surface,FLOAT(0.0),FLOAT(0.0));
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<431>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<431>");
 			bb_graphics_renderDevice->DrawSurface2(t_image->f_surface,FLOAT(0.0),FLOAT(0.0),t_f->f_x,t_f->f_y,t_image->f_width,t_image->f_height);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<434>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<434>");
 		bb_graphics_PopMatrix();
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<436>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<436>");
 		bb_graphics_context->m_Validate();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<438>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<438>");
 		if((t_image->f_flags&65536)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<439>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<439>");
 			bb_graphics_renderDevice->DrawSurface(t_image->f_surface,t_x-t_image->f_tx,t_y-t_image->f_ty);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<441>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<441>");
 			bb_graphics_renderDevice->DrawSurface2(t_image->f_surface,t_x-t_image->f_tx,t_y-t_image->f_ty,t_f->f_x,t_f->f_y,t_image->f_width,t_image->f_height);
 		}
 	}
@@ -11933,34 +11933,34 @@ int bb_graphics_DrawImage2(bb_graphics_Image* t_image,Float t_x,Float t_y,Float 
 	DBG_LOCAL(t_scaleX,"scaleX")
 	DBG_LOCAL(t_scaleY,"scaleY")
 	DBG_LOCAL(t_frame,"frame")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<448>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<448>");
 	bb_graphics_DebugRenderDevice();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<450>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<450>");
 	bb_graphics_Frame* t_f=t_image->f_frames.At(t_frame);
 	DBG_LOCAL(t_f,"f")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<452>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<452>");
 	bb_graphics_PushMatrix();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<454>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<454>");
 	bb_graphics_Translate(t_x,t_y);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<455>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<455>");
 	bb_graphics_Rotate(t_rotation);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<456>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<456>");
 	bb_graphics_Scale(t_scaleX,t_scaleY);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<458>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<458>");
 	bb_graphics_Translate(-t_image->f_tx,-t_image->f_ty);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<460>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<460>");
 	bb_graphics_context->m_Validate();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<462>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<462>");
 	if((t_image->f_flags&65536)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<463>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<463>");
 		bb_graphics_renderDevice->DrawSurface(t_image->f_surface,FLOAT(0.0),FLOAT(0.0));
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<465>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<465>");
 		bb_graphics_renderDevice->DrawSurface2(t_image->f_surface,FLOAT(0.0),FLOAT(0.0),t_f->f_x,t_f->f_y,t_image->f_width,t_image->f_height);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<468>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<468>");
 	bb_graphics_PopMatrix();
 	return 0;
 }
@@ -11968,284 +11968,284 @@ bb_bitmapfont_BitmapFont* bb_challengergui_CHGUI_Font;
 int bb_challengergui_CHGUI_DrawWindow(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawWindow")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2228>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2228>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2229>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2229>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2230>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2230>");
 	Float t_W=t_N->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2231>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2231>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2232>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2232>");
 	Float t_TH=bb_challengergui_CHGUI_TitleHeight;
 	DBG_LOCAL(t_TH,"TH")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2233>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2233>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2234>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2234>");
 	if(bb_challengergui_CHGUI_LockedWIndow==t_N){
 		DBG_BLOCK();
 		t_Active=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2236>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2236>");
 	if(t_N!=bb_challengergui_CHGUI_Canvas){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2238>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2238>");
 		if(((t_N->f_Shadow)!=0) && ((bb_challengergui_CHGUI_Shadow)!=0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2239>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2239>");
 			if((t_N->f_Minimised)!=0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2241>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2241>");
 				bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y-FLOAT(10.0),0,0,20,20,0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2243>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2243>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+FLOAT(10.0),t_Y-FLOAT(10.0),20,0,10,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(10.0),FLOAT(1.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2245>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2245>");
 				bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X+t_W-FLOAT(10.0),t_Y-FLOAT(10.0),30,0,20,20,0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2247>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2247>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y+FLOAT(10.0),0,20,10,10,FLOAT(0.0),FLOAT(1.0),(t_TH-FLOAT(20.0))/FLOAT(10.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2249>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2249>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+t_W,t_Y+FLOAT(10.0),40,20,10,10,FLOAT(0.0),FLOAT(1.0),(t_TH-FLOAT(20.0))/FLOAT(10.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2251>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2251>");
 				bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y+t_TH-FLOAT(10.0),0,30,20,20,0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2253>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2253>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+FLOAT(10.0),t_Y+t_TH,20,40,10,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(10.0),FLOAT(1.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2255>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2255>");
 				bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X+t_W-FLOAT(10.0),t_Y+t_TH-FLOAT(10.0),30,30,20,20,0);
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2258>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2258>");
 				bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y-FLOAT(10.0),0,0,20,20,0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2260>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2260>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+FLOAT(10.0),t_Y-FLOAT(10.0),20,0,10,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(10.0),FLOAT(1.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2262>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2262>");
 				bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X+t_W-FLOAT(10.0),t_Y-FLOAT(10.0),30,0,20,20,0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2264>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2264>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y+FLOAT(10.0),0,20,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(10.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2266>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2266>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+t_W,t_Y+FLOAT(10.0),40,20,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(10.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2268>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2268>");
 				bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),0,30,20,20,0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2270>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2270>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+FLOAT(10.0),t_Y+t_H,20,40,10,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(10.0),FLOAT(1.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2272>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2272>");
 				bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X+t_W-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),30,30,20,20,0);
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2276>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2276>");
 		Float t_XOf=FLOAT(10.0);
 		DBG_LOCAL(t_XOf,"XOf")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2277>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2277>");
 		Float t_YOf=FLOAT(10.0);
 		DBG_LOCAL(t_YOf,"YOf")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2278>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2278>");
 		if(bb_challengergui_CHGUI_RealActive(t_N)==0 && bb_challengergui_CHGUI_LockedWIndow!=t_N){
 			DBG_BLOCK();
 			t_YOf=t_YOf+FLOAT(30.0);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2281>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2281>");
 		if(t_N->f_Text!=String()){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2283>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2283>");
 			bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,t_Y,int(t_XOf),int(t_YOf),10,10,0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2285>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2285>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y,int(t_XOf+FLOAT(10.0)),int(t_YOf),50,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(50.0),FLOAT(1.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2287>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2287>");
 			bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y,int(t_XOf+FLOAT(60.0)),int(t_YOf),10,10,0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2289>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2289>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+FLOAT(10.0),int(t_XOf),int(t_YOf+FLOAT(10.0)),10,10,FLOAT(0.0),FLOAT(1.0),(t_TH-FLOAT(20.0))/FLOAT(10.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2291>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2291>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+FLOAT(10.0),int(t_XOf+FLOAT(10.0)),int(t_YOf+FLOAT(10.0)),50,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(50.0),(t_TH-FLOAT(20.0))/FLOAT(10.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2293>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2293>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+FLOAT(10.0),int(t_XOf+FLOAT(60.0)),int(t_YOf+FLOAT(10.0)),10,10,FLOAT(0.0),FLOAT(1.0),(t_TH-FLOAT(20.0))/FLOAT(10.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2295>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2295>");
 			bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,t_Y+t_TH-FLOAT(10.0),int(t_XOf),int(t_YOf+FLOAT(20.0)),10,10,0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2297>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2297>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+t_TH-FLOAT(10.0),int(t_XOf+FLOAT(10.0)),int(t_YOf+FLOAT(20.0)),50,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(50.0),FLOAT(1.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2299>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2299>");
 			bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+t_TH-FLOAT(10.0),int(t_XOf+FLOAT(60.0)),int(t_YOf+FLOAT(20.0)),10,10,0);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2302>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2302>");
 		if(t_N->f_Minimised==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2303>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2303>");
 			if(t_N->f_Text==String()){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2305>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2305>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,10,70,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2307>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2307>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y,20,70,50,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(50.0),FLOAT(1.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2309>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2309>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y,70,70,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2311>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2311>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+FLOAT(10.0),10,80,10,40,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(40.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2313>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2313>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+FLOAT(10.0),70,80,10,40,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(40.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2315>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2315>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+FLOAT(10.0),20,80,50,40,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(50.0),(t_H-FLOAT(20.0))/FLOAT(40.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2317>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2317>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+t_H-FLOAT(10.0),10,120,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2319>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2319>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+t_H-FLOAT(10.0),20,120,50,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(50.0),FLOAT(1.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2321>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2321>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),70,120,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2324>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2324>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+t_TH,10,80,10,40,FLOAT(0.0),FLOAT(1.0),(t_H-t_TH-FLOAT(10.0))/FLOAT(40.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2326>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2326>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+t_TH,70,80,10,40,FLOAT(0.0),FLOAT(1.0),(t_H-t_TH-FLOAT(10.0))/FLOAT(40.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2328>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2328>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+t_TH,20,80,50,40,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(50.0),(t_H-t_TH-FLOAT(10.0))/FLOAT(40.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2330>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2330>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+t_H-FLOAT(10.0),10,120,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2332>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2332>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+t_H-FLOAT(10.0),20,120,50,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(50.0),FLOAT(1.0),0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2334>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2334>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),70,120,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2339>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2339>");
 		if(t_N->f_Close==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2340>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2340>");
 			if(((t_N->f_CloseOver)!=0) && t_N->f_CloseDown==0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2341>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2341>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-t_TH/FLOAT(2.5)-FLOAT(10.0),t_Y+(t_TH-t_TH/FLOAT(2.5))/FLOAT(2.0),105,10,15,15,FLOAT(0.0),t_TH/FLOAT(2.5)/FLOAT(15.0),t_TH/FLOAT(2.5)/FLOAT(15.0),0);
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2342>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2342>");
 				if((t_N->f_CloseDown)!=0){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2343>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2343>");
 					bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-t_TH/FLOAT(2.5)-FLOAT(10.0),t_Y+(t_TH-t_TH/FLOAT(2.5))/FLOAT(2.0),120,10,15,15,FLOAT(0.0),t_TH/FLOAT(2.5)/FLOAT(15.0),t_TH/FLOAT(2.5)/FLOAT(15.0),0);
 				}else{
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2344>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2344>");
 					if((t_Active)!=0){
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2345>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2345>");
 						bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-t_TH/FLOAT(2.5)-FLOAT(10.0),t_Y+(t_TH-t_TH/FLOAT(2.5))/FLOAT(2.0),90,10,15,15,FLOAT(0.0),t_TH/FLOAT(2.5)/FLOAT(15.0),t_TH/FLOAT(2.5)/FLOAT(15.0),0);
 					}else{
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2347>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2347>");
 						bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-t_TH/FLOAT(2.5)-FLOAT(10.0),t_Y+(t_TH-t_TH/FLOAT(2.5))/FLOAT(2.0),135,10,15,15,FLOAT(0.0),t_TH/FLOAT(2.5)/FLOAT(15.0),t_TH/FLOAT(2.5)/FLOAT(15.0),0);
 					}
 				}
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2352>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2352>");
 		if(t_N->f_Minimise==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2353>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2353>");
 			if(((t_N->f_MinimiseOver)!=0) && t_N->f_MinimiseDown==0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2354>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2354>");
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-(t_TH/FLOAT(2.5)+t_TH/FLOAT(2.5))-t_TH/FLOAT(1.5),t_Y+(t_TH-t_TH/FLOAT(2.5))/FLOAT(2.0),105,25,15,15,FLOAT(0.0),t_TH/FLOAT(2.5)/FLOAT(15.0),t_TH/FLOAT(2.5)/FLOAT(15.0),0);
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2355>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2355>");
 				if((t_N->f_MinimiseDown)!=0){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2356>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2356>");
 					bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-(t_TH/FLOAT(2.5)+t_TH/FLOAT(2.5))-t_TH/FLOAT(1.5),t_Y+(t_TH-t_TH/FLOAT(2.5))/FLOAT(2.0),120,25,15,15,FLOAT(0.0),t_TH/FLOAT(2.5)/FLOAT(15.0),t_TH/FLOAT(2.5)/FLOAT(15.0),0);
 				}else{
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2357>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2357>");
 					if((t_Active)!=0){
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2358>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2358>");
 						bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-(t_TH/FLOAT(2.5)+t_TH/FLOAT(2.5))-t_TH/FLOAT(1.5),t_Y+(t_TH-t_TH/FLOAT(2.5))/FLOAT(2.0),90,25,15,15,FLOAT(0.0),t_TH/FLOAT(2.5)/FLOAT(15.0),t_TH/FLOAT(2.5)/FLOAT(15.0),0);
 					}else{
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2360>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2360>");
 						bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-(t_TH/FLOAT(2.5)+t_TH/FLOAT(2.5))-t_TH/FLOAT(1.5),t_Y+(t_TH-t_TH/FLOAT(2.5))/FLOAT(2.0),135,25,15,15,FLOAT(0.0),t_TH/FLOAT(2.5)/FLOAT(15.0),t_TH/FLOAT(2.5)/FLOAT(15.0),0);
 					}
 				}
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2369>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2369>");
 		Float t_XOff=(t_TH-t_TH/FLOAT(2.0))/FLOAT(2.0);
 		DBG_LOCAL(t_XOff,"XOff")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2370>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2370>");
 		Float t_YOff=t_TH-bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_TitleFont,t_N->f_Text);
 		DBG_LOCAL(t_YOff,"YOff")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2371>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2371>");
 		bb_graphics_SetAlpha(FLOAT(0.25));
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2372>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2372>");
 		if((t_Active)!=0){
 			DBG_BLOCK();
 			bb_graphics_SetAlpha(FLOAT(1.0));
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2373>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2373>");
 		bb_challengergui_CHGUI_TitleFont->m_DrawText2(t_N->f_Text,t_X+t_XOff,t_Y+t_YOff/FLOAT(2.0));
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2374>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2374>");
 		bb_graphics_SetAlpha(FLOAT(1.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2377>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2377>");
 	if((t_N->f_HasMenu)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2378>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2378>");
 		if(t_N!=bb_challengergui_CHGUI_Canvas){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2379>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2379>");
 			if((bb_challengergui_CHGUI_Shadow)!=0){
 				DBG_BLOCK();
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X,t_Y+t_TH+Float(t_N->f_MenuHeight),20,40,10,10,FLOAT(0.0),t_W/FLOAT(10.0),FLOAT(1.0),0);
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2380>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2380>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(1.0),t_Y+bb_challengergui_CHGUI_TitleHeight,100,90,40,10,FLOAT(0.0),(t_W-FLOAT(2.0))/FLOAT(40.0),(FLOAT(10.0)+bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text)-FLOAT(10.0))/FLOAT(10.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2381>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2381>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(1.0),t_Y+bb_challengergui_CHGUI_TitleHeight+Float(t_N->f_MenuHeight-10),100,100,40,10,FLOAT(0.0),(t_W-FLOAT(2.0))/FLOAT(40.0),FLOAT(1.0),0);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2383>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2383>");
 			if((bb_challengergui_CHGUI_Shadow)!=0){
 				DBG_BLOCK();
 				bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X,t_Y+Float(t_N->f_MenuHeight),20,40,10,10,FLOAT(0.0),t_W/FLOAT(10.0),FLOAT(1.0),0);
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2384>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2384>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(1.0),t_Y,100,90,40,10,FLOAT(0.0),(t_W-FLOAT(2.0))/FLOAT(40.0),(FLOAT(10.0)+bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text)-FLOAT(10.0))/FLOAT(10.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2385>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2385>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(1.0),t_Y+Float(t_N->f_MenuHeight-10),100,100,40,10,FLOAT(0.0),(t_W-FLOAT(2.0))/FLOAT(40.0),FLOAT(1.0),0);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2390>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2390>");
 	if(((t_N->f_Tabbed)!=0) && t_N->f_Minimised==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2391>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2391>");
 		int t_YY=int(t_Y+Float(t_N->f_MenuHeight));
 		DBG_LOCAL(t_YY,"YY")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2392>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2392>");
 		if(t_N->f_Text!=String()){
 			DBG_BLOCK();
 			t_YY=int(Float(t_YY)+bb_challengergui_CHGUI_TitleHeight);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2393>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2393>");
 		Float t_Height=Float(t_N->f_TabHeight+5);
 		DBG_LOCAL(t_Height,"Height")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2396>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2396>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+FLOAT(1.0),Float(t_YY),10,140,10,10,0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2398>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2398>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(11.0),Float(t_YY),60,140,10,10,0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2400>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2400>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(11.0),Float(t_YY),20,140,40,10,FLOAT(0.0),(t_W-FLOAT(22.0))/FLOAT(40.0),FLOAT(1.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2402>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2402>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(1.0),Float(t_YY+10),10,150,10,10,FLOAT(0.0),FLOAT(1.0),(t_Height-FLOAT(10.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2404>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2404>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(11.0),Float(t_YY+10),60,150,10,10,FLOAT(0.0),FLOAT(1.0),(t_Height-FLOAT(10.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2406>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2406>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(11.0),Float(t_YY+10),20,150,40,10,FLOAT(0.0),(t_N->f_W-FLOAT(22.0))/FLOAT(40.0),(t_Height-FLOAT(10.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2408>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2408>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+FLOAT(1.0),Float(t_YY)+t_Height-FLOAT(10.0),10,160,10,10,0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2410>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2410>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(11.0),Float(t_YY)+t_Height-FLOAT(10.0),60,160,10,10,0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2412>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2412>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(11.0),Float(t_YY)+t_Height-FLOAT(10.0),20,160,40,10,FLOAT(0.0),(t_W-FLOAT(22.0))/FLOAT(40.0),FLOAT(1.0),0);
 	}
 	return 0;
@@ -12255,310 +12255,310 @@ int bb_challengergui_CHGUI_ShiftHold;
 int bb_challengergui_CHGUI_DrawButton(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawButton")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2418>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2418>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2419>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2419>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2420>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2420>");
 	Float t_W=t_N->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2421>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2421>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2422>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2422>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2423>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2423>");
 	int t_State=0;
 	DBG_LOCAL(t_State,"State")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2424>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2424>");
 	if((t_N->f_Over)!=0){
 		DBG_BLOCK();
 		t_State=40;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2425>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2425>");
 	if((t_N->f_Down)!=0){
 		DBG_BLOCK();
 		t_State=80;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2426>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2426>");
 	if(t_N==bb_challengergui_CHGUI_KeyboardButtons.At(104) && ((bb_challengergui_CHGUI_ShiftHold)!=0)){
 		DBG_BLOCK();
 		t_State=80;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2427>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2427>");
 	if(t_Active==0){
 		DBG_BLOCK();
 		t_State=120;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2432>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2432>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,t_Y,160,10+t_State,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2434>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2434>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y,170,10+t_State,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2436>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2436>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y,210,10+t_State,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2438>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2438>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+FLOAT(10.0),160,20+t_State,10,20,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(20.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2440>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2440>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+FLOAT(10.0),210,20+t_State,10,20,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(20.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2442>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2442>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+FLOAT(10.0),170,20+t_State,40,20,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),(t_H-FLOAT(20.0))/FLOAT(20.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2444>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2444>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,t_Y+t_H-FLOAT(10.0),160,40+t_State,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2446>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2446>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+t_H-FLOAT(10.0),170,40+t_State,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2448>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2448>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),210,40+t_State,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2451>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2451>");
 	Float t_XOff=(t_W-bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_XOff,"XOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2452>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2452>");
 	Float t_YOff=(t_H-bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_YOff,"YOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2453>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2453>");
 	bb_graphics_SetAlpha(FLOAT(0.25));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2454>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2454>");
 	if((t_Active)!=0){
 		DBG_BLOCK();
 		bb_graphics_SetAlpha(FLOAT(1.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2455>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2455>");
 	bb_challengergui_CHGUI_Font->m_DrawText2(t_N->f_Text,t_X+t_XOff,t_Y+t_YOff);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2456>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2456>");
 	bb_graphics_SetAlpha(FLOAT(1.0));
 	return 0;
 }
 int bb_challengergui_CHGUI_DrawImageButton(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawImageButton")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2479>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2479>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2480>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2480>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2481>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2481>");
 	Float t_W=t_N->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2482>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2482>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2483>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2483>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2484>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2484>");
 	int t_State=0;
 	DBG_LOCAL(t_State,"State")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2485>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2485>");
 	if((t_N->f_Over)!=0){
 		DBG_BLOCK();
 		t_State=int(t_W);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2486>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2486>");
 	if((t_N->f_Down)!=0){
 		DBG_BLOCK();
 		t_State=int(t_W*FLOAT(2.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2487>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2487>");
 	if(t_Active==0){
 		DBG_BLOCK();
 		t_State=int(t_W*FLOAT(3.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2489>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2489>");
 	bb_graphics_DrawImageRect(t_N->f_Img,t_X,t_Y,t_State,0,int(t_W),int(t_H),0);
 	return 0;
 }
 int bb_challengergui_CHGUI_DrawTickbox(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawTickbox")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2495>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2495>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2496>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2496>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2497>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2497>");
 	Float t_W=t_N->f_H;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2498>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2498>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2499>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2499>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2500>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2500>");
 	int t_OffX=230;
 	DBG_LOCAL(t_OffX,"OffX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2501>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2501>");
 	int t_OffY=10;
 	DBG_LOCAL(t_OffY,"OffY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2502>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2502>");
 	int t_OffW=20;
 	DBG_LOCAL(t_OffW,"OffW")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2503>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2503>");
 	int t_OffH=20;
 	DBG_LOCAL(t_OffH,"OffH")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2504>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2504>");
 	if((t_N->f_Over)!=0){
 		DBG_BLOCK();
 		t_OffY=30;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2505>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2505>");
 	if((t_N->f_Down)!=0){
 		DBG_BLOCK();
 		t_OffY=50;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2506>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2506>");
 	if(t_Active==0){
 		DBG_BLOCK();
 		t_OffY=70;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2507>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2507>");
 	if(t_N->f_Value>FLOAT(0.0)){
 		DBG_BLOCK();
 		t_OffX=250;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2510>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2510>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY,t_OffW,t_OffH,FLOAT(0.0),t_W/Float(t_OffW),t_H/Float(t_OffH),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2512>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2512>");
 	Float t_XOff=t_W/FLOAT(4.0);
 	DBG_LOCAL(t_XOff,"XOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2513>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2513>");
 	Float t_YOff=(t_H-bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_YOff,"YOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2514>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2514>");
 	bb_graphics_SetAlpha(FLOAT(0.25));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2515>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2515>");
 	if((t_Active)!=0){
 		DBG_BLOCK();
 		bb_graphics_SetAlpha(FLOAT(1.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2516>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2516>");
 	bb_challengergui_CHGUI_Font->m_DrawText2(t_N->f_Text,t_X+t_W+t_XOff,t_Y+t_YOff);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2517>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2517>");
 	bb_graphics_SetAlpha(FLOAT(1.0));
 	return 0;
 }
 int bb_challengergui_CHGUI_DrawRadiobox(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawRadiobox")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2523>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2523>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2524>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2524>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2525>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2525>");
 	Float t_W=t_N->f_H;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2526>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2526>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2527>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2527>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2528>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2528>");
 	int t_OffX=230;
 	DBG_LOCAL(t_OffX,"OffX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2529>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2529>");
 	int t_OffY=100;
 	DBG_LOCAL(t_OffY,"OffY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2530>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2530>");
 	int t_OffW=20;
 	DBG_LOCAL(t_OffW,"OffW")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2531>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2531>");
 	int t_OffH=20;
 	DBG_LOCAL(t_OffH,"OffH")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2532>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2532>");
 	if((t_N->f_Over)!=0){
 		DBG_BLOCK();
 		t_OffY=120;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2533>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2533>");
 	if((t_N->f_Down)!=0){
 		DBG_BLOCK();
 		t_OffY=140;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2534>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2534>");
 	if(t_Active==0){
 		DBG_BLOCK();
 		t_OffY=160;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2535>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2535>");
 	if(t_N->f_Value>FLOAT(0.0)){
 		DBG_BLOCK();
 		t_OffX=250;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2538>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2538>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY,t_OffW,t_OffH,FLOAT(0.0),t_W/Float(t_OffW),t_H/Float(t_OffH),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2540>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2540>");
 	Float t_XOff=t_W/FLOAT(4.0);
 	DBG_LOCAL(t_XOff,"XOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2541>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2541>");
 	Float t_YOff=(t_H-bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_YOff,"YOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2542>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2542>");
 	bb_graphics_SetAlpha(FLOAT(0.25));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2543>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2543>");
 	if((t_Active)!=0){
 		DBG_BLOCK();
 		bb_graphics_SetAlpha(FLOAT(1.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2544>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2544>");
 	bb_challengergui_CHGUI_Font->m_DrawText2(t_N->f_Text,t_X+t_W+t_XOff,t_Y+t_YOff);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2545>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2545>");
 	bb_graphics_SetAlpha(FLOAT(1.0));
 	return 0;
 }
 int bb_challengergui_CHGUI_DrawListbox(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawListbox")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3074>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3074>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3075>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3075>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3076>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3076>");
 	Float t_W=t_N->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3077>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3077>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3078>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3078>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3079>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3079>");
 	t_N->f_ListboxSlider->f_X=t_N->f_X+t_W-FLOAT(17.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3080>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3080>");
 	t_N->f_ListboxSlider->f_Y=t_N->f_ListboxSlider->f_Parent->f_Y+t_N->f_Y-t_N->f_Parent->f_Y;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3081>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3081>");
 	t_N->f_ListboxSlider->f_H=t_N->f_H;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3082>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3082>");
 	int t_OffX=90;
 	DBG_LOCAL(t_OffX,"OffX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3083>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3083>");
 	int t_OffY=80;
 	DBG_LOCAL(t_OffY,"OffY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3087>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3087>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3089>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3089>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y,t_OffX+10,t_OffY,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3091>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3091>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y,t_OffX+50,t_OffY,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3093>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3093>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+FLOAT(10.0),t_OffX,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(10.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3095>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3095>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+FLOAT(10.0),t_OffX+50,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(10.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3097>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3097>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+FLOAT(10.0),t_OffX+10,t_OffY+10,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),(t_H-FLOAT(20.0))/FLOAT(10.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3099>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3099>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,t_Y+t_H-FLOAT(10.0),t_OffX,t_OffY+20,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3101>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3101>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+t_H-FLOAT(10.0),t_OffX+10,t_OffY+20,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3103>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3103>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),t_OffX+50,t_OffY+20,10,10,0);
 	return 0;
 }
@@ -12566,276 +12566,276 @@ int bb_challengergui_CHGUI_DrawListboxItem(bb_challengergui_CHGUI* t_N,int t_C){
 	DBG_ENTER("CHGUI_DrawListboxItem")
 	DBG_LOCAL(t_N,"N")
 	DBG_LOCAL(t_C,"C")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3109>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3109>");
 	t_N->f_X=FLOAT(0.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3110>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3110>");
 	t_N->f_Y=Float(t_C*t_N->f_Parent->f_ListHeight);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3111>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3111>");
 	t_N->f_W=t_N->f_Parent->f_W;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3112>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3112>");
 	t_N->f_H=Float(t_N->f_Parent->f_ListHeight);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3114>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3114>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3115>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3115>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3116>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3116>");
 	Float t_W=t_N->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3117>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3117>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3118>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3118>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3120>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3120>");
 	if(t_N->f_Over==1 || ((t_N->f_Down)!=0) || t_N->f_Parent->f_SelectedListboxItem==t_N){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3122>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3122>");
 		int t_OffX=90;
 		DBG_LOCAL(t_OffX,"OffX")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3123>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3123>");
 		int t_OffY=110;
 		DBG_LOCAL(t_OffY,"OffY")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3124>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3124>");
 		if(((t_N->f_Down)!=0) || t_N->f_Parent->f_SelectedListboxItem==t_N){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3125>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3125>");
 			t_OffX=90;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3126>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3126>");
 			t_OffY=140;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3130>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3130>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY,10,10,0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3132>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3132>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y,t_OffX+10,t_OffY,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),FLOAT(1.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3134>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3134>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y,t_OffX+50,t_OffY,10,10,0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3136>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3136>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+FLOAT(10.0),t_OffX,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3138>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3138>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+FLOAT(10.0),t_OffX+50,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3140>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3140>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+FLOAT(10.0),t_OffX+10,t_OffY+10,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),(t_H-FLOAT(20.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3142>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3142>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,t_Y+t_H-FLOAT(10.0),t_OffX,t_OffY+20,10,10,0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3144>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3144>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+t_H-FLOAT(10.0),t_OffX+10,t_OffY+20,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),FLOAT(1.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3146>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3146>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),t_OffX+50,t_OffY+20,10,10,0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3151>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3151>");
 	Float t_YOff=(t_H-bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_YOff,"YOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3152>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3152>");
 	bb_graphics_SetAlpha(FLOAT(0.25));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3153>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3153>");
 	if((t_Active)!=0){
 		DBG_BLOCK();
 		bb_graphics_SetAlpha(FLOAT(1.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3154>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3154>");
 	bb_challengergui_CHGUI_Font->m_DrawText2(t_N->f_Text,t_X+FLOAT(10.0),t_Y+t_YOff);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3155>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3155>");
 	bb_graphics_SetAlpha(FLOAT(1.0));
 	return 0;
 }
 int bb_challengergui_CHGUI_DrawHSlider(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawHSlider")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2857>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2857>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2858>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2858>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2859>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2859>");
 	Float t_W=t_N->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2860>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2860>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2861>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2861>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2863>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2863>");
 	int t_OffX=460;
 	DBG_LOCAL(t_OffX,"OffX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2864>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2864>");
 	int t_OffY=10;
 	DBG_LOCAL(t_OffY,"OffY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2866>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2866>");
 	if(t_Active==0){
 		DBG_BLOCK();
 		t_OffY=70;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2869>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2869>");
 	if(((t_N->f_MinusOver)!=0) && t_N->f_MinusDown==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2870>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2870>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY+20,20,20,FLOAT(0.0),t_H/FLOAT(20.0),t_H/FLOAT(20.0),0);
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2871>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2871>");
 		if((t_N->f_MinusDown)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2872>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2872>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY+40,20,20,FLOAT(0.0),t_H/FLOAT(20.0),t_H/FLOAT(20.0),0);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2874>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2874>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY,20,20,FLOAT(0.0),t_H/FLOAT(20.0),t_H/FLOAT(20.0),0);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2878>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2878>");
 	if(((t_N->f_PlusOver)!=0) && t_N->f_PlusDown==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2879>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2879>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-t_H,t_Y,t_OffX+60,t_OffY+20,20,20,FLOAT(0.0),t_H/FLOAT(20.0),t_H/FLOAT(20.0),0);
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2880>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2880>");
 		if((t_N->f_PlusDown)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2881>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2881>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-t_H,t_Y,t_OffX+60,t_OffY+40,20,20,FLOAT(0.0),t_H/FLOAT(20.0),t_H/FLOAT(20.0),0);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2883>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2883>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-t_H,t_Y,t_OffX+60,t_OffY,20,20,FLOAT(0.0),t_H/FLOAT(20.0),t_H/FLOAT(20.0),0);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2888>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2888>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_H,t_Y,t_OffX+20,t_OffY,40,20,FLOAT(0.0),(t_W-t_H-t_H)/FLOAT(40.0),t_H/FLOAT(20.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2891>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2891>");
 	int t_XOF=475;
 	DBG_LOCAL(t_XOF,"XOF")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2892>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2892>");
 	int t_YOF=100;
 	DBG_LOCAL(t_YOF,"YOF")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2893>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2893>");
 	if(((t_N->f_SliderOver)!=0) && t_N->f_SliderDown==0){
 		DBG_BLOCK();
 		t_YOF=t_YOF+20;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2894>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2894>");
 	if((t_N->f_SliderDown)!=0){
 		DBG_BLOCK();
 		t_YOF=t_YOF+40;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2895>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2895>");
 	if(t_Active==0){
 		DBG_BLOCK();
 		t_YOF=t_YOF+60;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2896>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2896>");
 	Float t_XPOS=t_X+t_H-FLOAT(5.0)+(t_N->f_Value-t_N->f_Minimum)*t_N->f_Stp;
 	DBG_LOCAL(t_XPOS,"XPOS")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2898>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2898>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_XPOS,t_Y,t_XOF,t_YOF,5,20,FLOAT(0.0),FLOAT(1.0),t_H/FLOAT(20.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2899>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2899>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_XPOS+FLOAT(5.0),t_Y,t_XOF+5,t_YOF,40,20,FLOAT(0.0),(t_N->f_SWidth-FLOAT(10.0))/FLOAT(40.0),t_H/FLOAT(20.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2900>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2900>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_XPOS+t_N->f_SWidth-FLOAT(5.0),t_Y,t_XOF+45,t_YOF,5,20,FLOAT(0.0),FLOAT(1.0),t_H/FLOAT(20.0),0);
 	return 0;
 }
 int bb_challengergui_CHGUI_DrawVSlider(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawVSlider")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2905>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2905>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2906>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2906>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2907>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2907>");
 	Float t_W=t_N->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2908>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2908>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2909>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2909>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2911>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2911>");
 	int t_OffX=370;
 	DBG_LOCAL(t_OffX,"OffX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2912>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2912>");
 	int t_OffY=10;
 	DBG_LOCAL(t_OffY,"OffY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2914>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2914>");
 	if(t_Active==0){
 		DBG_BLOCK();
 		t_OffX=430;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2917>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2917>");
 	if(((t_N->f_MinusOver)!=0) && t_N->f_MinusDown==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2918>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2918>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX+20,t_OffY,20,20,FLOAT(0.0),t_W/FLOAT(20.0),t_W/FLOAT(20.0),0);
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2919>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2919>");
 		if((t_N->f_MinusDown)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2920>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2920>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX+40,t_OffY,20,20,FLOAT(0.0),t_W/FLOAT(20.0),t_W/FLOAT(20.0),0);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2922>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2922>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY,20,20,FLOAT(0.0),t_W/FLOAT(20.0),t_W/FLOAT(20.0),0);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2926>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2926>");
 	if(((t_N->f_PlusOver)!=0) && t_N->f_PlusDown==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2927>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2927>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+t_H-t_W,t_OffX+20,t_OffY+60,20,20,FLOAT(0.0),t_W/FLOAT(20.0),t_W/FLOAT(20.0),0);
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2928>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2928>");
 		if((t_N->f_PlusDown)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2929>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2929>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+t_H-t_W,t_OffX+40,t_OffY+60,20,20,FLOAT(0.0),t_W/FLOAT(20.0),t_W/FLOAT(20.0),0);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2931>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2931>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+t_H-t_W,t_OffX,t_OffY+60,20,20,FLOAT(0.0),t_W/FLOAT(20.0),t_W/FLOAT(20.0),0);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2936>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2936>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+t_W,t_OffX,t_OffY+20,20,40,FLOAT(0.0),t_W/FLOAT(20.0),(t_H-t_W-t_W)/FLOAT(40.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2939>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2939>");
 	int t_XOF=370;
 	DBG_LOCAL(t_XOF,"XOF")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2940>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2940>");
 	int t_YOF=100;
 	DBG_LOCAL(t_YOF,"YOF")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2941>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2941>");
 	if(((t_N->f_SliderOver)!=0) && t_N->f_SliderDown==0){
 		DBG_BLOCK();
 		t_XOF=t_XOF+20;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2942>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2942>");
 	if((t_N->f_SliderDown)!=0){
 		DBG_BLOCK();
 		t_XOF=t_XOF+40;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2943>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2943>");
 	if(t_Active==0){
 		DBG_BLOCK();
 		t_XOF=t_XOF+60;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2944>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2944>");
 	Float t_YPOS=t_Y+t_W-FLOAT(5.0)+(t_N->f_Value-t_N->f_Minimum)*t_N->f_Stp;
 	DBG_LOCAL(t_YPOS,"YPOS")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2946>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2946>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_YPOS,t_XOF,t_YOF,20,5,FLOAT(0.0),t_W/FLOAT(20.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2947>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2947>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_YPOS+FLOAT(5.0),t_XOF,t_YOF+5,20,40,FLOAT(0.0),t_W/FLOAT(20.0),(t_N->f_SWidth-FLOAT(10.0))/FLOAT(40.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2948>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2948>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_YPOS+t_N->f_SWidth-FLOAT(5.0),t_XOF,t_YOF+45,20,5,FLOAT(0.0),t_W/FLOAT(20.0),FLOAT(1.0),0);
 	return 0;
 }
@@ -12846,105 +12846,105 @@ int bb_graphics_DrawLine(Float t_x1,Float t_y1,Float t_x2,Float t_y2){
 	DBG_LOCAL(t_y1,"y1")
 	DBG_LOCAL(t_x2,"x2")
 	DBG_LOCAL(t_y2,"y2")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<377>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<377>");
 	bb_graphics_DebugRenderDevice();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<379>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<379>");
 	bb_graphics_context->m_Validate();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<380>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<380>");
 	bb_graphics_renderDevice->DrawLine(t_x1,t_y1,t_x2,t_y2);
 	return 0;
 }
 int bb_challengergui_CHGUI_DrawTextfield(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawTextfield")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2953>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2953>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2954>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2954>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2955>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2955>");
 	Float t_W=t_N->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2956>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2956>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2957>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2957>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2959>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2959>");
 	int t_OffX=280;
 	DBG_LOCAL(t_OffX,"OffX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2960>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2960>");
 	int t_OffY=10;
 	DBG_LOCAL(t_OffY,"OffY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2961>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2961>");
 	int t_OffH=40;
 	DBG_LOCAL(t_OffH,"OffH")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2963>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2963>");
 	if((t_N->f_Over)!=0){
 		DBG_BLOCK();
 		t_OffY=50;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2964>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2964>");
 	if(((t_N->f_Down)!=0) && t_N->f_OnFocus==0){
 		DBG_BLOCK();
 		t_OffY=90;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2965>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2965>");
 	if(bb_challengergui_CHGUI_RealActive(t_N)==0){
 		DBG_BLOCK();
 		t_OffY=130;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2967>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2967>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2969>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2969>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y,t_OffX+10,t_OffY,20,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(20.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2971>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2971>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y,t_OffX+30,t_OffY,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2973>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2973>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+FLOAT(10.0),t_OffX,t_OffY+10,10,20,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(20.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2975>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2975>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+FLOAT(10.0),t_OffX+30,t_OffY+10,10,20,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(20.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2977>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2977>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+FLOAT(10.0),t_OffX+10,t_OffY+10,20,20,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(20.0),(t_H-FLOAT(20.0))/FLOAT(20.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2979>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2979>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+t_H-FLOAT(10.0),t_OffX,t_OffY+30,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2981>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2981>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+t_H-FLOAT(10.0),t_OffX+10,t_OffY+30,20,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(20.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2983>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2983>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),t_OffX+30,t_OffY+30,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2986>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2986>");
 	Float t_YOff=(t_H-bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_YOff,"YOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2987>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2987>");
 	bb_graphics_SetAlpha(FLOAT(0.25));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2988>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2988>");
 	if((t_Active)!=0){
 		DBG_BLOCK();
 		bb_graphics_SetAlpha(FLOAT(1.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2989>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2989>");
 	bb_challengergui_CHGUI_Font->m_DrawText2(t_N->f_Text,t_X+FLOAT(5.0),t_Y+t_YOff);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2990>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2990>");
 	bb_graphics_SetAlpha(FLOAT(1.0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2993>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2993>");
 	if((t_N->f_OnFocus)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2994>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2994>");
 		String t_Before=t_N->f_Text.Slice(0,t_N->f_Cursor);
 		DBG_LOCAL(t_Before,"Before")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2995>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2995>");
 		int t_Length=int(bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_Before+String(L"NOT",3))-bb_challengergui_CHGUI_Font->m_GetTxtWidth2(String(L"NOT",3)));
 		DBG_LOCAL(t_Length,"Length")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2996>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2996>");
 		if((bb_challengergui_CHGUI_Cursor)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2997>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2997>");
 			bb_graphics_SetColor(FLOAT(0.0),FLOAT(0.0),FLOAT(0.0));
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2998>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2998>");
 			bb_graphics_DrawLine(t_X+Float(t_Length)+FLOAT(8.0),t_Y+t_YOff,t_X+Float(t_Length)+FLOAT(8.0),t_Y+t_YOff+bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text));
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2999>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2999>");
 			bb_graphics_SetColor(FLOAT(255.0),FLOAT(255.0),FLOAT(255.0));
 		}
 	}
@@ -12953,106 +12953,106 @@ int bb_challengergui_CHGUI_DrawTextfield(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_DrawLabel(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawLabel")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2462>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2462>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2463>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2463>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2464>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2464>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2467>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2467>");
 	Float t_XOff=FLOAT(.0);
 	DBG_LOCAL(t_XOff,"XOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2468>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2468>");
 	Float t_YOff=FLOAT(.0);
 	DBG_LOCAL(t_YOff,"YOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2470>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2470>");
 	bb_graphics_SetAlpha(FLOAT(0.25));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2471>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2471>");
 	if((t_Active)!=0){
 		DBG_BLOCK();
 		bb_graphics_SetAlpha(FLOAT(1.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2472>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2472>");
 	bb_challengergui_CHGUI_Font->m_DrawText2(t_N->f_Text,t_X,t_Y);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2473>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2473>");
 	bb_graphics_SetAlpha(FLOAT(1.0));
 	return 0;
 }
 int bb_challengergui_CHGUI_DrawDropdown(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawDropdown")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2551>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2551>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2552>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2552>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2553>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2553>");
 	Float t_W=t_N->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2554>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2554>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2555>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2555>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2557>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2557>");
 	int t_OffX=280;
 	DBG_LOCAL(t_OffX,"OffX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2558>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2558>");
 	int t_OffY=10;
 	DBG_LOCAL(t_OffY,"OffY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2559>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2559>");
 	if((t_N->f_Over)!=0){
 		DBG_BLOCK();
 		t_OffY=50;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2560>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2560>");
 	if(((t_N->f_Down)!=0) || ((t_N->f_OnFocus)!=0)){
 		DBG_BLOCK();
 		t_OffY=90;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2561>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2561>");
 	if(t_Active==0){
 		DBG_BLOCK();
 		t_OffY=130;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2564>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2564>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2566>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2566>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y,t_OffX+10,t_OffY,10,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(10.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2568>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2568>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y,t_OffX+30,t_OffY,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2570>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2570>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+FLOAT(10.0),t_OffX,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(10.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2572>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2572>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+FLOAT(10.0),t_OffX+30,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(20.0))/FLOAT(10.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2574>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2574>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+FLOAT(10.0),t_OffX+10,t_OffY+10,20,20,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(20.0),(t_H-FLOAT(20.0))/FLOAT(20.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2576>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2576>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,t_Y+t_H-FLOAT(10.0),t_OffX,t_OffY+30,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2578>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2578>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+t_H-FLOAT(10.0),t_OffX+10,t_OffY+30,10,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(10.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2580>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2580>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),t_OffX+30,t_OffY+30,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2583>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2583>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-t_H,t_Y,t_OffX+40,t_OffY,40,40,FLOAT(0.0),t_H/FLOAT(40.0),t_H/FLOAT(40.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2586>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2586>");
 	Float t_YOff=(t_H-bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_YOff,"YOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2587>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2587>");
 	bb_graphics_SetAlpha(FLOAT(0.25));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2588>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2588>");
 	if((t_Active)!=0){
 		DBG_BLOCK();
 		bb_graphics_SetAlpha(FLOAT(1.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2589>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2589>");
 	bb_challengergui_CHGUI_Font->m_DrawText2(t_N->f_Text,t_X+FLOAT(5.0),t_Y+t_YOff);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2590>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2590>");
 	bb_graphics_SetAlpha(FLOAT(1.0));
 	return 0;
 }
@@ -13060,137 +13060,137 @@ int bb_challengergui_CHGUI_DrawDropdownItem(bb_challengergui_CHGUI* t_N,int t_C)
 	DBG_ENTER("CHGUI_DrawDropdownItem")
 	DBG_LOCAL(t_N,"N")
 	DBG_LOCAL(t_C,"C")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2597>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2597>");
 	t_N->f_X=FLOAT(0.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2598>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2598>");
 	t_N->f_Y=Float(t_C+1)*t_N->f_Parent->f_H;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2599>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2599>");
 	t_N->f_W=t_N->f_Parent->f_W;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2600>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2600>");
 	t_N->f_H=t_N->f_Parent->f_H;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2602>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2602>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2603>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2603>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2604>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2604>");
 	Float t_W=t_N->f_Parent->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2605>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2605>");
 	Float t_H=t_N->f_Parent->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2606>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2606>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2608>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2608>");
 	int t_OffX=90;
 	DBG_LOCAL(t_OffX,"OffX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2609>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2609>");
 	int t_OffY=80;
 	DBG_LOCAL(t_OffY,"OffY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2610>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2610>");
 	int t_OffH=30;
 	DBG_LOCAL(t_OffH,"OffH")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2612>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2612>");
 	if((t_N->f_Over)!=0){
 		DBG_BLOCK();
 		t_OffY=110;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2613>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2613>");
 	if(((t_N->f_Down)!=0) && ((bb_challengergui_CHGUI_RealActive(t_N))!=0)){
 		DBG_BLOCK();
 		t_OffY=140;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2615>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2615>");
 	if(t_C!=0 && t_C!=t_N->f_Parent->f_DropNumber){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2617>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2617>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),t_H/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2619>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2619>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y,t_OffX+50,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),t_H/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2621>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2621>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y,t_OffX+10,t_OffY+10,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),t_H/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2623>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2623>");
 		if((bb_challengergui_CHGUI_Shadow)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2624>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2624>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+t_W,t_Y,40,20,10,10,FLOAT(0.0),FLOAT(1.0),t_H/FLOAT(10.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2625>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2625>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y,0,20,10,10,FLOAT(0.0),FLOAT(1.0),t_H/FLOAT(10.0),0);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2629>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2629>");
 	if(t_C==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2631>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2631>");
 		if((bb_challengergui_CHGUI_Shadow)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2632>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2632>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+t_W,t_Y+FLOAT(10.0),40,20,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2633>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2633>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y+FLOAT(10.0),0,20,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2635>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2635>");
 			bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y-FLOAT(10.0),0,0,10,20,0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2637>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2637>");
 			bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X+t_W,t_Y-FLOAT(10.0),40,0,10,20,0);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2641>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2641>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2643>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2643>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y,t_OffX+10,t_OffY,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),FLOAT(1.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2645>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2645>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y,t_OffX+50,t_OffY,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2647>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2647>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+FLOAT(10.0),t_OffX,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2649>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2649>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+FLOAT(10.0),t_OffX+50,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2651>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2651>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+FLOAT(10.0),t_OffX+10,t_OffY+10,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2654>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2654>");
 	if(t_C==t_N->f_Parent->f_DropNumber){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2656>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2656>");
 		if((bb_challengergui_CHGUI_Shadow)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2657>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2657>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+t_W,t_Y,40,20,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2658>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2658>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y,0,20,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2660>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2660>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+FLOAT(10.0),t_Y+t_H,20,40,10,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(10.0),FLOAT(1.0),0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2662>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2662>");
 			bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X+t_W-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),30,30,20,20,0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2664>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2664>");
 			bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),0,30,20,20,0);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2667>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2667>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2669>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2669>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y,t_OffX+50,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2671>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2671>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y,t_OffX+10,t_OffY+10,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2673>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2673>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+t_H-FLOAT(10.0),t_OffX,t_OffY+20,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2675>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2675>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+t_H-FLOAT(10.0),t_OffX+10,t_OffY+20,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),FLOAT(1.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2677>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2677>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),t_OffX+50,t_OffY+20,10,10,FLOAT(0.0),FLOAT(1.0),FLOAT(1.0),0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2681>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2681>");
 	Float t_YOff=(t_H-bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_YOff,"YOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2682>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2682>");
 	bb_graphics_SetAlpha(FLOAT(0.25));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2683>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2683>");
 	if((t_Active)!=0){
 		DBG_BLOCK();
 		bb_graphics_SetAlpha(FLOAT(1.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2684>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2684>");
 	bb_challengergui_CHGUI_Font->m_DrawText2(t_N->f_Text,t_X+FLOAT(5.0),t_Y+t_YOff);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2685>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2685>");
 	bb_graphics_SetAlpha(FLOAT(1.0));
 	return 0;
 }
@@ -13199,86 +13199,86 @@ int bb_challengergui_CHGUI_DrawMenu(bb_challengergui_CHGUI* t_N,int t_XOffset,in
 	DBG_LOCAL(t_N,"N")
 	DBG_LOCAL(t_XOffset,"XOffset")
 	DBG_LOCAL(t_C,"C")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2689>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2689>");
 	if(t_C==0){
 		DBG_BLOCK();
 		t_XOffset=t_XOffset+1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2690>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2690>");
 	t_N->f_X=Float(t_XOffset-t_C);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2691>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2691>");
 	if(t_N->f_Parent!=bb_challengergui_CHGUI_Canvas && t_N->f_Parent->f_Text!=String()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2692>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2692>");
 		t_N->f_Y=bb_challengergui_CHGUI_TitleHeight;
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2694>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2694>");
 		t_N->f_Y=FLOAT(0.0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2696>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2696>");
 	t_N->f_W=FLOAT(20.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2697>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2697>");
 	t_N->f_H=FLOAT(10.0)+bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2698>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2698>");
 	t_N->f_Parent->f_HasMenu=1;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2699>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2699>");
 	t_N->f_Parent->f_MenuHeight=int(t_N->f_H);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2700>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2700>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2701>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2701>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2702>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2702>");
 	Float t_W=t_N->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2703>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2703>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2704>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2704>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2705>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2705>");
 	int t_OffX=100;
 	DBG_LOCAL(t_OffX,"OffX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2706>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2706>");
 	int t_OffY=90;
 	DBG_LOCAL(t_OffY,"OffY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2707>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2707>");
 	if((t_N->f_Over)!=0){
 		DBG_BLOCK();
 		t_OffY=120;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2708>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2708>");
 	if(((t_N->f_Down)!=0) || ((t_N->f_OnFocus)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2709>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2709>");
 		if(t_Active==1){
 			DBG_BLOCK();
 			t_OffY=150;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2713>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2713>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX,t_OffY,40,10,FLOAT(0.0),t_W/FLOAT(40.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2714>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2714>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y+(t_H-FLOAT(10.0)),t_OffX,t_OffY+10,40,10,FLOAT(0.0),t_W/FLOAT(40.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2717>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2717>");
 	Float t_XOff=(t_W-bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_XOff,"XOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2718>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2718>");
 	Float t_YOff=(t_H-bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_YOff,"YOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2719>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2719>");
 	bb_graphics_SetAlpha(FLOAT(0.25));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2720>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2720>");
 	if((t_Active)!=0){
 		DBG_BLOCK();
 		bb_graphics_SetAlpha(FLOAT(1.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2721>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2721>");
 	bb_challengergui_CHGUI_Font->m_DrawText2(t_N->f_Text,t_X+t_XOff,t_Y+t_YOff);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2722>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2722>");
 	bb_graphics_SetAlpha(FLOAT(1.0));
 	return 0;
 }
@@ -13286,118 +13286,118 @@ int bb_challengergui_CHGUI_DrawTab(bb_challengergui_CHGUI* t_N,int t_Offset){
 	DBG_ENTER("CHGUI_DrawTab")
 	DBG_LOCAL(t_N,"N")
 	DBG_LOCAL(t_Offset,"Offset")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3005>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3005>");
 	t_N->f_X=Float(t_Offset);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3006>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3006>");
 	t_N->f_W=FLOAT(20.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3007>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3007>");
 	t_N->f_H=FLOAT(10.0)+bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3008>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3008>");
 	t_N->f_Parent->f_Tabbed=1;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3009>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3009>");
 	t_N->f_Parent->f_TabHeight=int(t_N->f_H);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3010>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3010>");
 	t_N->f_Y=FLOAT(5.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3011>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3011>");
 	if(t_N->f_Parent->f_Text!=String()){
 		DBG_BLOCK();
 		t_N->f_Y=t_N->f_Y+bb_challengergui_CHGUI_TitleHeight;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3012>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3012>");
 	if((t_N->f_Parent->f_HasMenu)!=0){
 		DBG_BLOCK();
 		t_N->f_Y=t_N->f_Y+Float(t_N->f_Parent->f_MenuHeight);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3014>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3014>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3015>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3015>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3016>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3016>");
 	Float t_W=t_N->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3017>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3017>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3018>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3018>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3020>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3020>");
 	int t_OffX=10;
 	DBG_LOCAL(t_OffX,"OffX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3021>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3021>");
 	int t_OffY=180;
 	DBG_LOCAL(t_OffY,"OffY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3022>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3022>");
 	if(t_N->f_Parent->f_CurrentTab==t_N){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3023>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3023>");
 		t_OffX=70;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3024>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3024>");
 		t_OffY=180;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3026>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3026>");
 	if((t_N->f_Down)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3027>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3027>");
 		t_OffX=10;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3028>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3028>");
 		t_OffY=210;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3030>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3030>");
 	if(((t_N->f_Over)!=0) && t_N->f_Down==0 && t_N->f_Parent->f_CurrentTab!=t_N){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3031>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3031>");
 		t_OffX=40;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3032>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3032>");
 		t_OffY=180;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3035>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3035>");
 	if(t_Active==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3036>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3036>");
 		t_OffX=40;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3037>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3037>");
 		t_OffY=210;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3042>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3042>");
 	int t_YY=int(t_Y);
 	DBG_LOCAL(t_YY,"YY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3045>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3045>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,Float(t_YY),t_OffX,t_OffY,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3047>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3047>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),Float(t_YY),t_OffX+20,t_OffY,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3049>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3049>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),Float(t_YY),t_OffX+10,t_OffY,10,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(10.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3051>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3051>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,Float(t_YY+10),t_OffX,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),Float((t_N->f_Parent->f_TabHeight-10)/10),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3053>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3053>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),Float(t_YY+10),t_OffX+20,t_OffY+10,10,10,FLOAT(0.0),FLOAT(1.0),Float((t_N->f_Parent->f_TabHeight-10)/10),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3055>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3055>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),Float(t_YY+10),t_OffX+10,t_OffY+10,10,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(10.0),Float((t_N->f_Parent->f_TabHeight-10)/10),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3058>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3058>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,Float(t_YY+t_N->f_Parent->f_TabHeight-10),t_OffX,t_OffY+20,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3060>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3060>");
 	bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),Float(t_YY+t_N->f_Parent->f_TabHeight-10),t_OffX+20,t_OffY+20,10,10,0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3062>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3062>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),Float(t_YY+t_N->f_Parent->f_TabHeight-10),t_OffX+10,t_OffY+20,10,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(10.0),FLOAT(1.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3065>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3065>");
 	Float t_XOff=(t_W-bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_XOff,"XOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3066>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3066>");
 	Float t_YOff=(Float(t_N->f_Parent->f_TabHeight)-bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_YOff,"YOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3067>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3067>");
 	bb_graphics_SetAlpha(FLOAT(0.25));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3068>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3068>");
 	if((t_Active)!=0){
 		DBG_BLOCK();
 		bb_graphics_SetAlpha(FLOAT(1.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3069>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3069>");
 	bb_challengergui_CHGUI_Font->m_DrawText2(t_N->f_Text,t_X+t_XOff,Float(t_YY)+t_YOff);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3070>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3070>");
 	bb_graphics_SetAlpha(FLOAT(1.0));
 	return 0;
 }
@@ -13405,210 +13405,210 @@ int bb_challengergui_CHGUI_DrawMenuItem(bb_challengergui_CHGUI* t_N,int t_C){
 	DBG_ENTER("CHGUI_DrawMenuItem")
 	DBG_LOCAL(t_N,"N")
 	DBG_LOCAL(t_C,"C")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2728>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2728>");
 	if(t_N->f_Parent->f_Element!=String(L"MenuItem",8)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2729>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2729>");
 		t_N->f_X=FLOAT(0.0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2730>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2730>");
 		t_N->f_Y=t_N->f_Parent->f_H+Float(t_C)*t_N->f_Parent->f_H-Float(t_C);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2731>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2731>");
 		t_N->f_Parent->f_HasMenu=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2732>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2732>");
 		t_N->f_Parent->f_MenuHeight=int(t_N->f_H);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2734>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2734>");
 	if(t_N->f_Parent->f_Element==String(L"MenuItem",8)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2735>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2735>");
 		t_N->f_X=t_N->f_Parent->f_W-FLOAT(1.0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2736>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2736>");
 		t_N->f_Y=Float(t_C)*t_N->f_Parent->f_H-Float(t_C);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2739>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2739>");
 	t_N->f_H=FLOAT(10.0)+bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2740>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2740>");
 	t_N->f_W=FLOAT(20.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2742>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2742>");
 	if((t_N->f_IsMenuParent)!=0){
 		DBG_BLOCK();
 		t_N->f_W=t_N->f_W+t_N->f_H/FLOAT(3.0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2743>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2743>");
 	if((t_N->f_Tick)!=0){
 		DBG_BLOCK();
 		t_N->f_W=t_N->f_W+t_N->f_H/FLOAT(3.0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2745>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2745>");
 	if(t_N->f_W>Float(t_N->f_Parent->f_MenuWidth)){
 		DBG_BLOCK();
 		t_N->f_Parent->f_MenuWidth=int(t_N->f_W);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2746>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2746>");
 	if(Float(t_N->f_Parent->f_MenuWidth)>t_N->f_W){
 		DBG_BLOCK();
 		t_N->f_W=Float(t_N->f_Parent->f_MenuWidth);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2748>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2748>");
 	if((t_N->f_Tick)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2749>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2749>");
 		if(Float(t_N->f_Parent->f_MenuWidth)+t_N->f_H<t_N->f_W){
 			DBG_BLOCK();
 			t_N->f_Parent->f_MenuWidth=int(t_N->f_W+t_N->f_H);
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2751>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2751>");
 		if(Float(t_N->f_Parent->f_MenuWidth)<t_N->f_W){
 			DBG_BLOCK();
 			t_N->f_Parent->f_MenuWidth=int(t_N->f_W);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2754>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2754>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2755>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2755>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2756>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2756>");
 	Float t_W=t_N->f_W;
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2757>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2757>");
 	Float t_H=t_N->f_H;
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2758>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2758>");
 	int t_Active=bb_challengergui_CHGUI_RealActive(t_N);
 	DBG_LOCAL(t_Active,"Active")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2760>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2760>");
 	int t_OffX=100;
 	DBG_LOCAL(t_OffX,"OffX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2761>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2761>");
 	int t_OffY=90;
 	DBG_LOCAL(t_OffY,"OffY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2762>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2762>");
 	if(((t_N->f_Over)!=0) || ((t_N->f_OnFocus)!=0)){
 		DBG_BLOCK();
 		t_OffY=120;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2763>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2763>");
 	if(((t_N->f_Down)!=0) && ((bb_challengergui_CHGUI_RealActive(t_N))!=0)){
 		DBG_BLOCK();
 		t_OffY=150;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2766>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2766>");
 	if(t_C==t_N->f_Parent->f_MenuNumber && ((bb_challengergui_CHGUI_Shadow)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2767>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2767>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+t_W,t_Y,40,20,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2768>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2768>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y,0,20,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(10.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2770>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2770>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+FLOAT(10.0),t_Y+t_H,20,40,10,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(10.0),FLOAT(1.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2772>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2772>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X+t_W-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),30,30,20,20,0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2774>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2774>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y+t_H-FLOAT(10.0),0,30,20,20,0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2778>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2778>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y,t_OffX,t_OffY,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),t_H/FLOAT(10.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2779>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2779>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX-10,t_OffY,10,10,FLOAT(0.0),FLOAT(1.0),t_H/FLOAT(10.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2780>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2780>");
 	bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y,t_OffX+40,t_OffY,10,10,FLOAT(0.0),FLOAT(1.0),t_H/FLOAT(10.0),0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2783>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2783>");
 	if(((bb_challengergui_CHGUI_Shadow)!=0) && t_C!=t_N->f_Parent->f_MenuNumber){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2785>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2785>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X+t_W,t_Y,40,20,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(1.0))/FLOAT(10.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2787>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2787>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_ShadowImg,t_X-FLOAT(10.0),t_Y,0,20,10,10,FLOAT(0.0),FLOAT(1.0),(t_H-FLOAT(1.0))/FLOAT(10.0),0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2791>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2791>");
 	if(t_C==t_N->f_Parent->f_MenuNumber){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2792>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2792>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,t_Y+(t_H-FLOAT(10.0)),t_OffX-10,t_OffY+10,10,10,0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2793>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2793>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y+(t_H-FLOAT(10.0)),t_OffX,t_OffY+10,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),FLOAT(1.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2794>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2794>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y+(t_H-FLOAT(10.0)),t_OffX+40,t_OffY+10,10,10,0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2797>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2797>");
 	if(t_C==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2798>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2798>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X,t_Y,t_OffX-10,t_OffY-10,10,10,0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2799>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2799>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(10.0),t_Y,t_OffX,t_OffY-10,40,10,FLOAT(0.0),(t_W-FLOAT(20.0))/FLOAT(40.0),FLOAT(1.0),0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2800>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2800>");
 		bb_graphics_DrawImageRect(bb_challengergui_CHGUI_Style,t_X+t_W-FLOAT(10.0),t_Y,t_OffX+40,t_OffY-10,10,10,0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2804>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2804>");
 	if((t_N->f_Tick)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2805>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2805>");
 		int t_XOF=230;
 		DBG_LOCAL(t_XOF,"XOF")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2806>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2806>");
 		int t_YOF=10;
 		DBG_LOCAL(t_YOF,"YOF")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2807>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2807>");
 		if((t_N->f_Over)!=0){
 			DBG_BLOCK();
 			t_YOF=30;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2808>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2808>");
 		if((t_N->f_Down)!=0){
 			DBG_BLOCK();
 			t_YOF=50;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2809>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2809>");
 		if(bb_challengergui_CHGUI_RealActive(t_N)==0){
 			DBG_BLOCK();
 			t_XOF=70;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2810>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2810>");
 		if(t_N->f_Value>FLOAT(0.0)){
 			DBG_BLOCK();
 			t_XOF=250;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2812>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2812>");
 		bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+FLOAT(5.0),t_Y+(t_H-t_H/FLOAT(2.6))/FLOAT(2.0),t_XOF,t_YOF,20,20,FLOAT(0.0),t_H/FLOAT(2.6)/FLOAT(20.0),t_H/FLOAT(2.6)/FLOAT(20.0),0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2819>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2819>");
 	Float t_YOff=(t_H-bb_challengergui_CHGUI_TextHeight(bb_challengergui_CHGUI_Font,t_N->f_Text))/FLOAT(2.0);
 	DBG_LOCAL(t_YOff,"YOff")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2820>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2820>");
 	bb_graphics_SetAlpha(FLOAT(0.25));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2821>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2821>");
 	if((t_Active)!=0){
 		DBG_BLOCK();
 		bb_graphics_SetAlpha(FLOAT(1.0));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2822>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2822>");
 	if(t_N->f_Tick==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2823>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2823>");
 		bb_challengergui_CHGUI_Font->m_DrawText2(t_N->f_Text,t_X+FLOAT(10.0),t_Y+t_YOff);
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2825>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2825>");
 		bb_challengergui_CHGUI_Font->m_DrawText2(t_N->f_Text,t_X+FLOAT(10.0)+t_H/FLOAT(2.0),t_Y+t_YOff);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2827>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2827>");
 	bb_graphics_SetAlpha(FLOAT(1.0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2830>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2830>");
 	if((t_N->f_IsMenuParent)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2831>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2831>");
 		if(bb_challengergui_CHGUI_RealActive(t_N)==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2832>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2832>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-t_H/FLOAT(4.0)-FLOAT(8.0),t_Y+(t_H-t_H/FLOAT(4.0))/FLOAT(2.0),130,180,10,10,FLOAT(0.0),t_H/FLOAT(4.0)/FLOAT(10.0),t_H/FLOAT(4.0)/FLOAT(10.0),0);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2834>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2834>");
 			bb_graphics_DrawImageRect2(bb_challengergui_CHGUI_Style,t_X+t_W-t_H/FLOAT(4.0)-FLOAT(8.0),t_Y+(t_H-t_H/FLOAT(4.0))/FLOAT(2.0),140,180,10,10,FLOAT(0.0),t_H/FLOAT(4.0)/FLOAT(10.0),t_H/FLOAT(4.0)/FLOAT(10.0),0);
 		}
 	}
@@ -13617,42 +13617,42 @@ int bb_challengergui_CHGUI_DrawMenuItem(bb_challengergui_CHGUI* t_N,int t_C){
 int bb_challengergui_CHGUI_SubMenu(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_SubMenu")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2840>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2840>");
 	int t_C=0;
 	DBG_LOCAL(t_C,"C")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2841>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2841>");
 	int t_XX=0;
 	DBG_LOCAL(t_XX,"XX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2842>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2842>");
 	if((t_N->f_OnFocus)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2843>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2843>");
 		t_C=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2844>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2844>");
 		t_N->f_HasMenu=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2845>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2845>");
 		for(t_XX=0;t_XX<=t_N->f_MenuItems.Length()-1;t_XX=t_XX+1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2846>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2846>");
 			if(bb_challengergui_CHGUI_RealMinimised(t_N->f_MenuItems.At(t_XX))==0 && ((bb_challengergui_CHGUI_RealVisible(t_N->f_MenuItems.At(t_XX)))!=0)){
 				DBG_BLOCK();
 				bb_challengergui_CHGUI_DrawMenuItem(t_N->f_MenuItems.At(t_XX),t_C);
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2847>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2847>");
 			if(bb_challengergui_CHGUI_RealMinimised(t_N->f_MenuItems.At(t_XX))==0 && ((bb_challengergui_CHGUI_RealVisible(t_N->f_MenuItems.At(t_XX)))!=0)){
 				DBG_BLOCK();
 				t_C=t_C+1;
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2849>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2849>");
 		if(t_N->f_MenuItems.Length()>0){
 			DBG_BLOCK();
 			t_N->f_MenuNumber=t_C-1;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2850>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2850>");
 		for(t_XX=0;t_XX<=t_N->f_MenuItems.Length()-1;t_XX=t_XX+1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2851>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2851>");
 			if((t_N->f_MenuItems.At(t_XX)->f_IsMenuParent)!=0){
 				DBG_BLOCK();
 				bb_challengergui_CHGUI_SubMenu(t_N->f_MenuItems.At(t_XX));
@@ -13664,258 +13664,258 @@ int bb_challengergui_CHGUI_SubMenu(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_DrawContents(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawContents")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2092>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2092>");
 	int t_X=0;
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2093>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2093>");
 	int t_XX=0;
 	DBG_LOCAL(t_XX,"XX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2094>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2094>");
 	int t_XOffset=0;
 	DBG_LOCAL(t_XOffset,"XOffset")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2095>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2095>");
 	int t_C=0;
 	DBG_LOCAL(t_C,"C")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2098>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2098>");
 	if(t_N->f_Element!=String(L"Tab",3)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2099>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2099>");
 		if(t_N->f_Parent!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2100>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2100>");
 			if(bb_challengergui_CHGUI_RealVisible(t_N)==1 && bb_challengergui_CHGUI_RealMinimised(t_N->f_Parent)==0){
 				DBG_BLOCK();
 				bb_challengergui_CHGUI_DrawWindow(t_N);
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2102>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2102>");
 			bb_challengergui_CHGUI_DrawWindow(t_N);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2107>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2107>");
 	for(t_X=0;t_X<=t_N->f_Buttons.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2108>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2108>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Buttons.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Buttons.At(t_X))==0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawButton(t_N->f_Buttons.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2112>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2112>");
 	for(t_X=0;t_X<=t_N->f_ImageButtons.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2113>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2113>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_ImageButtons.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_ImageButtons.At(t_X))==0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawImageButton(t_N->f_ImageButtons.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2117>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2117>");
 	for(t_X=0;t_X<=t_N->f_Tickboxes.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2118>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2118>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Tickboxes.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Tickboxes.At(t_X))==0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawTickbox(t_N->f_Tickboxes.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2122>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2122>");
 	for(t_X=0;t_X<=t_N->f_Radioboxes.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2123>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2123>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Radioboxes.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Radioboxes.At(t_X))==0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawRadiobox(t_N->f_Radioboxes.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2127>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2127>");
 	for(t_X=0;t_X<=t_N->f_Listboxes.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2128>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2128>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Listboxes.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Listboxes.At(t_X))==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2129>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2129>");
 			bb_challengergui_CHGUI_DrawListbox(t_N->f_Listboxes.At(t_X));
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2131>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2131>");
 			int t_C2=0;
 			DBG_LOCAL(t_C2,"C")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2133>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2133>");
 			for(t_XX=int(t_N->f_Listboxes.At(t_X)->f_ListboxSlider->f_Value);Float(t_XX)<=t_N->f_Listboxes.At(t_X)->f_ListboxSlider->f_Value+Float(t_N->f_Listboxes.At(t_X)->f_ListboxNumber);t_XX=t_XX+1){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2134>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2134>");
 				if(t_XX<t_N->f_Listboxes.At(t_X)->f_ListboxItems.Length() && t_XX>-1){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2135>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2135>");
 					if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Listboxes.At(t_X)->f_ListboxItems.At(t_XX)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Listboxes.At(t_X)->f_ListboxItems.At(t_XX))==0){
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2136>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2136>");
 						bb_challengergui_CHGUI_DrawListboxItem(t_N->f_Listboxes.At(t_X)->f_ListboxItems.At(t_XX),t_C2);
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2137>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2137>");
 						t_C2=t_C2+1;
 					}
 				}
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2145>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2145>");
 	for(t_X=0;t_X<=t_N->f_HSliders.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2146>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2146>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_HSliders.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_HSliders.At(t_X))==0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawHSlider(t_N->f_HSliders.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2150>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2150>");
 	for(t_X=0;t_X<=t_N->f_VSliders.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2151>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2151>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_VSliders.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_VSliders.At(t_X))==0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawVSlider(t_N->f_VSliders.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2155>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2155>");
 	for(t_X=0;t_X<=t_N->f_Textfields.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2156>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2156>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Textfields.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Textfields.At(t_X))==0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawTextfield(t_N->f_Textfields.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2161>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2161>");
 	for(t_X=0;t_X<=t_N->f_Labels.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2162>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2162>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Labels.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Labels.At(t_X))==0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawLabel(t_N->f_Labels.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2166>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2166>");
 	for(t_X=0;t_X<=t_N->f_Dropdowns.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2167>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2167>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Dropdowns.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Dropdowns.At(t_X))==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2168>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2168>");
 			bb_challengergui_CHGUI_DrawDropdown(t_N->f_Dropdowns.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2173>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2173>");
 	for(t_X=0;t_X<=t_N->f_Dropdowns.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2174>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2174>");
 		if(t_N->f_Dropdowns.At(t_X)->f_OnFocus==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2175>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2175>");
 			t_C=0;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2176>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2176>");
 			for(t_XX=0;t_XX<=t_N->f_Dropdowns.At(t_X)->f_DropdownItems.Length()-1;t_XX=t_XX+1){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2177>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2177>");
 				if(bb_challengergui_CHGUI_RealMinimised(t_N->f_Dropdowns.At(t_X))==0 && ((bb_challengergui_CHGUI_RealVisible(t_N->f_Dropdowns.At(t_X)->f_DropdownItems.At(t_XX)))!=0)){
 					DBG_BLOCK();
 					bb_challengergui_CHGUI_DrawDropdownItem(t_N->f_Dropdowns.At(t_X)->f_DropdownItems.At(t_XX),t_C);
 				}
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2178>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2178>");
 				if(bb_challengergui_CHGUI_RealMinimised(t_N->f_Dropdowns.At(t_X))==0 && ((bb_challengergui_CHGUI_RealVisible(t_N->f_Dropdowns.At(t_X)->f_DropdownItems.At(t_XX)))!=0)){
 					DBG_BLOCK();
 					t_C=t_C+1;
 				}
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2180>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2180>");
 			if(t_N->f_Dropdowns.Length()>0){
 				DBG_BLOCK();
 				t_N->f_Dropdowns.At(t_X)->f_DropNumber=t_C-1;
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2185>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2185>");
 	t_XOffset=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2186>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2186>");
 	t_N->f_HasMenu=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2187>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2187>");
 	t_C=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2188>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2188>");
 	for(t_X=0;t_X<=t_N->f_Menus.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2189>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2189>");
 		if(bb_challengergui_CHGUI_RealMinimised(t_N->f_Menus.At(t_X))==0 && ((bb_challengergui_CHGUI_RealVisible(t_N->f_Menus.At(t_X)))!=0)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawMenu(t_N->f_Menus.At(t_X),t_XOffset,t_C);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2190>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2190>");
 		if(bb_challengergui_CHGUI_RealMinimised(t_N->f_Menus.At(t_X))==0 && ((bb_challengergui_CHGUI_RealVisible(t_N->f_Menus.At(t_X)))!=0)){
 			DBG_BLOCK();
 			t_XOffset=int(Float(t_XOffset)+t_N->f_Menus.At(t_X)->f_W);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2191>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2191>");
 		if(bb_challengergui_CHGUI_RealMinimised(t_N->f_Menus.At(t_X))==0 && ((bb_challengergui_CHGUI_RealVisible(t_N->f_Menus.At(t_X)))!=0)){
 			DBG_BLOCK();
 			t_C=t_C+1;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2195>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2195>");
 	t_C=5;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2196>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2196>");
 	t_N->f_Tabbed=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2197>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2197>");
 	for(t_X=0;t_X<=t_N->f_Tabs.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2198>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2198>");
 		if(bb_challengergui_CHGUI_RealMinimised(t_N->f_Tabs.At(t_X))==0 && ((bb_challengergui_CHGUI_RealVisible(t_N->f_Tabs.At(t_X)))!=0)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawTab(t_N->f_Tabs.At(t_X),t_C);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2199>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2199>");
 		if(bb_challengergui_CHGUI_RealMinimised(t_N->f_Tabs.At(t_X))==0 && ((bb_challengergui_CHGUI_RealVisible(t_N->f_Tabs.At(t_X)))!=0)){
 			DBG_BLOCK();
 			t_C=int(Float(t_C)+t_N->f_Tabs.At(t_X)->f_W);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2203>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2203>");
 	for(int t_NN=0;t_NN<=t_N->f_BottomList.Length()-1;t_NN=t_NN+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_NN,"NN")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2204>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2204>");
 		if((t_N->f_BottomList.At(t_NN)->f_Visible)!=0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawContents(t_N->f_BottomList.At(t_NN));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2206>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2206>");
 	for(int t_NN2=0;t_NN2<=t_N->f_VariList.Length()-1;t_NN2=t_NN2+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_NN2,"NN")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2207>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2207>");
 		if((t_N->f_VariList.At(t_NN2)->f_Visible)!=0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawContents(t_N->f_VariList.At(t_NN2));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2209>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2209>");
 	for(int t_NN3=0;t_NN3<=t_N->f_TopList.Length()-1;t_NN3=t_NN3+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_NN3,"NN")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2210>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2210>");
 		if((t_N->f_TopList.At(t_NN3)->f_Visible)!=0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawContents(t_N->f_TopList.At(t_NN3));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2213>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2213>");
 	if((t_N->f_Tabbed)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2214>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2214>");
 		bb_challengergui_CHGUI_DrawContents(t_N->f_CurrentTab);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2218>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2218>");
 	for(t_X=0;t_X<=t_N->f_Menus.Length()-1;t_X=t_X+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2219>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2219>");
 		bb_challengergui_CHGUI_SubMenu(t_N->f_Menus.At(t_X));
 	}
 	return 0;
@@ -13930,58 +13930,58 @@ int bb_graphics_DrawRect(Float t_x,Float t_y,Float t_w,Float t_h){
 	DBG_LOCAL(t_y,"y")
 	DBG_LOCAL(t_w,"w")
 	DBG_LOCAL(t_h,"h")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<369>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<369>");
 	bb_graphics_DebugRenderDevice();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<371>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<371>");
 	bb_graphics_context->m_Validate();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/graphics.monkey<372>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/graphics.monkey<372>");
 	bb_graphics_renderDevice->DrawRect(t_x,t_y,t_w,t_h);
 	return 0;
 }
 int bb_challengergui_CHGUI_DrawTooltip(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_DrawTooltip")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3161>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3161>");
 	int t_X=int(Float(bb_challengergui_CHGUI_RealX(t_N))+t_N->f_W);
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3162>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3162>");
 	int t_Y=int(Float(bb_challengergui_CHGUI_RealY(t_N))+t_N->f_H);
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3163>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3163>");
 	int t_W=int(bb_challengergui_CHGUI_TooltipFont->m_GetTxtWidth2(t_N->f_Tooltip)+FLOAT(10.0));
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3164>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3164>");
 	int t_H=int(bb_challengergui_CHGUI_TooltipFont->m_GetTxtHeight(t_N->f_Tooltip)+FLOAT(10.0));
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3165>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3165>");
 	if(t_X+t_W>bb_graphics_DeviceWidth()){
 		DBG_BLOCK();
 		t_X=bb_graphics_DeviceWidth()-t_W;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3166>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3166>");
 	if(t_Y+t_H>bb_graphics_DeviceHeight()){
 		DBG_BLOCK();
 		t_Y=bb_challengergui_CHGUI_RealY(t_N)-t_H;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3167>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3167>");
 	bb_graphics_SetColor(FLOAT(100.0),FLOAT(100.0),FLOAT(100.0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3168>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3168>");
 	bb_graphics_DrawRect(Float(t_X),Float(t_Y),Float(t_W),Float(t_H));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3169>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3169>");
 	bb_graphics_SetColor(FLOAT(250.0),FLOAT(250.0),FLOAT(210.0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3170>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3170>");
 	bb_graphics_DrawRect(Float(t_X+1),Float(t_Y+1),Float(t_W-2),Float(t_H-2));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3171>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3171>");
 	bb_graphics_SetColor(FLOAT(255.0),FLOAT(255.0),FLOAT(255.0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3172>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3172>");
 	bb_challengergui_CHGUI_TooltipFont->m_DrawText2(t_N->f_Tooltip,Float(t_X+5),Float(t_Y+5));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3173>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3173>");
 	bb_graphics_SetColor(FLOAT(255.0),FLOAT(255.0),FLOAT(255.0));
 	return 0;
 }
 int bb_app_Millisecs(){
 	DBG_ENTER("Millisecs")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<153>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<153>");
 	int t_=bb_app_device->MilliSecs();
 	return t_;
 }
@@ -13990,65 +13990,65 @@ int bb_challengergui_CHGUI_FPSCounter;
 int bb_challengergui_CHGUI_FPS;
 int bb_challengergui_CHGUI_FPSUpdate(){
 	DBG_ENTER("CHGUI_FPSUpdate")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4023>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4023>");
 	if(bb_app_Millisecs()>bb_challengergui_CHGUI_Millisecs){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4024>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4024>");
 		bb_challengergui_CHGUI_Millisecs=bb_app_Millisecs()+1000;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4025>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4025>");
 		bb_challengergui_CHGUI_FPS=bb_challengergui_CHGUI_FPSCounter;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4026>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4026>");
 		bb_challengergui_CHGUI_FPSCounter=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4028>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4028>");
 	bb_challengergui_CHGUI_FPSCounter=bb_challengergui_CHGUI_FPSCounter+1;
 	return 0;
 }
 int bb_challengergui_CHGUI_Draw(){
 	DBG_ENTER("CHGUI_Draw")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<850>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<850>");
 	int t_N=0;
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<851>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<851>");
 	int t_NN=0;
 	DBG_LOCAL(t_NN,"NN")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<853>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<853>");
 	bb_graphics_SetBlend(0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<854>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<854>");
 	bb_graphics_SetColor(FLOAT(255.0),FLOAT(255.0),FLOAT(255.0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<856>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<856>");
 	for(t_N=0;t_N<=bb_challengergui_CHGUI_BottomList.Length()-1;t_N=t_N+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<857>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<857>");
 		if((bb_challengergui_CHGUI_BottomList.At(t_N)->f_Visible)!=0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawContents(bb_challengergui_CHGUI_BottomList.At(t_N));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<859>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<859>");
 	for(t_N=0;t_N<=bb_challengergui_CHGUI_VariList.Length()-1;t_N=t_N+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<860>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<860>");
 		if((bb_challengergui_CHGUI_VariList.At(t_N)->f_Visible)!=0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawContents(bb_challengergui_CHGUI_VariList.At(t_N));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<862>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<862>");
 	for(t_N=0;t_N<=bb_challengergui_CHGUI_TopList.Length()-1;t_N=t_N+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<863>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<863>");
 		if((bb_challengergui_CHGUI_TopList.At(t_N)->f_Visible)!=0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DrawContents(bb_challengergui_CHGUI_TopList.At(t_N));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<866>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<866>");
 	if(bb_challengergui_CHGUI_TooltipFlag!=0){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_DrawTooltip(bb_challengergui_CHGUI_TooltipFlag);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<868>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<868>");
 	bb_challengergui_CHGUI_FPSUpdate();
 	return 0;
 }
@@ -14069,116 +14069,116 @@ bb_challengergui_CHGUI* bb_challengergui_CreateWindow(int t_X,int t_Y,int t_W,in
 	DBG_LOCAL(t_MinimiseButton,"MinimiseButton")
 	DBG_LOCAL(t_Mode,"Mode")
 	DBG_LOCAL(t_Parent,"Parent")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<377>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<377>");
 	if(bb_challengergui_CHGUI_Started==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<378>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<378>");
 		bb_challengergui_CHGUI_Started=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<379>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<379>");
 		bb_challengergui_CHGUI_Start();
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<381>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<381>");
 	bb_challengergui_CHGUI* t_N=(new bb_challengergui_CHGUI)->g_new();
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<382>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<382>");
 	t_N->f_X=Float(t_X);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<383>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<383>");
 	t_N->f_Y=Float(t_Y);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<384>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<384>");
 	t_N->f_W=Float(t_W);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<385>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<385>");
 	t_N->f_H=Float(t_H);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<386>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<386>");
 	t_N->f_Text=t_Title;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<387>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<387>");
 	t_N->f_Shadow=bb_challengergui_CHGUI_Shadow;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<388>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<388>");
 	t_N->f_Close=t_CloseButton;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<389>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<389>");
 	t_N->f_Minimise=t_MinimiseButton;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<390>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<390>");
 	t_N->f_Moveable=t_Moveable;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<391>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<391>");
 	t_N->f_Mode=t_Mode;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<392>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<392>");
 	gc_assign(t_N->f_Parent,t_Parent);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<393>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<393>");
 	if(t_N->f_Parent==0){
 		DBG_BLOCK();
 		gc_assign(t_N->f_Parent,bb_challengergui_CHGUI_Canvas);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<394>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<394>");
 	if(t_N->f_Parent!=0){
 		DBG_BLOCK();
 		t_N->f_Parent->f_IsParent=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<395>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<395>");
 	t_N->f_Element=String(L"Window",6);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<396>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<396>");
 	if(bb_challengergui_CHGUI_CanvasFlag==1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<397>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<397>");
 		if(t_Mode==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<398>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<398>");
 			gc_assign(bb_challengergui_CHGUI_BottomList,bb_challengergui_CHGUI_BottomList.Resize(bb_challengergui_CHGUI_BottomList.Length()+1));
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<399>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<399>");
 			gc_assign(bb_challengergui_CHGUI_BottomList.At(bb_challengergui_CHGUI_BottomList.Length()-1),t_N);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<401>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<401>");
 		if(t_Mode==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<402>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<402>");
 			gc_assign(bb_challengergui_CHGUI_VariList,bb_challengergui_CHGUI_VariList.Resize(bb_challengergui_CHGUI_VariList.Length()+1));
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<403>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<403>");
 			gc_assign(bb_challengergui_CHGUI_VariList.At(bb_challengergui_CHGUI_VariList.Length()-1),t_N);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<405>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<405>");
 		if(t_Mode==2){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<406>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<406>");
 			gc_assign(bb_challengergui_CHGUI_TopList,bb_challengergui_CHGUI_TopList.Resize(bb_challengergui_CHGUI_TopList.Length()+1));
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<407>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<407>");
 			gc_assign(bb_challengergui_CHGUI_TopList.At(bb_challengergui_CHGUI_TopList.Length()-1),t_N);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<408>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<408>");
 			gc_assign(bb_challengergui_CHGUI_TopTop,t_N);
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<411>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<411>");
 		t_N->f_SubWindow=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<412>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<412>");
 		if(t_Mode==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<413>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<413>");
 			gc_assign(t_N->f_Parent->f_BottomList,t_N->f_Parent->f_BottomList.Resize(t_N->f_Parent->f_BottomList.Length()+1));
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<414>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<414>");
 			gc_assign(t_N->f_Parent->f_BottomList.At(t_N->f_Parent->f_BottomList.Length()-1),t_N);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<416>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<416>");
 		if(t_Mode==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<417>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<417>");
 			gc_assign(t_N->f_Parent->f_VariList,t_N->f_Parent->f_VariList.Resize(t_N->f_Parent->f_VariList.Length()+1));
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<418>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<418>");
 			gc_assign(t_N->f_Parent->f_VariList.At(t_N->f_Parent->f_VariList.Length()-1),t_N);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<420>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<420>");
 		if(t_Mode==2){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<421>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<421>");
 			gc_assign(t_N->f_Parent->f_TopList,t_N->f_Parent->f_TopList.Resize(t_N->f_Parent->f_TopList.Length()+1));
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<422>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<422>");
 			gc_assign(t_N->f_Parent->f_TopList.At(t_N->f_Parent->f_TopList.Length()-1),t_N);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<426>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<426>");
 	return t_N;
 }
 String bb_app_LoadString(String t_path){
 	DBG_ENTER("LoadString")
 	DBG_LOCAL(t_path,"path")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/app.monkey<141>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/app.monkey<141>");
 	String t_=bb_app_device->LoadString(bb_data_FixDataPath(t_path));
 	return t_;
 }
@@ -14191,546 +14191,546 @@ bb_challengergui_CHGUI* bb_challengergui_CHGUI_CreateKeyButton(int t_X,int t_Y,i
 	DBG_LOCAL(t_H,"H")
 	DBG_LOCAL(t_Text,"Text")
 	DBG_LOCAL(t_Parent,"Parent")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3209>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3209>");
 	bb_challengergui_CHGUI* t_N=(new bb_challengergui_CHGUI)->g_new();
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3210>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3210>");
 	gc_assign(t_N->f_Parent,t_Parent);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3211>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3211>");
 	if(t_Parent==0){
 		DBG_BLOCK();
 		gc_assign(t_N->f_Parent,bb_challengergui_CHGUI_Canvas);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3212>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3212>");
 	t_N->f_X=Float(t_X);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3213>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3213>");
 	t_N->f_Y=Float(t_Y);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3214>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3214>");
 	t_N->f_W=Float(t_W);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3215>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3215>");
 	t_N->f_H=Float(t_H);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3216>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3216>");
 	t_N->f_Text=t_Text;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3218>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3218>");
 	gc_assign(t_N->f_Parent->f_Buttons,t_N->f_Parent->f_Buttons.Resize(t_N->f_Parent->f_Buttons.Length()+1));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3219>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3219>");
 	gc_assign(t_N->f_Parent->f_Buttons.At(t_N->f_Parent->f_Buttons.Length()-1),t_N);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3220>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3220>");
 	return t_N;
 }
 int bb_challengergui_CHGUI_CreateKeyboard(){
 	DBG_ENTER("CHGUI_CreateKeyboard")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3224>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3224>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardWindow,bb_challengergui_CreateWindow(0,0,bb_graphics_DeviceWidth(),100,String(),0,0,0,2,0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3225>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3225>");
 	Float t_KeyWidth=Float(bb_graphics_DeviceWidth())/FLOAT(12.5);
 	DBG_LOCAL(t_KeyWidth,"KeyWidth")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3226>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3226>");
 	Float t_KeyHeight=Float(bb_graphics_DeviceWidth())/FLOAT(12.5);
 	DBG_LOCAL(t_KeyHeight,"KeyHeight")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3228>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3228>");
 	Float t_GapX=t_KeyWidth*FLOAT(2.0)/FLOAT(9.0);
 	DBG_LOCAL(t_GapX,"GapX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3229>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3229>");
 	Float t_GapY=t_KeyWidth*FLOAT(2.0)/FLOAT(9.0);
 	DBG_LOCAL(t_GapY,"GapY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3231>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3231>");
 	if(bb_graphics_DeviceWidth()>bb_graphics_DeviceHeight()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3232>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3232>");
 		t_KeyHeight=t_KeyHeight/FLOAT(1.7);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3233>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3233>");
 		t_GapY=t_GapY/FLOAT(1.2);
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3235>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3235>");
 		t_KeyHeight=t_KeyHeight*FLOAT(1.5);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3236>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3236>");
 		t_GapY=t_GapY*FLOAT(1.2);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3240>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3240>");
 	Float t_EndGap=(Float(bb_graphics_DeviceWidth())-t_KeyWidth*FLOAT(10.0)-t_GapX*FLOAT(9.0))/FLOAT(2.0);
 	DBG_LOCAL(t_EndGap,"EndGap")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3241>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3241>");
 	bb_challengergui_CHGUI_KeyboardWindow->f_H=t_EndGap*FLOAT(2.0)+t_GapY*FLOAT(3.0)+t_KeyHeight*FLOAT(4.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3242>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3242>");
 	bb_challengergui_CHGUI_KeyboardWindow->f_Y=Float(bb_graphics_DeviceHeight())-bb_challengergui_CHGUI_KeyboardWindow->f_H;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3245>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3245>");
 	Float t_SX=t_EndGap;
 	DBG_LOCAL(t_SX,"SX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3246>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3246>");
 	Float t_SY=t_EndGap;
 	DBG_LOCAL(t_SY,"SY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3249>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3249>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(0),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"q",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3250>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3250>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3251>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3251>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(1),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"w",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3252>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3252>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3253>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3253>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(2),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"e",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3254>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3254>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3255>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3255>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(3),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"r",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3256>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3256>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3257>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3257>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(4),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"t",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3258>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3258>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3259>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3259>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(5),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"y",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3260>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3260>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3261>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3261>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(6),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"u",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3262>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3262>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3263>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3263>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(7),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"i",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3264>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3264>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3265>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3265>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(8),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"o",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3266>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3266>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3267>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3267>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(9),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"p",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3268>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3268>");
 	t_SX=t_EndGap+t_KeyWidth/FLOAT(2.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3269>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3269>");
 	t_SY=t_SY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3270>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3270>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(10),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"a",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3271>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3271>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3272>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3272>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(11),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"s",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3273>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3273>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3274>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3274>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(12),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"d",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3275>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3275>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3276>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3276>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(13),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"f",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3277>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3277>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3278>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3278>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(14),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"g",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3279>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3279>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3280>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3280>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(15),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"h",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3281>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3281>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3282>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3282>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(16),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"j",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3283>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3283>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3284>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3284>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(17),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"k",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3285>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3285>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3286>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3286>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(18),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"l",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3287>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3287>");
 	t_SX=t_EndGap+t_KeyWidth/FLOAT(2.0)+t_GapX+t_KeyWidth;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3288>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3288>");
 	t_SY=t_SY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3289>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3289>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(19),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"z",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3290>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3290>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3291>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3291>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(20),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"x",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3292>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3292>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3293>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3293>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(21),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"c",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3294>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3294>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3295>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3295>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(22),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"v",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3296>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3296>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3297>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3297>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(23),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"b",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3298>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3298>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3299>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3299>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(24),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"n",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3300>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3300>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3301>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3301>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(25),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"m",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3303>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3303>");
 	t_SX=t_EndGap;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3304>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3304>");
 	t_SY=t_EndGap;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3307>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3307>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(26),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"Q",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3308>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3308>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3309>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3309>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(27),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"W",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3310>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3310>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3311>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3311>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(28),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"E",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3312>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3312>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3313>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3313>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(29),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"R",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3314>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3314>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3315>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3315>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(30),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"T",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3316>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3316>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3317>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3317>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(31),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"Y",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3318>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3318>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3319>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3319>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(32),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"U",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3320>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3320>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3321>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3321>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(33),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"I",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3322>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3322>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3323>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3323>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(34),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"O",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3324>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3324>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3325>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3325>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(35),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"P",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3326>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3326>");
 	t_SX=t_EndGap+t_KeyWidth/FLOAT(2.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3327>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3327>");
 	t_SY=t_SY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3328>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3328>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(36),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"A",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3329>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3329>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3330>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3330>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(37),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"S",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3331>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3331>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3332>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3332>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(38),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"D",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3333>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3333>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3334>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3334>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(39),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"F",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3335>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3335>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3336>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3336>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(40),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"G",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3337>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3337>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3338>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3338>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(41),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"H",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3339>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3339>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3340>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3340>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(42),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"J",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3341>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3341>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3342>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3342>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(43),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"K",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3343>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3343>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3344>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3344>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(44),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"L",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3345>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3345>");
 	t_SX=t_EndGap+t_KeyWidth/FLOAT(2.0)+t_GapX+t_KeyWidth;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3346>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3346>");
 	t_SY=t_SY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3347>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3347>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(45),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"Z",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3348>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3348>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3349>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3349>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(46),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"X",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3350>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3350>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3351>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3351>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(47),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"C",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3352>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3352>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3353>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3353>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(48),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"V",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3354>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3354>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3355>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3355>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(49),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"B",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3356>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3356>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3357>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3357>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(50),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"N",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3358>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3358>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3359>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3359>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(51),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"M",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3362>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3362>");
 	t_SX=t_EndGap;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3363>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3363>");
 	t_SY=t_EndGap;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3366>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3366>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(52),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"1",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3367>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3367>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3368>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3368>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(53),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"2",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3369>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3369>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3370>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3370>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(54),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"3",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3371>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3371>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3372>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3372>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(55),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"4",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3373>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3373>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3374>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3374>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(56),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"5",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3375>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3375>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3376>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3376>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(57),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"6",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3377>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3377>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3378>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3378>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(58),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"7",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3379>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3379>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3380>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3380>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(59),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"8",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3381>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3381>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3382>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3382>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(60),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"9",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3383>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3383>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3384>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3384>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(61),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"0",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3385>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3385>");
 	t_SX=t_EndGap+t_KeyWidth/FLOAT(2.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3386>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3386>");
 	t_SY=t_SY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3387>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3387>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(62),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"-",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3388>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3388>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3389>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3389>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(63),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"/",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3390>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3390>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3391>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3391>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(64),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"\\",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3392>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3392>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3393>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3393>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(65),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L":",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3394>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3394>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3395>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3395>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(66),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L";",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3396>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3396>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3397>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3397>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(67),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"(",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3398>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3398>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3399>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3399>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(68),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L")",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3400>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3400>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3401>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3401>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(69),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L""L"\xa3"L"",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3402>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3402>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3403>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3403>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(70),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"&",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3404>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3404>");
 	t_SX=t_EndGap+t_KeyWidth/FLOAT(2.0)+t_GapX+t_KeyWidth;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3405>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3405>");
 	t_SY=t_SY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3406>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3406>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(71),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"@",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3407>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3407>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3408>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3408>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(72),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L".",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3409>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3409>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3410>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3410>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(73),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L",",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3411>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3411>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3412>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3412>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(74),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"?",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3413>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3413>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3414>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3414>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(75),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"!",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3415>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3415>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3416>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3416>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(76),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"'",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3417>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3417>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3418>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3418>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(77),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String((Char)(34),1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3421>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3421>");
 	t_SX=t_EndGap;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3422>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3422>");
 	t_SY=t_EndGap;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3425>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3425>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(78),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"[",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3426>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3426>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3427>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3427>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(79),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"]",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3428>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3428>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3429>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3429>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(80),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"{",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3430>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3430>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3431>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3431>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(81),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"}",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3432>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3432>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3433>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3433>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(82),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"#",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3434>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3434>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3435>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3435>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(83),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"%",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3436>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3436>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3437>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3437>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(84),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"^",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3438>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3438>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3439>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3439>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(85),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"*",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3440>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3440>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3441>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3441>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(86),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"+",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3442>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3442>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3443>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3443>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(87),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"=",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3444>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3444>");
 	t_SX=t_EndGap+t_KeyWidth/FLOAT(2.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3445>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3445>");
 	t_SY=t_SY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3446>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3446>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(88),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"_",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3447>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3447>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3448>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3448>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(89),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"|",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3449>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3449>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3450>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3450>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(90),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"~",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3451>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3451>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3452>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3452>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(91),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"<",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3453>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3453>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3454>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3454>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(92),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L">",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3455>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3455>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3456>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3456>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(93),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"$",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3457>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3457>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3458>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3458>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(94),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L""L"\x20ac"L"",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3459>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3459>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3460>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3460>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(95),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L""L"\xe9"L"",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3461>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3461>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3462>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3462>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(96),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L""L"\xac"L"",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3463>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3463>");
 	t_SX=t_EndGap+t_KeyWidth/FLOAT(2.0)+t_GapX+t_KeyWidth;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3464>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3464>");
 	t_SY=t_SY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3465>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3465>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(97),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"@",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3466>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3466>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3467>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3467>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(98),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L".",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3468>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3468>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3469>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3469>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(99),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L",",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3470>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3470>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3471>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3471>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(100),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"?",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3472>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3472>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3473>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3473>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(101),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"!",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3474>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3474>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3475>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3475>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(102),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String(L"'",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3476>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3476>");
 	t_SX=t_SX+t_KeyWidth+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3477>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3477>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(103),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth),int(t_KeyHeight),String((Char)(34),1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3480>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3480>");
 	t_SX=t_EndGap;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3481>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3481>");
 	t_SY=t_EndGap+t_KeyHeight+t_GapY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3482>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3482>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(104),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth+t_KeyWidth/FLOAT(2.0)),int(t_KeyHeight),String(L"Shft",4),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3483>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3483>");
 	t_SX=t_EndGap+t_KeyWidth*FLOAT(9.0)+t_GapX*FLOAT(9.0)-t_KeyWidth/FLOAT(2.0)-t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3484>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3484>");
 	t_SY=t_EndGap+t_KeyHeight+t_GapY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3485>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3485>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(105),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth+t_KeyWidth/FLOAT(2.0)),int(t_KeyHeight),String(L"<--",3),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3486>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3486>");
 	t_SX=t_EndGap;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3487>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3487>");
 	t_SY=t_SY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3488>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3488>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(106),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth*FLOAT(2.0)+t_KeyWidth/FLOAT(2.0)+t_GapX),int(t_KeyHeight),String(L"123",3),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3489>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3489>");
 	t_SX=t_SX+t_KeyWidth*FLOAT(2.0)+t_KeyWidth/FLOAT(2.0)+t_GapX+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3490>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3490>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(107),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth*FLOAT(5.0)+t_GapX*FLOAT(4.0)),int(t_KeyHeight),String(L" ",1),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3491>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3491>");
 	t_SX=t_SX+t_KeyWidth*FLOAT(5.0)+t_GapX*FLOAT(5.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3492>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3492>");
 	gc_assign(bb_challengergui_CHGUI_KeyboardButtons.At(108),bb_challengergui_CHGUI_CreateKeyButton(int(t_SX),int(t_SY),int(t_KeyWidth*FLOAT(2.0)+t_KeyWidth/FLOAT(2.0)+t_GapX),int(t_KeyHeight),String(L"Enter",5),bb_challengergui_CHGUI_KeyboardWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3494>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3494>");
 	for(int t_C=0;t_C<=108;t_C=t_C+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_C,"C")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3495>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3495>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C)->f_Visible=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3497>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3497>");
 	bb_challengergui_CHGUI_KeyboardWindow->f_Visible=0;
 	return 0;
 }
@@ -14741,37 +14741,37 @@ bb_challengergui_CHGUI* bb_challengergui_CreateLabel(int t_X,int t_Y,String t_Te
 	DBG_LOCAL(t_Y,"Y")
 	DBG_LOCAL(t_Text,"Text")
 	DBG_LOCAL(t_Parent,"Parent")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<678>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<678>");
 	if(bb_challengergui_CHGUI_Started==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<679>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<679>");
 		bb_challengergui_CHGUI_Started=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<680>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<680>");
 		bb_challengergui_CHGUI_Start();
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<682>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<682>");
 	bb_challengergui_CHGUI* t_N=(new bb_challengergui_CHGUI)->g_new();
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<683>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<683>");
 	gc_assign(t_N->f_Parent,t_Parent);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<684>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<684>");
 	if(t_Parent==0){
 		DBG_BLOCK();
 		gc_assign(t_N->f_Parent,bb_challengergui_CHGUI_Canvas);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<685>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<685>");
 	t_N->f_X=Float(t_X);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<686>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<686>");
 	t_N->f_Y=Float(t_Y);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<687>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<687>");
 	t_N->f_Text=t_Text;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<689>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<689>");
 	t_N->f_Element=String(L"Label",5);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<691>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<691>");
 	gc_assign(t_N->f_Parent->f_Labels,t_N->f_Parent->f_Labels.Resize(t_N->f_Parent->f_Labels.Length()+1));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<692>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<692>");
 	gc_assign(t_N->f_Parent->f_Labels.At(t_N->f_Parent->f_Labels.Length()-1),t_N);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<693>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<693>");
 	return t_N;
 }
 bb_challengergui_CHGUI* bb_challengergui_CHGUI_MsgBoxLabel;
@@ -14783,108 +14783,108 @@ bb_challengergui_CHGUI* bb_challengergui_CreateButton(int t_X,int t_Y,int t_W,in
 	DBG_LOCAL(t_H,"H")
 	DBG_LOCAL(t_Text,"Text")
 	DBG_LOCAL(t_Parent,"Parent")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<431>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<431>");
 	if(bb_challengergui_CHGUI_Started==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<432>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<432>");
 		bb_challengergui_CHGUI_Started=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<433>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<433>");
 		bb_challengergui_CHGUI_Start();
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<435>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<435>");
 	bb_challengergui_CHGUI* t_N=(new bb_challengergui_CHGUI)->g_new();
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<436>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<436>");
 	gc_assign(t_N->f_Parent,t_Parent);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<437>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<437>");
 	if(t_Parent==0){
 		DBG_BLOCK();
 		gc_assign(t_N->f_Parent,bb_challengergui_CHGUI_Canvas);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<438>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<438>");
 	t_N->f_X=Float(t_X);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<439>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<439>");
 	t_N->f_Y=Float(t_Y);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<440>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<440>");
 	t_N->f_W=Float(t_W);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<441>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<441>");
 	t_N->f_H=Float(t_H);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<442>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<442>");
 	t_N->f_Text=t_Text;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<443>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<443>");
 	t_N->f_Element=String(L"Button",6);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<445>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<445>");
 	gc_assign(t_N->f_Parent->f_Buttons,t_N->f_Parent->f_Buttons.Resize(t_N->f_Parent->f_Buttons.Length()+1));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<446>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<446>");
 	gc_assign(t_N->f_Parent->f_Buttons.At(t_N->f_Parent->f_Buttons.Length()-1),t_N);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<447>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<447>");
 	return t_N;
 }
 bb_challengergui_CHGUI* bb_challengergui_CHGUI_MsgBoxButton;
 int bb_challengergui_CHGUI_Start(){
 	DBG_ENTER("CHGUI_Start")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3180>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3180>");
 	if(bb_challengergui_CHGUI_Width==0){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_Width=bb_graphics_DeviceWidth();
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3181>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3181>");
 	if(bb_challengergui_CHGUI_Height==0){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_Height=bb_graphics_DeviceHeight();
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3182>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3182>");
 	bb_challengergui_CHGUI_CanvasFlag=1;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3183>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3183>");
 	gc_assign(bb_challengergui_CHGUI_Canvas,bb_challengergui_CreateWindow(0,0,bb_challengergui_CHGUI_Width,bb_challengergui_CHGUI_Height,String(),0,0,0,0,0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3184>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3184>");
 	bb_challengergui_CHGUI_CanvasFlag=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3185>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3185>");
 	if(bb_challengergui_CHGUI_Style==0){
 		DBG_BLOCK();
 		gc_assign(bb_challengergui_CHGUI_Style,bb_graphics_LoadImage(String(L"GUI_mac.png",11),1,bb_graphics_Image::g_DefaultFlags));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3186>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3186>");
 	gc_assign(bb_challengergui_CHGUI_ShadowImg,bb_graphics_LoadImage(String(L"Shadow.png",10),1,bb_graphics_Image::g_DefaultFlags));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3187>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3187>");
 	if(bb_challengergui_CHGUI_MobileMode==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3188>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3188>");
 		if(bb_challengergui_CHGUI_TitleFont==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TitleFont,bb_bitmapfont_BitmapFont::g_Load(String(L"Arial10B.txt",12),true));
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3189>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3189>");
 		if(bb_challengergui_CHGUI_Font==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_Font,bb_bitmapfont_BitmapFont::g_Load(String(L"Arial12.txt",11),true));
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3191>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3191>");
 		if(bb_challengergui_CHGUI_TitleFont==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TitleFont,bb_bitmapfont_BitmapFont::g_Load(String(L"Arial20B.txt",12),true));
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3192>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3192>");
 		if(bb_challengergui_CHGUI_Font==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_Font,bb_bitmapfont_BitmapFont::g_Load(String(L"Arial22.txt",11),true));
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3193>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3193>");
 		bb_challengergui_CHGUI_TitleHeight=FLOAT(50.0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3195>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3195>");
 	bb_challengergui_CHGUI_CreateKeyboard();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3196>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3196>");
 	gc_assign(bb_challengergui_CHGUI_MsgBoxWindow,bb_challengergui_CreateWindow(100,100,200,100,String(L"Message box",11),0,0,0,2,0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3197>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3197>");
 	gc_assign(bb_challengergui_CHGUI_MsgBoxLabel,bb_challengergui_CreateLabel(100,50,String(L"Message text",12),bb_challengergui_CHGUI_MsgBoxWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3198>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3198>");
 	gc_assign(bb_challengergui_CHGUI_MsgBoxButton,bb_challengergui_CreateButton(150,70,100,25,String(L"Ok",2),bb_challengergui_CHGUI_MsgBoxWindow));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3199>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3199>");
 	bb_challengergui_CHGUI_MsgBoxWindow->f_Visible=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3200>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3200>");
 	gc_assign(bb_challengergui_CHGUI_TooltipFont,bb_bitmapfont_BitmapFont::g_Load(String(L"Arial10.txt",11),true));
 	return 0;
 }
@@ -14912,41 +14912,41 @@ bb_challengergui_CHGUI* bb_challengergui_CreateDropdown(int t_X,int t_Y,int t_W,
 	DBG_LOCAL(t_H,"H")
 	DBG_LOCAL(t_Text,"Text")
 	DBG_LOCAL(t_Parent,"Parent")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<494>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<494>");
 	if(bb_challengergui_CHGUI_Started==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<495>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<495>");
 		bb_challengergui_CHGUI_Started=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<496>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<496>");
 		bb_challengergui_CHGUI_Start();
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<498>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<498>");
 	bb_challengergui_CHGUI* t_N=(new bb_challengergui_CHGUI)->g_new();
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<499>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<499>");
 	gc_assign(t_N->f_Parent,t_Parent);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<500>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<500>");
 	if(t_N->f_Parent==0){
 		DBG_BLOCK();
 		gc_assign(t_N->f_Parent,bb_challengergui_CHGUI_Canvas);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<501>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<501>");
 	t_N->f_X=Float(t_X);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<502>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<502>");
 	t_N->f_Y=Float(t_Y);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<503>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<503>");
 	t_N->f_H=Float(t_H);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<504>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<504>");
 	t_N->f_W=Float(t_W);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<505>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<505>");
 	t_N->f_Text=t_Text;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<506>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<506>");
 	t_N->f_Element=String(L"Dropdown",8);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<508>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<508>");
 	gc_assign(t_N->f_Parent->f_Dropdowns,t_N->f_Parent->f_Dropdowns.Resize(t_N->f_Parent->f_Dropdowns.Length()+1));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<509>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<509>");
 	gc_assign(t_N->f_Parent->f_Dropdowns.At(t_N->f_Parent->f_Dropdowns.Length()-1),t_N);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<510>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<510>");
 	return t_N;
 }
 bb_challengergui_CHGUI* bb_challengergui_CreateTextfield(int t_X,int t_Y,int t_W,int t_H,String t_Text,bb_challengergui_CHGUI* t_Parent){
@@ -14957,47 +14957,47 @@ bb_challengergui_CHGUI* bb_challengergui_CreateTextfield(int t_X,int t_Y,int t_W
 	DBG_LOCAL(t_H,"H")
 	DBG_LOCAL(t_Text,"Text")
 	DBG_LOCAL(t_Parent,"Parent")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<634>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<634>");
 	if(bb_challengergui_CHGUI_Started==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<635>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<635>");
 		bb_challengergui_CHGUI_Started=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<636>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<636>");
 		bb_challengergui_CHGUI_Start();
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<638>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<638>");
 	bb_challengergui_CHGUI* t_N=(new bb_challengergui_CHGUI)->g_new();
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<639>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<639>");
 	gc_assign(t_N->f_Parent,t_Parent);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<640>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<640>");
 	if(t_Parent==0){
 		DBG_BLOCK();
 		gc_assign(t_N->f_Parent,bb_challengergui_CHGUI_Canvas);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<641>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<641>");
 	t_N->f_X=Float(t_X);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<642>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<642>");
 	t_N->f_Y=Float(t_Y);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<643>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<643>");
 	t_N->f_W=Float(t_W);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<644>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<644>");
 	t_N->f_H=Float(t_H);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<645>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<645>");
 	t_N->f_Text=t_Text;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<646>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<646>");
 	t_N->f_Element=String(L"Textfield",9);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<648>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<648>");
 	gc_assign(t_N->f_Parent->f_Textfields,t_N->f_Parent->f_Textfields.Resize(t_N->f_Parent->f_Textfields.Length()+1));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<649>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<649>");
 	gc_assign(t_N->f_Parent->f_Textfields.At(t_N->f_Parent->f_Textfields.Length()-1),t_N);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<650>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<650>");
 	return t_N;
 }
 int bb_input_TouchDown(int t_index){
 	DBG_ENTER("TouchDown")
 	DBG_LOCAL(t_index,"index")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/input.monkey<93>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/input.monkey<93>");
 	int t_=bb_input_device->KeyDown(384+t_index);
 	return t_;
 }
@@ -15017,99 +15017,99 @@ int bb_challengergui_CHGUI_IgnoreMouse;
 Float bb_input_TouchX(int t_index){
 	DBG_ENTER("TouchX")
 	DBG_LOCAL(t_index,"index")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/input.monkey<85>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/input.monkey<85>");
 	Float t_=bb_input_device->TouchX(t_index);
 	return t_;
 }
 Float bb_input_TouchY(int t_index){
 	DBG_ENTER("TouchY")
 	DBG_LOCAL(t_index,"index")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/input.monkey<89>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/input.monkey<89>");
 	Float t_=bb_input_device->TouchY(t_index);
 	return t_;
 }
 int bb_challengergui_CHGUI_ReorderSubWindows(bb_challengergui_CHGUI* t_Top){
 	DBG_ENTER("CHGUI_ReorderSubWindows")
 	DBG_LOCAL(t_Top,"Top")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3984>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3984>");
 	if(t_Top->f_Parent->f_TopVari!=t_Top && t_Top->f_Mode==1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3985>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3985>");
 		int t_N=0;
 		DBG_LOCAL(t_N,"N")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3986>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3986>");
 		for(t_N=0;t_N<=t_Top->f_Parent->f_VariList.Length()-1;t_N=t_N+1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3987>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3987>");
 			if(t_Top->f_Parent->f_VariList.At(t_N)==t_Top){
 				DBG_BLOCK();
 				break;
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3989>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3989>");
 		for(int t_NN=t_N;t_NN<=t_Top->f_Parent->f_VariList.Length()-2;t_NN=t_NN+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_NN,"NN")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3990>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3990>");
 			gc_assign(t_Top->f_Parent->f_VariList.At(t_NN),t_Top->f_Parent->f_VariList.At(t_NN+1));
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3992>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3992>");
 		gc_assign(t_Top->f_Parent->f_VariList.At(t_Top->f_Parent->f_VariList.Length()-1),t_Top);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3993>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3993>");
 		gc_assign(t_Top->f_Parent->f_TopVari,t_Top);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3996>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3996>");
 	if(t_Top->f_Parent->f_TopTop!=t_Top && t_Top->f_Mode==2){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3997>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3997>");
 		int t_N2=0;
 		DBG_LOCAL(t_N2,"N")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3998>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3998>");
 		for(t_N2=0;t_N2<=t_Top->f_Parent->f_TopList.Length()-1;t_N2=t_N2+1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3999>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3999>");
 			if(t_Top->f_Parent->f_TopList.At(t_N2)==t_Top){
 				DBG_BLOCK();
 				break;
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4001>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4001>");
 		for(int t_NN2=t_N2;t_NN2<=t_Top->f_Parent->f_TopList.Length()-2;t_NN2=t_NN2+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_NN2,"NN")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4002>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4002>");
 			gc_assign(t_Top->f_Parent->f_TopList.At(t_NN2),t_Top->f_Parent->f_TopList.At(t_NN2+1));
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4004>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4004>");
 		gc_assign(t_Top->f_Parent->f_TopList.At(t_Top->f_Parent->f_TopList.Length()-1),t_Top);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4005>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4005>");
 		gc_assign(t_Top->f_Parent->f_TopTop,t_Top);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4008>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4008>");
 	if(t_Top->f_Parent->f_TopBottom!=t_Top && t_Top->f_Mode==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4009>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4009>");
 		int t_N3=0;
 		DBG_LOCAL(t_N3,"N")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4010>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4010>");
 		for(t_N3=0;t_N3<=t_Top->f_Parent->f_BottomList.Length()-1;t_N3=t_N3+1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4011>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4011>");
 			if(t_Top->f_Parent->f_BottomList.At(t_N3)==t_Top){
 				DBG_BLOCK();
 				break;
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4013>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4013>");
 		for(int t_NN3=t_N3;t_NN3<=t_Top->f_Parent->f_BottomList.Length()-2;t_NN3=t_NN3+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_NN3,"NN")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4014>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4014>");
 			gc_assign(t_Top->f_Parent->f_BottomList.At(t_NN3),t_Top->f_Parent->f_BottomList.At(t_NN3+1));
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4016>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4016>");
 		gc_assign(t_Top->f_Parent->f_BottomList.At(t_Top->f_Parent->f_BottomList.Length()-1),t_Top);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4017>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4017>");
 		gc_assign(t_Top->f_Parent->f_TopBottom,t_Top);
 	}
 	return 0;
@@ -15117,12 +15117,12 @@ int bb_challengergui_CHGUI_ReorderSubWindows(bb_challengergui_CHGUI* t_Top){
 int bb_challengergui_CHGUI_Reorder(bb_challengergui_CHGUI* t_Top){
 	DBG_ENTER("CHGUI_Reorder")
 	DBG_LOCAL(t_Top,"Top")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3979>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3979>");
 	if(t_Top->f_Mode==1){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_ReorderSubWindows(t_Top);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3980>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3980>");
 	if(t_Top->f_Mode==2){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_ReorderSubWindows(t_Top);
@@ -15132,31 +15132,31 @@ int bb_challengergui_CHGUI_Reorder(bb_challengergui_CHGUI* t_Top){
 int bb_challengergui_CHGUI_CloseMenu(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_CloseMenu")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1614>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1614>");
 	t_N->f_OnFocus=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1615>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1615>");
 	bb_challengergui_CHGUI* t_E=t_N;
 	DBG_LOCAL(t_E,"E")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1616>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1616>");
 	do{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1617>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1617>");
 		if(t_E->f_Parent->f_Element==String(L"Window",6)){
 			DBG_BLOCK();
 			t_E->f_Parent->f_MenuActive=0;
 			break;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1618>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1618>");
 		if(t_E->f_Parent->f_Element==String(L"MenuItem",8)){
 			DBG_BLOCK();
 			t_E->f_Parent->f_OnFocus=0;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1619>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1619>");
 		if(t_E->f_Parent->f_Element==String(L"Menu",4)){
 			DBG_BLOCK();
 			t_E->f_Parent->f_OnFocus=0;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1621>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1621>");
 		t_E=t_E->f_Parent;
 	}while(!(false));
 	return 0;
@@ -15164,27 +15164,27 @@ int bb_challengergui_CHGUI_CloseMenu(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_CloseMenuReverse(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_CloseMenuReverse")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1626>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1626>");
 	t_N->f_OnFocus=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1627>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1627>");
 	bb_challengergui_CHGUI* t_E=t_N;
 	DBG_LOCAL(t_E,"E")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1628>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1628>");
 	int t_C=0;
 	DBG_LOCAL(t_C,"C")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1629>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1629>");
 	for(t_C=0;t_C<=t_E->f_MenuItems.Length()-1;t_C=t_C+1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1630>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1630>");
 		if(t_E->f_MenuItems.Length()>0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1631>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1631>");
 			bb_challengergui_CHGUI_CloseMenuReverse(t_E->f_MenuItems.At(t_C));
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1632>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1632>");
 			t_E->f_MenuItems.At(t_C)->f_OnFocus=0;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1634>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1634>");
 			break;
 		}
 	}
@@ -15196,78 +15196,78 @@ int bb_challengergui_CHGUI_MenuClose;
 int bb_challengergui_CHGUI_UpdateMenuItem(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateMenuItem")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1566>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1566>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1567>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1567>");
 	if((bb_challengergui_CHGUI_RealActive(t_N))!=0){
 		DBG_BLOCK();
 		t_N->m_CheckDown();
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1568>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1568>");
 	if(bb_challengergui_CHGUI_RealVisible(t_N)==0){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_CloseMenu(t_N);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1570>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1570>");
 	if((t_N->f_Over)!=0){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_MenuOver=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1572>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1572>");
 	if(((t_N->f_IsMenuParent)!=0) && ((t_N->f_Over)!=0) && ((bb_challengergui_CHGUI_RealActive(t_N))!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1573>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1573>");
 		t_N->f_OnFocus=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1574>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1574>");
 		if(t_N->f_Parent->f_MenuOver!=0 && t_N!=t_N->f_Parent->f_MenuOver){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1575>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1575>");
 			t_N->f_Parent->f_MenuOver->f_OnFocus=0;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1576>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1576>");
 			bb_challengergui_CHGUI_CloseMenuReverse(t_N->f_Parent->f_MenuOver);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1578>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1578>");
 		gc_assign(t_N->f_Parent->f_MenuOver,t_N);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1581>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1581>");
 	if(t_N->f_Parent->f_MenuOver!=0 && ((t_N->f_Over)!=0) && t_N!=t_N->f_Parent->f_MenuOver){
 		DBG_BLOCK();
 		t_N->f_Parent->f_MenuOver->f_OnFocus=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1583>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1583>");
 	if((t_N->f_Clicked)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1584>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1584>");
 		if(t_N->f_IsMenuParent==0 && t_N->f_Tick==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1585>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1585>");
 			bb_challengergui_CHGUI_CloseMenu(t_N);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1587>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1587>");
 		if((t_N->f_Tick)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1588>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1588>");
 			if(t_N->f_Value==FLOAT(0.0)){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1589>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1589>");
 				t_N->f_Value=FLOAT(1.0);
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1591>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1591>");
 				t_N->f_Value=FLOAT(0.0);
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1596>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1596>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1597>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1597>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1599>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1599>");
 	if((bb_challengergui_CHGUI_MenuClose)!=0){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_CloseMenu(t_N);
@@ -15277,24 +15277,24 @@ int bb_challengergui_CHGUI_UpdateMenuItem(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_UpdateSubMenu(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateSubMenu")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1603>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1603>");
 	int t_XX=0;
 	DBG_LOCAL(t_XX,"XX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1604>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1604>");
 	for(t_XX=t_N->f_MenuItems.Length()-1;t_XX>=0;t_XX=t_XX+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1605>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1605>");
 		t_N->f_MenuItems.At(t_XX)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1606>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1606>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_MenuItems.At(t_XX)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_MenuItems.At(t_XX))==0 && ((t_N->f_OnFocus)!=0)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateMenuItem(t_N->f_MenuItems.At(t_XX));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1608>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1608>");
 	for(t_XX=t_N->f_MenuItems.Length()-1;t_XX>=0;t_XX=t_XX+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1609>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1609>");
 		if((t_N->f_MenuItems.At(t_XX)->f_IsMenuParent)!=0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateSubMenu(t_N->f_MenuItems.At(t_XX));
@@ -15305,19 +15305,19 @@ int bb_challengergui_CHGUI_UpdateSubMenu(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_UpdateTab(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateTab")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2028>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2028>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2029>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2029>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2031>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2031>");
 	if((t_N->f_Clicked)!=0){
 		DBG_BLOCK();
 		gc_assign(t_N->f_Parent->f_CurrentTab,t_N);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2033>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2033>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2034>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2034>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -15328,60 +15328,60 @@ int bb_challengergui_CHGUI_UpdateTab(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_UpdateMenu(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateMenu")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1534>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1534>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1535>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1535>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1536>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1536>");
 	if((t_N->f_Over)!=0){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_MenuOver=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1538>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1538>");
 	if((t_N->f_Clicked)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1539>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1539>");
 		if(t_N->f_Parent->f_MenuActive!=t_N){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1540>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1540>");
 			if(t_N->f_MenuItems.Length()>0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1541>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1541>");
 				t_N->f_OnFocus=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1542>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1542>");
 				gc_assign(t_N->f_Parent->f_MenuActive,t_N);
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1545>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1545>");
 			t_N->f_OnFocus=0;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1546>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1546>");
 			bb_challengergui_CHGUI_CloseMenuReverse(t_N->f_Parent->f_MenuActive);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1547>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1547>");
 			t_N->f_Parent->f_MenuActive=0;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1552>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1552>");
 	if(((t_N->f_OnFocus)!=0) && t_N->f_MenuItems.Length()<1){
 		DBG_BLOCK();
 		t_N->f_OnFocus=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1553>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1553>");
 	if(((t_N->f_Over)!=0) && t_N->f_Parent->f_MenuActive!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1554>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1554>");
 		t_N->f_Parent->f_MenuActive->f_OnFocus=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1555>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1555>");
 		bb_challengergui_CHGUI_CloseMenuReverse(t_N->f_Parent->f_MenuActive);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1556>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1556>");
 		gc_assign(t_N->f_Parent->f_MenuActive,t_N);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1557>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1557>");
 		t_N->f_OnFocus=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1560>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1560>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1561>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1561>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -15393,46 +15393,46 @@ int bb_challengergui_CHGUI_UpdateDropdownItem(bb_challengergui_CHGUI* t_N,int t_
 	DBG_ENTER("CHGUI_UpdateDropdownItem")
 	DBG_LOCAL(t_N,"N")
 	DBG_LOCAL(t_C,"C")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1506>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1506>");
 	t_N->f_H=t_N->f_Parent->f_H;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1507>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1507>");
 	t_N->f_W=t_N->f_Parent->f_W;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1508>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1508>");
 	t_N->f_X=FLOAT(0.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1509>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1509>");
 	t_N->f_Y=t_N->f_Parent->f_H+Float(t_C)*t_N->f_H-Float(t_C)-FLOAT(1.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1511>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1511>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1512>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1512>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1514>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1514>");
 	if((t_N->f_Clicked)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1515>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1515>");
 		t_N->f_Parent->f_Text=t_N->f_Text;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1516>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1516>");
 		t_N->f_Parent->f_Value=t_N->f_Value;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1517>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1517>");
 		t_N->f_Parent->f_OnFocus=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1520>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1520>");
 	if((bb_input_TouchDown(0))!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1521>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1521>");
 		if(bb_input_TouchX(0)<Float(bb_challengergui_CHGUI_RealX(t_N->f_Parent)) || bb_input_TouchX(0)>Float(bb_challengergui_CHGUI_RealX(t_N->f_Parent))+t_N->f_W || bb_input_TouchY(0)<Float(bb_challengergui_CHGUI_RealY(t_N->f_Parent)) || bb_input_TouchY(0)>Float(bb_challengergui_CHGUI_RealY(t_N->f_Parent))+t_N->f_H*Float(t_N->f_Parent->f_DropdownItems.Length()+1)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1522>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1522>");
 			t_N->f_Parent->f_OnFocus=0;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1523>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1523>");
 			t_N->f_Parent->f_Over=0;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1524>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1524>");
 			t_N->f_Parent->f_Down=0;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1528>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1528>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1529>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1529>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -15443,28 +15443,28 @@ int bb_challengergui_CHGUI_UpdateDropdownItem(bb_challengergui_CHGUI* t_N,int t_
 int bb_challengergui_CHGUI_UpdateDropdown(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateDropdown")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1489>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1489>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1490>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1490>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1492>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1492>");
 	if((t_N->f_Clicked)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1493>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1493>");
 		if(t_N->f_OnFocus==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1494>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1494>");
 			t_N->f_OnFocus=0;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1496>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1496>");
 			t_N->f_OnFocus=1;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1500>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1500>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1501>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1501>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -15475,13 +15475,13 @@ int bb_challengergui_CHGUI_UpdateDropdown(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_UpdateLabel(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateLabel")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2081>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2081>");
 	t_N->f_W=bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2082>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2082>");
 	t_N->f_H=bb_challengergui_CHGUI_Font->m_GetTxtHeight(t_N->f_Text);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2084>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2084>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2085>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2085>");
 	t_N->m_CheckDown();
 	return 0;
 }
@@ -15489,7 +15489,7 @@ bb_challengergui_CHGUI* bb_challengergui_CHGUI_TextboxFocus;
 int bb_challengergui_CHGUI_Keyboard;
 int bb_input_EnableKeyboard(){
 	DBG_ENTER("EnableKeyboard")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/input.monkey<41>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/input.monkey<41>");
 	int t_=bb_input_device->SetKeyboardEnabled(1);
 	return t_;
 }
@@ -15497,141 +15497,141 @@ int bb_challengergui_CHGUI_ShowKeyboard;
 int bb_challengergui_CHGUI_AutoTextScroll;
 int bb_input_GetChar(){
 	DBG_ENTER("GetChar")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/input.monkey<57>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/input.monkey<57>");
 	int t_=bb_input_device->GetChar();
 	return t_;
 }
 int bb_challengergui_CHGUI_GetText(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_GetText")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1957>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1957>");
 	String t_Before=t_N->f_Text.Slice(0,t_N->f_Cursor);
 	DBG_LOCAL(t_Before,"Before")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1958>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1958>");
 	String t_After=t_N->f_Text.Slice(t_N->f_Cursor);
 	DBG_LOCAL(t_After,"After")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1959>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1959>");
 	int t_In=bb_input_GetChar();
 	DBG_LOCAL(t_In,"In")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1962>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1962>");
 	if(t_In>96 && t_In<123 && t_N->f_FormatText==1 && bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text)<t_N->f_W-FLOAT(12.0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1963>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1963>");
 		t_Before=t_Before+String((Char)(t_In),1);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1964>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1964>");
 		t_N->f_Cursor=t_N->f_Cursor+1;
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1967>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1967>");
 		if(t_In>64 && t_In<91 && t_N->f_FormatText==1 && bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text)<t_N->f_W-FLOAT(12.0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1968>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1968>");
 			t_Before=t_Before+String((Char)(t_In),1);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1969>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1969>");
 			t_N->f_Cursor=t_N->f_Cursor+1;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1972>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1972>");
 			if(t_In>45 && t_In<58 && t_N->f_FormatNumber==1 && bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text)<t_N->f_W-FLOAT(12.0)){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1973>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1973>");
 				if(t_In!=47 || t_N->f_FormatSymbol==1){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1974>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1974>");
 					t_Before=t_Before+String((Char)(t_In),1);
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1975>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1975>");
 					t_N->f_Cursor=t_N->f_Cursor+1;
 				}
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1978>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1978>");
 				if(t_In>32 && t_In<48 && t_N->f_FormatSymbol==1 && bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text)<t_N->f_W-FLOAT(12.0)){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1979>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1979>");
 					t_Before=t_Before+String((Char)(t_In),1);
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1980>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1980>");
 					t_N->f_Cursor=t_N->f_Cursor+1;
 				}else{
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1983>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1983>");
 					if(t_In>57 && t_In<65 && t_N->f_FormatSymbol==1 && bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text)<t_N->f_W-FLOAT(12.0)){
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1984>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1984>");
 						t_Before=t_Before+String((Char)(t_In),1);
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1985>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1985>");
 						t_N->f_Cursor=t_N->f_Cursor+1;
 					}else{
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1988>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1988>");
 						if(t_In>90 && t_In<97 && t_N->f_FormatSymbol==1 && bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text)<t_N->f_W-FLOAT(12.0)){
 							DBG_BLOCK();
-							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1989>");
+							DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1989>");
 							t_Before=t_Before+String((Char)(t_In),1);
-							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1990>");
+							DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1990>");
 							t_N->f_Cursor=t_N->f_Cursor+1;
 						}else{
 							DBG_BLOCK();
-							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1993>");
+							DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1993>");
 							if(t_In>122 && t_In<127 && t_N->f_FormatSymbol==1 && bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text)<t_N->f_W-FLOAT(12.0)){
 								DBG_BLOCK();
-								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1994>");
+								DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1994>");
 								t_Before=t_Before+String((Char)(t_In),1);
-								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1995>");
+								DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1995>");
 								t_N->f_Cursor=t_N->f_Cursor+1;
 							}else{
 								DBG_BLOCK();
-								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1998>");
+								DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1998>");
 								if(t_In==32 && t_N->f_FormatSpace==1 && bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text)<t_N->f_W-FLOAT(12.0)){
 									DBG_BLOCK();
-									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1999>");
+									DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1999>");
 									t_Before=t_Before+String((Char)(t_In),1);
-									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2000>");
+									DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2000>");
 									t_N->f_Cursor=t_N->f_Cursor+1;
 								}else{
 									DBG_BLOCK();
-									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2002>");
+									DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2002>");
 									if(t_In==8){
 										DBG_BLOCK();
-										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2004>");
+										DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2004>");
 										t_Before=t_Before.Slice(0,t_Before.Length()-1);
-										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2005>");
+										DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2005>");
 										if(t_N->f_Cursor>0){
 											DBG_BLOCK();
 											t_N->f_Cursor=t_N->f_Cursor-1;
 										}
 									}else{
 										DBG_BLOCK();
-										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2007>");
+										DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2007>");
 										if(t_In==127){
 											DBG_BLOCK();
-											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2009>");
+											DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2009>");
 											t_After=t_After.Slice(1);
 										}else{
 											DBG_BLOCK();
-											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2011>");
+											DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2011>");
 											if(t_In==65575){
 												DBG_BLOCK();
-												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2013>");
+												DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2013>");
 												if(t_N->f_Cursor<t_N->f_Text.Length()){
 													DBG_BLOCK();
 													t_N->f_Cursor=t_N->f_Cursor+1;
 												}
 											}else{
 												DBG_BLOCK();
-												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2015>");
+												DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2015>");
 												if(t_In==65573){
 													DBG_BLOCK();
-													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2017>");
+													DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2017>");
 													if(t_N->f_Cursor>0){
 														DBG_BLOCK();
 														t_N->f_Cursor=t_N->f_Cursor-1;
 													}
 												}else{
 													DBG_BLOCK();
-													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2019>");
+													DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2019>");
 													if(t_In==13){
 														DBG_BLOCK();
-														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2021>");
+														DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2021>");
 														t_N->f_OnFocus=0;
 													}
 												}
@@ -15646,233 +15646,233 @@ int bb_challengergui_CHGUI_GetText(bb_challengergui_CHGUI* t_N){
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2024>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2024>");
 	t_N->f_Text=t_Before+t_After;
 	return 0;
 }
 int bb_challengergui_CHGUI_UpdateKeyboardSizes(){
 	DBG_ENTER("CHGUI_UpdateKeyboardSizes")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3725>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3725>");
 	Float t_KeyWidth=Float(bb_graphics_DeviceWidth())/FLOAT(12.5);
 	DBG_LOCAL(t_KeyWidth,"KeyWidth")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3726>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3726>");
 	Float t_KeyHeight=Float(bb_graphics_DeviceWidth())/FLOAT(12.5);
 	DBG_LOCAL(t_KeyHeight,"KeyHeight")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3728>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3728>");
 	Float t_GapX=t_KeyWidth*FLOAT(2.0)/FLOAT(9.0);
 	DBG_LOCAL(t_GapX,"GapX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3729>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3729>");
 	Float t_GapY=t_KeyWidth*FLOAT(2.0)/FLOAT(9.0);
 	DBG_LOCAL(t_GapY,"GapY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3731>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3731>");
 	if(bb_graphics_DeviceWidth()>bb_graphics_DeviceHeight()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3732>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3732>");
 		t_KeyHeight=t_KeyHeight/FLOAT(1.7);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3733>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3733>");
 		t_GapY=t_GapY/FLOAT(1.2);
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3735>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3735>");
 		t_KeyHeight=t_KeyHeight*FLOAT(1.5);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3736>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3736>");
 		t_GapY=t_GapY*FLOAT(1.2);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3740>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3740>");
 	Float t_EndGap=(Float(bb_graphics_DeviceWidth())-t_KeyWidth*FLOAT(10.0)-t_GapX*FLOAT(9.0))/FLOAT(2.0);
 	DBG_LOCAL(t_EndGap,"EndGap")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3742>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3742>");
 	bb_challengergui_CHGUI_KeyboardWindow->f_H=t_EndGap*FLOAT(2.0)+t_GapY*FLOAT(3.0)+t_KeyHeight*FLOAT(4.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3743>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3743>");
 	bb_challengergui_CHGUI_KeyboardWindow->f_Y=Float(bb_graphics_DeviceHeight())-bb_challengergui_CHGUI_KeyboardWindow->f_H;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3744>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3744>");
 	bb_challengergui_CHGUI_KeyboardWindow->f_W=Float(bb_graphics_DeviceWidth());
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3746>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3746>");
 	Float t_SX=t_EndGap;
 	DBG_LOCAL(t_SX,"SX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3747>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3747>");
 	Float t_SY=t_EndGap;
 	DBG_LOCAL(t_SY,"SY")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3749>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3749>");
 	for(int t_C=0;t_C<=9;t_C=t_C+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_C,"C")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3750>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3750>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C)->f_X=t_SX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3751>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3751>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C)->f_Y=t_SY;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3752>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3752>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C)->f_W=t_KeyWidth;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3753>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3753>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C)->f_H=t_KeyHeight;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3754>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3754>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C+26)->f_X=t_SX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3755>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3755>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C+26)->f_Y=t_SY;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3756>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3756>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C+26)->f_W=t_KeyWidth;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3757>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3757>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C+26)->f_H=t_KeyHeight;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3758>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3758>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C+52)->f_X=t_SX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3759>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3759>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C+52)->f_Y=t_SY;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3760>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3760>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C+52)->f_W=t_KeyWidth;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3761>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3761>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C+52)->f_H=t_KeyHeight;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3762>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3762>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C+78)->f_X=t_SX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3763>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3763>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C+78)->f_Y=t_SY;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3764>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3764>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C+78)->f_W=t_KeyWidth;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3765>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3765>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C+78)->f_H=t_KeyHeight;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3766>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3766>");
 		t_SX=t_SX+t_GapX+t_KeyWidth;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3769>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3769>");
 	t_SX=t_EndGap+t_KeyWidth/FLOAT(2.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3770>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3770>");
 	t_SY=t_SY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3772>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3772>");
 	for(int t_C2=10;t_C2<=18;t_C2=t_C2+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_C2,"C")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3773>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3773>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2)->f_X=t_SX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3774>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3774>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2)->f_Y=t_SY;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3775>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3775>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2)->f_W=t_KeyWidth;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3776>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3776>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2)->f_H=t_KeyHeight;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3777>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3777>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2+26)->f_X=t_SX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3778>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3778>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2+26)->f_Y=t_SY;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3779>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3779>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2+26)->f_W=t_KeyWidth;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3780>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3780>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2+26)->f_H=t_KeyHeight;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3781>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3781>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2+52)->f_X=t_SX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3782>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3782>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2+52)->f_Y=t_SY;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3783>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3783>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2+52)->f_W=t_KeyWidth;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3784>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3784>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2+52)->f_H=t_KeyHeight;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3785>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3785>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2+78)->f_X=t_SX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3786>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3786>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2+78)->f_Y=t_SY;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3787>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3787>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2+78)->f_W=t_KeyWidth;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3788>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3788>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C2+78)->f_H=t_KeyHeight;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3789>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3789>");
 		t_SX=t_SX+t_GapX+t_KeyWidth;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3792>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3792>");
 	t_SX=t_EndGap+t_KeyWidth/FLOAT(2.0)+t_GapX+t_KeyWidth;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3793>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3793>");
 	t_SY=t_SY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3795>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3795>");
 	for(int t_C3=19;t_C3<=25;t_C3=t_C3+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_C3,"C")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3796>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3796>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3)->f_X=t_SX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3797>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3797>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3)->f_Y=t_SY;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3798>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3798>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3)->f_W=t_KeyWidth;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3799>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3799>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3)->f_H=t_KeyHeight;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3800>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3800>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3+26)->f_X=t_SX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3801>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3801>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3+26)->f_Y=t_SY;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3802>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3802>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3+26)->f_W=t_KeyWidth;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3803>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3803>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3+26)->f_H=t_KeyHeight;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3804>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3804>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3+52)->f_X=t_SX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3805>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3805>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3+52)->f_Y=t_SY;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3806>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3806>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3+52)->f_W=t_KeyWidth;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3807>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3807>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3+52)->f_H=t_KeyHeight;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3808>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3808>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3+78)->f_X=t_SX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3809>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3809>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3+78)->f_Y=t_SY;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3810>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3810>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3+78)->f_W=t_KeyWidth;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3811>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3811>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C3+78)->f_H=t_KeyHeight;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3812>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3812>");
 		t_SX=t_SX+t_GapX+t_KeyWidth;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3815>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3815>");
 	t_SX=t_EndGap;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3816>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3816>");
 	t_SY=t_EndGap+t_KeyHeight+t_GapY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3817>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3817>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_X=t_SX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3818>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3818>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_Y=t_SY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3819>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3819>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_W=t_KeyWidth+t_KeyWidth/FLOAT(2.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3820>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3820>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_H=t_KeyHeight;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3823>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3823>");
 	t_SX=t_EndGap+t_KeyWidth*FLOAT(9.0)+t_GapX*FLOAT(9.0)-t_KeyWidth/FLOAT(2.0)-t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3824>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3824>");
 	t_SY=t_EndGap+t_KeyHeight+t_GapY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3825>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3825>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(105)->f_X=t_SX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3826>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3826>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(105)->f_Y=t_SY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3827>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3827>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(105)->f_W=t_KeyWidth+t_KeyWidth/FLOAT(2.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3828>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3828>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(105)->f_H=t_KeyHeight;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3830>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3830>");
 	t_SX=t_EndGap;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3831>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3831>");
 	t_SY=t_SY+t_KeyHeight+t_GapY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3832>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3832>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_X=t_SX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3833>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3833>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_Y=t_SY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3834>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3834>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_W=t_KeyWidth*FLOAT(2.0)+t_KeyWidth/FLOAT(2.0)+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3835>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3835>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_H=t_KeyHeight;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3837>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3837>");
 	t_SX=t_SX+t_KeyWidth*FLOAT(2.0)+t_KeyWidth/FLOAT(2.0)+t_GapX+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3838>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3838>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(107)->f_X=t_SX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3839>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3839>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(107)->f_Y=t_SY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3840>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3840>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(107)->f_W=t_KeyWidth*FLOAT(5.0)+t_GapX*FLOAT(4.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3841>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3841>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(107)->f_H=t_KeyHeight;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3843>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3843>");
 	t_SX=t_SX+t_KeyWidth*FLOAT(5.0)+t_GapX*FLOAT(5.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3844>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3844>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(108)->f_X=t_SX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3845>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3845>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(108)->f_Y=t_SY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3846>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3846>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(108)->f_W=t_KeyWidth*FLOAT(2.0)+t_KeyWidth/FLOAT(2.0)+t_GapX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3847>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3847>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(108)->f_H=t_KeyHeight;
 	return 0;
 }
@@ -15883,562 +15883,562 @@ Float bb_challengergui_CHGUI_OldY;
 int bb_challengergui_CHGUI_UpdateKeyboard(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateKeyboard")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3502>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3502>");
 	bb_challengergui_CHGUI_Reorder(bb_challengergui_CHGUI_KeyboardWindow);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3504>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3504>");
 	bb_challengergui_CHGUI_UpdateKeyboardSizes();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3507>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3507>");
 	bb_challengergui_CHGUI_KeyboardWindow->f_X=FLOAT(0.0)-bb_challengergui_CHGUI_OffsetX;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3508>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3508>");
 	bb_challengergui_CHGUI_KeyboardWindow->f_Y=Float(bb_graphics_DeviceHeight())-bb_challengergui_CHGUI_KeyboardWindow->f_H-bb_challengergui_CHGUI_OffsetY;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3511>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3511>");
 	if(bb_challengergui_CHGUI_KeyboardPage>1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3512>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3512>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_Active=0;
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3514>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3514>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_Active=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3519>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3519>");
 	for(int t_C=0;t_C<=108;t_C=t_C+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_C,"C")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3520>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3520>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C)->f_Active=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3523>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3523>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_Active=1;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3525>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3525>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_Active=1;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3527>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3527>");
 	bb_challengergui_CHGUI_KeyboardButtons.At(107)->f_Active=1;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3530>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3530>");
 	if(t_N->f_FormatSpace==0){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_KeyboardButtons.At(107)->f_Active=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3534>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3534>");
 	if(t_N->f_FormatText==1 && t_N->f_FormatNumber==0 && t_N->f_FormatSymbol==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3535>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3535>");
 		if(bb_challengergui_CHGUI_KeyboardPage>1){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_KeyboardPage=0;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3536>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3536>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_Active=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3539>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3539>");
 	if(t_N->f_FormatNumber==1 && t_N->f_FormatText==0 && t_N->f_FormatSymbol==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3540>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3540>");
 		bb_challengergui_CHGUI_KeyboardPage=2;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3541>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3541>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_Active=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3542>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3542>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_Active=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3543>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3543>");
 		for(int t_C2=62;t_C2<=77;t_C2=t_C2+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_C2,"C")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3544>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3544>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(t_C2)->f_Active=0;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3548>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3548>");
 	if(t_N->f_FormatNumber==0 && t_N->f_FormatText==0 && t_N->f_FormatSymbol==1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3549>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3549>");
 		if(bb_challengergui_CHGUI_KeyboardPage<2){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_KeyboardPage=2;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3550>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3550>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_Active=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3551>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3551>");
 		for(int t_C3=52;t_C3<=61;t_C3=t_C3+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_C3,"C")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3552>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3552>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(t_C3)->f_Active=0;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3556>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3556>");
 	if(t_N->f_FormatText==1 && t_N->f_FormatNumber==1 && t_N->f_FormatSymbol==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3557>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3557>");
 		if(bb_challengergui_CHGUI_KeyboardPage>2){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_KeyboardPage=0;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3558>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3558>");
 		for(int t_C4=62;t_C4<=77;t_C4=t_C4+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_C4,"C")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3559>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3559>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(t_C4)->f_Active=0;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3563>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3563>");
 	if(t_N->f_FormatText==1 && t_N->f_FormatNumber==0 && t_N->f_FormatSymbol==1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3564>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3564>");
 		for(int t_C5=52;t_C5<=61;t_C5=t_C5+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_C5,"C")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3565>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3565>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(t_C5)->f_Active=0;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3569>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3569>");
 	if(t_N->f_FormatText==0 && t_N->f_FormatNumber==1 && t_N->f_FormatSymbol==1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3570>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3570>");
 		if(bb_challengergui_CHGUI_KeyboardPage<2){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_KeyboardPage=2;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3571>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3571>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_Active=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3576>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3576>");
 	if(bb_challengergui_CHGUI_KeyboardPage>1){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_Active=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3583>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3583>");
 	if(bb_challengergui_CHGUI_KeyboardPage<2){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3584>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3584>");
 		if((bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_Clicked)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3585>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3585>");
 			if(bb_challengergui_CHGUI_KeyboardShift==0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3586>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3586>");
 				bb_challengergui_CHGUI_KeyboardShift=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3587>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3587>");
 				bb_challengergui_CHGUI_KeyboardPage=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3588>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3588>");
 				bb_challengergui_CHGUI_ShiftHold=0;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3590>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3590>");
 				bb_challengergui_CHGUI_KeyboardShift=0;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3591>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3591>");
 				bb_challengergui_CHGUI_KeyboardPage=0;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3592>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3592>");
 				bb_challengergui_CHGUI_ShiftHold=0;
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3596>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3596>");
 		if((bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_DoubleClicked)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3597>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3597>");
 			bb_challengergui_CHGUI_ShiftHold=1;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3598>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3598>");
 			bb_challengergui_CHGUI_KeyboardShift=1;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3599>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3599>");
 			bb_challengergui_CHGUI_KeyboardPage=1;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3604>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3604>");
 	if((bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_Clicked)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3605>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3605>");
 		if(bb_challengergui_CHGUI_KeyboardPage==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3606>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3606>");
 			bb_challengergui_CHGUI_KeyboardPage=2;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3607>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3607>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_Active=0;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3608>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3608>");
 			if(bb_challengergui_CHGUI_KeyboardPage==1){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3609>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3609>");
 				bb_challengergui_CHGUI_KeyboardPage=2;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3610>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3610>");
 				bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_Active=0;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3611>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3611>");
 				if(bb_challengergui_CHGUI_KeyboardPage==2){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3612>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3612>");
 					bb_challengergui_CHGUI_KeyboardPage=3;
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3613>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3613>");
 					bb_challengergui_CHGUI_KeyboardButtons.At(104)->f_Active=0;
 				}else{
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3614>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3614>");
 					if(bb_challengergui_CHGUI_KeyboardPage==3){
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3615>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3615>");
 						bb_challengergui_CHGUI_KeyboardPage=0;
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3616>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3616>");
 						bb_challengergui_CHGUI_KeyboardShift=0;
 					}
 				}
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3622>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3622>");
 	if(bb_challengergui_CHGUI_KeyboardPage==0 || bb_challengergui_CHGUI_KeyboardPage==1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3623>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3623>");
 		if(t_N->f_FormatNumber==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3624>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3624>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_Text=String(L"123",3);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3626>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3626>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_Text=String(L"#+=",3);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3630>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3630>");
 	if(bb_challengergui_CHGUI_KeyboardPage==2){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3631>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3631>");
 		if(t_N->f_FormatSymbol==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3632>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3632>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_Text=String(L"#+=",3);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3634>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3634>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_Text=String(L"Abc",3);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3638>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3638>");
 	if(bb_challengergui_CHGUI_KeyboardPage==3){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3639>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3639>");
 		if(t_N->f_FormatText==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3640>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3640>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_Text=String(L"#+=",3);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3641>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3641>");
 			if(t_N->f_FormatNumber==1){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3642>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3642>");
 				bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_Text=String(L"123",3);
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3644>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3644>");
 				bb_challengergui_CHGUI_KeyboardButtons.At(106)->f_Text=String(L"#+=",3);
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3651>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3651>");
 	for(int t_C6=0;t_C6<=108;t_C6=t_C6+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_C6,"C")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3652>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3652>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C6)->f_Visible=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3655>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3655>");
 	if(bb_challengergui_CHGUI_KeyboardPage==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3656>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3656>");
 		for(int t_C7=0;t_C7<=25;t_C7=t_C7+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_C7,"C")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3657>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3657>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(t_C7)->f_Visible=1;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3660>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3660>");
 	if(bb_challengergui_CHGUI_KeyboardPage==1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3661>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3661>");
 		for(int t_C8=26;t_C8<=51;t_C8=t_C8+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_C8,"C")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3662>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3662>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(t_C8)->f_Visible=1;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3665>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3665>");
 	if(bb_challengergui_CHGUI_KeyboardPage==2){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3666>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3666>");
 		for(int t_C9=52;t_C9<=77;t_C9=t_C9+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_C9,"C")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3667>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3667>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(t_C9)->f_Visible=1;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3670>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3670>");
 	if(bb_challengergui_CHGUI_KeyboardPage==3){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3671>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3671>");
 		for(int t_C10=78;t_C10<=103;t_C10=t_C10+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_C10,"C")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3672>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3672>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(t_C10)->f_Visible=1;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3675>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3675>");
 	for(int t_C11=104;t_C11<=108;t_C11=t_C11+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_C11,"C")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3676>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3676>");
 		bb_challengergui_CHGUI_KeyboardButtons.At(t_C11)->f_Visible=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3681>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3681>");
 	String t_Before=t_N->f_Text.Slice(0,t_N->f_Cursor);
 	DBG_LOCAL(t_Before,"Before")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3682>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3682>");
 	String t_After=t_N->f_Text.Slice(t_N->f_Cursor);
 	DBG_LOCAL(t_After,"After")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3685>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3685>");
 	for(int t_C1=0;t_C1<=103;t_C1=t_C1+1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_C1,"C1")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3686>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3686>");
 		if(((bb_challengergui_CHGUI_KeyboardButtons.At(t_C1)->f_Clicked)!=0) && bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text)<t_N->f_W-FLOAT(12.0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3687>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3687>");
 			t_Before=t_Before+bb_challengergui_CHGUI_KeyboardButtons.At(t_C1)->f_Text;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3688>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3688>");
 			t_N->f_Cursor=t_N->f_Cursor+1;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3689>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3689>");
 			if(bb_challengergui_CHGUI_ShiftHold==0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3690>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3690>");
 				if(bb_challengergui_CHGUI_KeyboardPage==0 || bb_challengergui_CHGUI_KeyboardPage==1){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3691>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3691>");
 					bb_challengergui_CHGUI_KeyboardShift=0;
 					bb_challengergui_CHGUI_KeyboardPage=0;
 				}
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3697>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3697>");
 	if((bb_challengergui_CHGUI_KeyboardButtons.At(105)->f_Down)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3698>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3698>");
 		if(bb_challengergui_CHGUI_KeyboardButtons.At(105)->f_DKeyMillisecs<bb_app_Millisecs()){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3699>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3699>");
 			bb_challengergui_CHGUI_KeyboardButtons.At(105)->f_DKeyMillisecs=bb_app_Millisecs()+150;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3700>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3700>");
 			t_Before=t_Before.Slice(0,t_Before.Length()-1);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3701>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3701>");
 			if(t_N->f_Cursor>0){
 				DBG_BLOCK();
 				t_N->f_Cursor=t_N->f_Cursor-1;
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3705>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3705>");
 	if(((bb_challengergui_CHGUI_KeyboardButtons.At(107)->f_Clicked)!=0) && bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text)<t_N->f_W-FLOAT(12.0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3706>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3706>");
 		t_Before=t_Before+String(L" ",1);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3707>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3707>");
 		t_N->f_Cursor=t_N->f_Cursor+1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3710>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3710>");
 	if((bb_challengergui_CHGUI_KeyboardButtons.At(108)->f_Clicked)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3711>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3711>");
 		t_N->f_OnFocus=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3712>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3712>");
 		bb_challengergui_CHGUI_KeyboardWindow->f_Visible=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3713>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3713>");
 		bb_challengergui_CHGUI_KeyboardPage=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3714>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3714>");
 		if(bb_challengergui_CHGUI_AutoTextScroll==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3715>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3715>");
 			bb_challengergui_CHGUI_TargetX=bb_challengergui_CHGUI_OldX;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3716>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3716>");
 			bb_challengergui_CHGUI_TargetY=bb_challengergui_CHGUI_OldY;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3717>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3717>");
 			bb_challengergui_CHGUI_Moving=1;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3721>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3721>");
 	t_N->f_Text=t_Before+t_After;
 	return 0;
 }
 int bb_input_DisableKeyboard(){
 	DBG_ENTER("DisableKeyboard")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/mojo/input.monkey<45>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/mojo/input.monkey<45>");
 	int t_=bb_input_device->SetKeyboardEnabled(0);
 	return t_;
 }
 int bb_challengergui_CHGUI_UpdateTextfield(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateTextfield")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1873>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1873>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1874>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1874>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1876>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1876>");
 	if((t_N->f_Over)!=0){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_TextBoxOver=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1877>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1877>");
 	if((t_N->f_Down)!=0){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_TextBoxDown=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1878>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1878>");
 	if((t_N->f_OnFocus)!=0){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_TextboxOnFocus=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1881>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1881>");
 	if((t_N->f_Clicked)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1882>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1882>");
 		gc_assign(bb_challengergui_CHGUI_TextboxFocus,t_N);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1883>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1883>");
 		if(t_N->f_OnFocus==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1884>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1884>");
 			t_N->f_Cursor=t_N->f_Text.Length();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1885>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1885>");
 			t_N->f_OnFocus=1;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1886>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1886>");
 			if(bb_challengergui_CHGUI_Keyboard==1){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1887>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1887>");
 				bb_input_EnableKeyboard();
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1888>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1888>");
 				if(bb_challengergui_CHGUI_Keyboard==2){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1889>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1889>");
 					bb_challengergui_CHGUI_ShowKeyboard=1;
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1890>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1890>");
 					bb_challengergui_CHGUI_KeyboardWindow->f_Visible=1;
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1891>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1891>");
 					bb_challengergui_CHGUI_ShiftHold=0;
 				}
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1894>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1894>");
 			if((bb_challengergui_CHGUI_AutoTextScroll)!=0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1895>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1895>");
 				bb_challengergui_CHGUI_TargetX=Float(-bb_challengergui_CHGUI_RealX(t_N))+bb_challengergui_CHGUI_OffsetX+FLOAT(100.0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1896>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1896>");
 				bb_challengergui_CHGUI_TargetY=Float(-bb_challengergui_CHGUI_RealY(t_N))+bb_challengergui_CHGUI_OffsetY+FLOAT(100.0);
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1897>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1897>");
 				bb_challengergui_CHGUI_Moving=1;
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1903>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1903>");
 			int t_C=0;
 			DBG_LOCAL(t_C,"C")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1904>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1904>");
 			for(t_C=0;t_C<=t_N->f_Text.Length()-1;t_C=t_C+1){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1905>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1905>");
 				if(bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text.Slice(0,t_C)+String(L"NON",3))-bb_challengergui_CHGUI_Font->m_GetTxtWidth2(String(L"NON",3))>bb_input_TouchX(0)-Float(bb_challengergui_CHGUI_RealX(t_N))-FLOAT(10.0)){
 					DBG_BLOCK();
 					break;
 				}
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1907>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1907>");
 			t_N->f_Cursor=t_C;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1912>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1912>");
 	if((t_N->f_OnFocus)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1913>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1913>");
 		if(bb_challengergui_CHGUI_Keyboard==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1914>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1914>");
 			bb_challengergui_CHGUI_GetText(t_N);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1915>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1915>");
 			if(bb_challengergui_CHGUI_Keyboard==2){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1916>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1916>");
 				bb_challengergui_CHGUI_UpdateKeyboard(t_N);
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1918>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1918>");
 				bb_challengergui_CHGUI_GetText(t_N);
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1927>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1927>");
 	if(((bb_input_TouchDown(0))!=0) && t_N->f_Over==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1928>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1928>");
 		if(bb_challengergui_CHGUI_Keyboard==2){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1929>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1929>");
 			if(bb_input_TouchY(0)<Float(bb_graphics_DeviceHeight())-bb_challengergui_CHGUI_KeyboardWindow->f_H){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1930>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1930>");
 				t_N->f_OnFocus=0;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1931>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1931>");
 				if(bb_challengergui_CHGUI_Keyboard==1){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1932>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1932>");
 					bb_input_DisableKeyboard();
 				}else{
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1933>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1933>");
 					if(bb_challengergui_CHGUI_Keyboard==2){
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1934>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1934>");
 						bb_challengergui_CHGUI_ShowKeyboard=0;
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1935>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1935>");
 						bb_challengergui_CHGUI_KeyboardWindow->f_Visible=0;
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1936>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1936>");
 						bb_challengergui_CHGUI_KeyboardPage=0;
 					}
 				}
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1940>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1940>");
 			t_N->f_OnFocus=0;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1941>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1941>");
 			if(bb_challengergui_CHGUI_Keyboard==1){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1942>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1942>");
 				bb_input_DisableKeyboard();
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1943>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1943>");
 				if(bb_challengergui_CHGUI_Keyboard==2){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1944>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1944>");
 					bb_challengergui_CHGUI_ShowKeyboard=0;
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1945>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1945>");
 					bb_challengergui_CHGUI_KeyboardWindow->f_Visible=0;
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1946>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1946>");
 					bb_challengergui_CHGUI_KeyboardPage=0;
 				}
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1951>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1951>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1952>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1952>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -16449,156 +16449,156 @@ int bb_challengergui_CHGUI_UpdateTextfield(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_UpdateHSlider(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateHSlider")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1640>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1640>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1641>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1641>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1642>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1642>");
 	if(t_N->f_Value<t_N->f_Minimum){
 		DBG_BLOCK();
 		t_N->f_Value=t_N->f_Minimum;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1643>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1643>");
 	if(t_N->f_Value>t_N->f_Maximum){
 		DBG_BLOCK();
 		t_N->f_Value=t_N->f_Maximum;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1644>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1644>");
 	int t_X=bb_challengergui_CHGUI_RealX(t_N);
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1645>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1645>");
 	int t_Y=bb_challengergui_CHGUI_RealY(t_N);
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1646>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1646>");
 	int t_W=int(t_N->f_W);
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1647>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1647>");
 	int t_H=int(t_N->f_H);
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1650>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1650>");
 	t_N->f_Stp=(t_N->f_W-FLOAT(2.0)*t_N->f_H)/(t_N->f_Maximum-t_N->f_Minimum);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1651>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1651>");
 	t_N->f_SWidth=t_N->f_Stp;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1652>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1652>");
 	if(t_N->f_SWidth<t_N->f_H){
 		DBG_BLOCK();
 		t_N->f_SWidth=t_N->f_H;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1653>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1653>");
 	if(t_N->f_SWidth>t_N->f_W-t_N->f_H-t_N->f_H-FLOAT(10.0)){
 		DBG_BLOCK();
 		t_N->f_SWidth=t_N->f_W-t_N->f_H-t_N->f_H-FLOAT(10.0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1654>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1654>");
 	t_N->f_Stp=(t_N->f_W-t_N->f_SWidth-t_N->f_H-t_N->f_H)/(t_N->f_Maximum-t_N->f_Minimum);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1655>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1655>");
 	t_N->f_SWidth=t_N->f_SWidth+FLOAT(10.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1658>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1658>");
 	if(((t_N->f_MinusOver)!=0) && ((t_N->f_MinusDown)!=0) && bb_input_TouchDown(0)==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1659>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1659>");
 		t_N->f_MinusOver=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1660>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1660>");
 		t_N->f_MinusDown=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1661>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1661>");
 		t_N->f_Value=t_N->f_Value-FLOAT(1.0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1662>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1662>");
 		if(t_N->f_Value<t_N->f_Minimum){
 			DBG_BLOCK();
 			t_N->f_Value=t_N->f_Minimum;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1666>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1666>");
 	if(((t_N->f_Over)!=0) && bb_input_TouchX(0)>Float(t_X) && bb_input_TouchX(0)<Float(t_X+t_H) && bb_input_TouchY(0)>Float(t_Y) && bb_input_TouchY(0)<Float(t_Y+t_H)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1667>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1667>");
 		if(bb_challengergui_CHGUI_MouseBusy==0 || ((t_N->f_MinusDown)!=0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1668>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1668>");
 			t_N->f_MinusOver=1;
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1671>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1671>");
 		t_N->f_MinusOver=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1675>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1675>");
 	if(((t_N->f_MinusOver)!=0) || ((t_N->f_MinusDown)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1676>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1676>");
 		if((bb_input_TouchDown(0))!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1677>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1677>");
 			t_N->f_MinusDown=1;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1679>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1679>");
 			t_N->f_MinusDown=0;
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1682>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1682>");
 		t_N->f_MinusDown=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1686>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1686>");
 	if(((t_N->f_PlusOver)!=0) && ((t_N->f_PlusDown)!=0) && bb_input_TouchDown(0)==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1687>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1687>");
 		t_N->f_PlusOver=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1688>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1688>");
 		t_N->f_PlusDown=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1689>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1689>");
 		t_N->f_Value=t_N->f_Value+FLOAT(1.0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1690>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1690>");
 		if(t_N->f_Value>t_N->f_Maximum){
 			DBG_BLOCK();
 			t_N->f_Value=t_N->f_Maximum;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1694>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1694>");
 	if(bb_input_TouchX(0)>Float(t_X+t_W-t_H) && bb_input_TouchX(0)<Float(t_X+t_W) && bb_input_TouchY(0)>Float(t_Y) && bb_input_TouchY(0)<Float(t_Y+t_H)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1695>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1695>");
 		if(bb_challengergui_CHGUI_MouseBusy==0 || ((t_N->f_PlusDown)!=0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1696>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1696>");
 			t_N->f_PlusOver=1;
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1699>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1699>");
 		t_N->f_PlusOver=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1703>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1703>");
 	if(((t_N->f_PlusOver)!=0) || ((t_N->f_PlusDown)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1704>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1704>");
 		if((bb_input_TouchDown(0))!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1705>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1705>");
 			t_N->f_PlusDown=1;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1707>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1707>");
 			t_N->f_PlusDown=0;
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1710>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1710>");
 		t_N->f_PlusDown=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1714>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1714>");
 	Float t_XPOS=Float(t_X+t_H-5)+(t_N->f_Value-t_N->f_Minimum)*t_N->f_Stp;
 	DBG_LOCAL(t_XPOS,"XPOS")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1716>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1716>");
 	if(((t_N->f_Over)!=0) && bb_input_TouchX(0)>t_XPOS && bb_input_TouchX(0)<t_XPOS+t_N->f_SWidth && t_N->f_PlusOver==0 && t_N->f_MinusOver==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1717>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1717>");
 		if(bb_challengergui_CHGUI_MouseBusy==0 || ((t_N->f_SliderDown)!=0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1718>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1718>");
 			t_N->f_SliderOver=1;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1719>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1719>");
 			if(t_N->f_SliderDown==0){
 				DBG_BLOCK();
 				t_N->f_Start=int(bb_input_TouchX(0));
@@ -16606,68 +16606,68 @@ int bb_challengergui_CHGUI_UpdateHSlider(bb_challengergui_CHGUI* t_N){
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1722>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1722>");
 		t_N->f_SliderOver=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1725>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1725>");
 	if(((t_N->f_SliderOver)!=0) || ((t_N->f_SliderDown)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1726>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1726>");
 		if((bb_input_TouchDown(0))!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1727>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1727>");
 			t_N->f_SliderDown=1;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1729>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1729>");
 			t_N->f_SliderDown=0;
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1732>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1732>");
 		t_N->f_SliderDown=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1735>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1735>");
 	if((t_N->f_SliderDown)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1736>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1736>");
 		Float t_Change=bb_input_TouchX(0)-Float(t_N->f_Start);
 		DBG_LOCAL(t_Change,"Change")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1737>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1737>");
 		t_N->f_Value=t_N->f_Value+t_Change/t_N->f_Stp;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1738>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1738>");
 		t_N->f_Start=int(bb_input_TouchX(0));
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1739>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1739>");
 		if(t_N->f_Value<t_N->f_Minimum){
 			DBG_BLOCK();
 			t_N->f_Value=t_N->f_Minimum;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1740>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1740>");
 		if(t_N->f_Value>t_N->f_Maximum){
 			DBG_BLOCK();
 			t_N->f_Value=t_N->f_Maximum;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1743>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1743>");
 	if(t_N->f_SliderDown==0 && t_N->f_MinusDown==0 && t_N->f_PlusDown==0 && ((t_N->f_Down)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1744>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1744>");
 		t_N->f_Value=(bb_input_TouchX(0)-Float(t_X)-Float(t_H)-Float(t_H)+FLOAT(10.0))/t_N->f_Stp+t_N->f_Minimum;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1745>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1745>");
 		if(t_N->f_Value<t_N->f_Minimum){
 			DBG_BLOCK();
 			t_N->f_Value=t_N->f_Minimum;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1746>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1746>");
 		if(t_N->f_Value>t_N->f_Maximum){
 			DBG_BLOCK();
 			t_N->f_Value=t_N->f_Maximum;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1749>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1749>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1750>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1750>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -16678,156 +16678,156 @@ int bb_challengergui_CHGUI_UpdateHSlider(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_UpdateVSlider(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateVSlider")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1756>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1756>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1757>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1757>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1758>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1758>");
 	if(t_N->f_Value<t_N->f_Minimum){
 		DBG_BLOCK();
 		t_N->f_Value=t_N->f_Minimum;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1759>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1759>");
 	if(t_N->f_Value>t_N->f_Maximum){
 		DBG_BLOCK();
 		t_N->f_Value=t_N->f_Maximum;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1760>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1760>");
 	int t_X=bb_challengergui_CHGUI_RealX(t_N);
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1761>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1761>");
 	int t_Y=bb_challengergui_CHGUI_RealY(t_N);
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1762>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1762>");
 	int t_W=int(t_N->f_W);
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1763>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1763>");
 	int t_H=int(t_N->f_H);
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1766>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1766>");
 	t_N->f_Stp=(t_N->f_H-FLOAT(2.0)*t_N->f_W)/(t_N->f_Maximum-t_N->f_Minimum);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1767>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1767>");
 	t_N->f_SWidth=t_N->f_Stp;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1768>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1768>");
 	if(t_N->f_SWidth<t_N->f_W){
 		DBG_BLOCK();
 		t_N->f_SWidth=t_N->f_W;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1769>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1769>");
 	if(t_N->f_SWidth>t_N->f_H-t_N->f_W-t_N->f_W-FLOAT(10.0)){
 		DBG_BLOCK();
 		t_N->f_SWidth=t_N->f_H-t_N->f_W-t_N->f_W-FLOAT(10.0);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1770>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1770>");
 	t_N->f_Stp=(t_N->f_H-t_N->f_SWidth-t_N->f_W-t_N->f_W)/(t_N->f_Maximum-t_N->f_Minimum);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1771>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1771>");
 	t_N->f_SWidth=t_N->f_SWidth+FLOAT(10.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1775>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1775>");
 	if(((t_N->f_MinusOver)!=0) && ((t_N->f_MinusDown)!=0) && bb_input_TouchDown(0)==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1776>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1776>");
 		t_N->f_MinusOver=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1777>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1777>");
 		t_N->f_MinusDown=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1778>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1778>");
 		t_N->f_Value=t_N->f_Value-FLOAT(1.0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1779>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1779>");
 		if(t_N->f_Value<t_N->f_Minimum){
 			DBG_BLOCK();
 			t_N->f_Value=t_N->f_Minimum;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1783>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1783>");
 	if(bb_input_TouchX(0)>Float(t_X) && bb_input_TouchX(0)<Float(t_X+t_W) && bb_input_TouchY(0)>Float(t_Y) && bb_input_TouchY(0)<Float(t_Y+t_W)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1784>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1784>");
 		if(bb_challengergui_CHGUI_MouseBusy==0 || ((t_N->f_MinusDown)!=0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1785>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1785>");
 			t_N->f_MinusOver=1;
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1788>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1788>");
 		t_N->f_MinusOver=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1792>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1792>");
 	if(((t_N->f_MinusOver)!=0) || ((t_N->f_MinusDown)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1793>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1793>");
 		if((bb_input_TouchDown(0))!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1794>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1794>");
 			t_N->f_MinusDown=1;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1796>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1796>");
 			t_N->f_MinusDown=0;
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1799>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1799>");
 		t_N->f_MinusDown=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1803>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1803>");
 	if(((t_N->f_PlusOver)!=0) && ((t_N->f_PlusDown)!=0) && bb_input_TouchDown(0)==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1804>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1804>");
 		t_N->f_PlusOver=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1805>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1805>");
 		t_N->f_PlusDown=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1806>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1806>");
 		t_N->f_Value=t_N->f_Value+FLOAT(1.0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1807>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1807>");
 		if(t_N->f_Value>t_N->f_Maximum){
 			DBG_BLOCK();
 			t_N->f_Value=t_N->f_Maximum;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1811>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1811>");
 	if(((t_N->f_Over)!=0) && bb_input_TouchX(0)>Float(t_X) && bb_input_TouchX(0)<Float(t_X+t_W) && bb_input_TouchY(0)>Float(t_Y+t_H-t_W) && bb_input_TouchY(0)<Float(t_Y+t_H)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1812>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1812>");
 		if(bb_challengergui_CHGUI_MouseBusy==0 || ((t_N->f_PlusDown)!=0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1813>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1813>");
 			t_N->f_PlusOver=1;
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1816>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1816>");
 		t_N->f_PlusOver=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1820>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1820>");
 	if(((t_N->f_PlusOver)!=0) || ((t_N->f_PlusDown)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1821>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1821>");
 		if((bb_input_TouchDown(0))!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1822>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1822>");
 			t_N->f_PlusDown=1;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1824>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1824>");
 			t_N->f_PlusDown=0;
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1827>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1827>");
 		t_N->f_PlusDown=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1831>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1831>");
 	Float t_YPOS=Float(t_Y+t_W-5)+(t_N->f_Value-t_N->f_Minimum)*t_N->f_Stp;
 	DBG_LOCAL(t_YPOS,"YPOS")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1833>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1833>");
 	if(((t_N->f_Over)!=0) && bb_input_TouchY(0)>t_YPOS && bb_input_TouchY(0)<t_YPOS+t_N->f_SWidth && t_N->f_PlusOver==0 && t_N->f_MinusOver==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1834>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1834>");
 		if(bb_challengergui_CHGUI_MouseBusy==0 || ((t_N->f_SliderDown)!=0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1835>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1835>");
 			t_N->f_SliderOver=1;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1836>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1836>");
 			if(t_N->f_SliderDown==0){
 				DBG_BLOCK();
 				t_N->f_Start=int(bb_input_TouchY(0));
@@ -16835,68 +16835,68 @@ int bb_challengergui_CHGUI_UpdateVSlider(bb_challengergui_CHGUI* t_N){
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1839>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1839>");
 		t_N->f_SliderOver=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1842>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1842>");
 	if(((t_N->f_SliderOver)!=0) || ((t_N->f_SliderDown)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1843>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1843>");
 		if((bb_input_TouchDown(0))!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1844>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1844>");
 			t_N->f_SliderDown=1;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1846>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1846>");
 			t_N->f_SliderDown=0;
 		}
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1849>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1849>");
 		t_N->f_SliderDown=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1852>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1852>");
 	if((t_N->f_SliderDown)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1853>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1853>");
 		Float t_Change=bb_input_TouchY(0)-Float(t_N->f_Start);
 		DBG_LOCAL(t_Change,"Change")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1854>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1854>");
 		t_N->f_Value=t_N->f_Value+t_Change/t_N->f_Stp;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1855>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1855>");
 		t_N->f_Start=int(bb_input_TouchY(0));
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1856>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1856>");
 		if(t_N->f_Value<t_N->f_Minimum){
 			DBG_BLOCK();
 			t_N->f_Value=t_N->f_Minimum;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1857>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1857>");
 		if(t_N->f_Value>t_N->f_Maximum){
 			DBG_BLOCK();
 			t_N->f_Value=t_N->f_Maximum;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1860>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1860>");
 	if(t_N->f_SliderDown==0 && t_N->f_MinusDown==0 && t_N->f_PlusDown==0 && ((t_N->f_Down)!=0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1861>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1861>");
 		t_N->f_Value=(bb_input_TouchY(0)-Float(t_Y)-Float(t_W)-Float(t_W)+FLOAT(10.0))/t_N->f_Stp+t_N->f_Minimum;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1862>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1862>");
 		if(t_N->f_Value<t_N->f_Minimum){
 			DBG_BLOCK();
 			t_N->f_Value=t_N->f_Minimum;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1863>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1863>");
 		if(t_N->f_Value>t_N->f_Maximum){
 			DBG_BLOCK();
 			t_N->f_Value=t_N->f_Maximum;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1866>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1866>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1867>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1867>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -16908,32 +16908,32 @@ int bb_challengergui_CHGUI_UpdateListboxItem(bb_challengergui_CHGUI* t_N,int t_C
 	DBG_ENTER("CHGUI_UpdateListboxItem")
 	DBG_LOCAL(t_N,"N")
 	DBG_LOCAL(t_C,"C")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2060>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2060>");
 	t_N->f_X=FLOAT(0.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2061>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2061>");
 	t_N->f_Y=Float(t_C*t_N->f_Parent->f_ListHeight);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2062>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2062>");
 	t_N->f_W=t_N->f_Parent->f_W;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2063>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2063>");
 	t_N->f_H=Float(t_N->f_Parent->f_ListHeight);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2065>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2065>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2066>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2066>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2068>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2068>");
 	if((t_N->f_Clicked)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2069>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2069>");
 		t_N->f_Parent->f_Text=t_N->f_Text;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2070>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2070>");
 		gc_assign(t_N->f_Parent->f_SelectedListboxItem,t_N);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2071>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2071>");
 		t_N->f_Parent->f_Value=t_N->f_Value;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2074>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2074>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2075>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2075>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -16944,32 +16944,32 @@ int bb_challengergui_CHGUI_UpdateListboxItem(bb_challengergui_CHGUI* t_N,int t_C
 int bb_challengergui_CHGUI_UpdateListbox(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateListbox")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2039>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2039>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2040>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2040>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2042>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2042>");
 	t_N->f_ListHeight=bb_challengergui_CHGUI_Font->m_GetFontHeight()+10;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2043>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2043>");
 	t_N->f_ListboxNumber=int(t_N->f_H/Float(t_N->f_ListHeight)-FLOAT(1.0));
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2045>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2045>");
 	t_N->f_ListboxSlider->f_Minimum=FLOAT(0.0);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2046>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2046>");
 	t_N->f_ListboxSlider->f_Maximum=Float(t_N->f_ListboxItems.Length()-t_N->f_ListboxNumber-1);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2048>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2048>");
 	if(t_N->f_ListboxSlider->f_Maximum<FLOAT(1.0)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2049>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2049>");
 		t_N->f_ListboxSlider->f_Visible=0;
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2051>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2051>");
 		t_N->f_ListboxSlider->f_Visible=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2054>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2054>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<2055>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<2055>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -16980,33 +16980,33 @@ int bb_challengergui_CHGUI_UpdateListbox(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_UpdateRadiobox(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateRadiobox")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1471>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1471>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1472>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1472>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1473>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1473>");
 	t_N->f_W=t_N->f_H+t_N->f_H/FLOAT(4.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1474>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1474>");
 	if((t_N->f_Clicked)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1475>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1475>");
 		t_N->f_Value=FLOAT(1.0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1476>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1476>");
 		for(int t_X=0;t_X<=t_N->f_Parent->f_Radioboxes.Length()-1;t_X=t_X+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_X,"X")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1477>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1477>");
 			if(t_N->f_Parent->f_Radioboxes.At(t_X)->f_Group==t_N->f_Group && t_N->f_Parent->f_Radioboxes.At(t_X)!=t_N){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1478>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1478>");
 				t_N->f_Parent->f_Radioboxes.At(t_X)->f_Value=FLOAT(0.0);
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1483>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1483>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1484>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1484>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -17017,30 +17017,30 @@ int bb_challengergui_CHGUI_UpdateRadiobox(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_UpdateTickbox(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateTickbox")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1452>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1452>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1453>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1453>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1454>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1454>");
 	t_N->f_W=t_N->f_H+t_N->f_H/FLOAT(4.0)+bb_challengergui_CHGUI_Font->m_GetTxtWidth2(t_N->f_Text);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1455>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1455>");
 	if((t_N->f_Clicked)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1456>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1456>");
 		if(t_N->f_Value==FLOAT(0.0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1457>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1457>");
 			t_N->f_Value=FLOAT(1.0);
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1459>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1459>");
 			t_N->f_Value=FLOAT(0.0);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1464>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1464>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1465>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1465>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -17051,18 +17051,18 @@ int bb_challengergui_CHGUI_UpdateTickbox(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_UpdateImageButton(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateImageButton")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1441>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1441>");
 	t_N->f_W=Float(t_N->f_Img->m_Width()/4);
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1442>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1442>");
 	t_N->f_H=Float(t_N->f_Img->m_Height());
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1443>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1443>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1444>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1444>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1446>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1446>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1447>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1447>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -17073,14 +17073,14 @@ int bb_challengergui_CHGUI_UpdateImageButton(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_UpdateButton(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateButton")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1432>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1432>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1433>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1433>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1435>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1435>");
 	if(bb_challengergui_CHGUI_Tooltips==1 && t_N->f_Tooltip!=String() && t_N->f_OverTime>bb_challengergui_CHGUI_TooltipTime){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1436>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1436>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			gc_assign(bb_challengergui_CHGUI_TooltipFlag,t_N);
@@ -17091,32 +17091,32 @@ int bb_challengergui_CHGUI_UpdateButton(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_Locked(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_Locked")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4032>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4032>");
 	bb_challengergui_CHGUI* t_E=0;
 	DBG_LOCAL(t_E,"E")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4033>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4033>");
 	t_E=t_N;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4034>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4034>");
 	if(t_E==bb_challengergui_CHGUI_LockedWIndow){
 		DBG_BLOCK();
 		return 1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4035>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4035>");
 	do{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4036>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4036>");
 		if(t_E->f_Parent!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4037>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4037>");
 			if(t_E->f_Parent==bb_challengergui_CHGUI_LockedWIndow){
 				DBG_BLOCK();
 				return 1;
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4038>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4038>");
 			t_E=t_E->f_Parent;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<4040>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<4040>");
 			return 0;
 		}
 	}while(!(false));
@@ -17124,283 +17124,283 @@ int bb_challengergui_CHGUI_Locked(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_UpdateWindow(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateWindow")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1278>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1278>");
 	Float t_X=Float(bb_challengergui_CHGUI_RealX(t_N));
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1279>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1279>");
 	Float t_Y=Float(bb_challengergui_CHGUI_RealY(t_N));
 	DBG_LOCAL(t_Y,"Y")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1280>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1280>");
 	int t_W=int(t_N->f_W);
 	DBG_LOCAL(t_W,"W")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1281>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1281>");
 	int t_H=int(t_N->f_H);
 	DBG_LOCAL(t_H,"H")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1283>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1283>");
 	if((t_N->f_Minimised)!=0){
 		DBG_BLOCK();
 		t_H=int(bb_challengergui_CHGUI_TitleHeight);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1284>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1284>");
 	int t_TH=int(bb_challengergui_CHGUI_TitleHeight);
 	DBG_LOCAL(t_TH,"TH")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1286>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1286>");
 	if(t_N->f_Text==String()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1287>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1287>");
 		t_N->f_Close=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1288>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1288>");
 		t_N->f_Minimise=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1291>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1291>");
 	t_N->m_CheckOver();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1292>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1292>");
 	t_N->m_CheckDown();
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1295>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1295>");
 	if((t_N->f_Over)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1296>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1296>");
 		if(bb_input_TouchY(0)>t_Y && bb_input_TouchY(0)<t_Y+bb_challengergui_CHGUI_TitleHeight){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1297>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1297>");
 			bb_challengergui_CHGUI_DragOver=1;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1304>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1304>");
 	if((t_N->f_Close)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1305>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1305>");
 		Float t_TH2=bb_challengergui_CHGUI_TitleHeight;
 		DBG_LOCAL(t_TH2,"TH")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1306>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1306>");
 		if(((t_N->f_CloseOver)!=0) && ((t_N->f_CloseDown)!=0) && bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1307>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1307>");
 			t_N->f_CloseOver=0;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1308>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1308>");
 			t_N->f_CloseDown=0;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1309>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1309>");
 			t_N->f_Visible=0;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1311>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1311>");
 		if(((t_N->f_Over)!=0) && bb_input_TouchX(0)>t_X+Float(t_W)-t_TH2/FLOAT(2.5)-FLOAT(10.0) && bb_input_TouchX(0)<t_X+Float(t_W)-t_TH2/FLOAT(2.5)-FLOAT(10.0)+t_TH2/FLOAT(2.5) && bb_input_TouchY(0)>t_Y+(t_TH2-t_TH2/FLOAT(2.5))/FLOAT(2.0) && bb_input_TouchY(0)<t_Y+(t_TH2-t_TH2/FLOAT(2.5))/FLOAT(2.0)+t_TH2/FLOAT(2.5)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1312>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1312>");
 			if(bb_challengergui_CHGUI_MouseBusy==0 || ((t_N->f_CloseDown)!=0)){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1313>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1313>");
 				t_N->f_CloseOver=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1314>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1314>");
 				bb_challengergui_CHGUI_DragOver=1;
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1317>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1317>");
 			t_N->f_CloseOver=0;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1319>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1319>");
 		if(((t_N->f_CloseOver)!=0) || ((t_N->f_CloseDown)!=0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1320>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1320>");
 			if((bb_input_TouchDown(0))!=0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1321>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1321>");
 				t_N->f_CloseDown=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1322>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1322>");
 				bb_challengergui_CHGUI_DragOver=1;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1324>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1324>");
 				t_N->f_CloseDown=0;
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1327>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1327>");
 			t_N->f_CloseDown=0;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1332>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1332>");
 	if((t_N->f_Minimise)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1333>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1333>");
 		Float t_TH1=bb_challengergui_CHGUI_TitleHeight;
 		DBG_LOCAL(t_TH1,"TH1")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1334>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1334>");
 		int t_Off2=int((t_TH1-t_TH1/FLOAT(2.0))/FLOAT(2.0));
 		DBG_LOCAL(t_Off2,"Off2")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1336>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1336>");
 		if(((t_N->f_MinimiseOver)!=0) && ((t_N->f_MinimiseDown)!=0) && bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1337>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1337>");
 			t_N->f_CloseOver=0;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1338>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1338>");
 			t_N->f_CloseDown=0;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1339>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1339>");
 			if(t_N->f_Minimised==0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1340>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1340>");
 				t_N->f_Minimised=1;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1342>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1342>");
 				t_N->f_Minimised=0;
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1346>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1346>");
 		if(((t_N->f_Over)!=0) && bb_input_TouchX(0)>t_X+Float(t_W)-(Float(t_TH)/FLOAT(2.5)+Float(t_TH)/FLOAT(2.5))-Float(t_TH)/FLOAT(1.5) && bb_input_TouchX(0)<t_X+Float(t_W)-(Float(t_TH)/FLOAT(2.5)+Float(t_TH)/FLOAT(2.5))-Float(t_TH)/FLOAT(1.5)+Float(t_TH)/FLOAT(2.5) && bb_input_TouchY(0)>t_Y+(Float(t_TH)-Float(t_TH)/FLOAT(2.5))/FLOAT(2.0) && bb_input_TouchY(0)<t_Y+(Float(t_TH)-Float(t_TH)/FLOAT(2.5))/FLOAT(2.0)+Float(t_TH)/FLOAT(2.5)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1347>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1347>");
 			if(bb_challengergui_CHGUI_MouseBusy==0 || ((t_N->f_MinimiseDown)!=0)){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1348>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1348>");
 				t_N->f_MinimiseOver=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1349>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1349>");
 				bb_challengergui_CHGUI_DragOver=1;
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1352>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1352>");
 			t_N->f_MinimiseOver=0;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1354>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1354>");
 		if(((t_N->f_MinimiseOver)!=0) || ((t_N->f_MinimiseDown)!=0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1355>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1355>");
 			if((bb_input_TouchDown(0))!=0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1356>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1356>");
 				t_N->f_MinimiseDown=1;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1357>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1357>");
 				bb_challengergui_CHGUI_DragOver=1;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1359>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1359>");
 				t_N->f_MinimiseDown=0;
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1362>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1362>");
 			t_N->f_MinimiseDown=0;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1367>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1367>");
 	if(t_N->f_Moveable==1 && ((t_N->f_Over)!=0) && t_N->f_Moving==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1368>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1368>");
 		if(bb_input_TouchY(0)>t_Y && bb_input_TouchY(0)<t_Y+bb_challengergui_CHGUI_TitleHeight && ((bb_input_TouchDown(0))!=0) && t_N->f_Text!=String()){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1369>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1369>");
 			if(t_N->f_CloseOver==0 && t_N->f_MinimiseOver==0 && t_N->f_CloseDown==0 && t_N->f_MinimiseDown==0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1370>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1370>");
 				if(bb_challengergui_CHGUI_Moving==0){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1371>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1371>");
 					t_N->f_Moving=1;
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1372>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1372>");
 					t_N->f_MX=bb_input_TouchX(0);
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1373>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1373>");
 					t_N->f_MY=bb_input_TouchY(0);
 				}
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1378>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1378>");
 	if(bb_input_TouchDown(0)==0){
 		DBG_BLOCK();
 		t_N->f_Moving=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1380>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1380>");
 	if(t_N->f_Moving==1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1381>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1381>");
 		t_N->f_X=t_N->f_X+(bb_input_TouchX(0)-t_N->f_MX);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1382>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1382>");
 		t_N->f_Y=t_N->f_Y+(bb_input_TouchY(0)-t_N->f_MY);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1383>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1383>");
 		t_N->f_MX=bb_input_TouchX(0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1384>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1384>");
 		t_N->f_MY=bb_input_TouchY(0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1385>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1385>");
 		bb_challengergui_CHGUI_DragOver=1;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1387>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1387>");
 		bb_challengergui_CHGUI* t_RP=t_N->f_Parent;
 		DBG_LOCAL(t_RP,"RP")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1389>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1389>");
 		do{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1390>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1390>");
 			if(t_RP->f_Element!=String(L"Tab",3)){
 				DBG_BLOCK();
 				break;
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1391>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1391>");
 			if(t_RP->f_Parent!=0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1392>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1392>");
 				t_RP=t_RP->f_Parent;
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1394>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1394>");
 				break;
 			}
 		}while(!(false));
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1399>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1399>");
 		if(t_N->f_X<FLOAT(0.0)){
 			DBG_BLOCK();
 			t_N->f_X=FLOAT(0.0);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1401>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1401>");
 		if(t_N->f_X>t_RP->f_W-t_N->f_W){
 			DBG_BLOCK();
 			t_N->f_X=t_RP->f_W-t_N->f_W;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1403>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1403>");
 		if(t_N->f_Y>t_RP->f_H-Float(t_H)){
 			DBG_BLOCK();
 			t_N->f_Y=t_RP->f_H-Float(t_H);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1405>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1405>");
 		int t_YVal=t_RP->f_MenuHeight;
 		DBG_LOCAL(t_YVal,"YVal")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1406>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1406>");
 		if(t_RP->f_Text!=String()){
 			DBG_BLOCK();
 			t_YVal=int(Float(t_YVal)+bb_challengergui_CHGUI_TitleHeight);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1407>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1407>");
 		if((t_RP->f_Tabbed)!=0){
 			DBG_BLOCK();
 			t_YVal=t_YVal+t_RP->f_TabHeight+5;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1409>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1409>");
 		if(t_N->f_Y<Float(t_YVal)){
 			DBG_BLOCK();
 			t_N->f_Y=Float(t_YVal);
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1414>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1414>");
 	if(((t_N->f_Clicked)!=0) && bb_input_TouchY(0)>t_Y && bb_input_TouchY(0)<t_Y+bb_challengergui_CHGUI_TitleHeight && t_N->f_Text!=String()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1415>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1415>");
 		if(((t_N->f_Minimise)!=0) && t_N->f_CloseOver==0 && t_N->f_MinimiseOver==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1416>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1416>");
 			if(t_N->f_DClickMillisecs>bb_app_Millisecs()){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1417>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1417>");
 				if(t_N->f_Minimised==1){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1418>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1418>");
 					t_N->f_Minimised=0;
 				}else{
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1420>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1420>");
 					t_N->f_Minimised=1;
 				}
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1423>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1423>");
 				t_N->f_DClickMillisecs=bb_app_Millisecs()+275;
 			}
 		}
@@ -17410,239 +17410,239 @@ int bb_challengergui_CHGUI_UpdateWindow(bb_challengergui_CHGUI* t_N){
 int bb_challengergui_CHGUI_UpdateContents(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_UpdateContents")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1145>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1145>");
 	int t_X=0;
 	DBG_LOCAL(t_X,"X")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1146>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1146>");
 	int t_XX=0;
 	DBG_LOCAL(t_XX,"XX")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1147>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1147>");
 	int t_C=0;
 	DBG_LOCAL(t_C,"C")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1148>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1148>");
 	t_N->f_ReOrdered=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1150>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1150>");
 	for(t_X=t_N->f_Menus.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1151>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1151>");
 		t_N->f_Menus.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1152>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1152>");
 		bb_challengergui_CHGUI_UpdateSubMenu(t_N->f_Menus.At(t_X));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1155>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1155>");
 	if((t_N->f_Tabbed)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1156>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1156>");
 		bb_challengergui_CHGUI_UpdateContents(t_N->f_CurrentTab);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1160>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1160>");
 	for(int t_NN=t_N->f_TopList.Length()-1;t_NN>=0;t_NN=t_NN+-1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_NN,"NN")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1161>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1161>");
 		bb_challengergui_CHGUI_UpdateContents(t_N->f_TopList.At(t_NN));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1164>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1164>");
 	for(int t_NN2=t_N->f_VariList.Length()-1;t_NN2>=0;t_NN2=t_NN2+-1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_NN2,"NN")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1165>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1165>");
 		bb_challengergui_CHGUI_UpdateContents(t_N->f_VariList.At(t_NN2));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1168>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1168>");
 	for(int t_NN3=t_N->f_BottomList.Length()-1;t_NN3>=0;t_NN3=t_NN3+-1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_NN3,"NN")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1169>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1169>");
 		bb_challengergui_CHGUI_UpdateContents(t_N->f_BottomList.At(t_NN3));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1173>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1173>");
 	for(t_X=t_N->f_Tabs.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1174>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1174>");
 		t_N->f_Tabs.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1175>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1175>");
 		if(((bb_challengergui_CHGUI_RealActive(t_N->f_Tabs.At(t_X)))!=0) && ((bb_challengergui_CHGUI_RealVisible(t_N->f_Tabs.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Tabs.At(t_X))==0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateTab(t_N->f_Tabs.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1180>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1180>");
 	if((bb_challengergui_CHGUI_MenuClose)!=0){
 		DBG_BLOCK();
 		t_N->f_MenuActive=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1181>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1181>");
 	for(t_X=t_N->f_Menus.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1182>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1182>");
 		t_N->f_Menus.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1183>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1183>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Menus.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Menus.At(t_X))==0 && ((bb_challengergui_CHGUI_RealActive(t_N->f_Menus.At(t_X)))!=0)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateMenu(t_N->f_Menus.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1187>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1187>");
 	for(t_X=t_N->f_Dropdowns.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1188>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1188>");
 		t_C=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1189>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1189>");
 		for(t_XX=0;t_XX<=t_N->f_Dropdowns.At(t_X)->f_DropdownItems.Length()-1;t_XX=t_XX+1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1190>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1190>");
 			t_N->f_Dropdowns.At(t_X)->f_DropdownItems.At(t_XX)->m_CheckClicked();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1191>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1191>");
 			if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Dropdowns.At(t_X)->f_DropdownItems.At(t_XX)))!=0) && ((t_N->f_Dropdowns.At(t_X)->f_OnFocus)!=0) && ((bb_challengergui_CHGUI_RealVisible(t_N->f_Dropdowns.At(t_X)))!=0)){
 				DBG_BLOCK();
 				bb_challengergui_CHGUI_UpdateDropdownItem(t_N->f_Dropdowns.At(t_X)->f_DropdownItems.At(t_XX),t_C);
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1192>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1192>");
 			if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Dropdowns.At(t_X)->f_DropdownItems.At(t_XX)))!=0) && ((t_N->f_Dropdowns.At(t_X)->f_OnFocus)!=0) && ((bb_challengergui_CHGUI_RealVisible(t_N->f_Dropdowns.At(t_X)))!=0)){
 				DBG_BLOCK();
 				t_C=t_C+1;
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1197>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1197>");
 	for(t_X=t_N->f_Dropdowns.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1198>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1198>");
 		t_N->f_Dropdowns.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1199>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1199>");
 		if(((bb_challengergui_CHGUI_RealActive(t_N->f_Dropdowns.At(t_X)))!=0) && ((bb_challengergui_CHGUI_RealVisible(t_N->f_Dropdowns.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Dropdowns.At(t_X))==0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateDropdown(t_N->f_Dropdowns.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1203>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1203>");
 	for(t_X=t_N->f_Labels.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1204>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1204>");
 		t_N->f_Labels.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1205>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1205>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Labels.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Labels.At(t_X))==0 && ((bb_challengergui_CHGUI_RealActive(t_N->f_Labels.At(t_X)))!=0)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateLabel(t_N->f_Labels.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1209>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1209>");
 	for(t_X=t_N->f_Textfields.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1210>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1210>");
 		t_N->f_Textfields.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1211>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1211>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Textfields.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Textfields.At(t_X))==0 && ((bb_challengergui_CHGUI_RealActive(t_N->f_Textfields.At(t_X)))!=0)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateTextfield(t_N->f_Textfields.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1215>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1215>");
 	for(t_X=t_N->f_HSliders.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1216>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1216>");
 		t_N->f_HSliders.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1217>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1217>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_HSliders.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_HSliders.At(t_X))==0 && ((bb_challengergui_CHGUI_RealActive(t_N->f_HSliders.At(t_X)))!=0)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateHSlider(t_N->f_HSliders.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1221>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1221>");
 	for(t_X=t_N->f_VSliders.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1222>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1222>");
 		t_N->f_VSliders.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1223>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1223>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_VSliders.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_VSliders.At(t_X))==0 && ((bb_challengergui_CHGUI_RealActive(t_N->f_VSliders.At(t_X)))!=0)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateVSlider(t_N->f_VSliders.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1227>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1227>");
 	for(t_X=t_N->f_Listboxes.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1228>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1228>");
 		t_N->f_Listboxes.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1229>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1229>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Listboxes.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Listboxes.At(t_X))==0 && ((bb_challengergui_CHGUI_RealActive(t_N->f_Listboxes.At(t_X)))!=0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1230>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1230>");
 			int t_C2=0;
 			DBG_LOCAL(t_C2,"C")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1232>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1232>");
 			for(t_XX=int(t_N->f_Listboxes.At(t_X)->f_ListboxSlider->f_Value);Float(t_XX)<=t_N->f_Listboxes.At(t_X)->f_ListboxSlider->f_Value+Float(t_N->f_Listboxes.At(t_X)->f_ListboxNumber);t_XX=t_XX+1){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1233>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1233>");
 				if(t_XX<t_N->f_Listboxes.At(t_X)->f_ListboxItems.Length() && t_XX>-1){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1234>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1234>");
 					if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Listboxes.At(t_X)->f_ListboxItems.At(t_XX)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Listboxes.At(t_X)->f_ListboxItems.At(t_XX))==0 && ((bb_challengergui_CHGUI_RealActive(t_N->f_Listboxes.At(t_X)->f_ListboxItems.At(t_XX)))!=0)){
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1235>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1235>");
 						t_N->f_Listboxes.At(t_X)->f_ListboxItems.At(t_XX)->m_CheckClicked();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1236>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1236>");
 						bb_challengergui_CHGUI_UpdateListboxItem(t_N->f_Listboxes.At(t_X)->f_ListboxItems.At(t_XX),t_C2);
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1237>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1237>");
 						t_C2=t_C2+1;
 					}
 				}
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1241>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1241>");
 			bb_challengergui_CHGUI_UpdateListbox(t_N->f_Listboxes.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1246>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1246>");
 	for(t_X=t_N->f_Radioboxes.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1247>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1247>");
 		t_N->f_Radioboxes.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1248>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1248>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Radioboxes.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Radioboxes.At(t_X))==0 && ((bb_challengergui_CHGUI_RealActive(t_N->f_Radioboxes.At(t_X)))!=0)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateRadiobox(t_N->f_Radioboxes.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1252>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1252>");
 	for(t_X=t_N->f_Tickboxes.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1253>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1253>");
 		t_N->f_Tickboxes.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1254>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1254>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Tickboxes.At(t_X)))!=0) && ((bb_challengergui_CHGUI_RealActive(t_N->f_Tickboxes.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Tickboxes.At(t_X))==0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateTickbox(t_N->f_Tickboxes.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1258>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1258>");
 	for(t_X=t_N->f_ImageButtons.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1259>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1259>");
 		t_N->f_ImageButtons.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1260>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1260>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_ImageButtons.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_ImageButtons.At(t_X))==0 && ((bb_challengergui_CHGUI_RealActive(t_N->f_ImageButtons.At(t_X)))!=0)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateImageButton(t_N->f_ImageButtons.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1264>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1264>");
 	for(t_X=t_N->f_Buttons.Length()-1;t_X>=0;t_X=t_X+-1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1265>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1265>");
 		t_N->f_Buttons.At(t_X)->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1266>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1266>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N->f_Buttons.At(t_X)))!=0) && bb_challengergui_CHGUI_RealMinimised(t_N->f_Buttons.At(t_X))==0 && ((bb_challengergui_CHGUI_RealActive(t_N->f_Buttons.At(t_X)))!=0)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateButton(t_N->f_Buttons.At(t_X));
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1269>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1269>");
 	if(t_N->f_Element!=String(L"Tab",3)){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1271>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1271>");
 		t_N->m_CheckClicked();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1272>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1272>");
 		if(((bb_challengergui_CHGUI_RealVisible(t_N))!=0) && ((bb_challengergui_CHGUI_RealActive(t_N))!=0) || ((bb_challengergui_CHGUI_Locked(t_N))!=0)){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_UpdateWindow(t_N);
@@ -17658,49 +17658,49 @@ Float bb_challengergui_CHGUI_OffsetMY;
 int bb_challengergui_LockFocus(bb_challengergui_CHGUI* t_Window){
 	DBG_ENTER("LockFocus")
 	DBG_LOCAL(t_Window,"Window")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<873>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<873>");
 	if(bb_challengergui_CHGUI_MsgBoxWindow->f_Visible==0 || t_Window==bb_challengergui_CHGUI_MsgBoxWindow){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<874>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<874>");
 		gc_assign(bb_challengergui_CHGUI_LockedWIndow,t_Window);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<875>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<875>");
 		bb_challengergui_CHGUI_Reorder(t_Window);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<876>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<876>");
 		bb_challengergui_CHGUI_Canvas->f_Active=0;
 	}
 	return 0;
 }
 int bb_challengergui_UnlockFocus(){
 	DBG_ENTER("UnlockFocus")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<882>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<882>");
 	if(bb_challengergui_CHGUI_MsgBoxWindow->f_Visible==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<883>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<883>");
 		bb_challengergui_CHGUI_LockedWIndow=0;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<884>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<884>");
 		bb_challengergui_CHGUI_Canvas->f_Active=1;
 	}
 	return 0;
 }
 int bb_challengergui_CHGUI_UpdateMsgBox(){
 	DBG_ENTER("CHGUI_UpdateMsgBox")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3855>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3855>");
 	if((bb_challengergui_CHGUI_MsgBoxWindow->f_Visible)!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3856>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3856>");
 		bb_challengergui_LockFocus(bb_challengergui_CHGUI_MsgBoxWindow);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3858>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3858>");
 		bb_challengergui_CHGUI_MsgBoxWindow->f_X=Float(bb_graphics_DeviceWidth()/2)-bb_challengergui_CHGUI_MsgBoxWindow->f_W/FLOAT(2.0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3859>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3859>");
 		bb_challengergui_CHGUI_MsgBoxWindow->f_Y=Float(bb_graphics_DeviceHeight()/2)-bb_challengergui_CHGUI_MsgBoxWindow->f_H/FLOAT(2.0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3860>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3860>");
 		bb_challengergui_CHGUI_MsgBoxLabel->f_X=(bb_challengergui_CHGUI_MsgBoxWindow->f_W-bb_challengergui_CHGUI_Font->m_GetTxtWidth2(bb_challengergui_CHGUI_MsgBoxLabel->f_Text))/FLOAT(2.0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3862>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3862>");
 		if((bb_challengergui_CHGUI_MsgBoxButton->f_Clicked)!=0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3863>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3863>");
 			bb_challengergui_CHGUI_MsgBoxWindow->f_Visible=0;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<3864>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<3864>");
 			bb_challengergui_UnlockFocus();
 		}
 	}
@@ -17708,625 +17708,625 @@ int bb_challengergui_CHGUI_UpdateMsgBox(){
 }
 int bb_challengergui_CHGUI_Update(){
 	DBG_ENTER("CHGUI_Update")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<743>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<743>");
 	if(bb_input_TouchDown(0)==0){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_MouseBusy=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<744>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<744>");
 	bb_challengergui_CHGUI_Over=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<745>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<745>");
 	bb_challengergui_CHGUI_OverFlag=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<746>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<746>");
 	bb_challengergui_CHGUI_DownFlag=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<747>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<747>");
 	bb_challengergui_CHGUI_MenuOver=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<748>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<748>");
 	bb_challengergui_CHGUI_TextBoxOver=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<749>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<749>");
 	bb_challengergui_CHGUI_TextboxOnFocus=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<750>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<750>");
 	bb_challengergui_CHGUI_TextBoxDown=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<751>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<751>");
 	bb_challengergui_CHGUI_DragOver=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<752>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<752>");
 	bb_challengergui_CHGUI_TooltipFlag=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<753>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<753>");
 	if(bb_challengergui_CHGUI_Canvas!=0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<754>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<754>");
 		bb_challengergui_CHGUI_Canvas->f_W=Float(bb_challengergui_CHGUI_Width);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<755>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<755>");
 		bb_challengergui_CHGUI_Canvas->f_H=Float(bb_challengergui_CHGUI_Height);
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<759>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<759>");
 	if(bb_challengergui_CHGUI_Moving==1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<760>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<760>");
 		bb_challengergui_CHGUI_OffsetY=bb_challengergui_CHGUI_OffsetY-(bb_challengergui_CHGUI_OffsetY-bb_challengergui_CHGUI_TargetY)/FLOAT(8.0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<761>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<761>");
 		bb_challengergui_CHGUI_OffsetX=bb_challengergui_CHGUI_OffsetX-(bb_challengergui_CHGUI_OffsetX-bb_challengergui_CHGUI_TargetX)/FLOAT(8.0);
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<762>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<762>");
 		if(bb_challengergui_CHGUI_OffsetY-bb_challengergui_CHGUI_TargetY>FLOAT(-1.0) && bb_challengergui_CHGUI_OffsetY-bb_challengergui_CHGUI_TargetY<FLOAT(1.0) && bb_challengergui_CHGUI_OffsetX-bb_challengergui_CHGUI_TargetX>FLOAT(-1.0) && bb_challengergui_CHGUI_OffsetX-bb_challengergui_CHGUI_TargetX<FLOAT(1.0)){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<763>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<763>");
 			bb_challengergui_CHGUI_OffsetY=bb_challengergui_CHGUI_TargetY;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<764>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<764>");
 			bb_challengergui_CHGUI_OffsetX=bb_challengergui_CHGUI_TargetX;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<765>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<765>");
 			bb_challengergui_CHGUI_Moving=0;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<769>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<769>");
 	for(int t_N=bb_challengergui_CHGUI_TopList.Length()-1;t_N>=0;t_N=t_N+-1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_N,"N")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<770>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<770>");
 		bb_challengergui_CHGUI_UpdateContents(bb_challengergui_CHGUI_TopList.At(t_N));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<772>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<772>");
 	for(int t_N2=bb_challengergui_CHGUI_VariList.Length()-1;t_N2>=0;t_N2=t_N2+-1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_N2,"N")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<773>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<773>");
 		bb_challengergui_CHGUI_UpdateContents(bb_challengergui_CHGUI_VariList.At(t_N2));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<775>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<775>");
 	for(int t_N3=bb_challengergui_CHGUI_BottomList.Length()-1;t_N3>=0;t_N3=t_N3+-1){
 		DBG_BLOCK();
 		DBG_LOCAL(t_N3,"N")
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<776>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<776>");
 		bb_challengergui_CHGUI_UpdateContents(bb_challengergui_CHGUI_BottomList.At(t_N3));
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<781>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<781>");
 	if(((bb_input_TouchDown(0))!=0) && bb_challengergui_CHGUI_DownFlag==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<782>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<782>");
 		bb_challengergui_CHGUI_IgnoreMouse=1;
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<784>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<784>");
 		bb_challengergui_CHGUI_IgnoreMouse=0;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<786>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<786>");
 	bb_challengergui_CHGUI_MenuClose=0;
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<787>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<787>");
 	if(bb_challengergui_CHGUI_MenuOver==0 && ((bb_input_TouchDown(0))!=0)){
 		DBG_BLOCK();
 		bb_challengergui_CHGUI_MenuClose=1;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<788>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<788>");
 	if(bb_challengergui_CHGUI_CursorMillisecs<bb_app_Millisecs()){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<789>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<789>");
 		bb_challengergui_CHGUI_CursorMillisecs=bb_app_Millisecs()+300;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<790>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<790>");
 		if(bb_challengergui_CHGUI_Cursor==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<791>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<791>");
 			bb_challengergui_CHGUI_Cursor=1;
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<793>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<793>");
 			bb_challengergui_CHGUI_Cursor=0;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<797>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<797>");
 	if(bb_challengergui_CHGUI_DragScroll==1){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<798>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<798>");
 		if(bb_challengergui_CHGUI_DragOver==0 && ((bb_input_TouchDown(0))!=0) && bb_challengergui_CHGUI_DragMoving==0 && bb_challengergui_CHGUI_TextboxOnFocus==0){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<799>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<799>");
 			bb_challengergui_CHGUI_OffsetMX=bb_input_TouchX(0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<800>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<800>");
 			bb_challengergui_CHGUI_OffsetMY=bb_input_TouchY(0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<801>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<801>");
 			bb_challengergui_CHGUI_DragMoving=1;
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<804>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<804>");
 		if(bb_challengergui_CHGUI_DragMoving==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<805>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<805>");
 			bb_challengergui_CHGUI_OffsetX=bb_challengergui_CHGUI_OffsetX+(bb_input_TouchX(0)-bb_challengergui_CHGUI_OffsetMX);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<806>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<806>");
 			bb_challengergui_CHGUI_OffsetY=bb_challengergui_CHGUI_OffsetY+(bb_input_TouchY(0)-bb_challengergui_CHGUI_OffsetMY);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<807>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<807>");
 			bb_challengergui_CHGUI_OffsetMX=bb_input_TouchX(0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<808>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<808>");
 			bb_challengergui_CHGUI_OffsetMY=bb_input_TouchY(0);
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<811>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<811>");
 			if(bb_challengergui_CHGUI_OffsetX<Float(-1*(bb_challengergui_CHGUI_Width-bb_graphics_DeviceWidth()))){
 				DBG_BLOCK();
 				bb_challengergui_CHGUI_OffsetX=Float(-1*(bb_challengergui_CHGUI_Width-bb_graphics_DeviceWidth()));
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<812>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<812>");
 			if(bb_challengergui_CHGUI_OffsetX>FLOAT(0.0)){
 				DBG_BLOCK();
 				bb_challengergui_CHGUI_OffsetX=FLOAT(0.0);
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<814>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<814>");
 			if(bb_challengergui_CHGUI_OffsetY<Float(bb_graphics_DeviceHeight()-bb_challengergui_CHGUI_Height)){
 				DBG_BLOCK();
 				bb_challengergui_CHGUI_OffsetY=Float(bb_graphics_DeviceHeight()-bb_challengergui_CHGUI_Height);
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<815>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<815>");
 			if(bb_challengergui_CHGUI_OffsetY>FLOAT(0.0)){
 				DBG_BLOCK();
 				bb_challengergui_CHGUI_OffsetY=FLOAT(0.0);
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<818>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<818>");
 		if(bb_challengergui_CHGUI_Width<bb_graphics_DeviceWidth()){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_OffsetX=Float(bb_graphics_DeviceWidth()/2-bb_challengergui_CHGUI_Width/2);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<819>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<819>");
 		if(bb_challengergui_CHGUI_Height<bb_graphics_DeviceHeight()){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_OffsetY=Float(bb_graphics_DeviceHeight()/2-bb_challengergui_CHGUI_Height/2);
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<822>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<822>");
 		if(bb_input_TouchDown(0)==0){
 			DBG_BLOCK();
 			bb_challengergui_CHGUI_DragMoving=0;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<825>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<825>");
 	if(((bb_input_TouchDown(0))!=0) && bb_challengergui_CHGUI_TextBoxDown==0 && bb_challengergui_CHGUI_DragMoving==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<826>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<826>");
 		if(bb_challengergui_CHGUI_Keyboard==2){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<827>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<827>");
 			if(bb_input_TouchY(0)<Float(bb_graphics_DeviceHeight())-bb_challengergui_CHGUI_KeyboardWindow->f_H){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<828>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<828>");
 				bb_challengergui_CHGUI_TargetX=bb_challengergui_CHGUI_OldX;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<829>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<829>");
 				bb_challengergui_CHGUI_TargetY=bb_challengergui_CHGUI_OldY;
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<830>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<830>");
 				bb_challengergui_CHGUI_Moving=1;
 			}
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<833>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<833>");
 			bb_challengergui_CHGUI_TargetX=bb_challengergui_CHGUI_OldX;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<834>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<834>");
 			bb_challengergui_CHGUI_TargetY=bb_challengergui_CHGUI_OldY;
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<835>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<835>");
 			bb_challengergui_CHGUI_Moving=1;
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<839>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<839>");
 	if(bb_challengergui_CHGUI_TextBoxOver==0 && bb_challengergui_CHGUI_TextboxOnFocus==0 && bb_challengergui_CHGUI_Moving==0 && bb_challengergui_CHGUI_DragMoving==0){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<840>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<840>");
 		bb_challengergui_CHGUI_OldX=bb_challengergui_CHGUI_OffsetX;
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<841>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<841>");
 		bb_challengergui_CHGUI_OldY=bb_challengergui_CHGUI_OffsetY;
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<844>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<844>");
 	bb_challengergui_CHGUI_UpdateMsgBox();
 	return 0;
 }
 int bb_challengergui_CHGUI_Delete(bb_challengergui_CHGUI* t_N){
 	DBG_ENTER("CHGUI_Delete")
 	DBG_LOCAL(t_N,"N")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<933>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<933>");
 	int t_C=0;
 	DBG_LOCAL(t_C,"C")
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<936>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<936>");
 	if(t_N->f_Element==String(L"Window",6) && t_N->f_Mode==2){
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<937>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<937>");
 		for(t_C=0;t_C<=t_N->f_Parent->f_TopList.Length()-1;t_C=t_C+1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<938>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<938>");
 			if(t_N->f_Parent->f_TopList.At(t_C)==t_N){
 				DBG_BLOCK();
 				break;
 			}
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<941>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<941>");
 		for(int t_NN=t_C;t_NN<=t_N->f_Parent->f_TopList.Length()-2;t_NN=t_NN+1){
 			DBG_BLOCK();
 			DBG_LOCAL(t_NN,"NN")
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<942>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<942>");
 			gc_assign(t_N->f_Parent->f_TopList.At(t_NN),t_N->f_Parent->f_TopList.At(t_NN+1));
 		}
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<944>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<944>");
 		gc_assign(t_N->f_Parent->f_TopList,t_N->f_Parent->f_TopList.Slice(0,t_N->f_Parent->f_TopList.Length()-1));
 	}else{
 		DBG_BLOCK();
-		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<947>");
+		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<947>");
 		if(t_N->f_Element==String(L"Window",6) && t_N->f_Mode==1){
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<948>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<948>");
 			for(t_C=0;t_C<=t_N->f_Parent->f_VariList.Length()-1;t_C=t_C+1){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<949>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<949>");
 				if(t_N->f_Parent->f_VariList.At(t_C)==t_N){
 					DBG_BLOCK();
 					break;
 				}
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<952>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<952>");
 			for(int t_NN2=t_C;t_NN2<=t_N->f_Parent->f_VariList.Length()-2;t_NN2=t_NN2+1){
 				DBG_BLOCK();
 				DBG_LOCAL(t_NN2,"NN")
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<953>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<953>");
 				gc_assign(t_N->f_Parent->f_VariList.At(t_NN2),t_N->f_Parent->f_VariList.At(t_NN2+1));
 			}
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<955>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<955>");
 			gc_assign(t_N->f_Parent->f_VariList,t_N->f_Parent->f_VariList.Slice(0,t_N->f_Parent->f_VariList.Length()-1));
 		}else{
 			DBG_BLOCK();
-			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<958>");
+			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<958>");
 			if(t_N->f_Element==String(L"Window",6) && t_N->f_Mode==0){
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<959>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<959>");
 				for(t_C=0;t_C<=t_N->f_Parent->f_BottomList.Length()-1;t_C=t_C+1){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<960>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<960>");
 					if(t_N->f_Parent->f_BottomList.At(t_C)==t_N){
 						DBG_BLOCK();
 						break;
 					}
 				}
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<963>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<963>");
 				for(int t_NN3=t_C;t_NN3<=t_N->f_Parent->f_BottomList.Length()-2;t_NN3=t_NN3+1){
 					DBG_BLOCK();
 					DBG_LOCAL(t_NN3,"NN")
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<964>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<964>");
 					gc_assign(t_N->f_Parent->f_BottomList.At(t_NN3),t_N->f_Parent->f_BottomList.At(t_NN3+1));
 				}
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<966>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<966>");
 				gc_assign(t_N->f_Parent->f_BottomList,t_N->f_Parent->f_BottomList.Slice(0,t_N->f_Parent->f_BottomList.Length()-1));
 			}else{
 				DBG_BLOCK();
-				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<969>");
+				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<969>");
 				if(t_N->f_Element==String(L"Menu",4)){
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<970>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<970>");
 					for(t_C=0;t_C<=t_N->f_Parent->f_Menus.Length()-1;t_C=t_C+1){
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<971>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<971>");
 						if(t_N->f_Parent->f_Menus.At(t_C)==t_N){
 							DBG_BLOCK();
 							break;
 						}
 					}
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<974>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<974>");
 					for(int t_NN4=t_C;t_NN4<=t_N->f_Parent->f_Menus.Length()-2;t_NN4=t_NN4+1){
 						DBG_BLOCK();
 						DBG_LOCAL(t_NN4,"NN")
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<975>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<975>");
 						gc_assign(t_N->f_Parent->f_Menus.At(t_NN4),t_N->f_Parent->f_Menus.At(t_NN4+1));
 					}
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<977>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<977>");
 					gc_assign(t_N->f_Parent->f_Menus,t_N->f_Parent->f_Menus.Slice(0,t_N->f_Parent->f_Menus.Length()-1));
 				}else{
 					DBG_BLOCK();
-					DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<980>");
+					DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<980>");
 					if(t_N->f_Element==String(L"MenuItem",8)){
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<981>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<981>");
 						for(t_C=0;t_C<=t_N->f_Parent->f_MenuItems.Length()-1;t_C=t_C+1){
 							DBG_BLOCK();
-							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<982>");
+							DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<982>");
 							if(t_N->f_Parent->f_MenuItems.At(t_C)==t_N){
 								DBG_BLOCK();
 								break;
 							}
 						}
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<985>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<985>");
 						for(int t_NN5=t_C;t_NN5<=t_N->f_Parent->f_MenuItems.Length()-2;t_NN5=t_NN5+1){
 							DBG_BLOCK();
 							DBG_LOCAL(t_NN5,"NN")
-							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<986>");
+							DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<986>");
 							gc_assign(t_N->f_Parent->f_MenuItems.At(t_NN5),t_N->f_Parent->f_MenuItems.At(t_NN5+1));
 						}
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<988>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<988>");
 						gc_assign(t_N->f_Parent->f_MenuItems,t_N->f_Parent->f_MenuItems.Slice(0,t_N->f_Parent->f_MenuItems.Length()-1));
 					}else{
 						DBG_BLOCK();
-						DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<991>");
+						DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<991>");
 						if(t_N->f_Element==String(L"Tab",3)){
 							DBG_BLOCK();
-							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<992>");
+							DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<992>");
 							for(t_C=0;t_C<=t_N->f_Parent->f_Tabs.Length()-1;t_C=t_C+1){
 								DBG_BLOCK();
-								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<993>");
+								DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<993>");
 								if(t_N->f_Parent->f_Tabs.At(t_C)==t_N){
 									DBG_BLOCK();
 									break;
 								}
 							}
-							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<996>");
+							DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<996>");
 							for(int t_NN6=t_C;t_NN6<=t_N->f_Parent->f_Tabs.Length()-2;t_NN6=t_NN6+1){
 								DBG_BLOCK();
 								DBG_LOCAL(t_NN6,"NN")
-								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<997>");
+								DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<997>");
 								gc_assign(t_N->f_Parent->f_Tabs.At(t_NN6),t_N->f_Parent->f_Tabs.At(t_NN6+1));
 							}
-							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<999>");
+							DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<999>");
 							gc_assign(t_N->f_Parent->f_Tabs,t_N->f_Parent->f_Tabs.Slice(0,t_N->f_Parent->f_Tabs.Length()-1));
 						}else{
 							DBG_BLOCK();
-							DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1002>");
+							DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1002>");
 							if(t_N->f_Element==String(L"Button",6)){
 								DBG_BLOCK();
-								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1003>");
+								DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1003>");
 								for(t_C=0;t_C<=t_N->f_Parent->f_Buttons.Length()-1;t_C=t_C+1){
 									DBG_BLOCK();
-									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1004>");
+									DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1004>");
 									if(t_N->f_Parent->f_Buttons.At(t_C)==t_N){
 										DBG_BLOCK();
 										break;
 									}
 								}
-								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1007>");
+								DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1007>");
 								for(int t_NN7=t_C;t_NN7<=t_N->f_Parent->f_Buttons.Length()-2;t_NN7=t_NN7+1){
 									DBG_BLOCK();
 									DBG_LOCAL(t_NN7,"NN")
-									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1008>");
+									DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1008>");
 									gc_assign(t_N->f_Parent->f_Buttons.At(t_NN7),t_N->f_Parent->f_Buttons.At(t_NN7+1));
 								}
-								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1010>");
+								DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1010>");
 								gc_assign(t_N->f_Parent->f_Buttons,t_N->f_Parent->f_Buttons.Slice(0,t_N->f_Parent->f_Buttons.Length()-1));
 							}else{
 								DBG_BLOCK();
-								DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1013>");
+								DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1013>");
 								if(t_N->f_Element==String(L"ImageButton",11)){
 									DBG_BLOCK();
-									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1014>");
+									DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1014>");
 									for(t_C=0;t_C<=t_N->f_Parent->f_ImageButtons.Length()-1;t_C=t_C+1){
 										DBG_BLOCK();
-										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1015>");
+										DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1015>");
 										if(t_N->f_Parent->f_ImageButtons.At(t_C)==t_N){
 											DBG_BLOCK();
 											break;
 										}
 									}
-									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1018>");
+									DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1018>");
 									for(int t_NN8=t_C;t_NN8<=t_N->f_Parent->f_ImageButtons.Length()-2;t_NN8=t_NN8+1){
 										DBG_BLOCK();
 										DBG_LOCAL(t_NN8,"NN")
-										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1019>");
+										DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1019>");
 										gc_assign(t_N->f_Parent->f_ImageButtons.At(t_NN8),t_N->f_Parent->f_ImageButtons.At(t_NN8+1));
 									}
-									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1021>");
+									DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1021>");
 									gc_assign(t_N->f_Parent->f_ImageButtons,t_N->f_Parent->f_ImageButtons.Slice(0,t_N->f_Parent->f_ImageButtons.Length()-1));
 								}else{
 									DBG_BLOCK();
-									DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1024>");
+									DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1024>");
 									if(t_N->f_Element==String(L"Tickbox",7)){
 										DBG_BLOCK();
-										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1025>");
+										DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1025>");
 										for(t_C=0;t_C<=t_N->f_Parent->f_Tickboxes.Length()-1;t_C=t_C+1){
 											DBG_BLOCK();
-											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1026>");
+											DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1026>");
 											if(t_N->f_Parent->f_Tickboxes.At(t_C)==t_N){
 												DBG_BLOCK();
 												break;
 											}
 										}
-										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1029>");
+										DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1029>");
 										for(int t_NN9=t_C;t_NN9<=t_N->f_Parent->f_Tickboxes.Length()-2;t_NN9=t_NN9+1){
 											DBG_BLOCK();
 											DBG_LOCAL(t_NN9,"NN")
-											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1030>");
+											DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1030>");
 											gc_assign(t_N->f_Parent->f_Tickboxes.At(t_NN9),t_N->f_Parent->f_Tickboxes.At(t_NN9+1));
 										}
-										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1032>");
+										DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1032>");
 										gc_assign(t_N->f_Parent->f_Tickboxes,t_N->f_Parent->f_Tickboxes.Slice(0,t_N->f_Parent->f_Tickboxes.Length()-1));
 									}else{
 										DBG_BLOCK();
-										DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1035>");
+										DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1035>");
 										if(t_N->f_Element==String(L"Radio",5)){
 											DBG_BLOCK();
-											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1036>");
+											DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1036>");
 											for(t_C=0;t_C<=t_N->f_Parent->f_Radioboxes.Length()-1;t_C=t_C+1){
 												DBG_BLOCK();
-												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1037>");
+												DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1037>");
 												if(t_N->f_Parent->f_Radioboxes.At(t_C)==t_N){
 													DBG_BLOCK();
 													break;
 												}
 											}
-											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1040>");
+											DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1040>");
 											for(int t_NN10=t_C;t_NN10<=t_N->f_Parent->f_Radioboxes.Length()-2;t_NN10=t_NN10+1){
 												DBG_BLOCK();
 												DBG_LOCAL(t_NN10,"NN")
-												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1041>");
+												DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1041>");
 												gc_assign(t_N->f_Parent->f_Radioboxes.At(t_NN10),t_N->f_Parent->f_Radioboxes.At(t_NN10+1));
 											}
-											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1043>");
+											DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1043>");
 											gc_assign(t_N->f_Parent->f_Radioboxes,t_N->f_Parent->f_Radioboxes.Slice(0,t_N->f_Parent->f_Radioboxes.Length()-1));
 										}else{
 											DBG_BLOCK();
-											DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1046>");
+											DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1046>");
 											if(t_N->f_Element==String(L"Listbox",7)){
 												DBG_BLOCK();
-												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1047>");
+												DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1047>");
 												for(t_C=0;t_C<=t_N->f_Parent->f_Listboxes.Length()-1;t_C=t_C+1){
 													DBG_BLOCK();
-													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1048>");
+													DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1048>");
 													if(t_N->f_Parent->f_Listboxes.At(t_C)==t_N){
 														DBG_BLOCK();
 														break;
 													}
 												}
-												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1051>");
+												DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1051>");
 												for(int t_NN11=t_C;t_NN11<=t_N->f_Parent->f_Listboxes.Length()-2;t_NN11=t_NN11+1){
 													DBG_BLOCK();
 													DBG_LOCAL(t_NN11,"NN")
-													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1052>");
+													DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1052>");
 													gc_assign(t_N->f_Parent->f_Listboxes.At(t_NN11),t_N->f_Parent->f_Listboxes.At(t_NN11+1));
 												}
-												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1054>");
+												DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1054>");
 												gc_assign(t_N->f_Parent->f_Listboxes,t_N->f_Parent->f_Listboxes.Slice(0,t_N->f_Parent->f_Listboxes.Length()-1));
 											}else{
 												DBG_BLOCK();
-												DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1057>");
+												DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1057>");
 												if(t_N->f_Element==String(L"ListboxItem",11)){
 													DBG_BLOCK();
-													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1058>");
+													DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1058>");
 													for(t_C=0;t_C<=t_N->f_Parent->f_ListboxItems.Length()-1;t_C=t_C+1){
 														DBG_BLOCK();
-														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1059>");
+														DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1059>");
 														if(t_N->f_Parent->f_ListboxItems.At(t_C)==t_N){
 															DBG_BLOCK();
 															break;
 														}
 													}
-													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1062>");
+													DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1062>");
 													for(int t_NN12=t_C;t_NN12<=t_N->f_Parent->f_ListboxItems.Length()-2;t_NN12=t_NN12+1){
 														DBG_BLOCK();
 														DBG_LOCAL(t_NN12,"NN")
-														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1063>");
+														DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1063>");
 														gc_assign(t_N->f_Parent->f_ListboxItems.At(t_NN12),t_N->f_Parent->f_ListboxItems.At(t_NN12+1));
 													}
-													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1065>");
+													DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1065>");
 													gc_assign(t_N->f_Parent->f_ListboxItems,t_N->f_Parent->f_ListboxItems.Slice(0,t_N->f_Parent->f_ListboxItems.Length()-1));
 												}else{
 													DBG_BLOCK();
-													DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1068>");
+													DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1068>");
 													if(t_N->f_Element==String(L"Dropdown",8)){
 														DBG_BLOCK();
-														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1069>");
+														DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1069>");
 														for(t_C=0;t_C<=t_N->f_Parent->f_Dropdowns.Length()-1;t_C=t_C+1){
 															DBG_BLOCK();
-															DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1070>");
+															DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1070>");
 															if(t_N->f_Parent->f_Dropdowns.At(t_C)==t_N){
 																DBG_BLOCK();
 																break;
 															}
 														}
-														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1073>");
+														DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1073>");
 														for(int t_NN13=t_C;t_NN13<=t_N->f_Parent->f_Dropdowns.Length()-2;t_NN13=t_NN13+1){
 															DBG_BLOCK();
 															DBG_LOCAL(t_NN13,"NN")
-															DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1074>");
+															DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1074>");
 															gc_assign(t_N->f_Parent->f_Dropdowns.At(t_NN13),t_N->f_Parent->f_Dropdowns.At(t_NN13+1));
 														}
-														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1076>");
+														DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1076>");
 														gc_assign(t_N->f_Parent->f_Dropdowns,t_N->f_Parent->f_Dropdowns.Slice(0,t_N->f_Parent->f_Dropdowns.Length()-1));
 													}else{
 														DBG_BLOCK();
-														DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1079>");
+														DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1079>");
 														if(t_N->f_Element==String(L"DropdownItem",12)){
 															DBG_BLOCK();
-															DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1080>");
+															DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1080>");
 															for(t_C=0;t_C<=t_N->f_Parent->f_DropdownItems.Length()-1;t_C=t_C+1){
 																DBG_BLOCK();
-																DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1081>");
+																DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1081>");
 																if(t_N->f_Parent->f_DropdownItems.At(t_C)==t_N){
 																	DBG_BLOCK();
 																	break;
 																}
 															}
-															DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1084>");
+															DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1084>");
 															for(int t_NN14=t_C;t_NN14<=t_N->f_Parent->f_DropdownItems.Length()-2;t_NN14=t_NN14+1){
 																DBG_BLOCK();
 																DBG_LOCAL(t_NN14,"NN")
-																DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1085>");
+																DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1085>");
 																gc_assign(t_N->f_Parent->f_DropdownItems.At(t_NN14),t_N->f_Parent->f_DropdownItems.At(t_NN14+1));
 															}
-															DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1087>");
+															DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1087>");
 															gc_assign(t_N->f_Parent->f_DropdownItems,t_N->f_Parent->f_DropdownItems.Slice(0,t_N->f_Parent->f_DropdownItems.Length()-1));
 														}else{
 															DBG_BLOCK();
-															DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1090>");
+															DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1090>");
 															if(t_N->f_Element==String(L"Textfield",9)){
 																DBG_BLOCK();
-																DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1091>");
+																DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1091>");
 																for(t_C=0;t_C<=t_N->f_Parent->f_Textfields.Length()-1;t_C=t_C+1){
 																	DBG_BLOCK();
-																	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1092>");
+																	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1092>");
 																	if(t_N->f_Parent->f_Textfields.At(t_C)==t_N){
 																		DBG_BLOCK();
 																		break;
 																	}
 																}
-																DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1095>");
+																DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1095>");
 																for(int t_NN15=t_C;t_NN15<=t_N->f_Parent->f_Textfields.Length()-2;t_NN15=t_NN15+1){
 																	DBG_BLOCK();
 																	DBG_LOCAL(t_NN15,"NN")
-																	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1096>");
+																	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1096>");
 																	gc_assign(t_N->f_Parent->f_Textfields.At(t_NN15),t_N->f_Parent->f_Textfields.At(t_NN15+1));
 																}
-																DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1098>");
+																DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1098>");
 																gc_assign(t_N->f_Parent->f_Textfields,t_N->f_Parent->f_Textfields.Slice(0,t_N->f_Parent->f_Textfields.Length()-1));
 															}else{
 																DBG_BLOCK();
-																DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1101>");
+																DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1101>");
 																if(t_N->f_Element==String(L"Label",5)){
 																	DBG_BLOCK();
-																	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1102>");
+																	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1102>");
 																	for(t_C=0;t_C<=t_N->f_Parent->f_Labels.Length()-1;t_C=t_C+1){
 																		DBG_BLOCK();
-																		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1103>");
+																		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1103>");
 																		if(t_N->f_Parent->f_Labels.At(t_C)==t_N){
 																			DBG_BLOCK();
 																			break;
 																		}
 																	}
-																	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1106>");
+																	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1106>");
 																	for(int t_NN16=t_C;t_NN16<=t_N->f_Parent->f_Labels.Length()-2;t_NN16=t_NN16+1){
 																		DBG_BLOCK();
 																		DBG_LOCAL(t_NN16,"NN")
-																		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1107>");
+																		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1107>");
 																		gc_assign(t_N->f_Parent->f_Labels.At(t_NN16),t_N->f_Parent->f_Labels.At(t_NN16+1));
 																	}
-																	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1109>");
+																	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1109>");
 																	gc_assign(t_N->f_Parent->f_Labels,t_N->f_Parent->f_Labels.Slice(0,t_N->f_Parent->f_Labels.Length()-1));
 																}else{
 																	DBG_BLOCK();
-																	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1112>");
+																	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1112>");
 																	if(t_N->f_Element==String(L"VSlider",7)){
 																		DBG_BLOCK();
-																		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1113>");
+																		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1113>");
 																		for(t_C=0;t_C<=t_N->f_Parent->f_VSliders.Length()-1;t_C=t_C+1){
 																			DBG_BLOCK();
-																			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1114>");
+																			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1114>");
 																			if(t_N->f_Parent->f_VSliders.At(t_C)==t_N){
 																				DBG_BLOCK();
 																				break;
 																			}
 																		}
-																		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1117>");
+																		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1117>");
 																		for(int t_NN17=t_C;t_NN17<=t_N->f_Parent->f_VSliders.Length()-2;t_NN17=t_NN17+1){
 																			DBG_BLOCK();
 																			DBG_LOCAL(t_NN17,"NN")
-																			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1118>");
+																			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1118>");
 																			gc_assign(t_N->f_Parent->f_VSliders.At(t_NN17),t_N->f_Parent->f_VSliders.At(t_NN17+1));
 																		}
-																		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1120>");
+																		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1120>");
 																		gc_assign(t_N->f_Parent->f_VSliders,t_N->f_Parent->f_VSliders.Slice(0,t_N->f_Parent->f_VSliders.Length()-1));
 																	}else{
 																		DBG_BLOCK();
-																		DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1123>");
+																		DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1123>");
 																		if(t_N->f_Element==String(L"HSlider",7)){
 																			DBG_BLOCK();
-																			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1124>");
+																			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1124>");
 																			for(t_C=0;t_C<=t_N->f_Parent->f_HSliders.Length()-1;t_C=t_C+1){
 																				DBG_BLOCK();
-																				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1125>");
+																				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1125>");
 																				if(t_N->f_Parent->f_HSliders.At(t_C)==t_N){
 																					DBG_BLOCK();
 																					break;
 																				}
 																			}
-																			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1128>");
+																			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1128>");
 																			for(int t_NN18=t_C;t_NN18<=t_N->f_Parent->f_HSliders.Length()-2;t_NN18=t_NN18+1){
 																				DBG_BLOCK();
 																				DBG_LOCAL(t_NN18,"NN")
-																				DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1129>");
+																				DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1129>");
 																				gc_assign(t_N->f_Parent->f_HSliders.At(t_NN18),t_N->f_Parent->f_HSliders.At(t_NN18+1));
 																			}
-																			DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1131>");
+																			DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1131>");
 																			gc_assign(t_N->f_Parent->f_HSliders,t_N->f_Parent->f_HSliders.Slice(0,t_N->f_Parent->f_HSliders.Length()-1));
 																		}
 																	}
@@ -18346,7 +18346,7 @@ int bb_challengergui_CHGUI_Delete(bb_challengergui_CHGUI* t_N){
 			}
 		}
 	}
-	DBG_INFO("C:/Program Files (x86)/Monkey/modules/challengergui/challengergui.monkey<1137>");
+	DBG_INFO("J:/APPLICATIONS/Monkey/modules/challengergui/challengergui.monkey<1137>");
 	t_N=0;
 	return 0;
 }

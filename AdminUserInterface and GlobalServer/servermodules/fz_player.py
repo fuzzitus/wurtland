@@ -1,7 +1,7 @@
 import os
 import sys
 
-import fz_pack
+import fz_pack as p2
 
 PLAYER_DIR = '/home4/fuzzitus/public_html/players'
 
@@ -34,7 +34,7 @@ def ReadPlayer(stream):
     form = int(p2.ReadFrom(stream))
     Id = p2.ReadFrom(stream)
     Pw = p2.ReadFrom(stream)
-    am = int(p2.ReadFrom(Stream))
+    am = int(p2.ReadFrom(stream))
     traits = []
     for ET in range(0, am):
         traits.append([p2.ReadFrom(stream), ''])
@@ -42,7 +42,7 @@ def ReadPlayer(stream):
     return Player(Id, Pw, traits)
 
 def LoadPlayer(Id):
-    ff = p2.ReadFromFile(PLAYER_DIR + '/' + Format(Id) + '.fuz', 'r')
+    ff = p2.ReadFromFile(PLAYER_DIR + '/' + Format(Id) + '.fuz')
     P = ReadPlayer(ff)
     return P
 

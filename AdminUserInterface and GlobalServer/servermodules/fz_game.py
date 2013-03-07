@@ -49,7 +49,7 @@ class Game:
             p.Write(stream, ET)
         p.Write(stream, len(g.Instructions))
         for EI in g.Instructions:
-            p.Write(EI)
+            EI.Write(stream)
 
 def ReadGame(stream):
     form = int(p.ReadFrom(stream))
@@ -96,6 +96,3 @@ def CheckPassword(game, pw):
             return False
     else:
         return False
-
-GAME_LOCATION = 'J:/'
-Game('gg', 's', False, [], [], [], []).Save()

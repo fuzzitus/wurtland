@@ -1,4 +1,4 @@
-#Copyright (c) 2013 CageInfamous(tm)
+#Copyright (c) 2013 Nathaniel "CageInfamous" Wilson, cageinfamous@gmail.com
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
 #(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
@@ -31,14 +31,14 @@ class Form(w.Widget):
 
 class TextField(w.Widget):
     def __call__(tf):
-        print tf.Prompt + '<input type="text" id="' + tf.Name + '">'
+        print tf.Prompt + '<input type="text" id="' + tf.Name + '" name="' + tf.Name + '">'
     def __init__(tf, name, prompt):
         tf.Name = name
         tf.Prompt = prompt
 
 class PasswordField(w.Widget):
     def __call__(pf):
-        print pf.Prompt + '<input type="password" id="' + pf.Name + '">'
+        print pf.Prompt + '<input type="password" id="' + pf.Name + '" name="' + pf.Name + '">'
     def __init__(pf, name, prompt):
         pf.Name = name
         pf.Prompt = prompt
@@ -52,22 +52,25 @@ class SubmitButton(w.Widget):
 class Radio(w.Widget):
     def __call__(r):
         for EV in r.Values:
-            print '<input type="radio" id="' + r.Name + '" value="' + EV[0] + '">' + EV[1]
+            print '<input type="radio" id="' + r.Name + '" name="' + tf.Name + '" value="' + EV[0] + '">' + EV[1]
     def __init__(r, name, values):
         r.Name = name
         r.Values = values#[[value, caption]]
 
 class Checkbox(w.Widget):
     def __call__(cb):
-        for EV in r.Values:
-            print '<input type="checkbox" id="' + r.Name + '" value="' + EV[0] + '">' + EV[1]
+        for EV in cb.Values:
+            TXT = '<input type="checkbox" id="' + EV[0] + '" name="' + EV[0] + '" value="' + EV[1].replace('<br>', '').replace('<p>', '') + '"'
+            if len(EV) > 2:
+                TXT += ' checked'
+            print TXT + '>' + EV[1]
     def __init__(cb, name, values):
-        r.Name = name
-        r.Values = values#[[value, caption]]
+        cb.Name = name
+        cb.Values = values#[[value, caption, checked = False]]
 
 class Dropdown(w.Widget):
     def __call__(d):
-        TXT = '<select id="' + d.Name + '"'
+        TXT = '<select id="' + d.Name + '" name="' + d.Name + '"'
         if d.Attr <> None:
             for EA in d.Attr:
                 TXT += ' ' + EA + '="' + d.Attr[EA] + '"'
@@ -86,3 +89,10 @@ class Dropdown(w.Widget):
         d.Name = name
         d.Values = values#[[value, caption, attr]]
         d.Attr = attrs
+
+class Hidden(w.Widget):
+    def __call__(h):
+        print "<input type='hidden' id='" + h.Name + "' name='" + h.Name + "' value='" + h.Value + "'>"
+    def __init__(h, name, value):
+        h.Name = name
+        h.Value = value

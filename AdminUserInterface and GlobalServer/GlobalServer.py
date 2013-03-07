@@ -32,15 +32,15 @@ else:
 
         #Creates a game or returns back if that name is taken
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=creategame&gamename=GAME&pw=PASSWORD&servertype=static
-        if ACTION == 'creategame':
+        if ACTION == 'createnewgame':
             GAMENAME = Pars['gamename'].value
             PW = Pars['pw'].value
 
             if g.CheckGameExists(GAMENAME):
-                GoToPage(HOST + 'cgi-bin/adminconsole.py?action=createnewgame')
+                GoToPage(HOST + 'cgi-bin/adminConsole.py?action=createnewgame')
             else:
                 g.Game(GAMENAME, PW, False, [], [], [], []).Save()
-                GoToPage(HOST + 'cgi-bin/adminconsole.py?action=adminmenu&servertype=' + SERVERTYPE + '&gamename=' + GAMENAME + '&pw=' + PW)
+                GoToPage(HOST + 'cgi-bin/adminConsole.py?action=adminmenu&gamename=' + GAMENAME + '&pw=' + PW)
                 
 
 
@@ -52,11 +52,11 @@ else:
 
             if g.CheckGameExists(GAMENAME):
                 if g.CheckPassword(GAMENAME, PW):
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=adminmenu&servertype=' + SERVERTYPE + '&gamename=' + GAMENAME + '&pw=' + PW)
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py?action=adminmenu&servertype=' + SERVERTYPE + '&gamename=' + GAMENAME + '&pw=' + PW)
                 else:
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=logintogame')
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py?action=logintogame')
             else:
-                GoToPage(HOST + 'cgi-bin/adminconsole.py?action=logintogame')
+                GoToPage(HOST + 'cgi-bin/adminConsole.py?action=logintogame')
 
         #Changes the beacon's name
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=updatebeacon
@@ -78,11 +78,11 @@ else:
                         BEACON.Name = NEWNAME
                         GAME.Save()
                     
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=beaconmenu&gamename=' + GAMENAME + '&pw=' + PW)
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py?action=beaconmenu&gamename=' + GAMENAME + '&pw=' + PW)
                 else:
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py')
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py')
             else:
-                GoToPage(HOST + 'cgi-bin/adminconsole.py')
+                GoToPage(HOST + 'cgi-bin/adminConsole.py')
 
         #Delete's the beacon
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=deletebeacon
@@ -99,11 +99,11 @@ else:
                              GAME.Beacons.remove(EB)
                              break
                     GAME.Save()
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=beaconmenu&gamename=' + GAMENAME + '&pw=' + PW)
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py?action=beaconmenu&gamename=' + GAMENAME + '&pw=' + PW)
                 else:
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py')
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py')
             else:
-                GoToPage(HOST + 'cgi-bin/adminconsole.py')
+                GoToPage(HOST + 'cgi-bin/adminConsole.py')
 
         #Updates Player Trait
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=updateplayertrait
@@ -113,7 +113,7 @@ else:
             PL = Pars['player'].value
 
             if PL == '':
-                GoToPage(HOST + 'cgi-bin/adminconsole.py?action=playertraits&gamename=' + GAMENAME + '&pw=' + PW)
+                GoToPage(HOST + 'cgi-bin/adminConsole.py?action=playertraits&gamename=' + GAMENAME + '&pw=' + PW)
 
             if g.CheckGameExists(GAMENAME):
                 if g.CheckPassword(GAMENAME, PW):
@@ -129,11 +129,11 @@ else:
                     PLAYER.Save()
                     GAME.Save()
                     
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=playertraits&gamename=' + GAMENAME + '&pw=' + PW + '&player=' + PL)
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py?action=playertraits&gamename=' + GAMENAME + '&pw=' + PW + '&player=' + PL)
                 else:
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py')
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py')
             else:
-                GoToPage(HOST + 'cgi-bin/adminconsole.py')
+                GoToPage(HOST + 'cgi-bin/adminConsole.py')
             
 
         #Updates a trait
@@ -147,11 +147,11 @@ else:
                     GAME = g.LoadGame(GAMENAME)
                     GAME.Traits.append(str(TRAIT))
                     GAME.Save()
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=traits&gamename=' + GAMENAME + '&pw=' + PW)
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py?action=traits&gamename=' + GAMENAME + '&pw=' + PW)
                 else:
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py')
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py')
             else:
-                GoToPage(HOST + 'cgi-bin/adminconsole.py')
+                GoToPage(HOST + 'cgi-bin/adminConsole.py')
 
         #Delete's the trait
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=deletetrait
@@ -167,11 +167,11 @@ else:
                         GAME.Traits.remove(TRAIT)
                         
                     GAME.Save()
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=traits&gamename=' + GAMENAME + '&pw=' + PW)
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py?action=traits&gamename=' + GAMENAME + '&pw=' + PW)
                 else:
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py')
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py')
             else:
-                GoToPage(HOST + 'cgi-bin/adminconsole.py')
+                GoToPage(HOST + 'cgi-bin/adminConsole.py')
 
         #Updates instruction
         #http://www.fuzzit.us/cgi-bin/GlobalServer.py?action=updateinstruction
@@ -194,11 +194,11 @@ else:
                     BEACON = GAME.GetBeacon(B_NAME)
                     BEACON.Instructions.append(I_ID)
                     GAME.Save()
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py?action=instructions&gamename=' + GAMENAME + '&pw=' + PW)
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py?action=instructions&gamename=' + GAMENAME + '&pw=' + PW)
                 else:
-                    GoToPage(HOST + 'cgi-bin/adminconsole.py')
+                    GoToPage(HOST + 'cgi-bin/adminConsole.py')
             else:
-                GoToPage(HOST + 'cgi-bin/adminconsole.py')
+                GoToPage(HOST + 'cgi-bin/adminConsole.py')
 			
 
 
